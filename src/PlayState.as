@@ -7,6 +7,7 @@ package
 	{
 		private var player:Player;
 		private var dungeonMap:Dungeon;
+		private var miniMap:MiniMap;
 		
 		public function PlayState(){}
 		
@@ -17,6 +18,8 @@ package
 			dungeonMap = new Dungeon();
 			
 			player = new Player();
+			miniMap = new MiniMap(dungeonMap, player);
+			miniMap.setAll("scrollFactor",new FlxPoint(0,0));
 			
 			FlxG.worldBounds = new FlxRect(0, 0, dungeonMap.width, dungeonMap.height);
 			trace(FlxG.worldBounds.width + " " + FlxG.worldBounds.height);
@@ -26,6 +29,7 @@ package
 			add(dungeonMap);
 			add(player);
 			add(player.bullets);
+			add(miniMap);
 			
 			player.x = dungeonMap.emptySpaces[0].x;
 			player.y = dungeonMap.emptySpaces[0].y;	

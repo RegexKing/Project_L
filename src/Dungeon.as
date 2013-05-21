@@ -10,7 +10,7 @@ package
 		
 		[Embed(source = '../lib/images/dun.png')] private var dunPNG:Class;
 		
-		public const TILE_SIZE:uint = 32;
+		public static const TILE_SIZE:uint = 32;
 		
 		public var dungeon:FlxTilemap;
 		public var dungeonGen:DungeonGenerator;
@@ -31,9 +31,6 @@ package
 			
 			width = dungeon.widthInTiles * TILE_SIZE;
 			height = dungeon.heightInTiles * TILE_SIZE;
-			
-			trace(width + " " + height);
-			trace(FlxG.worldBounds.width + " " + FlxG.worldBounds.height);
 			
 			emptySpaceCoords();
 			
