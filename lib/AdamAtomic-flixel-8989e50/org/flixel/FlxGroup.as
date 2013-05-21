@@ -206,7 +206,8 @@ package org.flixel
 			//If we made it this far, then we successfully grew the group,
 			//and we can go ahead and add the object at the first open slot.
 			members[i] = Object;
-			length = i+1;
+			length = i + 1;
+			
 			return Object;
 		}
 		
@@ -548,7 +549,7 @@ package org.flixel
 			var i:uint = 0;
 			while(i < length)
 			{
-				basic = members[i++] as FlxBasic;
+				if (members != null) basic = members[i++] as FlxBasic;
 				if((basic != null) && basic.exists)
 					basic.kill();
 			}
@@ -570,6 +571,51 @@ package org.flixel
 			else if(Obj1[_sortIndex] > Obj2[_sortIndex])
 				return -_sortOrder;
 			return 0;
+		
 		}
+		
+		private var _alpha:Number = 1;
+		
+		public function set alpha(n:Number):void 
+		{
+			_alpha = n;
+			if (_alpha > 1) _alpha = 1;
+			else if (_alpha < 0) _alpha = 0;
+			
+			for each (var object:* in members) {
+				object.alpha = _alpha;
+			}
+		}
+		
+		public function get alpha():Number { return _alpha }
+			
+		private var _x:int = 0
+		private var _y:int = 0
+		
+		public function set x(nx:int):void
+		{
+			var offset:int = nx - _x;
+			
+			for each (var object:* in members) {
+				object.x += offset;
+			}
+			
+			_x = nx;
+		}
+		
+		public function get x():int {return _x}
+		
+		public function set y(ny:int):void
+		{
+			var offset:int = ny - _y;
+			
+			for each (var object:* in members) {
+				object.y += offset;
+			}
+			
+			_y = ny;
+		}
+		
+		public function get y():int { return _y }
 	}
 }

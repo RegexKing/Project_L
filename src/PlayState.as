@@ -19,10 +19,10 @@ package
 			
 			player = new Player();
 			miniMap = new MiniMap(dungeonMap, player);
-			miniMap.setAll("scrollFactor",new FlxPoint(0,0));
+			miniMap.setAll("scrollFactor", new FlxPoint(0, 0));
+			miniMap.x = 256 - 80;
 			
 			FlxG.worldBounds = new FlxRect(0, 0, dungeonMap.width, dungeonMap.height);
-			trace(FlxG.worldBounds.width + " " + FlxG.worldBounds.height);
 			FlxG.camera.setBounds(0,0, dungeonMap.width, dungeonMap.height, true);
 			FlxG.camera.follow(player, FlxCamera.STYLE_TOPDOWN_TIGHT);
 			

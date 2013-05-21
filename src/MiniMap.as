@@ -53,9 +53,18 @@ package
 		
 		override public function update():void
 		{
+			var tempX:int = playerIcon.x;
+			var tempY:int = playerIcon.y;
+			
 			playerIcon.x = Math.round(player.x / Dungeon.TILE_SIZE) * 2;
 			playerIcon.y = Math.round(player.y / Dungeon.TILE_SIZE) * 2;
+			playerIcon.x += 256 - 80;
 			
+			if (playerIcon.x != tempX || playerIcon.y != tempY) updatePlayerLocation();
+		}	
+		
+		private function updatePlayerLocation():void
+		{
 			for each(var tile:FlxSprite in foggedTiles.members)
 			{
 				if (playerIcon.x == tile.x && playerIcon.y == tile.y) 
@@ -64,7 +73,7 @@ package
 					break;
 				}
 			}
-		}	
+		}
 	}
 
 }
