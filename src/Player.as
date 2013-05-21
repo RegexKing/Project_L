@@ -22,7 +22,7 @@ package
 			height = 26;
 			
 			normalGun = new FlxWeapon("normal", this);
-			normalGun.makePixelBullet(50, 8, 8, 0xffffffff, 10, 13);
+			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
 			normalGun.setBulletBounds(new FlxRect(0, 0, 1280, 1280));
 			normalGun.setBulletSpeed(200);
 			normalGun.setFireRate(250);
