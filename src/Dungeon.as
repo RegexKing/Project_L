@@ -10,12 +10,12 @@ package
 		
 		[Embed(source = '../lib/images/dun.png')] private var dunPNG:Class;
 		
-		public static const TILE_SIZE:uint = 32;
-		
-		public var dungeon:FlxTilemap;
+		public var dungeonMap:FlxTilemap;
 		public var dungeonGen:DungeonGenerator;
-		public var width:uint;
-		public var height:uint;
+		
+		public static var width:uint = 0;
+		public static var height:uint = 0;
+		public static const TILE_SIZE:uint = 32;
 		
 		public var emptySpaces:Array;
 		
@@ -23,18 +23,18 @@ package
 		{
 			super();
 			
-			dungeon = new FlxTilemap();
+			dungeonMap = new FlxTilemap();
 			
 			dungeonGen = new DungeonGenerator();
 			
-			dungeon.loadMap(FlxTilemap.arrayToCSV(dungeonGen.map, 40), dunPNG, TILE_SIZE, TILE_SIZE, FlxTilemap.OFF, 0, 1, 2);
+			dungeonMap.loadMap(FlxTilemap.arrayToCSV(dungeonGen.map, DungeonGenerator.TOTAL_ROWS), dunPNG, TILE_SIZE, TILE_SIZE, FlxTilemap.OFF, 0, 1, 2);
 			
-			width = dungeon.widthInTiles * TILE_SIZE;
-			height = dungeon.heightInTiles * TILE_SIZE;
+			width = dungeonMap.widthInTiles * TILE_SIZE;
+			height = dungeonMap.heightInTiles * TILE_SIZE;
 			
 			emptySpaceCoords();
 			
-			add(dungeon);
+			add(dungeonMap);
 			
 		}
 		
@@ -46,7 +46,7 @@ package
 			{
 				if (dungeonGen.map[i] == 1)
 				{
-					emptySpaces.push(new FlxPoint((i % 40)*TILE_SIZE, Math.floor(i / 40)*TILE_SIZE));
+					emptySpaces.push(new FlxPoint((i % DungeonGenerator.TOTAL_ROWS)*TILE_SIZE, Math.floor(i / DungeonGenerator.TOTAL_COLS)*TILE_SIZE));
 				}
 			}
 		}

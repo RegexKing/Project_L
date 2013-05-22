@@ -15,8 +15,8 @@ package
 		protected var prevDoor:Array; // Array of the format (x, y). Contains the coordinates of the previous room's door
 		
 		// Constants, used to configure the floors
-		protected const TOTAL_ROWS:int = 40;
-		protected const TOTAL_COLS:int = 40;
+		public static const TOTAL_ROWS:int = 40;
+		public static const TOTAL_COLS:int = 40;
 		protected const WALL:int = 2;
 		protected const FLOOR:int = 1;
 		protected const MIN_ROOM_WIDTH:int = 4;
@@ -40,6 +40,7 @@ package
 			// Generate the map
 			generateMap();
 
+			sealMap();
 		}
 				
 		/**
@@ -59,6 +60,14 @@ package
 			for (var i:int = 0; i < totalRooms; i++) {
 				firstRoom = (i == 0); // Check if it's the first room of the level
 				createRoom(firstRoom);
+			}
+		}
+		
+		protected function sealMap():void
+		{
+			for (var i:int = 0; i < TOTAL_ROWS * TOTAL_COLS; i++)
+			{
+				if (Math.floor(i / 40) == 0 || i %40 == 0) map[i] = WALL;
 			}
 		}
 		

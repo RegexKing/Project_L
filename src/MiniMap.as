@@ -5,7 +5,6 @@ package
 	 * @author Frank Fazio
 	 */
 	
-	import mx.core.FlexSprite;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
 	 
@@ -42,12 +41,12 @@ package
 				foggedTiles.add(floorBlock);
 			}
 			
-			add(foggedTiles);
-			
 			playerIcon = new FlxSprite();
 			playerIcon.makeGraphic(2, 2, 0xffFF0000);
 			playerIcon.width = 2;
 			playerIcon.height = 2;
+			
+			add(foggedTiles);
 			add(playerIcon);
 		}
 		
@@ -58,12 +57,12 @@ package
 			
 			playerIcon.x = Math.round(player.x / Dungeon.TILE_SIZE) * 2;
 			playerIcon.y = Math.round(player.y / Dungeon.TILE_SIZE) * 2;
-			playerIcon.x += 256 - 80;
+			playerIcon.x += GameData.RENDER_WIDTH - DungeonGenerator.TOTAL_ROWS * 2;
 			
-			if (playerIcon.x != tempX || playerIcon.y != tempY) updatePlayerLocation();
+			if (playerIcon.x != tempX || playerIcon.y != tempY) clearFog();
 		}	
 		
-		private function updatePlayerLocation():void
+		private function clearFog():void
 		{
 			for each(var tile:FlxSprite in foggedTiles.members)
 			{

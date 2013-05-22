@@ -3,6 +3,7 @@ package
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	/**
+	 * 
 	 * ...
 	 * @author Frank Fazio
 	 */
@@ -16,14 +17,14 @@ package
 		{
 			super();
 			
-			makeGraphic(21, 26, 0xff00FF00);
+			makeGraphic(20, 20, 0xff00FF00);
 			
-			width = 21;
-			height = 26;
+			width = 20;
+			height = 20;
 			
 			normalGun = new FlxWeapon("normal", this);
 			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
-			normalGun.setBulletBounds(new FlxRect(0, 0, 1280, 1280));
+			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
 			normalGun.setBulletSpeed(200);
 			normalGun.setFireRate(250);
 			
