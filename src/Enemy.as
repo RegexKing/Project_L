@@ -12,6 +12,9 @@ package
 		protected var player:Player;
 		protected var dungeon:Dungeon;
 		protected var inSight:Boolean;
+		public var aware:Boolean;
+		protected var speed:int;
+		protected var myPath:FlxPath;
 		
 		public function Enemy(_player:Player, _dungeon:Dungeon) 
 		{
@@ -21,40 +24,43 @@ package
 			dungeon = _dungeon;
 			
 			inSight = false;
+			aware = false;
+			speed = 50;
 		}
 		
-		/*
+		
 		override public function update():void
 		{
-			var enemyCoords:FlxPoint = this.getMidpoint();
-			var playerCoords:FlxPoint = player.getMidpoint();
+			/*
+			var enemyCoords:FlxPoint = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
+			var playerCoords:FlxPoint = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
 			
-			//inSight = dungeon.dungeonMap.ray(enemyCoords, playerCoords);
+			inSight = dungeon.dungeonMap.ray(enemyCoords, playerCoords);
 			
-		
-			if (inSight || (dungeon.dungeonMap.ray(enemyCoords, playerCoords) && onScreen))
+			if (aware)
 			{
-				if (!inSight) inSight = true;
-				
-				followPath(dungeon.dungeonMap.findPath(enemyCoords, playerCoords), 100);
-			}
-			
-			
-			if (!inSight)
-			{
-				if (dungeon.dungeonMap.ray(enemyCoords, playerCoords) && onScreen(FlxG.camera))
+				if (myPath == null) 
 				{
-					inSight = true;
-					this.followPath(dungeon.dungeonMap.findPath(enemyCoords, playerCoords));
+					myPath = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
+					this.followPath(myPath, speed);
 				}
+				
+				this.stopFollowingPath();
+				myPath = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
+				this.followPath(myPath);
 			}
 			
-			else
+			else if ((!aware && inSight) && this.onScreen(FlxG.camera))
 			{
-				//this.followPath(dungeon.dungeonMap.findPath(enemyCoords, playerCoords));
+				aware = true;
+				
+				myPath = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
+				this.followPath(myPath, speed);
 			}
+			*/
+
 		}
-		*/
+		
 		
 	}
 

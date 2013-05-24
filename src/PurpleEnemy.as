@@ -11,16 +11,16 @@ package
 		{
 			super(_player, _dungeon);
 			
-			makeGraphic(16, 16, 0xffFF00FF);
-			width = 16;
-			height = 16;
+			makeGraphic(20, 20, 0xffFF00FF);
+			width = 20;
+			height = 20;
 		}
 		
 		override public function update():void
 		{
 			//super.update();
 			
-			//trace(inSight);
+			//trace("sight: " + inSight + "\naware: " + aware);
 		}
 		
 	}

@@ -4,6 +4,7 @@ package
 	 * ...
 	 * @author Frank Fazio
 	 */
+	 
 	public class GameData 
 	{
 		//Constants
@@ -22,11 +23,7 @@ package
 		public static var fireRateMultiplier:Number = 0;
 		
 		
-		public function GameData() 
-		{
-			
-		}
-		
-	}
+		public function GameData() {}
 
+	}
 }

@@ -40,10 +40,7 @@ package
 			player.y = dungeon.emptySpaces[0].y;	
 			
 			enemy.x = dungeon.emptySpaces[dungeon.emptySpaces.length-1].x;
-			enemy.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 1].y;	
-			
-			var path:FlxPath = dungeon.dungeonMap.findPath(new FlxPoint(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2), new FlxPoint(player.x + player.width / 2, player.y + player.height / 2));
-			enemy.followPath(path, 200);
+			enemy.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 1].y;
 		}
 		
 		override public function update():void
