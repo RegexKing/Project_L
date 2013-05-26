@@ -8,8 +8,6 @@ package
 	public class Dungeon extends FlxGroup
 	{
 		
-		[Embed(source = '../lib/images/dun.png')] private var dunPNG:Class;
-		
 		public var dungeonMap:FlxTilemap;
 		public var dungeonGen:DungeonGenerator;
 		
@@ -27,7 +25,7 @@ package
 			
 			dungeonGen = new DungeonGenerator();
 			
-			dungeonMap.loadMap(FlxTilemap.arrayToCSV(dungeonGen.map, DungeonGenerator.TOTAL_ROWS), dunPNG, TILE_SIZE, TILE_SIZE, FlxTilemap.OFF, 0, 1, 2);
+			dungeonMap.loadMap(FlxTilemap.arrayToCSV(dungeonGen.map, DungeonGenerator.TOTAL_ROWS), AssetsRegistry.randDunTilesPNG, TILE_SIZE, TILE_SIZE, FlxTilemap.OFF, 0, 1, 2);
 			
 			width = dungeonMap.widthInTiles * TILE_SIZE;
 			height = dungeonMap.heightInTiles * TILE_SIZE;

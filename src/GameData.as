@@ -12,12 +12,12 @@ package
 		public static const RENDER_HEIGHT:uint = 240;
 		
 		//changable
-		public static var diamonds:uint = 0;
-		public static var health:Number = 0;
+		public static var diamonds:int = 0;
+		public static var health:int = 1;
 		public static var weapon:uint = 0;
 		
 		//player attributes
-		public static var totalHealth:Number = 0;
+		public static var totalHealth:int = 3;
 		public static var defenseMultiplier:Number = 0;
 		public static var damageMultiplier:Number = 0;
 		public static var fireRateMultiplier:Number = 0;
