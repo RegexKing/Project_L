@@ -24,9 +24,9 @@ package
 			height = 20;
 			
 			playerGibs = new FlxEmitter();
-			playerGibs.particleDrag = new FlxPoint(150, 150);
-			playerGibs.setXSpeed(-150,150);
-			playerGibs.setYSpeed(-150,150);
+			playerGibs.particleDrag = new FlxPoint(300, 300);
+			playerGibs.setXSpeed(-200,200);
+			playerGibs.setYSpeed(-200,200);
 			playerGibs.setRotation(0, 0);
 			playerGibs.bounce = 0.5;
 			playerGibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);
@@ -84,7 +84,7 @@ package
 			if(playerGibs != null)
 			{
 				playerGibs.at(this);
-				playerGibs.start(true, 10, 0, 50);
+				playerGibs.start(true, 0, 0, 50);
 			}
 		}
 		

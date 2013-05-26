@@ -31,9 +31,9 @@ package
 			
 			gibs = new FlxEmitter();
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);
-			gibs.particleDrag = new FlxPoint(150, 150);
-			gibs.setXSpeed(-150,150);
-			gibs.setYSpeed(-150,150);
+			gibs.particleDrag = new FlxPoint(300, 300);
+			gibs.setXSpeed(-200,200);
+			gibs.setYSpeed(-200,200);
 			gibs.setRotation(0, 0);
 			gibs.bounce = 0.5;
 			
@@ -78,7 +78,7 @@ package
 			if(gibs != null)
 			{
 				gibs.at(this);
-				gibs.start(true, 5, 0, 50);
+				gibs.start(true, 0, 0, 50);
 			}
 			trace("enemy was killed");
 		}
