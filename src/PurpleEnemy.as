@@ -20,6 +20,7 @@ package
 			height = 20;
 			
 			speed = 50;
+			health = 8
 			aware = true;
 		}	
 		

@@ -99,7 +99,10 @@ package
 		private function endGame():void
 		{
 			player.kill();
+			GameData.resetData();
 			trace("Game ended");
+			
+			FlxG.switchState(new PlayState());
 		}
 		
 		private function hurtObject(unit:FlxObject, hazzard:FlxObject):void
@@ -108,8 +111,13 @@ package
 			
 			else 
 			{
-				unit.hurt(1);
-				if(unit is Player) lifeBar.currentValue--;
+				if (unit is Player) 
+				{
+					lifeBar.currentValue -= 1 - (1*GameData.defenseMultiplier);
+					unit.hurt(0);
+				}
+				
+				else unit.hurt(1);
 			}
 			
 			if (hazzard is Bullet) hazzard.kill();

@@ -62,9 +62,9 @@ package
 			return normalGun.group;
 		}
 		
-		override public function hurt(_damagePoints:Number):void
+		override public function hurt(_damageNumber:Number):void
 		{
-			this.flicker(_damagePoints);
+			this.flicker(1);
 			FlxG.camera.shake(0.005,0.35);
 		}
 		

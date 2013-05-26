@@ -72,6 +72,13 @@ package
 			}
 		}
 		
+		override public function set currentValue(newValue:Number):void
+		{
+			super.currentValue = newValue;
+			
+			GameData.health = this.currentValue;
+		}
+		
 	}
 
 }

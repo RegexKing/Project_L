@@ -23,6 +23,7 @@ package
 			width = 20;
 			height = 20;
 			
+			speed = 50;
 			health = 5;
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);

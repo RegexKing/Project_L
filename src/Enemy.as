@@ -53,6 +53,7 @@ package
 			{
 				if (myPath == null) 
 				{
+					
 					myPath = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
 					this.followPath(myPath, speed);
 				}
@@ -89,14 +90,14 @@ package
 			trace("enemy takes" + _damagePoints + "damage.");
 		}
 		
-		override public function draw():void
-		{
-			super.draw();
-			if (this.path != null)
-			{
-				this.path.debugColor = 0xffFF0000;
-				this.path.drawDebug();
-			}
-		}
+		//override public function draw():void
+		//{
+			//super.draw();
+			//if (this.path != null)
+			//{
+				//this.path.debugColor = 0xffFF0000;
+			//	this.path.drawDebug();
+			//}
+		//}
 	}
 }

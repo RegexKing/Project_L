@@ -21,17 +21,32 @@ package
 		//changable
 		public static var level:uint = 0;
 		public static var diamonds:int = 0;
-		public static var health:int = 4;
+		public static var health:Number = 4;
 		public static var weapon:uint = 0;
 		
 		//player attributes
-		public static var totalHealth:int = 3; // when this is needs to be increased, call increaseBarRange on lifebar
-		public static var defenseMultiplier:Number = 0;
+		public static var totalHealth:Number = 4; // when this is needs to be increased, call increaseBarRange on lifebar
+		public static var defenseMultiplier:Number = 0; //this is to be incrememnted by .10 up to 5 upgrades
 		public static var damageMultiplier:Number = 0;
-		public static var fireRateMultiplier:Number = 0;
+		public static var fireRateMultiplier:Number = 0; //this to be incrememnted by .20 up to 5 upgrades
 		
 		
 		public function GameData() { }
+		
+		public static function resetData():void
+		{
+			level = 0;
+			diamonds = 0;
+			health = 3;
+			weapon = 0;
+			
+			totalHealth = 3;
+			defenseMultiplier = 0;
+			damageMultiplier = 0;
+			fireRateMultiplier = 0;
+			
+			saveData();
+		}
 		
 		public static function saveData():void
 		{
