@@ -35,6 +35,8 @@ package
 				floorBlock.x = item.x / Dungeon.TILE_SIZE * 2;
 				floorBlock.y = item.y / Dungeon.TILE_SIZE * 2;
 				
+				floorBlock.x += GameData.RENDER_WIDTH - DungeonGenerator.TOTAL_ROWS * 2; //shifts minimap to right side of screen
+				
 				floorBlock.alpha = 0.5;
 				floorBlock.visible = false;
 				
@@ -57,7 +59,8 @@ package
 			
 			playerIcon.x = Math.round(player.x / Dungeon.TILE_SIZE) * 2;
 			playerIcon.y = Math.round(player.y / Dungeon.TILE_SIZE) * 2;
-			playerIcon.x += GameData.RENDER_WIDTH - DungeonGenerator.TOTAL_ROWS * 2;
+			
+			playerIcon.x += GameData.RENDER_WIDTH - DungeonGenerator.TOTAL_ROWS * 2; //shifts playericon to right side of screen
 			
 			if (playerIcon.x != tempX || playerIcon.y != tempY) clearFog();
 		}	
