@@ -67,7 +67,7 @@ package
 		{
 			for (var i:int = 0; i < TOTAL_ROWS * TOTAL_COLS; i++)
 			{
-				if (Math.floor(i / 40) == 0 || i %40 == 0) map[i] = WALL;
+				if (Math.floor(i / 40) == 0 || Math.ceil(i / 40) == 40 ||  i %40 == 0 || i %40 == 39) map[i] = WALL;
 			}
 		}
 		
