@@ -19,6 +19,7 @@ package org.flixel.plugin.photonstorm.BaseTypes
 	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	import flash.utils.getTimer;
+	import org.flixel.*;
 
 	public class Bullet extends FlxSprite
 	{
@@ -190,7 +191,7 @@ package org.flixel.plugin.photonstorm.BaseTypes
 			
 			if (weapon.onFireSound)
 			{
-				weapon.onFireSound.play();
+				FlxG.play(weapon.onFireSound);
 			}
 		}
 		

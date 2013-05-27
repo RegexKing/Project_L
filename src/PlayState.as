@@ -111,7 +111,11 @@ package
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);
 			FlxG.overlap(player, itemsGroup, itemPickup);
 			
-			if (FlxG.keys.justPressed("SPACE")) trace(lifeBar.currentValue);
+			if (FlxG.keys.justPressed("SPACE"))
+			{
+				FlxG.mute = !FlxG.mute;
+				trace(FlxG.mute);
+			}
 		}
 		
 		private function goHome():void

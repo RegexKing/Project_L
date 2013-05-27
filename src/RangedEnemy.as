@@ -33,6 +33,7 @@ package
 			weapon.setBulletSpeed(200);
 			weapon.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
 			weapon.setFireRate(500);
+			weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
 			
 			enemyBullets.add(weapon.group);
 		}

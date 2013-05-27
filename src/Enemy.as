@@ -82,11 +82,17 @@ package
 				gibs.start(true, 0, 0, 50);
 			}
 			trace("enemy was killed");
+			
+			//temp universal sound effect
+			FlxG.play(AssetsRegistry.enemyDieMP3);
 		}
 		
 		override public function hurt(_damagePoints:Number):void
 		{
 			super.hurt(_damagePoints);
+			
+			//sound effect
+			FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}
 		
 		//override public function draw():void

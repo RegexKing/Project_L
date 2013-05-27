@@ -41,7 +41,10 @@ package
 			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
 			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
 			normalGun.setBulletSpeed(300);
-			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));	
+			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
+			//var normalGunSND:FlxSound = new FlxSound();
+			//normalGunSND.loadEmbedded(AssetsRegistry.shootMP3);
+			normalGun.setPreFireCallback(null, AssetsRegistry.shootMP3);
 		}
 		
 		override public function update():void
@@ -86,7 +89,10 @@ package
 		override public function hurt(_damageNumber:Number):void
 		{
 			this.flicker(1);
-			FlxG.camera.shake(0.005,0.35);
+			FlxG.camera.shake(0.005, 0.35);
+			
+			//sound effect
+			FlxG.play(AssetsRegistry.playerHurtMP3);
 		}
 		
 		override public function kill():void

@@ -91,9 +91,9 @@ package org.flixel.plugin.photonstorm
 		public var onPostFireCallback:Function;
 		
 		//	Sounds
-		public var onPreFireSound:FlxSound;
-		public var onFireSound:FlxSound;
-		public var onPostFireSound:FlxSound;
+		public var onPreFireSound:Class;
+		public var onFireSound:Class;
+		public var onPostFireSound:Class;
 		
 		//	Quick firing direction angle constants
 		public static const BULLET_UP:int = -90;
@@ -280,7 +280,7 @@ package org.flixel.plugin.photonstorm
 			
 			if (onPreFireSound)
 			{
-				onPreFireSound.play();
+				FlxG.play(onPreFireSound);
 			}
 			
 			//	Clear any velocity that may have been previously set from the pool
@@ -342,7 +342,7 @@ package org.flixel.plugin.photonstorm
 			
 			if (onPostFireSound)
 			{
-				onPostFireSound.play();
+				FlxG.play(onPostFireSound);
 			}
 			
 			bulletsFired++;
@@ -645,7 +645,7 @@ package org.flixel.plugin.photonstorm
 		 * @param	callback	The function to call
 		 * @param	sound		An FlxSound to play
 		 */
-		public function setPreFireCallback(callback:Function = null, sound:FlxSound = null):void
+		public function setPreFireCallback(callback:Function = null, sound:Class = null):void
 		{
 			onPreFireCallback = callback;
 			onPreFireSound = sound;
@@ -657,7 +657,7 @@ package org.flixel.plugin.photonstorm
 		 * @param	callback	The function to call
 		 * @param	sound		An FlxSound to play
 		 */
-		public function setFireCallback(callback:Function = null, sound:FlxSound = null):void
+		public function setFireCallback(callback:Function = null, sound:Class = null):void
 		{
 			onFireCallback = callback;
 			onFireSound = sound;
@@ -669,7 +669,7 @@ package org.flixel.plugin.photonstorm
 		 * @param	callback	The function to call
 		 * @param	sound		An FlxSound to play
 		 */
-		public function setPostFireCallback(callback:Function = null, sound:FlxSound = null):void
+		public function setPostFireCallback(callback:Function = null, sound:Class = null):void
 		{
 			onPostFireCallback = callback;
 			onPostFireSound = sound;
