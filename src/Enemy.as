@@ -87,7 +87,6 @@ package
 		override public function hurt(_damagePoints:Number):void
 		{
 			super.hurt(_damagePoints);
-			trace("enemy takes" + _damagePoints + "damage.");
 		}
 		
 		//override public function draw():void

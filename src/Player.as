@@ -107,6 +107,9 @@ package
 				playerGibs.at(this);
 				playerGibs.start(true, 0, 0, 50);
 			}
+			
+			//sound effect
+			FlxG.play(AssetsRegistry.playerDieMP3);
 		}
 		
 	}

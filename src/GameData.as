@@ -16,12 +16,12 @@ package
 		public static const RENDER_HEIGHT:uint = 240;
 		
 		//Flag to check if new game
-		public static var isNewGame:Boolean; //TODO if this is undefined, then disable continue button
+		public static var isNewGame:Boolean; //TODO if this is false, enable the continue button
 		
 		//changable
-		public static var level:uint = 0;
+		public static var level:uint = 1;
 		public static var diamonds:int = 0;
-		public static var health:Number = 3;
+		public static var playerHealth:Number = 3;
 		public static var weapon:uint = 0;
 		
 		//player attributes
@@ -35,9 +35,12 @@ package
 		
 		public static function resetData():void //to be used to start new game
 		{
-			level = 0;
+			isNewGame = true;
+			
+			level = 1;
 			diamonds = 0;
-			health = 3;
+			playerHealth = 3;
+			
 			weapon = 0;
 			
 			totalHealth = 3;
@@ -45,17 +48,18 @@ package
 			damageMultiplier = 0;
 			fireRateMultiplier = 0;
 			
-			saveData();
+			saveData(true);
 		}
 		
-		public static function saveData():void // used to save game
+		public static function saveData(_startNewGame:Boolean=false):void // used to save game
 		{
-			isNewGame = false;
+			isNewGame = _startNewGame;
+			
 			saveFile.data.isNewGame = isNewGame;
 			
 			saveFile.data.level = level;
 			saveFile.data.diamonds = diamonds;
-			saveFile.data.health = health;
+			saveFile.data.playerHealth = playerHealth;
 			saveFile.data.weapon = weapon;
 			
 			saveFile.data.totalHealth = totalHealth;
@@ -66,11 +70,11 @@ package
 			saveFile.flush();
 		}
 		
-		public static function loadData():void // used to continue game
+		public static function loadData():void // used to continue game, use at start
 		{
 			level = saveFile.data.level;
 			diamonds = saveFile.data.diamonds;
-			health = saveFile.data.health;
+			playerHealth = saveFile.data.playerHealth;
 			weapon = saveFile.data.weapon;
 			
 			totalHealth = saveFile.data.totalHealth;
@@ -78,8 +82,5 @@ package
 			damageMultiplier = saveFile.data.damageMultiplier;
 			fireRateMultiplier = saveFile.data.fireRateMultiplier;
 		}
-		
-		
-
 	}
 }

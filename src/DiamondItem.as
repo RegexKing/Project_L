@@ -4,12 +4,15 @@ package
 	 * ...
 	 * @author Frank Fazio
 	 */
+	
+	import org.flixel.*;
+	 
 	public class DiamondItem extends Item
 	{
 		
 		private var diamondCounter:DiamondCounter;
 		
-		public function DiamondHud(_diamondCounter:DiamondCounter) 
+		public function DiamondItem(_diamondCounter:DiamondCounter) 
 		{
 			diamondCounter = _diamondCounter;
 			
@@ -26,7 +29,8 @@ package
 		{
 			diamondCounter.changeQuantity(1);
 			
-			//Todo: add sound effect
+			//sound effect
+			FlxG.play(AssetsRegistry.diamondPickupMP3);
 		}
 		
 	}

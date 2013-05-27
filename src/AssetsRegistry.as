@@ -26,6 +26,11 @@ package
 		//Tiles
 		[Embed(source = "../assets/tiles/dun.png")] public static var randDunTilesPNG:Class;
 		
+		//Sounds
+		[Embed(source = "../assets/sounds/healthPickup.mp3")] public static var healthPickupMP3:Class;
+		[Embed(source = "../assets/sounds/diamondPickup.mp3")] public static var diamondPickupMP3:Class;
+		[Embed(source = "../assets/sounds/playerDie.mp3")] public static var playerDieMP3:Class;
+		
 		//Fonts
 		[Embed(source="../assets/fonts/megaman.ttf", fontFamily="NES", embedAsCFF="false")] public static var fontNES:String;
 		

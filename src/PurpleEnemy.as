@@ -20,7 +20,10 @@ package
 			height = 20;
 			
 			speed = 50;
-			health = 8
+			health = 8;
+			
+			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);
+			
 			aware = true;
 		}	
 		

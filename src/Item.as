@@ -7,7 +7,7 @@ package
 	
 	import org.flixel.*; 
 	 
-	public class Item extends FlxSprite;
+	public class Item extends FlxSprite
 	{
 		
 		public function Item() 

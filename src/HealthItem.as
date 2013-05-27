@@ -4,6 +4,9 @@ package
 	 * ...
 	 * @author Frank Fazio
 	 */
+	
+	import org.flixel.*; 
+	 
 	public class HealthItem extends Item
 	{
 		
@@ -26,7 +29,8 @@ package
 		{
 			lifeBar.currentValue++;
 			
-			//Todo: add sound effect
+			//sound effect
+			FlxG.play(AssetsRegistry.healthPickupMP3);
 		}
 		
 	}

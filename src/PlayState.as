@@ -21,7 +21,9 @@ package
 		private var enemyBullets:FlxGroup;
 		private var gibsGroup:FlxGroup;
 		
-		public function PlayState(){}
+		public function PlayState() 
+		{ 
+		}
 		
 		override public function create():void
 		{
@@ -67,7 +69,10 @@ package
 			enemiesGroup.add(enemy);
 			enemiesGroup.add(enemy2);
 			
-			
+			var diamond:DiamondItem = new DiamondItem(diamondCounter);
+			var heart:HealthItem = new HealthItem(lifeBar);
+			itemsGroup.add(diamond);
+			itemsGroup.add(heart);
 			
 			
 			add(dungeon);
@@ -89,7 +94,11 @@ package
 			enemy2.x = dungeon.emptySpaces[dungeon.emptySpaces.length-2].x;
 			enemy2.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 2].y;
 			
-			trace(GameData.saveFile.data.isNewGame);
+			diamond.x = dungeon.emptySpaces[dungeon.emptySpaces.length-1].x;
+			diamond.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 1].y;
+			
+			heart.x = dungeon.emptySpaces[dungeon.emptySpaces.length-2].x;
+			heart.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 2].y;
 		}
 		
 		override public function update():void
@@ -100,13 +109,21 @@ package
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);
+			FlxG.overlap(player, itemsGroup, itemPickup);
 			
-			if (FlxG.keys.justPressed("SPACE")) diamondCounter.changeQuantity(1);
+			if (FlxG.keys.justPressed("SPACE")) trace(lifeBar.currentValue);
+		}
+		
+		private function goHome():void
+		{
+			FlxG.switchState(new PlayState());
 		}
 		
 		private function completeLevel():void
 		{
+			GameData.playerHealth = lifeBar.currentValue;
 			GameData.level++;
+			goHome();
 			
 		}
 		
@@ -116,7 +133,7 @@ package
 			GameData.resetData();
 			trace("Game ended");
 			
-			//FlxG.switchState(new PlayState());
+			FlxG.fade(0xff000000, 2, goHome);
 		}
 		
 		private function hurtObject(unit:FlxObject, hazzard:FlxObject):void
@@ -135,6 +152,12 @@ package
 			}
 			
 			if (hazzard is Bullet) hazzard.kill();
+		}
+		
+		private function itemPickup(player:FlxObject, item:FlxObject):void
+		{
+			(item as Item).pickup();
+			item.kill();
 		}
 		
 	}

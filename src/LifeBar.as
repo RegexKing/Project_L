@@ -12,11 +12,12 @@ package
 	{
 		
 		public function LifeBar() 
-		{
+		{	
 			super(5, 5, FlxBar.FILL_LEFT_TO_RIGHT, 100, 7);
 			
 			updateBarRange();
-			currentValue = GameData.health;
+			
+			currentValue = GameData.playerHealth;
 			
 		}
 		
@@ -75,8 +76,6 @@ package
 		override public function set currentValue(_newValue:Number):void
 		{
 			super.currentValue = _newValue;
-			
-			GameData.health = this.currentValue;
 		}
 		
 	}
