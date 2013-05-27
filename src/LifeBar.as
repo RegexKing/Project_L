@@ -72,9 +72,9 @@ package
 			}
 		}
 		
-		override public function set currentValue(newValue:Number):void
+		override public function set currentValue(_newValue:Number):void
 		{
-			super.currentValue = newValue;
+			super.currentValue = _newValue;
 			
 			GameData.health = this.currentValue;
 		}

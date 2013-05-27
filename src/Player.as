@@ -11,8 +11,9 @@ package
 	{
 		//constants
 		private const MOVEMENT_SPEED:Number = 100;
-		private const NORMAL_RATE:Number = 500; 
+		private const NORMAL_RATE:Number = 500;
 		
+		public static const NORMAL_GUN:uint = 0;
 		
 		private var normalGun:FlxWeapon;
 		public var playerGibs:FlxEmitter;
@@ -40,8 +41,7 @@ package
 			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
 			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
 			normalGun.setBulletSpeed(300);
-			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
-			
+			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));	
 		}
 		
 		override public function update():void
@@ -55,8 +55,20 @@ package
 				if (FlxG.keys.pressed("W")) velocity.y = -(MOVEMENT_SPEED);
 				else if (FlxG.keys.pressed("S")) velocity.y = MOVEMENT_SPEED;
 				else velocity.y = 0;
-			
-				if (FlxG.mouse.pressed()) normalGun.fireAtMouse();
+				
+				// switch statement to fire correct weapon
+				if (FlxG.mouse.pressed())
+				{
+					switch(GameData.weapon)
+					{
+						case NORMAL_GUN:
+							normalGun.fireAtMouse();
+							break;
+						default:
+							throw new Error("Weapon id number is out acceptable range");
+							break;
+					}
+				}
 			}
 		}
 		

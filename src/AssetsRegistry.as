@@ -9,6 +9,7 @@ package
 		
 		//Sprites
 		[Embed(source = "../assets/sprites/playerGibs.png")] public static var playerGibsPNG:Class;
+		[Embed(source = "../assets/sprites/healthItem.png")] public static var HealthItemPNG:Class;
 		[Embed(source = "../assets/sprites/lifeBar-3.png")] public static var lifeBar_3PNG:Class;
 		[Embed(source = "../assets/sprites/lifeBar-4.png")] public static var lifeBar_4PNG:Class;
 		[Embed(source = "../assets/sprites/lifeBar-5.png")] public static var lifeBar_5PNG:Class;
@@ -23,7 +24,10 @@ package
 		[Embed(source = "../assets/sprites/lifeBar_border-8.png")] public static var lifeBar_border_8PNG:Class;
 		
 		//Tiles
-		[Embed(source = '../assets/tiles/dun.png')] public static var randDunTilesPNG:Class;
+		[Embed(source = "../assets/tiles/dun.png")] public static var randDunTilesPNG:Class;
+		
+		//Fonts
+		[Embed(source="../assets/fonts/megaman.ttf", fontFamily="NES", embedAsCFF="false")] public static var fontNES:String;
 		
 		
 		public function AssetsRegistry() {}

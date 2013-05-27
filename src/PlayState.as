@@ -10,8 +10,10 @@ package
 		private var dungeon:Dungeon;
 		private var miniMap:MiniMap;
 		private var lifeBar:LifeBar;
+		private var diamondCounter:DiamondCounter;
 		
 		private var hud:FlxGroup;
+		private var itemsGroup:FlxGroup;
 		private var collideableGroup:FlxGroup;
 		private var playerHazzardsGroup:FlxGroup;
 		private var enemiesGroup:FlxGroup;
@@ -23,12 +25,11 @@ package
 		
 		override public function create():void
 		{
-			FlxG.bgColor = 0xffFF0000;
-			
 			hud = new FlxGroup();
 			collideableGroup = new FlxGroup();
 			playerHazzardsGroup = new FlxGroup();
 			
+			itemsGroup = new FlxGroup();
 			enemiesGroup = new FlxGroup();
 			trapsGroup = new FlxGroup();
 			enemyBullets = new FlxGroup();
@@ -37,11 +38,13 @@ package
 			dungeon = new Dungeon();
 			player = new Player(gibsGroup);
 			
+			diamondCounter = new DiamondCounter();
+			miniMap = new MiniMap(dungeon, player);
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
-			miniMap = new MiniMap(dungeon, player);
 			
 			hud.add(lifeBar);
+			hud.add(diamondCounter);
 			hud.add(miniMap);
 			hud.setAll("scrollFactor", new FlxPoint(0, 0));
 			
@@ -65,9 +68,12 @@ package
 			enemiesGroup.add(enemy2);
 			
 			
+			
+			
 			add(dungeon);
 			add(gibsGroup);
 			add(trapsGroup);
+			add(itemsGroup);
 			add(player);
 			add(enemiesGroup);
 			add(enemyBullets);
@@ -94,13 +100,13 @@ package
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);
+			
+			if (FlxG.keys.justPressed("SPACE")) diamondCounter.changeQuantity(1);
 		}
 		
 		private function completeLevel():void
 		{
 			GameData.level++;
-			GameData.saveData();
-			
 			
 		}
 		
