@@ -96,13 +96,21 @@ package
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);
 		}
 		
+		private function completeLevel():void
+		{
+			GameData.level++;
+			GameData.saveData();
+			
+			
+		}
+		
 		private function endGame():void
 		{
 			player.kill();
 			GameData.resetData();
 			trace("Game ended");
 			
-			FlxG.switchState(new PlayState());
+			//FlxG.switchState(new PlayState());
 		}
 		
 		private function hurtObject(unit:FlxObject, hazzard:FlxObject):void
@@ -113,11 +121,11 @@ package
 			{
 				if (unit is Player) 
 				{
-					lifeBar.currentValue -= 1 - (1*GameData.defenseMultiplier);
+					lifeBar.currentValue -= 1 - (1*GameData.defenseMultiplier); // 1 to be changed by damange value enemy/bullet
 					unit.hurt(0);
 				}
 				
-				else unit.hurt(1);
+				else unit.hurt(1 + (1*GameData.damageMultiplier)); // 1 to be changed by damage value of player bullet
 			}
 			
 			if (hazzard is Bullet) hazzard.kill();

@@ -9,8 +9,11 @@ package
 	 */
 	public class Player extends FlxSprite
 	{
+		//constants
+		private const MOVEMENT_SPEED:Number = 100;
+		private const NORMAL_RATE:Number = 500; 
 		
-		private const SPEED:int = 100;
+		
 		private var normalGun:FlxWeapon;
 		public var playerGibs:FlxEmitter;
 		
@@ -37,7 +40,7 @@ package
 			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
 			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
 			normalGun.setBulletSpeed(300);
-			normalGun.setFireRate(500);
+			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			
 		}
 		
@@ -45,16 +48,22 @@ package
 		{
 			if (alive)
 			{
-				if (FlxG.keys.pressed("A")) velocity.x = -(SPEED);
-				else if (FlxG.keys.pressed("D")) velocity.x = SPEED;
+				if (FlxG.keys.pressed("A")) velocity.x = -(MOVEMENT_SPEED);
+				else if (FlxG.keys.pressed("D")) velocity.x = MOVEMENT_SPEED;
 				else velocity.x = 0;
 			
-				if (FlxG.keys.pressed("W")) velocity.y = -(SPEED);
-				else if (FlxG.keys.pressed("S")) velocity.y = SPEED;
+				if (FlxG.keys.pressed("W")) velocity.y = -(MOVEMENT_SPEED);
+				else if (FlxG.keys.pressed("S")) velocity.y = MOVEMENT_SPEED;
 				else velocity.y = 0;
 			
 				if (FlxG.mouse.pressed()) normalGun.fireAtMouse();
 			}
+		}
+		
+		public function set fireRateMultiplier(_fireRateMultiplier:Number):void
+		{
+			//TODO: update the firerates of all weapons
+			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * _fireRateMultiplier));
 		}
 		
 		public function get bullets():FlxGroup

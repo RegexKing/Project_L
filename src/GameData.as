@@ -21,19 +21,19 @@ package
 		//changable
 		public static var level:uint = 0;
 		public static var diamonds:int = 0;
-		public static var health:Number = 4;
+		public static var health:Number = 3;
 		public static var weapon:uint = 0;
 		
 		//player attributes
-		public static var totalHealth:Number = 4; // when this is needs to be increased, call increaseBarRange on lifebar
-		public static var defenseMultiplier:Number = 0; //this is to be incrememnted by .10 up to 5 upgrades
-		public static var damageMultiplier:Number = 0;
-		public static var fireRateMultiplier:Number = 0; //this to be incrememnted by .20 up to 5 upgrades
+		public static var totalHealth:Number = 3; // when this is needs to be increased, call increaseBarRange on lifebar
+		public static var defenseMultiplier:Number = 0; //this is to be incrememnted by .1 up to 5 upgrades
+		public static var damageMultiplier:Number = 0; // this to be incrememnted by .6 up to 5 upgrades
+		public static var fireRateMultiplier:Number = 0; //this to be incrememnted by .1 up to 5 upgrades
 		
 		
 		public function GameData() { }
 		
-		public static function resetData():void
+		public static function resetData():void //to be used to start new game
 		{
 			level = 0;
 			diamonds = 0;
@@ -48,7 +48,7 @@ package
 			saveData();
 		}
 		
-		public static function saveData():void
+		public static function saveData():void // used to save game
 		{
 			isNewGame = false;
 			saveFile.data.isNewGame = isNewGame;
@@ -66,7 +66,7 @@ package
 			saveFile.flush();
 		}
 		
-		public static function loadData():void
+		public static function loadData():void // used to continue game
 		{
 			level = saveFile.data.level;
 			diamonds = saveFile.data.diamonds;
