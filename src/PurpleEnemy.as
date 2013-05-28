@@ -21,6 +21,7 @@ package
 			
 			speed = 50;
 			health = 2;
+			attackValue = 1;
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);
 			

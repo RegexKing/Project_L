@@ -52,9 +52,11 @@ package org.flixel.plugin.photonstorm.BaseTypes
 			accelerates = false;
 			animated = false;
 			bulletSpeed = 0;
+			attackValue = 1;
 			
 			exists = false;
 		}
+		
 		
 		/**
 		 * Adds a new animation to the sprite.
@@ -228,6 +230,11 @@ package org.flixel.plugin.photonstorm.BaseTypes
 			}
 			
 			if (touching) kill();
+		}
+		
+		public function dealDamage():Number
+		{
+			return 1;
 		}
 		
 	}

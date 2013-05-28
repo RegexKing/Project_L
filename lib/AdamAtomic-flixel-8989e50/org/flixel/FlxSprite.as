@@ -81,6 +81,14 @@ package org.flixel
 		/**
 		 * Internal, stores all the animations that were added to this sprite.
 		 */
+		
+		 
+		public var attackValue:Number;
+		
+		/**
+		 * How much damage is done by the Sprite
+		 */
+		 
 		protected var _animations:Array;
 		/**
 		 * Internal, keeps track of whether the sprite was loaded with support for automatic reverse/mirroring.
@@ -168,6 +176,7 @@ package org.flixel
 			super(X,Y);
 			
 			health = 1;
+			attackValue = 0;
 
 			_flashPoint = new Point();
 			_flashRect = new Rectangle();

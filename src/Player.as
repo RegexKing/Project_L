@@ -75,7 +75,7 @@ package
 			}
 		}
 		
-		public function set fireRateMultiplier(_fireRateMultiplier:Number):void
+		public function set fireRateMultiplier(_fireRateMultiplier:Number):void //To use at home
 		{
 			//TODO: update the firerates of all weapons
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * _fireRateMultiplier));

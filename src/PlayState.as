@@ -131,6 +131,12 @@ package
 				//FlxG.mute = !FlxG.mute;
 				//trace(FlxG.mute);
 			}
+			
+			if (FlxG.keys.justPressed("M"))
+			{
+				
+				miniMap.toggleMiniMap();
+			}
 		}
 		
 		private function goHome():void
@@ -163,11 +169,11 @@ package
 			{
 				if (unit is Player) 
 				{
-					lifeBar.currentValue -= 1 - (1*GameData.defenseMultiplier); // 1 to be changed by damange value enemy/bullet
+					lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
 					unit.hurt(0);
 				}
 				
-				else unit.hurt(1 + (1*GameData.damageMultiplier)); // 1 to be changed by damage value of player bullet
+				else unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
 			}
 			
 			if (hazzard is Bullet) hazzard.kill();
