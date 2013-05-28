@@ -63,11 +63,29 @@ package
 			FlxG.camera.setBounds(0,0, Dungeon.width, Dungeon.height, true);
 			FlxG.camera.follow(player, FlxCamera.STYLE_TOPDOWN_TIGHT);
 			
-			var enemy:PurpleEnemy = new PurpleEnemy(player, dungeon, gibsGroup);
-			var enemy2:RangedEnemy = new RangedEnemy(player, dungeon, enemyBullets, gibsGroup);
-			
-			enemiesGroup.add(enemy);
-			enemiesGroup.add(enemy2);
+			for (var i:int = 1; i < 6; i++)
+			{
+				var enemy:Enemy;
+				
+				switch(int(Math.ceil(Math.random() * 2)))
+				{
+					case 1:
+						enemy = new PurpleEnemy(player, dungeon, gibsGroup);
+						break;
+					case 2:
+						enemy = new RangedEnemy(player, dungeon, enemyBullets, gibsGroup);
+						break;
+					default:
+						throw new Error("enemy id is ouside acceptable range");
+						break;
+				}
+				
+				enemy.x = dungeon.emptySpaces[dungeon.emptySpaces.length - i].x;
+				enemy.y = dungeon.emptySpaces[dungeon.emptySpaces.length - i].y;
+				
+				enemiesGroup.add(enemy);
+				
+			}
 			
 			var diamond:DiamondItem = new DiamondItem(diamondCounter);
 			var heart:HealthItem = new HealthItem(lifeBar);
@@ -85,14 +103,9 @@ package
 			add(player.bullets);
 			add(hud);
 			
+			
 			player.x = dungeon.emptySpaces[0].x;
 			player.y = dungeon.emptySpaces[0].y;	
-			
-			enemy.x = dungeon.emptySpaces[dungeon.emptySpaces.length-1].x;
-			enemy.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 1].y;
-			
-			enemy2.x = dungeon.emptySpaces[dungeon.emptySpaces.length-2].x;
-			enemy2.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 2].y;
 			
 			diamond.x = dungeon.emptySpaces[dungeon.emptySpaces.length-1].x;
 			diamond.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 1].y;
@@ -113,8 +126,10 @@ package
 			
 			if (FlxG.keys.justPressed("SPACE"))
 			{
-				FlxG.mute = !FlxG.mute;
-				trace(FlxG.mute);
+				
+				lifeBar.increaseBarRange();
+				//FlxG.mute = !FlxG.mute;
+				//trace(FlxG.mute);
 			}
 		}
 		
