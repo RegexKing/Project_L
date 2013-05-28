@@ -1,4 +1,4 @@
-package  
+package  items
 {
 	/**
 	 * ...
@@ -6,6 +6,8 @@ package
 	 */
 	
 	import org.flixel.*;
+	
+	import hud.DiamondCounter;
 	 
 	public class DiamondItem extends Item
 	{

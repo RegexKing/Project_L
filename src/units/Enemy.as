@@ -1,7 +1,9 @@
-package  
+package  units
 {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
+	
+	import maps.Dungeon;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -24,10 +26,8 @@ package
 			player = _player;
 			dungeon = _dungeon;
 			
-			health = 10;
 			inSight = false;
 			aware = false;
-			speed = 50;
 			
 			gibs = new FlxEmitter();
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);

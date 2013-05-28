@@ -1,4 +1,4 @@
-package  
+package  hud
 {
 	/**
 	 * ...
@@ -7,6 +7,10 @@ package
 	
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
+	
+	import maps.*;
+	import units.*;
+	import items.*;
 	 
 	public class MiniMap extends FlxGroup
 	{

@@ -1,7 +1,9 @@
-package  
+package  units
 {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
+	
+	import maps.Dungeon;
 	/**
 	 * 
 	 * ...

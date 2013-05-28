@@ -1,4 +1,4 @@
-package  
+package   items
 {
 	/**
 	 * ...
@@ -6,6 +6,8 @@ package
 	 */
 	
 	import org.flixel.*; 
+	
+	import hud.LifeBar;
 	 
 	public class HealthItem extends Item
 	{

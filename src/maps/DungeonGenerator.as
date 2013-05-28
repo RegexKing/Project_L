@@ -1,4 +1,4 @@
-package
+package maps
 {
 	/**
 	 * Creates a randomly generated level, ready to be used with FlxTilemap

@@ -2,7 +2,12 @@ package
 {	
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
-	import org.flixel.plugin.photonstorm.BaseTypes.Bullet; 
+	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
+	
+	import hud.*;
+	import items.*;
+	import maps.*;
+	import units.*;
 	 
 	public class PlayState extends FlxState
 	{
@@ -12,7 +17,7 @@ package
 		private var lifeBar:LifeBar;
 		private var diamondCounter:DiamondCounter;
 		
-		private var hud:FlxGroup;
+		private var hudGroup:FlxGroup;
 		private var itemsGroup:FlxGroup;
 		private var collideableGroup:FlxGroup;
 		private var playerHazzardsGroup:FlxGroup;
@@ -27,7 +32,7 @@ package
 		
 		override public function create():void
 		{
-			hud = new FlxGroup();
+			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
 			playerHazzardsGroup = new FlxGroup();
 			
@@ -45,10 +50,10 @@ package
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
 			
-			hud.add(lifeBar);
-			hud.add(diamondCounter);
-			hud.add(miniMap);
-			hud.setAll("scrollFactor", new FlxPoint(0, 0));
+			hudGroup.add(lifeBar);
+			hudGroup.add(diamondCounter);
+			hudGroup.add(miniMap);
+			hudGroup.setAll("scrollFactor", new FlxPoint(0, 0));
 			
 			collideableGroup.add(gibsGroup);
 			collideableGroup.add(player);
@@ -101,7 +106,7 @@ package
 			add(enemiesGroup);
 			add(enemyBullets);
 			add(player.bullets);
-			add(hud);
+			add(hudGroup);
 			
 			
 			player.x = dungeon.emptySpaces[0].x;
