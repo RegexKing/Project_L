@@ -138,7 +138,7 @@ package
 			super.update();
 			
 			FlxG.collide(collideableGroup, dungeon);
-			//FlxG.collide(enemiesGroup, enemiesGroup);
+			FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);

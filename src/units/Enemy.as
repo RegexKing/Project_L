@@ -29,6 +29,8 @@ package  units
 			dungeon = _dungeon;
 			itemEmitter = _itemEmitter;
 			
+			elasticity = 1;
+			
 			inSight = false;
 			aware = false;
 			
@@ -54,12 +56,9 @@ package  units
 			
 			if (aware)
 			{
-				if (myPath == null || this.path == patrolPath) 
+				if (myPath == null || this.path == patrolPath || this.pathSpeed == 0) 
 				{
-					this.stopFollowingPath(true);
-                    this.velocity.x = this.velocity.y = 0;
-					this.path = null;
-					patrolPath = null;
+					destroyPath();
 					
 					myPath = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
 					this.followPath(myPath, speed);
@@ -89,20 +88,13 @@ package  units
 				
 				else if (this.pathSpeed == 0)
 				{
-					this.stopFollowingPath(true);
-                    this.velocity.x = this.velocity.y = 0;
-					this.path = null;
-					patrolPath = null;
+					destroyPath();
 					
 					patrolPath = dungeon.dungeonMap.findPath(enemyCoords, findRandEmptyTile());
 					
 					this.followPath(patrolPath, 100);
 				}
 				
-				//else
-				//{
-					//this.path =  dungeon.dungeonMap.findPath(enemyCoords, dungeon.emptySpaces[Math.floor(Math.random()*(dungeon.emptySpaces.length-1))]);
-				//}
 			}
 		}
 		
@@ -112,6 +104,15 @@ package  units
 			
 			return new FlxPoint(randEmptyTile.x + Dungeon.TILE_SIZE / 2, randEmptyTile.y + Dungeon.TILE_SIZE / 2);
 			
+		}
+		
+		private function destroyPath():void
+		{
+			this.stopFollowingPath(true);
+            this.velocity.x = this.velocity.y = 0;
+			this.path = null;
+			myPath = null
+			patrolPath = null;
 		}
 		
 		override public function kill():void
@@ -142,14 +143,15 @@ package  units
 			FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}
 		
-		//override public function draw():void
-		//{
-			//super.draw();
-			//if (this.path != null)
-			//{
-				//this.path.debugColor = 0xffFF0000;
-			//	this.path.drawDebug();
-			//}
-		//}
+		
+		override public function draw():void
+		{
+			super.draw();
+			if (this.path != null)
+			{
+				this.path.debugColor = 0xffFF0000;
+				this.path.drawDebug();
+			}
+		}
 	}
 }
