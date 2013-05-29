@@ -60,39 +60,28 @@ package  units
 				{
 					destroyPath();
 					
-					myPath = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
+					myPath = calculatePath(enemyCoords, playerCoords);
 					this.followPath(myPath, speed);
 				}
 				
-				else
-				{
-					this.path = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
-				}
+				else this.path = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
 			}
 			
 			else if ((!aware && inSight) && this.onScreen(FlxG.camera))
 			{
 				aware = true;
 				
-				//signal aware sprite??
+				// Todo: signal aware sprite??
 			}
 			
-			else if (!aware && !inSight)
+			else
 			{
-				if (this.path == null)
+				if (this.path == null || this.pathSpeed == 0)
 				{
-					patrolPath = dungeon.dungeonMap.findPath(enemyCoords, findRandEmptyTile());
+					!this.pathSpeed ? destroyPath() : null;
 					
-					this.followPath(patrolPath, 100);
-				}
-				
-				else if (this.pathSpeed == 0)
-				{
-					destroyPath();
-					
-					patrolPath = dungeon.dungeonMap.findPath(enemyCoords, findRandEmptyTile());
-					
-					this.followPath(patrolPath, 100);
+					patrolPath = calculatePath(enemyCoords, findRandEmptyTile());
+					this.followPath(patrolPath, speed*2);
 				}
 				
 			}
@@ -104,6 +93,11 @@ package  units
 			
 			return new FlxPoint(randEmptyTile.x + Dungeon.TILE_SIZE / 2, randEmptyTile.y + Dungeon.TILE_SIZE / 2);
 			
+		}
+		
+		private function calculatePath(start:FlxPoint, end:FlxPoint):FlxPath
+		{
+			return dungeon.dungeonMap.findPath(start, end)
 		}
 		
 		private function destroyPath():void

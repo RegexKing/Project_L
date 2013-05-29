@@ -12,21 +12,21 @@ package
 	 
 	public class PlayState extends FlxState
 	{
-		private var player:Player;
-		private var dungeon:Dungeon;
-		private var miniMap:MiniMap;
-		private var lifeBar:LifeBar;
-		private var diamondCounter:DiamondCounter;
-		private var itemEmitter:FlxEmitter;
+		protected var player:Player;
+		protected var dungeon:Dungeon;
+		protected var miniMap:MiniMap;
+		protected var lifeBar:LifeBar;
+		protected var diamondCounter:DiamondCounter;
+		protected var itemEmitter:FlxEmitter;
 		
-		private var hudGroup:FlxGroup;
-		private var itemsGroup:FlxGroup;
-		private var collideableGroup:FlxGroup;
-		private var playerHazzardsGroup:FlxGroup;
-		private var enemiesGroup:FlxGroup;
-		private var trapsGroup:FlxGroup;
-		private var enemyBullets:FlxGroup;
-		private var gibsGroup:FlxGroup;
+		protected var hudGroup:FlxGroup;
+		protected var itemsGroup:FlxGroup;
+		protected var collideableGroup:FlxGroup;
+		protected var playerHazzardsGroup:FlxGroup;
+		protected var enemiesGroup:FlxGroup;
+		protected var trapsGroup:FlxGroup;
+		protected var enemyBullets:FlxGroup;
+		protected var gibsGroup:FlxGroup;
 		
 		public function PlayState() 
 		{ 
