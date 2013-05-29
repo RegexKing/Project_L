@@ -78,7 +78,7 @@ package  units
 			{
 				if (this.path == null || this.pathSpeed == 0)
 				{
-					!this.pathSpeed ? destroyPath() : null;
+					if (this.pathSpeed == 0) destroyPath();
 					
 					patrolPath = calculatePath(enemyCoords, findRandEmptyTile());
 					this.followPath(patrolPath, speed*2);
