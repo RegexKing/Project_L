@@ -93,14 +93,6 @@ package
 				}
 			}
 			
-			
-			//var diamond:DiamondItem = new DiamondItem(diamondCounter);
-			//var heart:HealthItem = new HealthItem(lifeBar);
-			
-			
-			//itemEmitter.add(diamond);
-			//itemEmitter.add(heart);
-			
 			for (var j:int = 1; j < 6; j++)
 			{
 				var enemy:Enemy;
@@ -125,11 +117,6 @@ package
 				
 			}
 			
-			
-			//itemsGroup.add(diamond);
-			//itemsGroup.add(heart);
-			
-			
 			add(dungeon);
 			add(gibsGroup);
 			add(trapsGroup);
@@ -144,11 +131,6 @@ package
 			player.x = dungeon.emptySpaces[0].x;
 			player.y = dungeon.emptySpaces[0].y;
 			
-			//diamond.x = dungeon.emptySpaces[dungeon.emptySpaces.length-1].x;
-			//diamond.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 1].y;
-			
-			//heart.x = dungeon.emptySpaces[dungeon.emptySpaces.length-2].x;
-			//heart.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 2].y;
 		}
 		
 		override public function update():void
@@ -156,7 +138,7 @@ package
 			super.update();
 			
 			FlxG.collide(collideableGroup, dungeon);
-			FlxG.collide(enemiesGroup, enemiesGroup);
+			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);

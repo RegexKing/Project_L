@@ -17,6 +17,7 @@ package  units
 		public var aware:Boolean;
 		protected var speed:int;
 		protected var myPath:FlxPath;
+		protected var patrolPath:FlxPath;
 		protected var gibs:FlxEmitter;
 		protected var itemEmitter:FlxEmitter
 		
@@ -39,7 +40,7 @@ package  units
 			gibs.setRotation(0, 0);
 			gibs.bounce = 0.5;
 			
-			_gibsGroup.add(gibs);
+			_gibsGroup.add(gibs);	
 		}
 		
 		
@@ -53,8 +54,12 @@ package  units
 			
 			if (aware)
 			{
-				if (myPath == null) 
+				if (myPath == null || this.path == patrolPath) 
 				{
+					this.stopFollowingPath(true);
+                    this.velocity.x = this.velocity.y = 0;
+					this.path = null;
+					patrolPath = null;
 					
 					myPath = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
 					this.followPath(myPath, speed);
@@ -72,6 +77,41 @@ package  units
 				
 				//signal aware sprite??
 			}
+			
+			else if (!aware && !inSight)
+			{
+				if (this.path == null)
+				{
+					patrolPath = dungeon.dungeonMap.findPath(enemyCoords, findRandEmptyTile());
+					
+					this.followPath(patrolPath, 100);
+				}
+				
+				else if (this.pathSpeed == 0)
+				{
+					this.stopFollowingPath(true);
+                    this.velocity.x = this.velocity.y = 0;
+					this.path = null;
+					patrolPath = null;
+					
+					patrolPath = dungeon.dungeonMap.findPath(enemyCoords, findRandEmptyTile());
+					
+					this.followPath(patrolPath, 100);
+				}
+				
+				//else
+				//{
+					//this.path =  dungeon.dungeonMap.findPath(enemyCoords, dungeon.emptySpaces[Math.floor(Math.random()*(dungeon.emptySpaces.length-1))]);
+				//}
+			}
+		}
+		
+		private function findRandEmptyTile():FlxPoint
+		{
+			var randEmptyTile:FlxPoint = dungeon.emptySpaces[Math.floor(Math.random() * (dungeon.emptySpaces.length))];
+			
+			return new FlxPoint(randEmptyTile.x + Dungeon.TILE_SIZE / 2, randEmptyTile.y + Dungeon.TILE_SIZE / 2);
+			
 		}
 		
 		override public function kill():void
