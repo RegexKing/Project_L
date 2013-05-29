@@ -18,19 +18,21 @@ package  units
 		protected var speed:int;
 		protected var myPath:FlxPath;
 		protected var gibs:FlxEmitter;
+		protected var itemEmitter:FlxEmitter
 		
-		public function Enemy(_player:Player, _dungeon:Dungeon, _gibsGroup:FlxGroup) 
+		public function Enemy(_player:Player, _dungeon:Dungeon, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
 		{
 			super();
 			
 			player = _player;
 			dungeon = _dungeon;
+			itemEmitter = _itemEmitter;
 			
 			inSight = false;
 			aware = false;
 			
-			gibs = new FlxEmitter();
-			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);
+			gibs = new FlxEmitter(0, 0, 50);
+			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 20, 10, true, 0.5);
 			gibs.particleDrag = new FlxPoint(300, 300);
 			gibs.setXSpeed(-200,200);
 			gibs.setYSpeed(-200,200);
@@ -79,7 +81,13 @@ package  units
 			if(gibs != null)
 			{
 				gibs.at(this);
-				gibs.start(true, 0, 0, 50);
+				gibs.start(true, 0, 0, 0);
+			}
+			
+			if(itemEmitter != null)
+			{
+				itemEmitter.at(this);
+				itemEmitter.start(true, 0, 0, 4);
 			}
 			
 			//temp universal sound effect

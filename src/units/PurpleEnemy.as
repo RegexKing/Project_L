@@ -13,9 +13,9 @@ package  units
 	public class PurpleEnemy extends Enemy
 	{
 		
-		public function PurpleEnemy(_player:Player, _dungeon:Dungeon, _gibsGroup:FlxGroup) 
+		public function PurpleEnemy(_player:Player, _dungeon:Dungeon, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
 		{
-			super(_player, _dungeon, _gibsGroup);
+			super(_player, _dungeon, _gibsGroup, _itemEmitter);
 			
 			speed = 50;
 			health = 2;
@@ -28,7 +28,7 @@ package  units
 			width = 20;
 			height = 20;
 			
-			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);
+			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			
 		}	
 		

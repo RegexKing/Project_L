@@ -1,5 +1,6 @@
 package  
 {	
+	import flash.display.Sprite;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
@@ -16,6 +17,7 @@ package
 		private var miniMap:MiniMap;
 		private var lifeBar:LifeBar;
 		private var diamondCounter:DiamondCounter;
+		private var itemEmitter:FlxEmitter;
 		
 		private var hudGroup:FlxGroup;
 		private var itemsGroup:FlxGroup;
@@ -35,6 +37,8 @@ package
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
 			playerHazzardsGroup = new FlxGroup();
+			
+			itemEmitter = new FlxEmitter(0, 0, 300);
 			
 			itemsGroup = new FlxGroup();
 			enemiesGroup = new FlxGroup();
@@ -59,6 +63,7 @@ package
 			collideableGroup.add(player);
 			collideableGroup.add(player.bullets);
 			collideableGroup.add(enemyBullets);
+			collideableGroup.add(itemEmitter);
 			
 			playerHazzardsGroup.add(enemiesGroup);
 			playerHazzardsGroup.add(enemyBullets);
@@ -68,55 +73,81 @@ package
 			FlxG.camera.setBounds(0,0, Dungeon.width, Dungeon.height, true);
 			FlxG.camera.follow(player, FlxCamera.STYLE_TOPDOWN_TIGHT);
 			
-			for (var i:int = 1; i < 6; i++)
+			
+			//--testing area--//
+			itemEmitter.setRotation(0, 0);
+			itemEmitter.setXSpeed(-200,200);
+			itemEmitter.setYSpeed( -200, 200);
+			
+			for (var i:int = 0; i < itemEmitter.maxSize; i++)
+			{
+				switch (int(Math.ceil(Math.random() * 2)))
+				{
+					case 1:
+						itemEmitter.add(new DiamondItem(diamondCounter));
+						break;
+					case 2:
+						itemEmitter.add(new HealthItem(lifeBar));
+						break;	
+				}
+			}
+			
+			
+			//var diamond:DiamondItem = new DiamondItem(diamondCounter);
+			//var heart:HealthItem = new HealthItem(lifeBar);
+			
+			
+			//itemEmitter.add(diamond);
+			//itemEmitter.add(heart);
+			
+			for (var j:int = 1; j < 6; j++)
 			{
 				var enemy:Enemy;
 				
 				switch(int(Math.ceil(Math.random() * 2)))
 				{
 					case 1:
-						enemy = new PurpleEnemy(player, dungeon, gibsGroup);
+						enemy = new PurpleEnemy(player, dungeon, gibsGroup, itemEmitter);
 						break;
 					case 2:
-						enemy = new RangedEnemy(player, dungeon, enemyBullets, gibsGroup);
+						enemy = new RangedEnemy(player, dungeon, enemyBullets, gibsGroup, itemEmitter);
 						break;
 					default:
 						throw new Error("enemy id is ouside acceptable range");
 						break;
 				}
 				
-				enemy.x = dungeon.emptySpaces[dungeon.emptySpaces.length - i].x;
-				enemy.y = dungeon.emptySpaces[dungeon.emptySpaces.length - i].y;
+				enemy.x = dungeon.emptySpaces[dungeon.emptySpaces.length - j].x;
+				enemy.y = dungeon.emptySpaces[dungeon.emptySpaces.length - j].y;
 				
 				enemiesGroup.add(enemy);
 				
 			}
 			
-			var diamond:DiamondItem = new DiamondItem(diamondCounter);
-			var heart:HealthItem = new HealthItem(lifeBar);
-			itemsGroup.add(diamond);
-			itemsGroup.add(heart);
+			
+			//itemsGroup.add(diamond);
+			//itemsGroup.add(heart);
 			
 			
 			add(dungeon);
 			add(gibsGroup);
 			add(trapsGroup);
-			add(itemsGroup);
+			//add(itemsGroup);
+			add(itemEmitter);
 			add(player);
 			add(enemiesGroup);
 			add(enemyBullets);
 			add(player.bullets);
 			add(hudGroup);
 			
-			
 			player.x = dungeon.emptySpaces[0].x;
-			player.y = dungeon.emptySpaces[0].y;	
+			player.y = dungeon.emptySpaces[0].y;
 			
-			diamond.x = dungeon.emptySpaces[dungeon.emptySpaces.length-1].x;
-			diamond.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 1].y;
+			//diamond.x = dungeon.emptySpaces[dungeon.emptySpaces.length-1].x;
+			//diamond.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 1].y;
 			
-			heart.x = dungeon.emptySpaces[dungeon.emptySpaces.length-2].x;
-			heart.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 2].y;
+			//heart.x = dungeon.emptySpaces[dungeon.emptySpaces.length-2].x;
+			//heart.y = dungeon.emptySpaces[dungeon.emptySpaces.length - 2].y;
 		}
 		
 		override public function update():void
@@ -127,11 +158,11 @@ package
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);
-			FlxG.overlap(player, itemsGroup, itemPickup);
+			FlxG.overlap(player, itemEmitter, itemPickup);
 			
 			if (FlxG.keys.justPressed("SPACE"))
 			{
-				
+				//diamondCounter.changeQuantity(1);
 				lifeBar.increaseBarRange();
 				//FlxG.mute = !FlxG.mute;
 				//trace(FlxG.mute);

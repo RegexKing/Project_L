@@ -22,7 +22,7 @@ package
 		public static var level:uint = 1;
 		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
-		public static var weapon:uint = 1;
+		public static var weapon:uint = 0;
 		
 		//player attributes
 		public static var totalHealth:Number = 3; // when this is needs to be increased, call increaseBarRange on lifebar

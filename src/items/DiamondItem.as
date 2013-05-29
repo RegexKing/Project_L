@@ -20,11 +20,16 @@ package  items
 			
 			super();
 			
-			makeGraphic(15, 15, 0xffFF0000);
-			width = 15;
-			height = 15;
+			makeGraphic(16, 16, 0xffFF0000);
+			width = 16;
+			height = 16;
+		}
+		
+		override public function onEmit():void
+		{
+			super.onEmit();
 			
-			
+			//todo add animation to play
 		}
 		
 		override public function pickup():void

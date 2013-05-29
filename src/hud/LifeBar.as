@@ -13,7 +13,7 @@ package  hud
 		
 		public function LifeBar() 
 		{	
-			super(5, 5, FlxBar.FILL_LEFT_TO_RIGHT, 100, 7);
+			super(5, 5, FlxBar.FILL_LEFT_TO_RIGHT, 100, 1);
 			
 			updateBarRange();
 			

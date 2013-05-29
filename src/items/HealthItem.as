@@ -22,9 +22,14 @@ package   items
 			
 			loadGraphic(AssetsRegistry.HealthItemPNG, false, false, 10, 10);
 			width = 10;
-			height = 10;
+			height = 10;	
+		}
+		
+		override public function onEmit():void
+		{
+			super.onEmit();
 			
-			
+			//todo add animation to play
 		}
 		
 		override public function pickup():void

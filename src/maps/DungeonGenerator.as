@@ -5,6 +5,10 @@ package maps
 	 * Also allows getting random room & corridor points to know where to spawn the player / monsters / items / traps / ...
 	 * @author Raf Vermeulen
 	 */
+	
+	 
+	 import org.flixel.plugin.photonstorm.FlxMath;
+	 
 	public class DungeonGenerator 
 	{
 		public var map:Array; // One-dimensional array containing the actual map data
@@ -54,7 +58,7 @@ package maps
 			
 			// Get a random amount of rooms (up to the top limit)
 			// Ceil is used for rounding here, to avoid getting 0 rooms
-			var totalRooms:int = MIN_ROOMS + int((Math.random() * ((MAX_ROOMS - MIN_ROOMS) + 1)));
+			var totalRooms:int = FlxMath.rand(MIN_ROOMS, MAX_ROOMS);
 			
 			// Create each room
 			for (var i:int = 0; i < totalRooms; i++) {

@@ -13,16 +13,12 @@ package   items
 		private const MIN_ID:int = 1;
 		private const MAX_ID:int = 3;
 		
-		private var weaponID:uint;
-		
 		public function WeaponItem() 
 		{
 			super();
 			
-			weaponID = FlxMath.rand(MIN_ID, MAX_ID);
-			
 			//switch statement to choose graphic
-			switch(weaponID)
+			switch(FlxMath.rand(MIN_ID, MAX_ID))
 			{
 				case Player.NORMAL_GUN:
 					makeGraphic(15, 15, 0xffFFFFFF);
@@ -43,6 +39,13 @@ package   items
 					break;
 					
 			}
+		}
+		
+		override public function onEmit():void
+		{
+			super.onEmit();
+			
+			//todo add animation to play
 		}
 		
 		override public function pickup():void

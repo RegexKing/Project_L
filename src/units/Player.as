@@ -37,13 +37,13 @@ package  units
 			width = 20;
 			height = 20;
 			
-			playerGibs = new FlxEmitter();
+			playerGibs = new FlxEmitter(0, 0, 50);
 			playerGibs.particleDrag = new FlxPoint(300, 300);
 			playerGibs.setXSpeed(-200,200);
 			playerGibs.setYSpeed(-200,200);
 			playerGibs.setRotation(0, 0);
 			playerGibs.bounce = 0.5;
-			playerGibs.makeParticles(AssetsRegistry.playerGibsPNG, 100, 10, true, 0.5);
+			playerGibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true, 0.5);
 			
 			_gibsGroup.add(playerGibs);
 			
@@ -62,7 +62,7 @@ package  units
 			bounceGun.setBulletSpeed(300);
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setBulletElasticity(0.8);
-			bounceGun.setBulletLifeSpan(1500);
+			bounceGun.setBulletLifeSpan(1000);
 			bounceGun.setPreFireCallback(null, AssetsRegistry.shootMP3);
 			
 			playerBullets.add(normalGun.group);
@@ -139,7 +139,7 @@ package  units
 			if(playerGibs != null)
 			{
 				playerGibs.at(this);
-				playerGibs.start(true, 0, 0, 50);
+				playerGibs.start(true, 0, 0, 0);
 			}
 			
 			//sound effect
