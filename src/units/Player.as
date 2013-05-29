@@ -2,6 +2,7 @@ package  units
 {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
+	import weapons.BaseMusket;
 	
 	import maps.Dungeon;
 	/**
@@ -17,8 +18,10 @@ package  units
 		
 		public static const NORMAL_GUN:uint = 0;
 		
-		private var normalGun:FlxWeapon;
+		private var normalGun:BaseMusket;
 		public var playerGibs:FlxEmitter;
+		
+		private var playerBullets:FlxGroup;
 		
 		public function Player(_gibsGroup:FlxGroup) 
 		{
@@ -39,7 +42,9 @@ package  units
 			
 			_gibsGroup.add(playerGibs);
 			
-			normalGun = new FlxWeapon("normal", this);
+			playerBullets = new FlxGroup();
+			
+			normalGun = new BaseMusket("normal", this);
 			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
 			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
 			normalGun.setBulletSpeed(300);
@@ -47,6 +52,8 @@ package  units
 			//var normalGunSND:FlxSound = new FlxSound();
 			//normalGunSND.loadEmbedded(AssetsRegistry.shootMP3);
 			normalGun.setPreFireCallback(null, AssetsRegistry.shootMP3);
+			
+			playerBullets.add(normalGun.group);
 		}
 		
 		override public function update():void
@@ -85,7 +92,7 @@ package  units
 		
 		public function get bullets():FlxGroup
 		{
-			return normalGun.group;
+			return playerBullets;
 		}
 		
 		override public function hurt(_damageNumber:Number):void

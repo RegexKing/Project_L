@@ -81,7 +81,6 @@ package  units
 				gibs.at(this);
 				gibs.start(true, 0, 0, 50);
 			}
-			trace("enemy was killed");
 			
 			//temp universal sound effect
 			FlxG.play(AssetsRegistry.enemyDieMP3);

@@ -64,7 +64,7 @@ package org.flixel.plugin.photonstorm
 		private var parent:*;
 		private var parentXVariable:String;
 		private var parentYVariable:String;
-		private var positionOffset:FlxPoint;
+		protected var positionOffset:FlxPoint;
 		private var directionFromParent:Boolean;
 		private var angleFromParent:Boolean;
 		
