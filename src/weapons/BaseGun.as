@@ -6,10 +6,10 @@ package weapons
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BaseMusket extends FlxWeapon
+	public class BaseGun extends FlxWeapon
 	{
 		
-		public function BaseMusket(name:String, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
+		public function BaseGun(name:String, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
 		{
 			super(name, parentRef, xVariable, yVariable);
 		}
@@ -20,7 +20,7 @@ package weapons
 			
 			for (var b:uint = 0; b < quantity; b++)
 			{
-				var tempBullet:BaseMusketBall = new BaseMusketBall(this, b);
+				var tempBullet:BaseBullet = new BaseBullet(this, b);
 				
 				tempBullet.makeGraphic(width, height, color);
 				

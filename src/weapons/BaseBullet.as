@@ -7,10 +7,10 @@ package weapons
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class BaseMusketBall extends Bullet
+	public class BaseBullet extends Bullet
 	{
 		
-		public function BaseMusketBall(weapon:FlxWeapon, id:uint) 
+		public function BaseBullet(weapon:FlxWeapon, id:uint) 
 		{
 			super(weapon, id);
 			attackValue = 1;

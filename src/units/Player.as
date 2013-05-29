@@ -2,7 +2,8 @@ package  units
 {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
-	import weapons.BaseMusket;
+	import weapons.BaseGun;
+	import weapons.BounceGun;
 	
 	import maps.Dungeon;
 	/**
@@ -14,11 +15,15 @@ package  units
 	{
 		//constants
 		private const MOVEMENT_SPEED:Number = 100;
+		
 		private const NORMAL_RATE:Number = 500;
+		private const BOUNCE_RATE:Number = 400;
 		
 		public static const NORMAL_GUN:uint = 0;
+		public static const BOUNCE_GUN:uint = 1;
 		
-		private var normalGun:BaseMusket;
+		private var normalGun:BaseGun;
+		private var bounceGun:BounceGun;
 		public var playerGibs:FlxEmitter;
 		
 		private var playerBullets:FlxGroup;
@@ -44,16 +49,24 @@ package  units
 			
 			playerBullets = new FlxGroup();
 			
-			normalGun = new BaseMusket("normal", this);
+			normalGun = new BaseGun("normal", this);
 			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
 			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
 			normalGun.setBulletSpeed(300);
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
-			//var normalGunSND:FlxSound = new FlxSound();
-			//normalGunSND.loadEmbedded(AssetsRegistry.shootMP3);
 			normalGun.setPreFireCallback(null, AssetsRegistry.shootMP3);
 			
+			bounceGun = new BounceGun("bounce", this);
+			bounceGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
+			bounceGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
+			bounceGun.setBulletSpeed(300);
+			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
+			bounceGun.setBulletElasticity(0.8);
+			bounceGun.setBulletLifeSpan(1500);
+			bounceGun.setPreFireCallback(null, AssetsRegistry.shootMP3);
+			
 			playerBullets.add(normalGun.group);
+			playerBullets.add(bounceGun.group);
 		}
 		
 		override public function update():void
@@ -76,6 +89,11 @@ package  units
 						case NORMAL_GUN:
 							normalGun.fireAtMouse();
 							break;
+							
+						case BOUNCE_GUN:
+							bounceGun.fireAtMouse();
+							break;
+							
 						default:
 							throw new Error("Weapon id number is out acceptable range");
 							break;
@@ -88,6 +106,7 @@ package  units
 		{
 			//TODO: update the firerates of all weapons
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * _fireRateMultiplier));
+			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * _fireRateMultiplier));
 		}
 		
 		public function get bullets():FlxGroup
