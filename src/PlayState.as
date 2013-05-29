@@ -47,7 +47,7 @@ package
 			gibsGroup = new FlxGroup();
 			
 			dungeon = new Dungeon();
-			player = new Player(gibsGroup);
+			player = new Player(gibsGroup, enemiesGroup);
 			
 			diamondCounter = new DiamondCounter();
 			miniMap = new MiniMap(dungeon, player);
@@ -64,6 +64,7 @@ package
 			collideableGroup.add(player.bullets);
 			collideableGroup.add(enemyBullets);
 			collideableGroup.add(itemEmitter);
+			collideableGroup.add(enemiesGroup);
 			
 			playerHazzardsGroup.add(enemiesGroup);
 			playerHazzardsGroup.add(enemyBullets);
@@ -155,6 +156,7 @@ package
 			super.update();
 			
 			FlxG.collide(collideableGroup, dungeon);
+			FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);

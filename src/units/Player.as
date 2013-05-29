@@ -27,10 +27,13 @@ package  units
 		public var playerGibs:FlxEmitter;
 		
 		private var playerBullets:FlxGroup;
+		private var enemiesGroup:FlxGroup;
 		
-		public function Player(_gibsGroup:FlxGroup) 
+		public function Player(_gibsGroup:FlxGroup, _enemiesGroup:FlxGroup) 
 		{
 			super();
+			
+			enemiesGroup = _enemiesGroup;
 			
 			makeGraphic(20, 20, 0xff00FF00);
 			
@@ -54,7 +57,7 @@ package  units
 			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
 			normalGun.setBulletSpeed(300);
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
-			normalGun.setPreFireCallback(null, AssetsRegistry.shootMP3);
+			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
 			bounceGun = new BounceGun("bounce", this);
 			bounceGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
@@ -63,7 +66,7 @@ package  units
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setBulletElasticity(0.8);
 			bounceGun.setBulletLifeSpan(1000);
-			bounceGun.setPreFireCallback(null, AssetsRegistry.shootMP3);
+			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
 			
 			playerBullets.add(normalGun.group);
 			playerBullets.add(bounceGun.group);
@@ -144,6 +147,17 @@ package  units
 			
 			//sound effect
 			FlxG.play(AssetsRegistry.playerDieMP3);
+		}
+		
+		private function alertEnemies():void
+		{
+			for each (var enemy:Enemy in enemiesGroup.members)
+			{
+				if (enemy.alive && enemy.onScreen(FlxG.camera))
+				{
+					enemy.aware = true;
+				}
+			}
 		}
 		
 	}
