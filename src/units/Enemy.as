@@ -113,6 +113,8 @@ package  units
 		{
 			super.hurt(_damagePoints);
 			
+			aware = true;
+			
 			//sound effect
 			FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}

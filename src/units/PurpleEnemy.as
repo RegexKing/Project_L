@@ -19,7 +19,7 @@ package  units
 			
 			speed = 50;
 			health = 2;
-			attackValue = 2;
+			attackValue = 1;
 			
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);

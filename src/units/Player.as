@@ -70,20 +70,21 @@ package  units
 			
 			playerBullets.add(normalGun.group);
 			playerBullets.add(bounceGun.group);
+			
+			if (FlxG.getPlugin(FlxControl) == null)
+			{
+				FlxG.addPlugin(new FlxControl);
+			}
+			
+			FlxControl.create(this, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT, 1, false);
+			FlxControl.player1.setWASDControl();
+			FlxControl.player1.setStandardSpeed(100);
 		}
 		
 		override public function update():void
 		{	
 			if (alive)
 			{
-				if (FlxG.keys.pressed("A")) velocity.x = -(MOVEMENT_SPEED);
-				else if (FlxG.keys.pressed("D")) velocity.x = MOVEMENT_SPEED;
-				else velocity.x = 0;
-			
-				if (FlxG.keys.pressed("W")) velocity.y = -(MOVEMENT_SPEED);
-				else if (FlxG.keys.pressed("S")) velocity.y = MOVEMENT_SPEED;
-				else velocity.y = 0;
-				
 				// switch statement to fire correct weapon
 				if (FlxG.mouse.pressed())
 				{
@@ -136,6 +137,7 @@ package  units
 			visible = false;
 			velocity.make()
 			acceleration.make();
+			
 			FlxG.camera.shake(0.01,0.35);
 			FlxG.camera.flash(0xffFF0000, 0.35);
 			
@@ -158,6 +160,13 @@ package  units
 					enemy.aware = true;
 				}
 			}
+		}
+		
+		override public function destroy():void
+		{
+			FlxControl.clear();
+			
+			super.destroy();
 		}
 		
 	}
