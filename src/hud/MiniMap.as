@@ -33,13 +33,12 @@ package  hud
 			
 			tileMap.loadMap(FlxTilemap.arrayToCSV(mapArray, DungeonGenerator.TOTAL_ROWS, true), FlxTilemap.ImgAuto, 6, 6, FlxTilemap.AUTO);
 			
-			tileMap.x = GameData.RENDER_WIDTH/2 - tileMap.width/2;
-			tileMap.y = GameData.RENDER_HEIGHT/2 - tileMap.height/2;
-			tileMap.y = GameData.RENDER_HEIGHT / 2 - tileMap.height / 2;
-			
 			playerIcon = new FlxSprite();
 			playerIcon.loadGraphic(AssetsRegistry.playerMiniMapIconPNG, false, false, 6, 6);
 			//playerIcon.addAnimation("blink", [0, 1], 2);
+			
+			playerIcon.x = GameData.RENDER_WIDTH / 2 - playerIcon.width / 2;
+			playerIcon.y = GameData.RENDER_HEIGHT / 2 - playerIcon.height / 2;
 			
 			add(tileMap);
 			add(playerIcon);
@@ -49,8 +48,8 @@ package  hud
 		
 		override public function update():void
 		{
-			playerIcon.x = Math.round(player.x / Dungeon.TILE_SIZE) * 6 + tileMap.x;
-			playerIcon.y = Math.round(player.y / Dungeon.TILE_SIZE) * 6 + tileMap.y;
+			tileMap.x = playerIcon.x - (Math.round(player.x / Dungeon.TILE_SIZE) * 6);
+			tileMap.y = playerIcon.y - (Math.round(player.y / Dungeon.TILE_SIZE) * 6);
 		}
 		
 		public function toggleMiniMap():void
