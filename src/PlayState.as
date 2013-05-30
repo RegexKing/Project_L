@@ -18,6 +18,7 @@ package
 		protected var lifeBar:LifeBar;
 		protected var diamondCounter:DiamondCounter;
 		protected var itemEmitter:FlxEmitter;
+		protected var cameraFocus:CameraFocus;
 		
 		protected var hudGroup:FlxGroup;
 		protected var itemsGroup:FlxGroup;
@@ -49,10 +50,12 @@ package
 			dungeon = new Dungeon();
 			player = new Player(gibsGroup, enemiesGroup);
 			
+			cameraFocus = new CameraFocus(player);
 			diamondCounter = new DiamondCounter();
 			miniMap = new MiniMap(dungeon, player);
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
+			
 			
 			hudGroup.add(lifeBar);
 			hudGroup.add(diamondCounter);
@@ -71,9 +74,9 @@ package
 			playerHazzardsGroup.add(trapsGroup);
 			
 			FlxG.worldBounds = new FlxRect(0, 0, Dungeon.width, Dungeon.height);
-			FlxG.camera.setBounds(0,0, Dungeon.width, Dungeon.height, true);
-			FlxG.camera.follow(player, FlxCamera.STYLE_TOPDOWN_TIGHT);
-			
+			//FlxG.camera.setBounds(0,0, Dungeon.width, Dungeon.height, true);
+			//FlxG.camera.follow(cameraFocus, FlxCamera.STYLE_LOCKON);
+			FlxG.camera.target = cameraFocus;
 			
 			//--testing area--//
 			itemEmitter.setRotation(0, 0);
@@ -127,6 +130,7 @@ package
 			add(enemyBullets);
 			add(player.bullets);
 			add(hudGroup);
+			add(cameraFocus);
 			
 			player.x = dungeon.emptySpaces[0].x;
 			player.y = dungeon.emptySpaces[0].y;
@@ -138,7 +142,7 @@ package
 			super.update();
 			
 			FlxG.collide(collideableGroup, dungeon);
-			FlxG.collide(enemiesGroup, enemiesGroup);
+			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);
@@ -157,6 +161,7 @@ package
 				
 				miniMap.toggleMiniMap();
 			}
+			
 		}
 		
 		private function goHome():void

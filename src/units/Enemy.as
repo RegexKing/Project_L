@@ -125,6 +125,8 @@ package  units
 				itemEmitter.start(true, 0, 0, 4);
 			}
 			
+			destroyPath();
+			
 			//temp universal sound effect
 			FlxG.play(AssetsRegistry.enemyDieMP3);
 		}
@@ -137,7 +139,7 @@ package  units
 			FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}
 		
-		
+		/*
 		override public function draw():void
 		{
 			super.draw();
@@ -147,5 +149,6 @@ package  units
 				this.path.drawDebug();
 			}
 		}
+		*/
 	}
 }

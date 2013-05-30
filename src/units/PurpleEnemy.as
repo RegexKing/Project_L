@@ -32,6 +32,15 @@ package  units
 			
 		}	
 		
+		override public function update():void
+		{
+			super.update();
+			
+			if (aware)
+			{
+				this.pathSpeed = 120;
+			}
+		}	
 	}
 
 }

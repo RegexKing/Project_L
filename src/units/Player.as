@@ -73,7 +73,7 @@ package  units
 		}
 		
 		override public function update():void
-		{
+		{	
 			if (alive)
 			{
 				if (FlxG.keys.pressed("A")) velocity.x = -(MOVEMENT_SPEED);
