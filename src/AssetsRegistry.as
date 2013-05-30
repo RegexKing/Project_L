@@ -28,6 +28,9 @@ package
 		//Tiles
 		[Embed(source = "../assets/tiles/dun.png")] public static var randDunTilesPNG:Class;
 		
+		//Bgms
+		[Embed(source = "../assets/sounds/dungeonBGM.mp3")] public static var BGM_dungeonMP3:Class;
+		
 		//Sounds
 		[Embed(source = "../assets/sounds/shoot.mp3")] public static var shootMP3:Class;
 		[Embed(source = "../assets/sounds/healthPickup.mp3")] public static var healthPickupMP3:Class;

@@ -15,7 +15,7 @@ package  units
 		
 		public function PurpleEnemy(_player:Player, _dungeon:Dungeon, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
 		{
-			super(_player, _dungeon, _gibsGroup, _itemEmitter);
+			super(_player, _dungeon, _itemEmitter);
 			
 			speed = 50;
 			health = 2;
@@ -29,6 +29,7 @@ package  units
 			height = 20;
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
+			_gibsGroup.add(gibs);
 			
 		}	
 		

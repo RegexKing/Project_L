@@ -38,6 +38,7 @@ package
 		
 		override public function create():void
 		{
+			FlxG.bgColor = 0xff191200;
 			
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
@@ -149,6 +150,10 @@ package
 			player.x = dungeon.emptySpaces[0].x;
 			player.y = dungeon.emptySpaces[0].y;
 			
+			FlxG.playMusic(AssetsRegistry.BGM_dungeonMP3);
+			FlxG.music.fadeIn(1);
+			FlxG.music.survive = false;
+			
 		}
 		
 		override public function update():void
@@ -202,6 +207,7 @@ package
 			GameData.resetData();
 			trace("Game ended");
 			
+			FlxG.music.fadeOut(1);
 			FlxG.fade(0xff000000, 2, goHome);
 		}
 		

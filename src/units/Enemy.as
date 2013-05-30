@@ -23,7 +23,7 @@ package  units
 		private var enemyCoords:FlxPoint;
 		private var playerCoords:FlxPoint;
 		
-		public function Enemy(_player:Player, _dungeon:Dungeon, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
+		public function Enemy(_player:Player, _dungeon:Dungeon, _itemEmitter:FlxEmitter) 
 		{
 			super();
 			
@@ -43,8 +43,6 @@ package  units
 			gibs.setYSpeed(-200,200);
 			gibs.setRotation(0, 0);
 			gibs.bounce = 0.5;
-			
-			_gibsGroup.add(gibs);	
 		}
 		
 		
@@ -133,7 +131,7 @@ package  units
 			if(gibs != null)
 			{
 				gibs.at(this);
-				gibs.start(true, 0, 0, 0);
+				gibs.start(true, 10, 0, 0);
 			}
 			
 			if(itemEmitter != null)

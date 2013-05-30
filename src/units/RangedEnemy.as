@@ -16,7 +16,7 @@ package  units
 		
 		public function RangedEnemy(_player:Player, _dungeon:Dungeon, _enemyBullets:FlxGroup, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
 		{
-			super(_player, _dungeon, _gibsGroup, _itemEmitter);
+			super(_player, _dungeon, _itemEmitter);
 			
 			enemyBullets = _enemyBullets;
 			
@@ -33,6 +33,7 @@ package  units
 			height = 20;
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
+			_gibsGroup.add(gibs);
 			
 			weapon = new FlxWeapon("normal", this);
 			weapon.makePixelBullet(10, 8, 8);
