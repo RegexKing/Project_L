@@ -20,6 +20,8 @@ package  units
 		protected var patrolPath:FlxPath;
 		protected var gibs:FlxEmitter;
 		protected var itemEmitter:FlxEmitter
+		private var enemyCoords:FlxPoint;
+		private var playerCoords:FlxPoint;
 		
 		public function Enemy(_player:Player, _dungeon:Dungeon, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
 		{
@@ -49,8 +51,10 @@ package  units
 		override public function update():void
 		{
 			
-			var enemyCoords:FlxPoint = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
-			var playerCoords:FlxPoint = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
+			enemyCoords = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
+			playerCoords = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
+			
+			FlxG.log(isEnemyNear());
 			
 			inSight = dungeon.dungeonMap.ray(enemyCoords, playerCoords);
 			
@@ -67,7 +71,7 @@ package  units
 				else this.path = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
 			}
 			
-			else if ((!aware && inSight) && this.onScreen(FlxG.camera))
+			else if ((!aware && inSight) && isEnemyNear())
 			{
 				aware = true;
 				
@@ -85,6 +89,11 @@ package  units
 				}
 				
 			}
+		}
+		
+		public function isEnemyNear():Boolean
+		{
+			return  (FlxVelocity.distanceBetween(this, player) <= (GameData.RENDER_WIDTH / 2 + GameData.RENDER_HEIGHT / 2) / 2) ? true : false;
 		}
 		
 		private function findRandEmptyTile():FlxPoint
@@ -141,7 +150,7 @@ package  units
 			FlxG.play(AssetsRegistry.enemyDieMP3);
 		}
 		
-		/*
+		
 		override public function draw():void
 		{
 			super.draw();
@@ -151,6 +160,6 @@ package  units
 				this.path.drawDebug();
 			}
 		}
-		*/
+		
 	}
 }
