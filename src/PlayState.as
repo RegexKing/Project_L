@@ -68,9 +68,9 @@ package
 			lifeBar.setCallbacks(endGame, null);
 			
 			hudGroup.add(darkness);
+			hudGroup.add(miniMap);
 			hudGroup.add(lifeBar);
 			hudGroup.add(diamondCounter);
-			hudGroup.add(miniMap);
 			hudGroup.setAll("scrollFactor", new FlxPoint(0, 0));
 			
 			collideableGroup.add(gibsGroup);
