@@ -7,7 +7,7 @@ package
 	 * @author Frank Fazio
 	 */
 	
-	[SWF(width="640", height="480", backgroundColor="#000000")]
+	[SWF(width="600", height="480", backgroundColor="#000000")]
 	[Frame(factoryClass = "Preloader")]
 	
 	public class Main extends FlxGame 

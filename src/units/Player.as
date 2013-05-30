@@ -158,7 +158,7 @@ package  units
 		{
 			for each (var enemy:Enemy in enemiesGroup.members)
 			{
-				if (enemy.alive && enemy.onScreen())
+				if (enemy.alive && enemy.isEnemyNear())
 				{
 					enemy.aware = true;
 				}
