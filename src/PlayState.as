@@ -12,6 +12,8 @@ package
 	 
 	public class PlayState extends FlxState
 	{
+		protected var darkness:FlxSprite;
+		
 		protected var player:Player;
 		protected var dungeon:Dungeon;
 		protected var miniMap:MiniMap;
@@ -19,6 +21,7 @@ package
 		protected var diamondCounter:DiamondCounter;
 		protected var itemEmitter:FlxEmitter;
 		protected var cameraFocus:CameraFocus;
+		protected var playerLight:Light;
 		
 		protected var hudGroup:FlxGroup;
 		protected var itemsGroup:FlxGroup;
@@ -35,6 +38,7 @@ package
 		
 		override public function create():void
 		{
+			
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
 			playerHazzardsGroup = new FlxGroup();
@@ -47,6 +51,15 @@ package
 			enemyBullets = new FlxGroup();
 			gibsGroup = new FlxGroup();
 			
+			darkness = new FlxSprite(0,0);
+			darkness.makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
+			darkness.blend = "multiply";
+			darkness.alpha = .9;
+			darkness.scrollFactor.x = darkness.scrollFactor.y = 0;
+			
+			playerLight = new Light(darkness, player);
+			//playerLight.scrollFactor.x = playerLight.scrollFactor.y = 0;
+			
 			dungeon = new Dungeon();
 			player = new Player(gibsGroup, enemiesGroup);
 			
@@ -55,7 +68,6 @@ package
 			miniMap = new MiniMap(dungeon, player);
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
-			
 			
 			hudGroup.add(lifeBar);
 			hudGroup.add(diamondCounter);
@@ -129,6 +141,8 @@ package
 			add(enemiesGroup);
 			add(enemyBullets);
 			add(player.bullets);
+			add(playerLight);
+			add(darkness);
 			add(hudGroup);
 			add(cameraFocus);
 			
@@ -143,6 +157,9 @@ package
 			
 			FlxG.collide(collideableGroup, dungeon);
 			cameraFocus.updateCamera();	
+			
+			playerLight.x = player.x;
+			playerLight.y = player.y;
 			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
@@ -210,6 +227,11 @@ package
 		{
 			(item as Item).pickup();
 			item.kill();
+		}
+		
+		override public function draw():void {
+		darkness.fill(0xff000000);
+		super.draw();
 		}
 		
 	}

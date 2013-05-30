@@ -144,8 +144,6 @@ package  units
 				itemEmitter.start(true, 0, 0, 4);
 			}
 			
-			destroyPath();
-			
 			//temp universal sound effect
 			FlxG.play(AssetsRegistry.enemyDieMP3);
 		}

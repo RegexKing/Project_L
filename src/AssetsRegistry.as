@@ -8,6 +8,7 @@ package
 	{
 		
 		//Sprites
+		[Embed(source = "../assets/sprites/crystalLight.png")] public static var crystalLightPNG:Class;
 		[Embed(source = "../assets/sprites/playerMiniMapIcon.png")] public static var playerMiniMapIconPNG:Class;
 		[Embed(source = "../assets/sprites/playerGibs.png")] public static var playerGibsPNG:Class;
 		[Embed(source = "../assets/sprites/healthItem.png")] public static var HealthItemPNG:Class;
