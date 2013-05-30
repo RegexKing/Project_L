@@ -12,7 +12,7 @@ package  hud
 		public function Light(_darkness:FlxSprite, _object:FlxSprite):void 
 		{
 			super();
-			loadGraphic(AssetsRegistry.crystalLightPNG, false, false, 215, 215);
+			loadGraphic(AssetsRegistry.crystalLightPNG, false, false, 240, 240);
  
 			darkness = _darkness;
 			object = _object;

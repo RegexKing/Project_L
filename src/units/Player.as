@@ -129,14 +129,17 @@ package  units
 		
 		override public function kill():void
 		{
-			if(!alive) return;
+			if (!alive) return;
+			
+			
 			solid = false;
-			// TODO add death sound
 			super.kill();
 			exists = true;
 			visible = false;
 			velocity.make()
 			acceleration.make();
+			
+			FlxControl.clear();
 			
 			FlxG.camera.shake(0.01,0.35);
 			FlxG.camera.flash(0xffFF0000, 0.35);
@@ -155,18 +158,11 @@ package  units
 		{
 			for each (var enemy:Enemy in enemiesGroup.members)
 			{
-				if (enemy.alive && enemy.isEnemyNear())
+				if (enemy.alive && enemy.onScreen())
 				{
 					enemy.aware = true;
 				}
 			}
-		}
-		
-		override public function destroy():void
-		{
-			FlxControl.clear();
-			
-			super.destroy();
 		}
 		
 	}

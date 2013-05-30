@@ -54,7 +54,7 @@ package
 			darkness = new FlxSprite(0,0);
 			darkness.makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
 			darkness.blend = "multiply";
-			darkness.alpha = .9;
+			darkness.alpha = .95;
 			darkness.scrollFactor.x = darkness.scrollFactor.y = 0;
 			
 			playerLight = new Light(darkness, player);
@@ -108,7 +108,7 @@ package
 				}
 			}
 			
-			for (var j:int = 1; j < 6; j++)
+			for (var j:int = 1; j < 11; j++)
 			{
 				var enemy:Enemy;
 				
@@ -158,8 +158,8 @@ package
 			FlxG.collide(collideableGroup, dungeon);
 			cameraFocus.updateCamera();	
 			
-			playerLight.x = player.x;
-			playerLight.y = player.y;
+			playerLight.x = player.x + 10;
+			playerLight.y = player.y +10;
 			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);

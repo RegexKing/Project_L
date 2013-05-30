@@ -29,6 +29,8 @@ package weapons
 			{
 				kill();
 			}
+			
+			if (!this.onScreen()) kill();
 		}
 		
 	}
