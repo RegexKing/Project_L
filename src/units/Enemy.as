@@ -109,6 +109,14 @@ package  units
 			patrolPath = null;
 		}
 		
+		override public function hurt(_damagePoints:Number):void
+		{
+			super.hurt(_damagePoints);
+			
+			//sound effect
+			FlxG.play(AssetsRegistry.enemyHurtMP3);
+		}
+		
 		override public function kill():void
 		{
 			super.kill();
@@ -129,14 +137,6 @@ package  units
 			
 			//temp universal sound effect
 			FlxG.play(AssetsRegistry.enemyDieMP3);
-		}
-		
-		override public function hurt(_damagePoints:Number):void
-		{
-			super.hurt(_damagePoints);
-			
-			//sound effect
-			FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}
 		
 		/*

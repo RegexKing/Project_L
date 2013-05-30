@@ -142,6 +142,7 @@ package
 			super.update();
 			
 			FlxG.collide(collideableGroup, dungeon);
+			cameraFocus.updateCamera();
 			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
@@ -161,6 +162,7 @@ package
 				
 				miniMap.toggleMiniMap();
 			}
+			
 			
 		}
 		

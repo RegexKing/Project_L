@@ -28,7 +28,7 @@ package hud
 			radius = MIN_RADIUS;
 		}
 		
-		override public function preUpdate():void
+		public function updateCamera():void
 		{	
 		
 			angleBetween = FlxVelocity.angleBetweenMouse(player);
