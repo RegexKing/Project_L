@@ -131,7 +131,7 @@ package  units
 			if(gibs != null)
 			{
 				gibs.at(this);
-				gibs.start(true, 10, 0, 0);
+				gibs.start(true, 0, 0, 0);
 			}
 			
 			if(itemEmitter != null)

@@ -1,4 +1,4 @@
-package  hud
+package  util
 {
 	import org.flixel.*;
 	import units.Player;
@@ -9,7 +9,7 @@ package  hud
 		private var darkness:FlxSprite;
 		private var object:FlxSprite;
     
-		public function Light(_darkness:FlxSprite, _object:FlxSprite):void 
+		public function Light(_darkness:Darkness, _object:FlxSprite):void 
 		{
 			super();
 			loadGraphic(AssetsRegistry.crystalLightPNG, true, false, 245, 245);

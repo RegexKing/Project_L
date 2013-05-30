@@ -9,10 +9,11 @@ package
 	import items.*;
 	import maps.*;
 	import units.*;
+	import util.*;
 	 
 	public class PlayState extends FlxState
 	{
-		protected var darkness:FlxSprite;
+		protected var darkness:Darkness;
 		
 		protected var player:Player;
 		protected var dungeon:Dungeon;
@@ -24,6 +25,7 @@ package
 		protected var playerLight:Light;
 		
 		protected var hudGroup:FlxGroup;
+		protected var lightsGroup:FlxGroup;
 		protected var itemsGroup:FlxGroup;
 		protected var collideableGroup:FlxGroup;
 		protected var playerHazzardsGroup:FlxGroup;
@@ -43,26 +45,21 @@ package
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
 			playerHazzardsGroup = new FlxGroup();
-			
-			itemEmitter = new FlxEmitter(0, 0, 300);
-			
 			itemsGroup = new FlxGroup();
 			enemiesGroup = new FlxGroup();
 			trapsGroup = new FlxGroup();
 			enemyBullets = new FlxGroup();
 			gibsGroup = new FlxGroup();
+			lightsGroup = new FlxGroup();
 			
-			darkness = new FlxSprite(0,0);
-			darkness.makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
-			darkness.blend = "multiply";
-			darkness.alpha = .95;
-			darkness.scrollFactor.x = darkness.scrollFactor.y = 0;
-			
-			playerLight = new Light(darkness, player);
-			//playerLight.scrollFactor.x = playerLight.scrollFactor.y = 0;
+			itemEmitter = new FlxEmitter(0, 0, 300);
 			
 			dungeon = new Dungeon();
 			player = new Player(gibsGroup, enemiesGroup);
+			
+			darkness = new Darkness();
+			playerLight = new Light(darkness, player);
+			lightsGroup.add(playerLight);
 			
 			cameraFocus = new CameraFocus(player);
 			diamondCounter = new DiamondCounter();
@@ -70,6 +67,7 @@ package
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
 			
+			hudGroup.add(darkness);
 			hudGroup.add(lifeBar);
 			hudGroup.add(diamondCounter);
 			hudGroup.add(miniMap);
@@ -87,8 +85,6 @@ package
 			playerHazzardsGroup.add(trapsGroup);
 			
 			FlxG.worldBounds = new FlxRect(0, 0, Dungeon.width, Dungeon.height);
-			//FlxG.camera.setBounds(0,0, Dungeon.width, Dungeon.height, true);
-			//FlxG.camera.follow(cameraFocus, FlxCamera.STYLE_LOCKON);
 			FlxG.camera.target = cameraFocus;
 			
 			//--testing area--//
@@ -142,8 +138,7 @@ package
 			add(enemiesGroup);
 			add(enemyBullets);
 			add(player.bullets);
-			add(playerLight);
-			add(darkness);
+			add(lightsGroup);
 			add(hudGroup);
 			add(cameraFocus);
 			
@@ -235,9 +230,11 @@ package
 			item.kill();
 		}
 		
-		override public function draw():void {
-		darkness.fill(0xff000000);
-		super.draw();
+		override public function draw():void
+		{
+			darkness.fill(0xff000000);
+			
+			super.draw();
 		}
 		
 	}
