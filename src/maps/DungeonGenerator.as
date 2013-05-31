@@ -16,10 +16,9 @@ package maps
 		
 		protected var rooms:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of rooms
 		protected var corridors:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of corridors
-		protected var firstRoomCoords:Array;
-		protected var firstRoomRect:FlxRect; // rectangle containing points of first room [x, y, width, height]
-		
 		protected var prevDoor:Array; // Array of the format (x, y). Contains the coordinates of the previous room's door
+		protected var firstRoomCoords:Array; // array containing coordinates of first room
+		protected var firstRoomRect:FlxRect; // rectangle containing points of first room
 		
 		// Constants, used to configure the floors
 		public static const TOTAL_ROWS:int = 40;
