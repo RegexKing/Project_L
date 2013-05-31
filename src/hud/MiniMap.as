@@ -32,6 +32,7 @@ package  hud
 			tileMap = new FlxTilemap();
 			
 			tileMap.loadMap(FlxTilemap.arrayToCSV(mapArray, DungeonGenerator.TOTAL_ROWS, true), FlxTilemap.ImgAuto, 6, 6, FlxTilemap.AUTO);
+			mapArray = null; // destroy unused map
 			
 			playerIcon = new FlxSprite();
 			playerIcon.loadGraphic(AssetsRegistry.playerMiniMapIconPNG, true, false, 6, 6);
