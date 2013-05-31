@@ -34,8 +34,9 @@ package  hud
 			tileMap.loadMap(FlxTilemap.arrayToCSV(mapArray, DungeonGenerator.TOTAL_ROWS, true), FlxTilemap.ImgAuto, 6, 6, FlxTilemap.AUTO);
 			
 			playerIcon = new FlxSprite();
-			playerIcon.loadGraphic(AssetsRegistry.playerMiniMapIconPNG, false, false, 6, 6);
-			//playerIcon.addAnimation("blink", [0, 1], 2);
+			playerIcon.loadGraphic(AssetsRegistry.playerMiniMapIconPNG, true, false, 6, 6);
+			playerIcon.addAnimation("blink", [1, 2]);
+			playerIcon.play("blink");
 			
 			playerIcon.x = GameData.RENDER_WIDTH / 2 - playerIcon.width / 2;
 			playerIcon.y = GameData.RENDER_HEIGHT / 2 - playerIcon.height / 2;

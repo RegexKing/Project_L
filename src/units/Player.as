@@ -26,10 +26,9 @@ package  units
 		private var bounceGun:BounceGun;
 		public var playerGibs:FlxEmitter;
 		
-		private var playerBullets:FlxGroup;
 		private var enemiesGroup:FlxGroup;
 		
-		public function Player(_gibsGroup:FlxGroup, _enemiesGroup:FlxGroup) 
+		public function Player(_playerBulletsGroup:FlxGroup, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup) 
 		{
 			super();
 			
@@ -50,8 +49,6 @@ package  units
 			
 			_gibsGroup.add(playerGibs);
 			
-			playerBullets = new FlxGroup();
-			
 			normalGun = new BaseGun("normal", this);
 			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
 			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
@@ -68,8 +65,8 @@ package  units
 			bounceGun.setBulletLifeSpan(1000);
 			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
 			
-			playerBullets.add(normalGun.group);
-			playerBullets.add(bounceGun.group);
+			_playerBulletsGroup.add(normalGun.group);
+			_playerBulletsGroup.add(bounceGun.group);
 			
 			if (FlxG.getPlugin(FlxControl) == null)
 			{
@@ -111,11 +108,6 @@ package  units
 			//TODO: update the firerates of all weapons
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * _fireRateMultiplier));
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * _fireRateMultiplier));
-		}
-		
-		public function get bullets():FlxGroup
-		{
-			return playerBullets;
 		}
 		
 		override public function hurt(_damageNumber:Number):void

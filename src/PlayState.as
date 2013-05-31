@@ -28,6 +28,7 @@ package
 		protected var lightsGroup:FlxGroup;
 		protected var itemsGroup:FlxGroup;
 		protected var collideableGroup:FlxGroup;
+		protected var playerBulletsGroup:FlxGroup;
 		protected var playerHazzardsGroup:FlxGroup;
 		protected var enemiesGroup:FlxGroup;
 		protected var trapsGroup:FlxGroup;
@@ -44,6 +45,7 @@ package
 			
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
+			playerBulletsGroup = new FlxGroup();
 			playerHazzardsGroup = new FlxGroup();
 			itemsGroup = new FlxGroup();
 			enemiesGroup = new FlxGroup();
@@ -52,20 +54,35 @@ package
 			gibsGroup = new FlxGroup();
 			lightsGroup = new FlxGroup();
 			
-			itemEmitter = new FlxEmitter(0, 0, 300);
+			
+			//Things in order that need to be set up, inheritted---
 			
 			dungeon = new Dungeon();
-			player = new Player(gibsGroup, enemiesGroup);
-			
+			player = new Player(playerBulletsGroup, gibsGroup, enemiesGroup);
+			miniMap = new MiniMap(dungeon, player);
 			darkness = new Darkness();
 			playerLight = new Light(darkness, player);
-			lightsGroup.add(playerLight);
-			
 			cameraFocus = new CameraFocus(player);
+			
+			FlxG.worldBounds = new FlxRect(0, 0, Dungeon.width, Dungeon.height);
+			FlxG.camera.target = cameraFocus;
+			
+			FlxG.playMusic(AssetsRegistry.BGM_dungeonMP3);
+			FlxG.music.fadeIn(1);
+			FlxG.music.survive = false;
+			
+			player.x = dungeon.emptySpaces[0].x;
+			player.y = dungeon.emptySpaces[0].y;
+			
+			//-----------------------------------------------------
+			
+			
 			diamondCounter = new DiamondCounter();
-			miniMap = new MiniMap(dungeon, player);
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
+			itemEmitter = new FlxEmitter(0, 0, 300);
+			
+			lightsGroup.add(playerLight);
 			
 			hudGroup.add(darkness);
 			hudGroup.add(miniMap);
@@ -75,7 +92,7 @@ package
 			
 			collideableGroup.add(gibsGroup);
 			collideableGroup.add(player);
-			collideableGroup.add(player.bullets);
+			collideableGroup.add(playerBulletsGroup);
 			collideableGroup.add(enemyBullets);
 			collideableGroup.add(itemEmitter);
 			collideableGroup.add(enemiesGroup);
@@ -84,8 +101,19 @@ package
 			playerHazzardsGroup.add(enemyBullets);
 			playerHazzardsGroup.add(trapsGroup);
 			
-			FlxG.worldBounds = new FlxRect(0, 0, Dungeon.width, Dungeon.height);
-			FlxG.camera.target = cameraFocus;
+			add(dungeon);
+			add(gibsGroup);
+			add(trapsGroup);
+			add(itemsGroup);
+			add(itemEmitter);
+			add(player);
+			add(enemiesGroup);
+			add(enemyBullets);
+			add(playerBulletsGroup);
+			add(lightsGroup);
+			add(hudGroup);
+			add(cameraFocus);
+			
 			
 			//--testing area--//
 			itemEmitter.setRotation(0, 0);
@@ -129,26 +157,6 @@ package
 				
 			}
 			
-			add(dungeon);
-			add(gibsGroup);
-			add(trapsGroup);
-			//add(itemsGroup);
-			add(itemEmitter);
-			add(player);
-			add(enemiesGroup);
-			add(enemyBullets);
-			add(player.bullets);
-			add(lightsGroup);
-			add(hudGroup);
-			add(cameraFocus);
-			
-			player.x = dungeon.emptySpaces[0].x;
-			player.y = dungeon.emptySpaces[0].y;
-			
-			FlxG.playMusic(AssetsRegistry.BGM_dungeonMP3);
-			FlxG.music.fadeIn(1);
-			FlxG.music.survive = false;
-			
 		}
 		
 		override public function update():void
@@ -163,9 +171,10 @@ package
 			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
-			FlxG.overlap(enemiesGroup, player.bullets, hurtObject);
+			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
 			FlxG.overlap(player, itemEmitter, itemPickup);
 			
+			//test key
 			if (FlxG.keys.justPressed("SPACE"))
 			{
 				//diamondCounter.changeQuantity(1);
@@ -176,23 +185,29 @@ package
 			
 			if (FlxG.keys.justPressed("M"))
 			{
-				
 				miniMap.toggleMiniMap();
 			}
 			
 			
 		}
 		
-		private function goHome():void
+		public function goNextState():void
 		{
 			FlxG.switchState(new PlayState());
+		}
+		
+		override public function draw():void
+		{
+			darkness.fill(0xff000000);
+			
+			super.draw();
 		}
 		
 		private function completeLevel():void
 		{
 			GameData.playerHealth = lifeBar.currentValue;
 			GameData.level++;
-			goHome();
+			goNextState();
 			
 		}
 		
@@ -203,7 +218,12 @@ package
 			trace("Game ended");
 			
 			FlxG.music.fadeOut(1);
-			FlxG.fade(0xff000000, 2, goHome);
+			FlxG.fade(0xff000000, 2, gameOverState);
+		}
+		
+		private function gameOverState():void
+		{
+			FlxG.switchState(new PlayState());
 		}
 		
 		private function hurtObject(unit:FlxObject, hazzard:FlxObject):void
@@ -228,13 +248,6 @@ package
 		{
 			(item as Item).pickup();
 			item.kill();
-		}
-		
-		override public function draw():void
-		{
-			darkness.fill(0xff000000);
-			
-			super.draw();
 		}
 		
 	}
