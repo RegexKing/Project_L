@@ -15,6 +15,8 @@ package   items
 		
 		public function WeaponItem() 
 		{
+			expireTime = 7000;
+			
 			super();
 			
 			//switch statement to choose graphic

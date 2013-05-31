@@ -16,6 +16,8 @@ package   items
 		
 		public function HealthItem(_lifeBar:LifeBar) 
 		{
+			expireTime = 7000;
+			
 			super();
 			
 			lifeBar = _lifeBar;

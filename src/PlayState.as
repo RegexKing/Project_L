@@ -53,34 +53,27 @@ package
 			gibsGroup = new FlxGroup();
 			lightsGroup = new FlxGroup();
 			
+			// Need to be overwritten
+			stageInit();
+			bgmInit();
+			//-----------------------------------------------------
 			
-			//Things in order that need to be set up, inheritted---
-			
-			map = new Dungeon();
-			player = new Player(map, playerBulletsGroup, gibsGroup, enemiesGroup);
-			miniMap = new MiniMap(map, player);
-			darkness = new Darkness();
 			cameraFocus = new CameraFocus(player);
-			
 			FlxG.worldBounds = new FlxRect(0, 0, map.tileMap.width, map.tileMap.height);
 			FlxG.camera.target = cameraFocus;
 			
-			FlxG.playMusic(AssetsRegistry.BGM_dungeonMP3);
-			FlxG.music.fadeIn(1);
-			FlxG.music.survive = false;
 			
-			var start:FlxPoint = map.randomFirstRoom();
-			
-			player.x = start.x;
-			player.y = start.y;
-			
-			//-----------------------------------------------------
-			
-			
+			miniMap = new MiniMap(map, player);
 			diamondCounter = new DiamondCounter();
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
+			
+			//to be removed---
 			itemEmitter = new FlxEmitter(0, 0, 300);
+			itemsGroup.add(itemEmitter);
+			//------
+			
+			darkness = new Darkness();
 			
 			lightsGroup.add(new PlayerLight(darkness, player));
 			
@@ -105,7 +98,6 @@ package
 			add(gibsGroup);
 			add(trapsGroup);
 			add(itemsGroup);
-			add(itemEmitter);
 			add(player);
 			add(enemiesGroup);
 			add(enemyBullets);
@@ -172,28 +164,19 @@ package
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
-			FlxG.overlap(player, itemEmitter, itemPickup);
-			
-			//test key
-			if (FlxG.keys.justPressed("SPACE"))
-			{
-				//diamondCounter.changeQuantity(1);
-				lifeBar.increaseBarRange();
-				//FlxG.mute = !FlxG.mute;
-				//trace(FlxG.mute);
-			}
-			
-			if (FlxG.keys.justPressed("M"))
-			{
-				miniMap.toggleMiniMap();
-			}
-			
-			
 		}
+		
+		public function stageInit():void
+		{
+		}
+		
+		public function bgmInit():void
+		{
+		}
+		
 		
 		public function goNextState():void
 		{
-			FlxG.switchState(new PlayState());
 		}
 		
 		override public function draw():void
@@ -201,14 +184,6 @@ package
 			darkness.fill(0xff000000);
 			
 			super.draw();
-		}
-		
-		private function completeLevel():void
-		{
-			GameData.playerHealth = lifeBar.currentValue;
-			GameData.level++;
-			goNextState();
-			
 		}
 		
 		private function endGame():void
@@ -223,7 +198,7 @@ package
 		
 		private function gameOverState():void
 		{
-			FlxG.switchState(new PlayState());
+			FlxG.switchState(new DungeonCrawl());
 		}
 		
 		private function hurtObject(unit:FlxObject, hazzard:FlxObject):void
