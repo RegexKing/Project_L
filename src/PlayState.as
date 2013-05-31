@@ -71,7 +71,7 @@ package
 			FlxG.music.fadeIn(1);
 			FlxG.music.survive = false;
 			
-			var start:FlxPoint = dungeon.randomCorridor();
+			var start:FlxPoint = dungeon.randomFirstRoom();
 			
 			player.x = start.x;
 			player.y = start.y;
@@ -135,7 +135,7 @@ package
 				}
 			}
 			
-			for (var j:int = 1; j < 11; j++)
+			for (var j:int = 1; j < 21; j++)
 			{
 				var enemy:Enemy;
 				
@@ -152,8 +152,10 @@ package
 						break;
 				}
 				
-				enemy.x = dungeon.emptySpaces[dungeon.emptySpaces.length - j].x;
-				enemy.y = dungeon.emptySpaces[dungeon.emptySpaces.length - j].y;
+				var randomPoint:FlxPoint = dungeon.randomRoom();
+				
+				enemy.x = randomPoint.x
+				enemy.y = randomPoint.y;
 				
 				enemiesGroup.add(enemy);
 				

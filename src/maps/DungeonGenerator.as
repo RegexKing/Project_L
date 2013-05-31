@@ -15,6 +15,7 @@ package maps
 		
 		protected var rooms:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of rooms
 		protected var corridors:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of corridors
+		protected var firstRoomCoords:Array;
 		
 		protected var prevDoor:Array; // Array of the format (x, y). Contains the coordinates of the previous room's door
 		
@@ -40,6 +41,7 @@ package maps
 			rooms = new Array();
 			corridors = new Array();			
 			prevDoor = new Array();
+			firstRoomCoords = new Array();
 			
 			// Generate the map
 			generateMap();
@@ -71,7 +73,7 @@ package maps
 		{
 			for (var i:int = 0; i < TOTAL_ROWS * TOTAL_COLS; i++)
 			{
-				if (Math.floor(i / TOTAL_COLS) == 0 || Math.ceil(i / TOTAL_COLS) == TOTAL_COLS ||  i % TOTAL_ROWS == 0 || i % TOTAL_ROWS == TOTAL_ROWS-1) map[i] = WALL;
+				if (!isCoordinateValid(i)) map[i] = WALL;		
 			}
 		}
 		
@@ -100,9 +102,10 @@ package maps
 			// Floor is used here to avoid index out of bound errors
 			var startX:int = Math.floor(Math.random() * (TOTAL_ROWS - roomWidth));
 			var startY:int = Math.floor(Math.random() * (TOTAL_COLS - roomHeight));
+
 			
 			// Fills the room with floor tiles
-			fillRect(startX, startY, roomWidth, roomHeight);
+			fillRect(startX, startY, roomWidth, roomHeight, firstRoom);
 			
 			// Get a random coordinate for the door (door in this case meaning random point anywhere in the room)
 			var door:Array = getRandomPoint(startX, startY, roomWidth, roomHeight);
@@ -123,7 +126,7 @@ package maps
 		 * @param	width integer. The room's width
 		 * @param	height integer. The room's height
 		 */
-		protected function fillRect(startX:int, startY:int, width:int, height:int):void {
+		protected function fillRect(startX:int, startY:int, width:int, height:int, firstRoom:Boolean):void {
 			for (var x:int = 0; x < width; x++) {
 				for (var y:int = 0; y < height; y++) {
 					
@@ -132,7 +135,11 @@ package maps
 					map[index] = FLOOR;
 					
 					// Store the coordinates in the rooms array, to keep track of all rooms' floors	
-					storeRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));
+					if (isCoordinateValid(index))
+					{	
+						if (firstRoom) storeFirstRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));
+						else storeRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));
+					}
 				}
 			}			
 		}
@@ -230,6 +237,16 @@ package maps
 		}
 		
 		/**
+		 * Store the coordinates in the first rooms array
+		 * @param	x Integer. X-coordinate
+		 * @param	y Integer. Y-coordinate
+		 */
+		protected function storeFirstRoom(x:int, y:int):void {
+			var coords:Array = new Array(x, y);
+			firstRoomCoords.push(coords);			
+		}
+		
+		/**
 		 * Store the coordinates in the rooms array, to keep track of all rooms' floors
 		 * @param	x Integer. X-coordinate
 		 * @param	y Integer. Y-coordinate
@@ -254,6 +271,16 @@ package maps
 		 * Useful for spawning monsters / players / items / stairs / traps / ...
 		 * @return Array. The random point's coordinates, as (x, y)
 		 */
+		public function getRandomFirstRoomTile():Array {
+			var index:int = Math.floor(Math.random() * firstRoomCoords.length);
+			return firstRoomCoords[index];
+		}
+		
+		/**
+		 * Get a random room floor tile
+		 * Useful for spawning monsters / players / items / stairs / traps / ...
+		 * @return Array. The random point's coordinates, as (x, y)
+		 */
 		public function getRandomRoomTile():Array {
 			var index:int = Math.floor(Math.random() * rooms.length);
 			return rooms[index];
@@ -267,7 +294,13 @@ package maps
 		public function getRandomCorridorTile():Array {
 			var index:int = Math.floor(Math.random() * corridors.length);
 			return corridors[index];
-		}		
+		}	
+		
+		private function isCoordinateValid(i:int):Boolean
+		{
+			if (Math.floor(i / TOTAL_COLS) == 0 || Math.ceil(i / TOTAL_COLS) == TOTAL_COLS ||  i % TOTAL_ROWS == 0 || i % TOTAL_ROWS == TOTAL_ROWS - 1) return false;
+			else return true;
+		}
 	}
 
 }
