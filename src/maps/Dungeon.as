@@ -36,6 +36,14 @@ package  maps
 			
 		}
 		
+		public function randomRoom():FlxPoint
+		{
+			
+			var arrayCoords:Array = dungeonGen.getRandomRoomTile();
+			
+			return new FlxPoint(arrayCoords[0] * TILE_SIZE, arrayCoords[1] * TILE_SIZE);
+		}
+		
 		public function emptySpaceCoords():void
 		{
 			emptySpaces = new Array();

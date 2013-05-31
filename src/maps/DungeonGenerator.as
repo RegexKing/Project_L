@@ -126,8 +126,13 @@ package maps
 		protected function fillRect(startX:int, startY:int, width:int, height:int):void {
 			for (var x:int = 0; x < width; x++) {
 				for (var y:int = 0; y < height; y++) {
-					map[(startY + y) + (startX + x) * TOTAL_COLS] = FLOOR; // Thanks to wg/funstorm for this formula
-					storeRoom(x, y); // Store the coordinates in the rooms array, to keep track of all rooms' floors
+					
+					var index:int = (startY + y) + (startX + x) * TOTAL_COLS; // Thanks to wg/funstorm for this formula
+					
+					map[index] = FLOOR;
+					
+					// Store the coordinates in the rooms array, to keep track of all rooms' floors	
+					storeRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));
 				}
 			}			
 		}
