@@ -188,17 +188,24 @@ package maps
 		 */
 		protected function fillLine(start:int, end:int, x:int, y:int, horizontal:Boolean):void {
 			var i:int; // Initialize counter
+			var index:int;
 			
 			// Check which direction to draw (rightwards / leftwards / upwards / downwards)
 			if (start < end) {
 				for (i = start; i <= end; i++) {
 					if (horizontal == true) { 
-						map[y + i * TOTAL_COLS] = FLOOR; 
-						storeCorridor(i, y); // Store the coordinates in the corridors array, to keep track of all corridors' floors
+						map[y + i * TOTAL_COLS] = FLOOR;
+						
+						index = y + i * TOTAL_COLS;
+						
+						storeCorridor(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
 					}
 					else { 
 						map[i + x * TOTAL_COLS] = FLOOR; 
-						storeCorridor(x, i); // Store the coordinates in the corridors array, to keep track of all corridors' floors
+						
+						index = i + x * TOTAL_COLS;
+						
+						storeCorridor(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
 					}
 				}
 			}
@@ -206,11 +213,17 @@ package maps
 				for (i = end; i <= start; i++) {
 					if (horizontal == true) { 
 						map[y + i * TOTAL_COLS] = FLOOR; 
-						storeCorridor(i, y); // Store the coordinates in the corridors array, to keep track of all corridors' floors
+						
+						index = y + i * TOTAL_COLS;
+						
+						storeCorridor(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
 					}
 					else { 
 						map[i + x * TOTAL_COLS] = FLOOR; 
-						storeCorridor(x, i); // Store the coordinates in the corridors array, to keep track of all corridors' floors
+						
+						index = i + x * TOTAL_COLS;
+						
+						storeCorridor(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
 					}
 				}				
 			}			

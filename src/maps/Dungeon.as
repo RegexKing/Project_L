@@ -44,6 +44,14 @@ package  maps
 			return new FlxPoint(arrayCoords[0] * TILE_SIZE, arrayCoords[1] * TILE_SIZE);
 		}
 		
+		public function randomCorridor():FlxPoint
+		{
+			
+			var arrayCoords:Array = dungeonGen.getRandomCorridorTile();
+			
+			return new FlxPoint(arrayCoords[0] * TILE_SIZE, arrayCoords[1] * TILE_SIZE);
+		}
+		
 		public function emptySpaceCoords():void
 		{
 			emptySpaces = new Array();

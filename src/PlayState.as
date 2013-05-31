@@ -71,7 +71,7 @@ package
 			FlxG.music.fadeIn(1);
 			FlxG.music.survive = false;
 			
-			var start:FlxPoint = dungeon.randomRoom();
+			var start:FlxPoint = dungeon.randomCorridor();
 			
 			player.x = start.x;
 			player.y = start.y;
