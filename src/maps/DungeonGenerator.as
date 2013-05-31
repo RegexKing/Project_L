@@ -18,6 +18,7 @@ package maps
 		protected var corridors:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of corridors
 		protected var prevDoor:Array; // Array of the format (x, y). Contains the coordinates of the previous room's door
 		protected var firstRoomCoords:Array; // array containing coordinates of first room
+		protected var allRooms:Array; //array containing all room coords
 		protected var firstRoomRect:FlxRect; // rectangle containing points of first room
 		
 		// Constants, used to configure the floors
@@ -46,8 +47,9 @@ package maps
 			
 			// Generate the map
 			generateMap();
-
 			sealMap();
+			
+			allRooms = firstRoomCoords.concat(rooms);
 			
 			// clear unneeded vars
 			prevDoor = null;
@@ -310,6 +312,12 @@ package maps
 		public function getRandomRoomTile():Array {
 			var index:int = Math.floor(Math.random() * rooms.length);
 			return rooms[index];
+		}
+		
+		public function getRandomAllRoomTile():Array
+		{
+			var index:int = Math.floor(Math.random() * allRooms.length);
+			return allRooms[index];
 		}
 		
 		/**

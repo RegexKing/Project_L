@@ -98,7 +98,7 @@ package  units
 		
 		private function findRandEmptyTile():FlxPoint
 		{
-			var randEmptyTile:FlxPoint = map.randomRoom();
+			var randEmptyTile:FlxPoint = map.randomAllRooms();
 			
 			return new FlxPoint(randEmptyTile.x + Map.TILE_SIZE / 2, randEmptyTile.y + Map.TILE_SIZE / 2);
 			

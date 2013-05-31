@@ -38,6 +38,13 @@ package  maps
 			return new FlxPoint(arrayCoords[0] * TILE_SIZE, arrayCoords[1] * TILE_SIZE);
 		}
 		
+		override public function randomAllRooms():FlxPoint
+		{
+			var arrayCoords:Array = dungeonGen.getRandomAllRoomTile();
+			
+			return new FlxPoint(arrayCoords[0] * TILE_SIZE, arrayCoords[1] * TILE_SIZE);
+		}
+		
 		 override public function randomCorridor():FlxPoint
 		{
 			
