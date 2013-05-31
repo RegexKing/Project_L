@@ -20,7 +20,8 @@ package  units
 			
 			enemyBullets = _enemyBullets;
 			
-			speed = 50;
+			patrolSpeed = 50;
+			alertSpeed = 80;
 			health = 2;
 			attackValue = 2;
 			

@@ -17,8 +17,9 @@ package  units
 		{
 			super(_player, _dungeon, _itemEmitter);
 			
-			speed = 50;
-			health = 2;
+			patrolSpeed = 80;
+			alertSpeed = 250;
+			health = 1;
 			attackValue = 1;
 			
 			health = GameUtil.scaleHealth(health);

@@ -7,6 +7,7 @@ package maps
 	 */
 	
 	 
+	 import org.flixel.FlxRect;
 	 import org.flixel.plugin.photonstorm.FlxMath;
 	 
 	public class DungeonGenerator 
@@ -16,6 +17,7 @@ package maps
 		protected var rooms:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of rooms
 		protected var corridors:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of corridors
 		protected var firstRoomCoords:Array;
+		protected var firstRoomRect:FlxRect; // rectangle containing points of first room [x, y, width, height]
 		
 		protected var prevDoor:Array; // Array of the format (x, y). Contains the coordinates of the previous room's door
 		
@@ -47,6 +49,10 @@ package maps
 			generateMap();
 
 			sealMap();
+			
+			// clear unneeded vars
+			prevDoor = null;
+			firstRoomRect = null;
 		}
 				
 		/**
@@ -69,6 +75,10 @@ package maps
 			}
 		}
 		
+		
+		/**
+		 * creates walled border around dungeon
+		 */
 		protected function sealMap():void
 		{
 			for (var i:int = 0; i < TOTAL_ROWS * TOTAL_COLS; i++)
@@ -92,17 +102,34 @@ package maps
 		 * @param	firstRoom Boolean, defaults to false. To create a level's first room, set this to TRUE
 		 */
 		protected function createRoom(firstRoom:Boolean = false):void {
-			// Generate the room's width, keeping minimum and maximum in mind
-			var roomWidth:int = Math.round(Math.random() * (MAX_ROOM_WIDTH - MIN_ROOM_WIDTH)) + MIN_ROOM_WIDTH;
 			
-			// Generate the room's height, keeping minimum and maximum in mind
-			var roomHeight:int = Math.round(Math.random() * (MAX_ROOM_HEIGHT - MIN_ROOM_HEIGHT)) + MIN_ROOM_HEIGHT;
+			var roomWidth:int
+			var roomHeight:int
+			var startX:int
+			var startY:int
 			
-			// Generate the room's coordinates, making sure it fits on the map
-			// Floor is used here to avoid index out of bound errors
-			var startX:int = Math.floor(Math.random() * (TOTAL_ROWS - roomWidth));
-			var startY:int = Math.floor(Math.random() * (TOTAL_COLS - roomHeight));
-
+			
+			// Makes sure created room doesn't overlap with first room----
+			do
+			{
+				// Generate the room's width, keeping minimum and maximum in mind
+				roomWidth = Math.round(Math.random() * (MAX_ROOM_WIDTH - MIN_ROOM_WIDTH)) + MIN_ROOM_WIDTH;
+			
+				// Generate the room's height, keeping minimum and maximum in mind
+				roomHeight = Math.round(Math.random() * (MAX_ROOM_HEIGHT - MIN_ROOM_HEIGHT)) + MIN_ROOM_HEIGHT;
+			
+				// Generate the room's coordinates, making sure it fits on the map
+				// Floor is used here to avoid index out of bound errors
+				startX = Math.floor(Math.random() * (TOTAL_ROWS - roomWidth));
+				startY = Math.floor(Math.random() * (TOTAL_COLS - roomHeight));
+			} while (!firstRoom && (FlxMath.pointInFlxRect(startX, startY, firstRoomRect) 
+				|| FlxMath.pointInFlxRect(startX + roomWidth, startY + roomHeight, firstRoomRect)));
+			
+			if (firstRoom)
+			{
+				firstRoomRect = new FlxRect(startX, startY, startX + roomWidth, startY + roomHeight);
+			}
+			// -------------------------------------------------------------
 			
 			// Fills the room with floor tiles
 			fillRect(startX, startY, roomWidth, roomHeight, firstRoom);
@@ -137,8 +164,8 @@ package maps
 					// Store the coordinates in the rooms array, to keep track of all rooms' floors	
 					if (isCoordinateValid(index))
 					{	
-						if (firstRoom) storeFirstRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));
-						else storeRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));
+						if (firstRoom) storeFirstRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // stores first room cooords
+						else storeRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // stores rest room coords
 					}
 				}
 			}			
@@ -296,6 +323,10 @@ package maps
 			return corridors[index];
 		}	
 		
+		
+		/**
+		 * Checks to see if coordinate is on the border of dungeon
+		 */
 		private function isCoordinateValid(i:int):Boolean
 		{
 			if (Math.floor(i / TOTAL_COLS) == 0 || Math.ceil(i / TOTAL_COLS) == TOTAL_COLS ||  i % TOTAL_ROWS == 0 || i % TOTAL_ROWS == TOTAL_ROWS - 1) return false;

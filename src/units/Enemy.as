@@ -15,7 +15,8 @@ package  units
 		protected var dungeon:Dungeon;
 		protected var inSight:Boolean;
 		public var aware:Boolean;
-		protected var speed:int;
+		protected var patrolSpeed:int;
+		protected var alertSpeed:int;
 		protected var myPath:FlxPath;
 		protected var patrolPath:FlxPath;
 		protected var gibs:FlxEmitter;
@@ -35,6 +36,9 @@ package  units
 			
 			inSight = false;
 			aware = false;
+			
+			patrolSpeed = 50;
+			alertSpeed = 50;
 			
 			gibs = new FlxEmitter(0, 0, 50);
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 20, 10, true, 0.5);
@@ -61,7 +65,7 @@ package  units
 					destroyPath();
 					
 					myPath = calculatePath(enemyCoords, playerCoords);
-					this.followPath(myPath, speed);
+					this.followPath(myPath, alertSpeed);
 				}
 				
 				else this.path = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
@@ -81,7 +85,7 @@ package  units
 					if (this.pathSpeed == 0) destroyPath();
 					
 					patrolPath = calculatePath(enemyCoords, findRandEmptyTile());
-					this.followPath(patrolPath, speed*2);
+					this.followPath(patrolPath, patrolSpeed);
 				}
 				
 			}
@@ -131,13 +135,13 @@ package  units
 			if(gibs != null)
 			{
 				gibs.at(this);
-				gibs.start(true, 0, 0, 0);
+				gibs.start(true, 10, 0);
 			}
 			
 			if(itemEmitter != null)
 			{
 				itemEmitter.at(this);
-				itemEmitter.start(true, 0, 0, 4);
+				itemEmitter.start(true, 0, 0, Math.ceil(Math.random()*3));
 			}
 			
 			//temp universal sound effect
