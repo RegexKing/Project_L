@@ -3,7 +3,7 @@ package  units
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	
-	import maps.Dungeon;
+	import maps.*;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -14,9 +14,9 @@ package  units
 		private var enemyBullets:FlxGroup;
 		private var weapon:FlxWeapon;
 		
-		public function RangedEnemy(_player:Player, _dungeon:Dungeon, _enemyBullets:FlxGroup, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
+		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
 		{
-			super(_player, _dungeon, _itemEmitter);
+			super(_player, _map, _itemEmitter);
 			
 			enemyBullets = _enemyBullets;
 			
@@ -39,7 +39,7 @@ package  units
 			weapon = new FlxWeapon("normal", this);
 			weapon.makePixelBullet(10, 8, 8);
 			weapon.setBulletSpeed(200);
-			weapon.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
+			weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			weapon.setFireRate(500);
 			weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
 			

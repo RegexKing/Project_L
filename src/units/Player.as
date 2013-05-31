@@ -1,5 +1,6 @@
 package  units
 {
+	import maps.Map;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	import weapons.BaseGun;
@@ -28,7 +29,7 @@ package  units
 		
 		private var enemiesGroup:FlxGroup;
 		
-		public function Player(_playerBulletsGroup:FlxGroup, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup) 
+		public function Player(_map:Map, _playerBulletsGroup:FlxGroup, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup) 
 		{
 			super();
 			
@@ -51,14 +52,14 @@ package  units
 			
 			normalGun = new BaseGun("normal", this);
 			normalGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
-			normalGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
+			normalGun.setBulletBounds(new FlxRect(0, 0, _map.tileMap.width, _map.tileMap.height));
 			normalGun.setBulletSpeed(300);
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
 			bounceGun = new BounceGun("bounce", this);
 			bounceGun.makePixelBullet(25, 8, 8, 0xffffffff, 10, 13);
-			bounceGun.setBulletBounds(new FlxRect(0, 0, Dungeon.width, Dungeon.height));
+			bounceGun.setBulletBounds(new FlxRect(0, 0, _map.tileMap.width, _map.tileMap.height));
 			bounceGun.setBulletSpeed(300);
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setBulletElasticity(0.8);

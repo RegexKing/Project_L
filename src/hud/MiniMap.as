@@ -14,20 +14,18 @@ package  hud
 	 
 	public class MiniMap extends FlxGroup
 	{
-		private var dungeon:Dungeon;
 		private var player:Player;
 		public var playerIcon:FlxSprite;
 		public var tileMap:FlxTilemap;
 		
-		public function MiniMap(_dungeon:Dungeon, _player:Player) 
+		public function MiniMap(_map:Map, _player:Player) 
 		{
 			super();
 			
-			dungeon = _dungeon;
 			player = _player;
 			
 			
-			var mapArray:Array = dungeon.dungeonMap.getData(true);
+			var mapArray:Array = _map.tileMap.getData(true);
 			
 			tileMap = new FlxTilemap();
 			
@@ -50,8 +48,8 @@ package  hud
 		
 		override public function update():void
 		{
-			tileMap.x = playerIcon.x - (Math.round(player.x / Dungeon.TILE_SIZE) * 6);
-			tileMap.y = playerIcon.y - (Math.round(player.y / Dungeon.TILE_SIZE) * 6);
+			tileMap.x = playerIcon.x - (Math.round(player.x / Map.TILE_SIZE) * 6);
+			tileMap.y = playerIcon.y - (Math.round(player.y / Map.TILE_SIZE) * 6);
 		}
 		
 		public function toggleMiniMap():void

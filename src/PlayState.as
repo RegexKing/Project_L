@@ -16,13 +16,12 @@ package
 		protected var darkness:Darkness;
 		
 		protected var player:Player;
-		protected var dungeon:Dungeon;
+		protected var map:Map;
 		protected var miniMap:MiniMap;
 		protected var lifeBar:LifeBar;
 		protected var diamondCounter:DiamondCounter;
 		protected var itemEmitter:FlxEmitter;
 		protected var cameraFocus:CameraFocus;
-		protected var playerLight:Light;
 		
 		protected var hudGroup:FlxGroup;
 		protected var lightsGroup:FlxGroup;
@@ -57,21 +56,20 @@ package
 			
 			//Things in order that need to be set up, inheritted---
 			
-			dungeon = new Dungeon();
-			player = new Player(playerBulletsGroup, gibsGroup, enemiesGroup);
-			miniMap = new MiniMap(dungeon, player);
+			map = new Dungeon();
+			player = new Player(map, playerBulletsGroup, gibsGroup, enemiesGroup);
+			miniMap = new MiniMap(map, player);
 			darkness = new Darkness();
-			playerLight = new Light(darkness, player);
 			cameraFocus = new CameraFocus(player);
 			
-			FlxG.worldBounds = new FlxRect(0, 0, Dungeon.width, Dungeon.height);
+			FlxG.worldBounds = new FlxRect(0, 0, map.tileMap.width, map.tileMap.height);
 			FlxG.camera.target = cameraFocus;
 			
 			FlxG.playMusic(AssetsRegistry.BGM_dungeonMP3);
 			FlxG.music.fadeIn(1);
 			FlxG.music.survive = false;
 			
-			var start:FlxPoint = dungeon.randomFirstRoom();
+			var start:FlxPoint = map.randomFirstRoom();
 			
 			player.x = start.x;
 			player.y = start.y;
@@ -84,7 +82,7 @@ package
 			lifeBar.setCallbacks(endGame, null);
 			itemEmitter = new FlxEmitter(0, 0, 300);
 			
-			lightsGroup.add(playerLight);
+			lightsGroup.add(new PlayerLight(darkness, player));
 			
 			hudGroup.add(darkness);
 			hudGroup.add(miniMap);
@@ -103,7 +101,7 @@ package
 			playerHazzardsGroup.add(enemyBullets);
 			playerHazzardsGroup.add(trapsGroup);
 			
-			add(dungeon);
+			add(map);
 			add(gibsGroup);
 			add(trapsGroup);
 			add(itemsGroup);
@@ -135,24 +133,24 @@ package
 				}
 			}
 			
-			for (var j:int = 1; j < 21; j++)
+			for (var j:int = 1; j < 31; j++)
 			{
 				var enemy:Enemy;
 				
 				switch(int(Math.ceil(Math.random() * 2)))
 				{
 					case 1:
-						enemy = new PurpleEnemy(player, dungeon, gibsGroup, itemEmitter);
+						enemy = new PurpleEnemy(player, map, gibsGroup, itemEmitter);
 						break;
 					case 2:
-						enemy = new RangedEnemy(player, dungeon, enemyBullets, gibsGroup, itemEmitter);
+						enemy = new RangedEnemy(player, map, enemyBullets, gibsGroup, itemEmitter);
 						break;
 					default:
 						throw new Error("enemy id is ouside acceptable range");
 						break;
 				}
 				
-				var randomPoint:FlxPoint = dungeon.randomRoom();
+				var randomPoint:FlxPoint = map.randomRoom();
 				
 				enemy.x = randomPoint.x
 				enemy.y = randomPoint.y;
@@ -167,11 +165,9 @@ package
 		{
 			super.update();
 			
-			FlxG.collide(collideableGroup, dungeon);
+			FlxG.collide(collideableGroup, map);
 			cameraFocus.updateCamera();	
 			
-			playerLight.x = player.x + 10;
-			playerLight.y = player.y +10;
 			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);

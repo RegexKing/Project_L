@@ -7,20 +7,22 @@ package  util
 	{
  
 		private var darkness:FlxSprite;
-		private var object:FlxSprite;
+		private var object:FlxObject;
     
-		public function Light(_darkness:Darkness, _object:FlxSprite):void 
+		public function Light(_darkness:Darkness, _object:FlxObject):void 
 		{
 			super();
-			loadGraphic(AssetsRegistry.crystalLightPNG, true, false, 245, 245);
-			addAnimation("glow", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2, 1], 10);
- 
+			
 			darkness = _darkness;
 			object = _object;
 			
 			this.blend = "screen";
-			
-			play("glow");
+		}
+		
+		override public function update():void
+		{
+			this.x = object.x + object.width/2;
+			this.y = object.y + object.height/2;
 		}
  
 		override public function draw():void 

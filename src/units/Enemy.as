@@ -3,7 +3,7 @@ package  units
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
 	
-	import maps.Dungeon;
+	import maps.*;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -12,7 +12,7 @@ package  units
 	{
 		
 		protected var player:Player;
-		protected var dungeon:Dungeon;
+		protected var map:Map;
 		protected var inSight:Boolean;
 		public var aware:Boolean;
 		protected var patrolSpeed:int;
@@ -24,12 +24,12 @@ package  units
 		private var enemyCoords:FlxPoint;
 		private var playerCoords:FlxPoint;
 		
-		public function Enemy(_player:Player, _dungeon:Dungeon, _itemEmitter:FlxEmitter) 
+		public function Enemy(_player:Player, _map:Map, _itemEmitter:FlxEmitter) 
 		{
 			super();
 			
 			player = _player;
-			dungeon = _dungeon;
+			map = _map;
 			itemEmitter = _itemEmitter;
 			
 			elasticity = 1;
@@ -56,7 +56,7 @@ package  units
 			enemyCoords = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
 			playerCoords = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
 			
-			inSight = dungeon.dungeonMap.ray(enemyCoords, playerCoords);
+			inSight = map.tileMap.ray(enemyCoords, playerCoords);
 			
 			if (aware)
 			{
@@ -68,7 +68,7 @@ package  units
 					this.followPath(myPath, alertSpeed);
 				}
 				
-				else this.path = dungeon.dungeonMap.findPath(enemyCoords, playerCoords);
+				else this.path = map.tileMap.findPath(enemyCoords, playerCoords);
 			}
 			
 			else if ((!aware && inSight) && isEnemyNear())
@@ -93,20 +93,20 @@ package  units
 		
 		public function isEnemyNear():Boolean
 		{
-			return  (FlxVelocity.distanceBetween(this, player) <= (GameData.RENDER_WIDTH / 2 + GameData.RENDER_HEIGHT / 2) / 2) ? true : false;
+			return  (FlxVelocity.distanceBetween(this, player) < (GameData.RENDER_HEIGHT/2 )) ? true : false;
 		}
 		
 		private function findRandEmptyTile():FlxPoint
 		{
-			var randEmptyTile:FlxPoint = dungeon.emptySpaces[Math.floor(Math.random() * (dungeon.emptySpaces.length))];
+			var randEmptyTile:FlxPoint = map.randomRoom();
 			
-			return new FlxPoint(randEmptyTile.x + Dungeon.TILE_SIZE / 2, randEmptyTile.y + Dungeon.TILE_SIZE / 2);
+			return new FlxPoint(randEmptyTile.x + Map.TILE_SIZE / 2, randEmptyTile.y + Map.TILE_SIZE / 2);
 			
 		}
 		
 		private function calculatePath(start:FlxPoint, end:FlxPoint):FlxPath
 		{
-			return dungeon.dungeonMap.findPath(start, end)
+			return map.tileMap.findPath(start, end)
 		}
 		
 		private function destroyPath():void

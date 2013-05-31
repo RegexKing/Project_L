@@ -8,14 +8,14 @@ package  units
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
 	
-	import maps.Dungeon;
+	import maps.*;
 	 
 	public class PurpleEnemy extends Enemy
 	{
 		
-		public function PurpleEnemy(_player:Player, _dungeon:Dungeon, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
+		public function PurpleEnemy(_player:Player, _map:Map, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
 		{
-			super(_player, _dungeon, _itemEmitter);
+			super(_player, _map, _itemEmitter);
 			
 			patrolSpeed = 80;
 			alertSpeed = 250;
