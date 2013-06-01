@@ -24,7 +24,7 @@ package  units
 		private var enemyCoords:FlxPoint;
 		private var playerCoords:FlxPoint;
 		
-		public function Enemy(_player:Player, _map:Map, _itemEmitter:FlxEmitter) 
+		public function Enemy(_player:Player, _map:Map=null, _itemEmitter:FlxEmitter=null) 
 		{
 			super();
 			

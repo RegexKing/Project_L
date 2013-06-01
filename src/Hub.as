@@ -13,6 +13,7 @@ package
 	 
 	public class Hub extends PlayState
 	{
+		protected var npcGroup:FlxGroup;
 		
 		public function Hub() 
 		{
@@ -20,6 +21,8 @@ package
 		
 		override public function create():void
 		{
+			npcGroup = new FlxGroup();
+			
 			super.create();
 		}
 		
@@ -32,7 +35,7 @@ package
 		
 		override public function stageInit():void
 		{
-			map = new HubMap();
+			map = new HubMap(npcGroup, player, gibsGroup);
 			
 			FlxG.camera.setBounds(0, 0, map.tileMap.width, map.tileMap.height);
 			FlxG.camera.follow(null);
