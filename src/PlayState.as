@@ -110,6 +110,7 @@ package
 			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
+			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
 		}
 		
 		public function stageInit():void

@@ -107,7 +107,6 @@ package
 			
 			weaponsFire();
 			
-			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
 			FlxG.overlap(player, itemsGroup, itemPickup);
 			
 			//test key

@@ -27,7 +27,7 @@ package
 		{
 			super.update();
 			
-			if (player.x > map.tileMap.width) goNextState();
+			if (player.y > GameData.RENDER_HEIGHT) goNextState();
 		}
 		
 		override public function stageInit():void
@@ -35,6 +35,7 @@ package
 			map = new HubMap();
 			
 			FlxG.camera.setBounds(0, 0, map.tileMap.width, map.tileMap.height);
+			FlxG.camera.follow(null);
 			
 			player.x = 100;
 			player.y = 100;
@@ -59,6 +60,8 @@ package
 					lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
 					unit.hurt(0);
 				}
+				
+				else unit.hurt(0);
 			}
 			
 			if (hazzard is Bullet) hazzard.kill();

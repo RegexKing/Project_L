@@ -17,6 +17,8 @@ package maps
 			tileMap.loadMap(new AssetsRegistry.hubCSV, AssetsRegistry.randDunTilesPNG, TILE_SIZE, TILE_SIZE, FlxTilemap.OFF, 0, 1, 2);
 			
 			add(tileMap);
+			
+			
 		}
 		
 	}

@@ -16,7 +16,7 @@ package   items
 		
 		public function WeaponItem() 
 		{
-			expireTime = 7000;
+			expireTime = 10000;
 			
 			super();
 			

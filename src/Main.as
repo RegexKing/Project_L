@@ -15,7 +15,7 @@ package
 		
 		public function Main():void 
 		{
-			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, DungeonCrawl, 2, 60, 60, true);
+			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, Hub, 2, 60, 60, true);
 			
 			forceDebugger = true;
 		}

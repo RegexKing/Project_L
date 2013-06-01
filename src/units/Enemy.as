@@ -141,7 +141,7 @@ package  units
 			if(itemEmitter != null)
 			{
 				itemEmitter.at(this);
-				itemEmitter.start(true, 10, 0, Math.ceil(Math.random() * 3));
+				itemEmitter.start(true, 15, 0, Math.ceil(Math.random() * 3));
 			}
 			
 			//temp universal sound effect
