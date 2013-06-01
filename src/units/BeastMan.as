@@ -20,11 +20,13 @@ package units
 			immovable = true;
 			
 			angry = false;
-			health = 15;
+			health = 10;
 			attackValue = 2;
 			
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
+			
+			elasticity = 0.5;
 			
 			makeGraphic(25, 30, 0xff00FF00);
 			
@@ -37,6 +39,12 @@ package units
 			if (angry)
 			{
 				FlxVelocity.moveTowardsObject(this, player, 80);
+			}
+			
+			else if (justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT))
+			{
+				//function callback to dialogue box
+				FlxG.log("Just touched beast");
 			}
 		}
 		

@@ -15,7 +15,8 @@ package
 	{
 		protected var npcGroup:FlxGroup;
 		
-		
+		protected var girl:Girl;
+		protected var beastMan:BeastMan;
 		
 		public function Hub() 
 		{
@@ -25,22 +26,50 @@ package
 		{
 			npcGroup = new FlxGroup();
 			
+			
 			super.create();
+			
+			if (!GameData.isBeastManDead) 
+			{
+				beastMan = new BeastMan(player, gibsGroup);
+				enemiesGroup.add(beastMan);
+				
+				beastMan.x = GameData.RENDER_WIDTH - (beastMan.width + Map.TILE_SIZE);
+				beastMan.y = GameData.RENDER_HEIGHT - (beastMan.height + Map.TILE_SIZE*2);
+			}
+			
+			girl = new Girl(player, beastMan);
+			enemiesGroup.add(girl);
+			
+			girl.x = GameData.RENDER_WIDTH/2 - girl.width/2;
+			girl.y = Map.TILE_SIZE;
 		}
 		
 		override public function update():void
 		{
 			super.update();
 			
-			FlxG.overlap(player, npcGroup, hurtObject);
-			FlxG.overlap(npcGroup, playerBulletsGroup, hurtObject);
+			FlxG.overlap(player, enemiesGroup, hurtObject);
+			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
+			
+			FlxG.collide(player, girl);
+			
+			if (!beastMan.angry && beastMan != null) FlxG.collide(player, beastMan);
 			
 			if (player.y > GameData.RENDER_HEIGHT) goNextState();
 		}
 		
+		override public function controlGun():void
+		{
+			if (player.alive)
+			{
+				fireGun();
+			}
+		}
+		
 		override public function stageInit():void
 		{
-			map = new HubMap(npcGroup, player, gibsGroup);
+			map = new HubMap();
 			
 			FlxG.camera.setBounds(0, 0, map.tileMap.width, map.tileMap.height);
 			FlxG.camera.follow(null);
@@ -52,7 +81,7 @@ package
 		override public function bgmInit():void
 		{
 			
-			FlxG.playMusic(AssetsRegistry.BGM_dungeonMP3);
+			FlxG.playMusic(AssetsRegistry.BGM_hubMP3);
 			FlxG.music.survive = false;
 
 		}
@@ -65,16 +94,16 @@ package
 			{
 				if (unit is Player) 
 				{
-					if (hazzard is BeastMan && (hazzard as BeastMan).angry)
+					if (hazzard is BeastMan && (hazzard as BeastMan).angry && hazzard != null)
 					{
 						lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
 						unit.hurt(0);
 					}
 				}
 				
-				else if (unit is BeastMan)
+				else if (unit is BeastMan && unit != null)
 				{
-				unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue * GameData.damageMultiplier));
+					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue * GameData.damageMultiplier));
 				}
 				
 				else unit.hurt(0);
@@ -88,6 +117,8 @@ package
 			GameData.playerHealth = lifeBar.currentValue;
 			FlxG.switchState(new DungeonCrawl());
 		}
+		
+		override public function alertEnemies():void {} // erases super class alert enemies 
 		
 	}
 
