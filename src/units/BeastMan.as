@@ -20,8 +20,8 @@ package units
 			immovable = true;
 			
 			angry = false;
-			health = 1;
-			attackValue = 1;
+			health = 15;
+			attackValue = 2;
 			
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
@@ -36,7 +36,7 @@ package units
 		{
 			if (angry)
 			{
-				FlxVelocity.moveTowardsObject(this, player, 120);
+				FlxVelocity.moveTowardsObject(this, player, 80);
 			}
 		}
 		
@@ -44,6 +44,12 @@ package units
 		{
 			super.hurt(_damagePoints);
 			angry = true;
+		}
+		
+		override public function kill():void
+		{
+			super.kill();
+			GameData.isBeastManDead = true;
 		}
 	}
 

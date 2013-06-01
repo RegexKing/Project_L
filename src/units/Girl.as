@@ -11,7 +11,7 @@ package units
 	{
 		private var beastMan:BeastMan
 		
-		public function Girl(_beastMan:BeastMan) 
+		public function Girl(_beastMan:BeastMan=null) 
 		{
 			super();
 			
@@ -25,7 +25,8 @@ package units
 		override public function hurt(_damagePoints:Number):void
 		{
 			super.hurt(_damagePoints);
-			beastMan.angry = true;
+			
+			if(beastMan != null) beastMan.angry = true;
 			
 			FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}

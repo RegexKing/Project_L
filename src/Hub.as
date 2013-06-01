@@ -15,6 +15,8 @@ package
 	{
 		protected var npcGroup:FlxGroup;
 		
+		
+		
 		public function Hub() 
 		{
 		}
@@ -29,6 +31,9 @@ package
 		override public function update():void
 		{
 			super.update();
+			
+			FlxG.overlap(player, npcGroup, hurtObject);
+			FlxG.overlap(npcGroup, playerBulletsGroup, hurtObject);
 			
 			if (player.y > GameData.RENDER_HEIGHT) goNextState();
 		}
@@ -60,8 +65,16 @@ package
 			{
 				if (unit is Player) 
 				{
-					lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
-					unit.hurt(0);
+					if (hazzard is BeastMan && (hazzard as BeastMan).angry)
+					{
+						lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
+						unit.hurt(0);
+					}
+				}
+				
+				else if (unit is BeastMan)
+				{
+				unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue * GameData.damageMultiplier));
 				}
 				
 				else unit.hurt(0);
@@ -72,6 +85,7 @@ package
 		
 		override public function goNextState():void
 		{
+			GameData.playerHealth = lifeBar.currentValue;
 			FlxG.switchState(new DungeonCrawl());
 		}
 		

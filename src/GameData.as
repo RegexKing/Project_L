@@ -15,6 +15,13 @@ package
 		public static const RENDER_WIDTH:uint = 256;
 		public static const RENDER_HEIGHT:uint = 240;
 		
+		public static const HEALTH_FACTOR:Number = 1; 
+		public static const DEFENSE_FACTOR:Number = 0.1; 
+		public static const DAMAGE_FACTOR:Number = 0.6;
+		public static const FIRERATE_FACTOR:Number = 0.1;
+		
+		public static const LAST_LEVEL:uint = 21;
+		
 		//Flag to check if new game
 		public static var isNewGame:Boolean; //TODO if this is false, enable the continue button
 		
@@ -23,6 +30,8 @@ package
 		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
 		public static var weapon:uint = 0;
+		
+		public static var isBeastManDead:Boolean = true;
 		
 		//player attributes
 		public static var totalHealth:Number = 3; // when this is needs to be increased, call increaseBarRange on lifebar
@@ -36,6 +45,8 @@ package
 		public static function resetData():void //to be used to start new game
 		{
 			isNewGame = true;
+			
+			isBeastManDead = false;
 			
 			level = 1;
 			diamonds = 0;
@@ -57,6 +68,8 @@ package
 			
 			saveFile.data.isNewGame = isNewGame;
 			
+			saveFile.data.isBeastManDead = isBeastManDead;
+			
 			saveFile.data.level = level;
 			saveFile.data.diamonds = diamonds;
 			saveFile.data.playerHealth = playerHealth;
@@ -72,6 +85,8 @@ package
 		
 		public static function loadData():void // used to continue game, use at start
 		{
+			isBeastManDead = saveFile.data.isBeastManDead;
+			
 			level = saveFile.data.level;
 			diamonds = saveFile.data.diamonds;
 			playerHealth = saveFile.data.playerHealth;
