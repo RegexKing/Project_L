@@ -14,6 +14,7 @@ package
 	public class Hub extends PlayState
 	{
 		protected var npcGroup:FlxGroup;
+		protected var girlPortrait:FlxSprite;
 		
 		protected var girl:Girl;
 		protected var beastMan:BeastMan;
@@ -31,18 +32,21 @@ package
 			
 			if (!GameData.isBeastManDead) 
 			{
-				beastMan = new BeastMan(player, gibsGroup);
+				beastMan = new BeastMan(player, gibsGroup, activateDialogue);
 				enemiesGroup.add(beastMan);
 				
 				beastMan.x = GameData.RENDER_WIDTH - (beastMan.width + Map.TILE_SIZE);
 				beastMan.y = GameData.RENDER_HEIGHT - (beastMan.height + Map.TILE_SIZE*2);
 			}
 			
-			girl = new Girl(player, beastMan);
+			girl = new Girl(player, activateDialogue, beastMan);
 			enemiesGroup.add(girl);
 			
 			girl.x = GameData.RENDER_WIDTH/2 - girl.width/2;
 			girl.y = Map.TILE_SIZE;
+			
+			girlPortrait = new FlxSprite(0, 0, AssetsRegistry.girlPortraitPNG);
+			add(girlPortrait);
 		}
 		
 		override public function update():void
@@ -54,14 +58,22 @@ package
 			
 			FlxG.collide(player, girl);
 			
-			if (!beastMan.angry && beastMan != null) FlxG.collide(player, beastMan);
+			if (beastMan != null && !beastMan.angry) FlxG.collide(player, beastMan);
 			
 			if (player.y > GameData.RENDER_HEIGHT) goNextState();
 		}
 		
+		private function activateDialogue(npcName:String):void
+		{
+			
+			if (npcName == "girl") FlxG.log("Just touched girl");
+			else if (npcName == "beast") FlxG.log("Just touched beast");
+			
+		}
+		
 		override public function controlGun():void
 		{
-			if (player.alive)
+			if (player.alive && player.exists)
 			{
 				fireGun();
 			}
@@ -94,14 +106,14 @@ package
 			{
 				if (unit is Player) 
 				{
-					if (hazzard is BeastMan && (hazzard as BeastMan).angry && hazzard != null)
+					if (hazzard is BeastMan && (hazzard as BeastMan).angry)
 					{
 						lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
 						unit.hurt(0);
 					}
 				}
 				
-				else if (unit is BeastMan && unit != null)
+				else if (unit is BeastMan)
 				{
 					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue * GameData.damageMultiplier));
 				}

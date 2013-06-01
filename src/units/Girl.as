@@ -12,10 +12,13 @@ package units
 	{
 		private var beastMan:BeastMan;
 		private var player:Player;
+		private var functionCallback:Function;
 		
-		public function Girl(_player:Player, _beastMan:BeastMan=null) 
+		public function Girl(_player:Player, _functionCallback:Function, _beastMan:BeastMan=null) 
 		{
 			super();
+			
+			functionCallback = _functionCallback;
 			
 			immovable = true;
 			
@@ -32,10 +35,10 @@ package units
 				FlxVelocity.moveTowardsObject(this, player, 250);
 			}
 			
-			else if (justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT))
+			else if ((justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT)) && !beastMan.angry)
 			{
 				//function callback for dialogue box
-				FlxG.log("Just touched girl");
+				functionCallback("girl");
 			}
 		}
 		

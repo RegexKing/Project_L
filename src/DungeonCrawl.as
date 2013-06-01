@@ -86,6 +86,7 @@ package
 			{
 				//diamondCounter.changeQuantity(1);
 				lifeBar.increaseBarRange();
+				//player.active = !player.active;
 				//FlxG.mute = !FlxG.mute;
 				//trace(FlxG.mute);
 			}
@@ -98,9 +99,11 @@ package
 		
 		override public function controlGun():void
 		{
-			if (player.alive) fireGun();
+			if (player.alive)
+			{
+				fireGun();
+			}
 		}
-		
 		
 		override public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
 		{

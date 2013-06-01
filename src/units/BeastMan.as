@@ -12,10 +12,13 @@ package units
 	{
 		
 		public var angry:Boolean;
+		private var functionCallback:Function;
 		
-		public function BeastMan(_player:Player, _gibsGroup:FlxGroup) 
+		public function BeastMan(_player:Player, _gibsGroup:FlxGroup, _functionCallback:Function) 
 		{
 			super(_player);
+			
+			functionCallback = _functionCallback;
 			
 			immovable = true;
 			
@@ -44,7 +47,7 @@ package units
 			else if (justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT))
 			{
 				//function callback to dialogue box
-				FlxG.log("Just touched beast");
+				functionCallback("beast");
 			}
 		}
 		
