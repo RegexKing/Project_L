@@ -7,6 +7,7 @@ package
 	
 	 import org.flixel.*;
 	 import org.flixel.plugin.photonstorm.*;
+	 import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	 
 	 import maps.*;
 	 import units.*;
@@ -47,7 +48,7 @@ package
 			bounceGun.setBulletSpeed(300);
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setBulletElasticity(0.8);
-			bounceGun.setBulletLifeSpan(1000);
+			bounceGun.setBulletLifeSpan(2000);
 			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
 			
 			playerBulletsGroup.add(normalGun.group);
@@ -106,6 +107,7 @@ package
 			
 			weaponsFire();
 			
+			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
 			FlxG.overlap(player, itemsGroup, itemPickup);
 			
 			//test key
@@ -123,10 +125,27 @@ package
 			}
 		}
 		
+		override public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
+		{
+			if (unit.flickering) return
+			
+			else 
+			{
+				if (unit is Player) 
+				{
+					lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
+					unit.hurt(0);
+				}
+				
+				else unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
+			}
+			
+			if (hazzard is Bullet) hazzard.kill();
+		}
+		
 		override public function stageInit():void
 		{
-			map = new Dungeon();
-			player = new Player(gibsGroup);
+			map = new DungeonMap();
 			
 			var start:FlxPoint = map.randomFirstRoom();
 			
@@ -144,7 +163,7 @@ package
 		
 		override public function goNextState():void
 		{
-			FlxG.switchState(new DungeonCrawl());
+			FlxG.switchState(new Hub());
 		}
 		
 		private function completeLevel():void

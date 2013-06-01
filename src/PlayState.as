@@ -2,7 +2,6 @@ package
 {	
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
-	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	
 	import hud.*;
 	import items.*;
@@ -51,14 +50,16 @@ package
 			gibsGroup = new FlxGroup();
 			lightsGroup = new FlxGroup();
 			
+			player = new Player(gibsGroup);
+			cameraFocus = new CameraFocus(player);
+			FlxG.camera.target = cameraFocus;
+			
 			// Need to be overwritten
 			stageInit();
 			bgmInit();
 			//-----------------------------------------------------
 			
-			cameraFocus = new CameraFocus(player);
 			FlxG.worldBounds = new FlxRect(0, 0, map.tileMap.width, map.tileMap.height);
-			FlxG.camera.target = cameraFocus;
 			
 			miniMap = new MiniMap(map, player);
 			diamondCounter = new DiamondCounter();
@@ -109,7 +110,6 @@ package
 			//FlxG.collide(enemiesGroup, enemiesGroup);
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
-			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
 		}
 		
 		public function stageInit():void
@@ -122,6 +122,10 @@ package
 		
 		
 		public function goNextState():void
+		{
+		}
+		
+		public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
 		{
 		}
 		
@@ -144,26 +148,9 @@ package
 		
 		private function gameOverState():void
 		{
-			FlxG.switchState(new DungeonCrawl());
+			FlxG.switchState(new Hub());
 		}
 		
-		private function hurtObject(unit:FlxObject, hazzard:FlxObject):void
-		{
-			if (unit.flickering) return
-			
-			else 
-			{
-				if (unit is Player) 
-				{
-					lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
-					unit.hurt(0);
-				}
-				
-				else unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
-			}
-			
-			if (hazzard is Bullet) hazzard.kill();
-		}
 		
 		private function itemPickup(player:FlxObject, item:FlxObject):void
 		{

@@ -28,6 +28,9 @@ package
 		//Tiles
 		[Embed(source = "../assets/tiles/dun.png")] public static var randDunTilesPNG:Class;
 		
+		// Maps
+		[Embed(source = "../assets/maps/hub.csv", mimeType = "application/octet-stream")] public static var hubCSV:Class;
+		
 		//Bgms
 		[Embed(source = "../assets/sounds/dungeonBGM.mp3")] public static var BGM_dungeonMP3:Class;
 		

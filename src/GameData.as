@@ -12,7 +12,7 @@ package
 		public static var saveFile:SharedObject = SharedObject.getLocal("myData");
 		
 		//Constants
-		public static const RENDER_WIDTH:uint = 300;
+		public static const RENDER_WIDTH:uint = 256;
 		public static const RENDER_HEIGHT:uint = 240;
 		
 		//Flag to check if new game

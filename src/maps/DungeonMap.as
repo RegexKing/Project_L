@@ -5,12 +5,12 @@ package  maps
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Dungeon extends Map
+	public class DungeonMap extends Map
 	{
 		
 		public var dungeonGen:DungeonGenerator;
 		
-		public function Dungeon(addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
+		public function DungeonMap(addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super(addToStage, onAddSpritesCallback);
 			
