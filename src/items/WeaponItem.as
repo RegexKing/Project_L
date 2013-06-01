@@ -12,6 +12,7 @@ package   items
 	{
 		private const MIN_ID:int = 1;
 		private const MAX_ID:int = 3;
+		private var weaponID:int = 0;
 		
 		public function WeaponItem() 
 		{
@@ -19,8 +20,10 @@ package   items
 			
 			super();
 			
+			weaponID = FlxMath.rand(MIN_ID, MAX_ID);
+			
 			//switch statement to choose graphic
-			switch(FlxMath.rand(MIN_ID, MAX_ID))
+			switch(weaponID)
 			{
 				case Player.NORMAL_GUN:
 					makeGraphic(15, 15, 0xffFFFFFF);

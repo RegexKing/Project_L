@@ -1,6 +1,5 @@
 package  
 {	
-	import flash.display.Sprite;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
@@ -20,7 +19,6 @@ package
 		protected var miniMap:MiniMap;
 		protected var lifeBar:LifeBar;
 		protected var diamondCounter:DiamondCounter;
-		protected var itemEmitter:FlxEmitter;
 		protected var cameraFocus:CameraFocus;
 		
 		protected var hudGroup:FlxGroup;
@@ -62,16 +60,10 @@ package
 			FlxG.worldBounds = new FlxRect(0, 0, map.tileMap.width, map.tileMap.height);
 			FlxG.camera.target = cameraFocus;
 			
-			
 			miniMap = new MiniMap(map, player);
 			diamondCounter = new DiamondCounter();
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
-			
-			//to be removed---
-			itemEmitter = new FlxEmitter(0, 0, 300);
-			itemsGroup.add(itemEmitter);
-			//------
 			
 			darkness = new Darkness();
 			
@@ -87,7 +79,7 @@ package
 			collideableGroup.add(player);
 			collideableGroup.add(playerBulletsGroup);
 			collideableGroup.add(enemyBullets);
-			collideableGroup.add(itemEmitter);
+			collideableGroup.add(itemsGroup);
 			collideableGroup.add(enemiesGroup);
 			
 			playerHazzardsGroup.add(enemiesGroup);
@@ -105,52 +97,6 @@ package
 			add(lightsGroup);
 			add(hudGroup);
 			add(cameraFocus);
-			
-			
-			//--testing area--//
-			itemEmitter.setRotation(0, 0);
-			itemEmitter.setXSpeed(-200,200);
-			itemEmitter.setYSpeed( -200, 200);
-			
-			for (var i:int = 0; i < itemEmitter.maxSize; i++)
-			{
-				switch (int(Math.ceil(Math.random() * 2)))
-				{
-					case 1:
-						itemEmitter.add(new DiamondItem(diamondCounter));
-						break;
-					case 2:
-						itemEmitter.add(new HealthItem(lifeBar));
-						break;	
-				}
-			}
-			
-			for (var j:int = 1; j < 31; j++)
-			{
-				var enemy:Enemy;
-				
-				switch(int(Math.ceil(Math.random() * 2)))
-				{
-					case 1:
-						enemy = new PurpleEnemy(player, map, gibsGroup, itemEmitter);
-						break;
-					case 2:
-						enemy = new RangedEnemy(player, map, enemyBullets, gibsGroup, itemEmitter);
-						break;
-					default:
-						throw new Error("enemy id is ouside acceptable range");
-						break;
-				}
-				
-				var randomPoint:FlxPoint = map.randomRoom();
-				
-				enemy.x = randomPoint.x
-				enemy.y = randomPoint.y;
-				
-				enemiesGroup.add(enemy);
-				
-			}
-			
 		}
 		
 		override public function update():void
