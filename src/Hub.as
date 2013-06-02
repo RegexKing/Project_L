@@ -1,6 +1,7 @@
 package
 {
 	 import maps.HubMap;
+	 import menus.DialogueBox;
 	 import org.flixel.*;
 	 import maps.*;
 	 import units.*;
@@ -14,7 +15,7 @@ package
 	public class Hub extends PlayState
 	{
 		protected var npcGroup:FlxGroup;
-		protected var girlPortrait:FlxSprite;
+		protected var dialogueBox:DialogueBox;
 		
 		protected var girl:Girl;
 		protected var beastMan:BeastMan;
@@ -45,8 +46,8 @@ package
 			girl.x = GameData.RENDER_WIDTH/2 - girl.width/2;
 			girl.y = Map.TILE_SIZE;
 			
-			girlPortrait = new FlxSprite(0, 0, AssetsRegistry.girlPortraitPNG);
-			add(girlPortrait);
+			dialogueBox = new DialogueBox(player);
+			add(dialogueBox);
 		}
 		
 		override public function update():void
@@ -65,15 +66,12 @@ package
 		
 		private function activateDialogue(npcName:String):void
 		{
-			
-			if (npcName == "girl") FlxG.log("Just touched girl");
-			else if (npcName == "beast") FlxG.log("Just touched beast");
-			
+			dialogueBox.initConversation(npcName);	
 		}
 		
 		override public function controlGun():void
 		{
-			if (player.alive && player.exists)
+			if (player.alive && player.active)
 			{
 				fireGun();
 			}
