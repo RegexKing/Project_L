@@ -409,7 +409,7 @@ package org.flixel.plugin.photonstorm
 		{
 			offColor = colors;
 			
-			buttonNormal.stamp(FlxGradient.createGradientFlxSprite(width - 2, height - 2, offColor), 1, 1);
+			buttonNormal.stamp(FlxGradient.createGradientFlxSprite(width - 2, height - 2, offColor, 10), 1, 1);
 		}
 		
 		/**
@@ -421,7 +421,7 @@ package org.flixel.plugin.photonstorm
 		{
 			onColor = colors;
 			
-			buttonHighlight.stamp(FlxGradient.createGradientFlxSprite(width - 2, height - 2, onColor), 1, 1);
+			buttonHighlight.stamp(FlxGradient.createGradientFlxSprite(width - 2, height - 2, onColor, 10), 1, 1);
 		}
 		
 		/**

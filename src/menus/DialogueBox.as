@@ -2,6 +2,7 @@ package menus
 {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxDelay;
+	import org.flixel.plugin.photonstorm.FlxGradient;
 	import units.Player;
 	/**
 	 * ...
@@ -24,9 +25,8 @@ package menus
 		{
 			player = _player;
 			
-			background = new FlxSprite();
-			background.makeGraphic(468, 136, 0xff0000FF);
-			background.alpha = 0.5;
+			background = FlxGradient.createGradientFlxSprite(468, 136, [0xff0066FF, 0xff000066], 10);
+			//background.alpha = 0.5;
 			
 			textField = new FlxText(0, 0, 322, "");
 			textField.setFormat("NES", 16, 0xffFFFFFF);
@@ -40,7 +40,7 @@ package menus
 			textField.y = 332;
 			
 			portrait.x = 22;
-			portrait.y = 284;
+			portrait.y = 278;
 			
 			add(background);
 			add(portrait);
@@ -108,6 +108,7 @@ package menus
 			
 			//clear buttons
 			dialogueSet[counter].buttonsGroup.kill();
+			dialogueSet[counter].buttonsGroup.clear();
 			
 			counter++;
 			isClickable = true;

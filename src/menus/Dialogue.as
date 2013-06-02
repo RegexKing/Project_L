@@ -34,6 +34,7 @@ package menus
 			{
 				case "girl":
 					characterName = "girl";
+					message = "Use gems to upgrade?"
 					createGirlSet();
 					break;
 				case "beast":
@@ -49,7 +50,13 @@ package menus
 		
 		protected function createGirlSet():void
 		{
+			buttonsGroup = new FlxGroup();
 			
+			var upgradeButton:FlxButtonPlus = new FlxButtonPlus(153, 382, upgrade, null, "Upgrade");
+			var dontUpgradeButton:FlxButtonPlus = new FlxButtonPlus(153, 412, advanceConversation, null, "Cancel");
+			
+			buttonsGroup.add(upgradeButton);
+			buttonsGroup.add(dontUpgradeButton);
 		}
 		
 		protected function createBeastSet():void
@@ -62,6 +69,18 @@ package menus
 			buttonsGroup.add(saveButton);
 			buttonsGroup.add(dontSaveButton);
 			
+		}
+		
+		public function upgrade():void
+		{
+			// clear flx group
+			buttonsGroup.kill();
+			buttonsGroup.clear();
+			// make flx group usable
+			buttonsGroup.revive();
+			
+			var upgrade:Upgrade = new Upgrade(advanceConversation);
+			buttonsGroup.add(upgrade);
 		}
 		
 		public function saveGame():void

@@ -19,7 +19,7 @@ package  units
 		{
 			super();
 			
-			makeGraphic(40, 40, 0xff00FF00);
+			makeGraphic(40, 40, 0xff0033FF);
 			
 			width = 40;
 			height = 40;
