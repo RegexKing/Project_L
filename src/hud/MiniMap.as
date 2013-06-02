@@ -34,7 +34,7 @@ package  hud
 			
 			playerIcon = new FlxSprite();
 			playerIcon.loadGraphic(AssetsRegistry.playerMiniMapIconPNG, true, false, 12, 12);
-			playerIcon.addAnimation("blink", [0, 1], 4);
+			playerIcon.addAnimation("blink", [0, 1], 10);
 			playerIcon.play("blink");
 			
 			playerIcon.x = GameData.RENDER_WIDTH / 2 - playerIcon.width / 2;

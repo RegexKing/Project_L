@@ -41,7 +41,7 @@ package units
 		{
 			if (angry)
 			{
-				FlxVelocity.moveTowardsObject(this, player, 80);
+				FlxVelocity.moveTowardsObject(this, player, 160);
 			}
 			
 			else if (justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT))

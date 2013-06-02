@@ -30,8 +30,8 @@ package
 			var itemEmitter:FlxEmitter = new FlxEmitter(0, 0, 300);
 			itemsGroup.add(itemEmitter);
 			itemEmitter.setRotation(0, 0);
-			itemEmitter.setXSpeed(-200,200);
-			itemEmitter.setYSpeed( -200, 200);
+			itemEmitter.setXSpeed(-400,400);
+			itemEmitter.setYSpeed( -400, 400);
 			
 			for (var i:int = 0; i < itemEmitter.maxSize; i++)
 			{

@@ -32,7 +32,7 @@ package units
 		{
 			if (GameData.level == GameData.LAST_LEVEL && !touching)
 			{
-				FlxVelocity.moveTowardsObject(this, player, 250);
+				FlxVelocity.moveTowardsObject(this, player, 500);
 			}
 			
 			else if ((justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT)) && !beastMan.angry)

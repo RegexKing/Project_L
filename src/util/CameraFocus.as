@@ -16,7 +16,7 @@ package util
 		private var player:Player;
 		private var angleBetween:Number;
 		private const MIN_RADIUS:Number = 0;
-		public var maxRadius:Number = 100;
+		public var maxRadius:Number = 200;
 		private var radius:Number;
 		
 		public function CameraFocus(_player:Player) 
@@ -37,7 +37,7 @@ package util
 			//Move the wand around the fairy
 			if (FlxG.keys.pressed("SHIFT"))
 			{
-				if (radius < maxRadius) radius += 8;
+				if (radius < maxRadius) radius += 16;
 				else radius = maxRadius;
 				
 				this.x = player.x + (radius * Math.cos(angleBetween));
@@ -48,7 +48,7 @@ package util
 			{
 				if (radius > MIN_RADIUS)
 				{
-					radius -= 8;
+					radius -= 16;
 					this.x = player.x + (radius * Math.cos(angleBetween));
 					this.y = player.y + (radius * Math.sin(angleBetween));
 				}

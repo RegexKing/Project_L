@@ -20,8 +20,8 @@ package  units
 			
 			enemyBullets = _enemyBullets;
 			
-			patrolSpeed = 50;
-			alertSpeed = 80;
+			patrolSpeed = 100;
+			alertSpeed = 160;
 			health = 2;
 			attackValue = 2;
 			
@@ -35,7 +35,7 @@ package  units
 			
 			weapon = new FlxWeapon("normal", this);
 			weapon.makePixelBullet(10, 16, 16);
-			weapon.setBulletSpeed(200);
+			weapon.setBulletSpeed(400);
 			weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			weapon.setFireRate(500);
 			weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);

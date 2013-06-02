@@ -37,14 +37,14 @@ package  units
 			inSight = false;
 			aware = false;
 			
-			patrolSpeed = 50;
-			alertSpeed = 50;
+			patrolSpeed = 100;
+			alertSpeed = 100;
 			
 			gibs = new FlxEmitter(0, 0, 50);
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 20, 10, true, 0.5);
-			gibs.particleDrag = new FlxPoint(300, 300);
-			gibs.setXSpeed(-200,200);
-			gibs.setYSpeed(-200,200);
+			gibs.particleDrag = new FlxPoint(600, 600);
+			gibs.setXSpeed(-400,400);
+			gibs.setYSpeed(-400,400);
 			gibs.setRotation(0, 0);
 			gibs.bounce = 0.5;
 		}

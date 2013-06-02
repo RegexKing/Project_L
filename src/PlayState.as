@@ -114,14 +114,14 @@ package
 			normalGun = new BaseGun("normal", player);
 			normalGun.makePixelBullet(25, 16, 16, 0xffffffff, 12, 12);
 			normalGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
-			normalGun.setBulletSpeed(300);
+			normalGun.setBulletSpeed(600);
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
 			bounceGun = new BounceGun("bounce", player);
 			bounceGun.makePixelBullet(25, 16, 16, 0xffffffff, 12, 12);
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
-			bounceGun.setBulletSpeed(300);
+			bounceGun.setBulletSpeed(600);
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setBulletElasticity(0.8);
 			bounceGun.setBulletLifeSpan(2000);

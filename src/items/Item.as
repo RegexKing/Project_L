@@ -29,7 +29,7 @@ package   items
 		override public function onEmit():void
 		{
 			elasticity = 0.8;
-			drag = new FlxPoint(180, 180);
+			drag = new FlxPoint(360, 360);
 			
 			if (expire != null)
 			{

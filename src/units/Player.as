@@ -25,9 +25,9 @@ package  units
 			height = 40;
 			
 			playerGibs = new FlxEmitter(0, 0, 50);
-			playerGibs.particleDrag = new FlxPoint(300, 300);
-			playerGibs.setXSpeed(-200,200);
-			playerGibs.setYSpeed(-200,200);
+			playerGibs.particleDrag = new FlxPoint(600, 600);
+			playerGibs.setXSpeed(-400,400);
+			playerGibs.setYSpeed(-400,400);
 			playerGibs.setRotation(0, 0);
 			playerGibs.bounce = 0.5;
 			playerGibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true, 0.5);
@@ -38,7 +38,7 @@ package  units
 			
 			FlxControl.create(this, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT, 1, false);
 			FlxControl.player1.setWASDControl();
-			FlxControl.player1.setStandardSpeed(100);
+			FlxControl.player1.setStandardSpeed(200);
 		}
 		
 		override public function update():void
