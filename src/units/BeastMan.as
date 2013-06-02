@@ -11,6 +11,8 @@ package units
 	public class BeastMan extends Enemy
 	{
 		
+		public static var isAnnoyed:Boolean = false;
+		
 		public var angry:Boolean;
 		private var functionCallback:Function;
 		
@@ -55,6 +57,7 @@ package units
 		{
 			super.hurt(_damagePoints);
 			angry = true;
+			isAnnoyed = true;
 		}
 		
 		override public function kill():void

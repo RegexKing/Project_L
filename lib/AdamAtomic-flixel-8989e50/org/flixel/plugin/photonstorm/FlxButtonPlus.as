@@ -147,10 +147,10 @@ package org.flixel.plugin.photonstorm
 			if (Label != null)
 			{
 				textNormal = new FlxText(X, Y + 3, Width, Label);
-				textNormal.setFormat(null, 8, 0xffffffff, "center", 0xff000000);
+				textNormal.setFormat("NES", 8, 0xffffffff, "center", 0xff000000);
 				
 				textHighlight = new FlxText(X, Y + 3, Width, Label);
-				textHighlight.setFormat(null, 8, 0xffffffff, "center", 0xff000000);
+				textHighlight.setFormat("NES", 8, 0xffffffff, "center", 0xff000000);
 				
 				add(textNormal);
 				add(textHighlight);

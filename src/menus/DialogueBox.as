@@ -9,10 +9,6 @@ package menus
 	 */
 	public class DialogueBox extends FlxGroup
 	{
-		protected const girlTitle:String = "Mysterious Woman\n\n";
-		protected const beastTitle:String = "Chivalrous Beast\n\n";
-		protected const guyTitle:String = "Patches\n\n";
-		
 		protected var portrait:FlxSprite;
 		protected var background:FlxSprite;
 		protected var textField:FlxText;
@@ -58,6 +54,8 @@ package menus
 		
 		override public function update():void
 		{
+			super.update();
+			
 			if (conversationActive && isClickable)
 			{
 				if (FlxG.mouse.justPressed())
@@ -73,7 +71,7 @@ package menus
 						dialogueSet = null;
 						
 						//so player doesnt fire right away
-						var fireTimer:FlxDelay = new FlxDelay(100);
+						var fireTimer:FlxDelay = new FlxDelay(500);
 						fireTimer.callback = makePlayerActive;
 						fireTimer.start();
 						return;
@@ -97,7 +95,7 @@ package menus
 			changeCharPortrait(_npcName);
 			toggle();
 			
-			generateConversation(_npcName);
+			dialogueSet = DialogueRegistry.generateConversation(_npcName, advanceAfterButton);
 			
 			textField.text = dialogueSet[counter].message;
 			changeCharPortrait(dialogueSet[counter].characterName);
@@ -105,58 +103,12 @@ package menus
 			
 		}
 		
-		protected function generateConversation(_npcName:String):void
-		{
-			switch(_npcName)
-			{
-				case "girl":
-					generateGirlConversation();
-					break;
-				case "beast":
-					generateBeastConversation();
-					break;
-				default:
-					throw new Error("Invalid character name was chosen");
-					break;
-			}
-		}
-		
-		protected function generateGirlConversation():void
-		{
-			dialogueSet = new Array();
-			
-			var intro:Dialogue = new Dialogue();
-			var guyMessage:Dialogue = new Dialogue();
-			var outro:Dialogue = new Dialogue();
-			
-			intro.setMessage("girl", girlTitle + "Hello this is the best ever I can't even believe it so awsome and good and amazing!");
-			guyMessage.setMessage("guy", guyTitle + "Yea whatever");
-			outro.setMessage("girl", girlTitle + "Goodbye");
-			
-			dialogueSet.push(intro);
-			dialogueSet.push(guyMessage);
-			dialogueSet.push(outro);
-		}
-		
-		protected function generateBeastConversation():void
-		{
-			dialogueSet = new Array();
-			
-			var intro:Dialogue = new Dialogue();
-			var guyMessage:Dialogue = new Dialogue();
-			var outro:Dialogue = new Dialogue();
-			
-			intro.setMessage("beast", beastTitle + "Whattup nigga?");
-			guyMessage.setMessage("guy", guyTitle + "Sup bitches?");
-			outro.setMessage("beast", beastTitle + "Ah hell no dawg.");
-			
-			dialogueSet.push(intro);
-			dialogueSet.push(guyMessage);
-			dialogueSet.push(outro);
-		}
-		
 		public function advanceAfterButton():void
 		{
+			
+			//clear buttons
+			dialogueSet[counter].buttonsGroup.kill();
+			
 			counter++;
 			isClickable = true;
 			textField.text = dialogueSet[counter].message;

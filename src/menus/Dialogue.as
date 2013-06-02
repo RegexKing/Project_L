@@ -6,6 +6,7 @@ package menus
 	 */
 	
 	import org.flixel.*; 
+	import org.flixel.plugin.photonstorm.FlxButtonPlus;
 	 
 	public class Dialogue
 	{
@@ -16,9 +17,9 @@ package menus
 		public var characterName:String;
 		protected var advanceConversation:Function;
 		
-		public function Dialogue() 
+		public function Dialogue(_advanceConversation:Function = null) 
 		{
-			
+			advanceConversation = _advanceConversation;
 		}
 		
 		public function setMessage(_characterName:String, _message:String):void
@@ -27,15 +28,18 @@ package menus
 			message = _message;
 		}
 		
-		public function setInteractive(_characterName:String, _advanceConversation:Function):void
+		public function setInteractive(_characterName:String):void
 		{
 			switch(_characterName)
 			{
 				case "girl":
-					createGirlSet(_advanceConversation);
+					characterName = "girl";
+					createGirlSet();
 					break;
 				case "beast":
-					createBeastSet(_advanceConversation);
+					characterName = "beast";
+					message = "Save Game?";
+					createBeastSet();
 					break;
 				default:
 					throw new Error("Invalid character name was chosen");
@@ -43,18 +47,28 @@ package menus
 			}
 		}
 		
-		protected function createGirlSet(_advanceConversation:Function):void
+		protected function createGirlSet():void
 		{
 			
 		}
 		
-		protected function createBeastSet(_advanceConversation:Function):void
+		protected function createBeastSet():void
 		{
+			buttonsGroup = new FlxGroup();
 			
-			characterName = "beast";
-			buttonsGroup = new FlxGroup(2);
+			var saveButton:FlxButtonPlus = new FlxButtonPlus(153, 382, saveGame, null, "Save");
+			var dontSaveButton:FlxButtonPlus = new FlxButtonPlus(153, 412, advanceConversation, null, "Cancel");
 			
-			//var saveButton:FlxButton = new FlxButton(
+			buttonsGroup.add(saveButton);
+			buttonsGroup.add(dontSaveButton);
+			
+		}
+		
+		public function saveGame():void
+		{
+			GameData.saveData();
+			
+			advanceConversation();
 		}
 		
 	}
