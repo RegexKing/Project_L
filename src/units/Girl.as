@@ -36,7 +36,7 @@ package units
 			}
 			
 			else if ((justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT)) 
-				&& (beastMan == null || !beastMan.angry || !beastMan.alive))
+				&& (beastMan == null || !BeastMan.angry || !beastMan.alive))
 			{
 				//function callback for dialogue box
 				functionCallback("girl");
@@ -47,7 +47,7 @@ package units
 		{
 			super.hurt(_damagePoints);
 			
-			if(beastMan != null) beastMan.angry = true;
+			if(beastMan != null) BeastMan.angry = true;
 			
 			FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}

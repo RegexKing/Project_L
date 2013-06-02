@@ -59,7 +59,7 @@ package
 			
 			FlxG.collide(player, girl);
 			
-			if (beastMan != null && !beastMan.angry) FlxG.collide(player, beastMan);
+			if (beastMan != null && !BeastMan.angry) FlxG.collide(player, beastMan);
 			
 			if (player.y > GameData.RENDER_HEIGHT) goNextState();
 		}
@@ -104,7 +104,7 @@ package
 			{
 				if (unit is Player) 
 				{
-					if (hazzard is BeastMan && (hazzard as BeastMan).angry)
+					if (hazzard is BeastMan && BeastMan.angry)
 					{
 						lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
 						unit.hurt(0);

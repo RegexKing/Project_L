@@ -6,6 +6,7 @@ package
 	 */
 	
 	import flash.net.SharedObject; 
+	import units.BeastMan;
 	 
 	public class GameData 
 	{
@@ -47,6 +48,7 @@ package
 			isNewGame = true;
 			
 			isBeastManDead = false;
+			BeastMan.isAnnoyed = false;
 			
 			level = 1;
 			diamonds = 0;

@@ -13,7 +13,7 @@ package units
 		
 		public static var isAnnoyed:Boolean = false;
 		
-		public var angry:Boolean;
+		public static var angry:Boolean;
 		private var functionCallback:Function;
 		
 		public function BeastMan(_player:Player, _gibsGroup:FlxGroup, _functionCallback:Function)
@@ -41,7 +41,7 @@ package units
 		
 		override public function update():void
 		{
-			if (angry)
+			if (angry && player.active)
 			{
 				FlxVelocity.moveTowardsObject(this, player, 160);
 			}

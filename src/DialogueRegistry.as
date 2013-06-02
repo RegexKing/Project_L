@@ -28,8 +28,8 @@ package
 		// girl
 		public static var girl_intro1:String = GIRL_TITLE + "Hello this is the best ever I can't even believe it so awesome and good and amazing!";
 		public static var girl_outro1:String = GIRL_TITLE + "Goodbye..";
-		public static var sad:String = GIRL_TITLE + "Thou hath taken away from me my dearest companion, mayhaps my last."
-			+ " Please, just let me be...";
+		public static var sad:String = GIRL_TITLE + "Thou hath taken away from me my dearest companion, mayhaps my last.";
+		public static var sad2:String = GIRL_TITLE + "Please, just let me be...";
 		
 		// beast
 		public static var beast_intro1:String = BEAST_TITLE + "Aye, it's Patches! You're pretty tough for such a small man.";
@@ -69,9 +69,20 @@ package
 			if (GameData.isBeastManDead)
 			{
 				var sadMessage:Dialogue = new Dialogue();
+				var sadMessage2:Dialogue = new Dialogue();
 				
 				sadMessage.setMessage(GIRL, sad);
+				sadMessage2.setMessage(GIRL, sad2);
+				
 				dialogueSet.push(sadMessage);
+				dialogueSet.push(sadMessage2);
+			}
+			
+			else if (GameData.level == GameData.LAST_LEVEL)
+			{
+			
+				
+				BeastMan.angry = true;
 			}
 			
 			else
@@ -112,8 +123,6 @@ package
 				dialogueSet.push(angryMessageResponse);
 				dialogueSet.push(angryMessageResponse2);
 				dialogueSet.push(angryMessage2);
-				
-				BeastMan.isAnnoyed = false;
 			}
 			
 			var intro:Dialogue = new Dialogue();
@@ -126,11 +135,13 @@ package
 			saveGame.setInteractive(BEAST);
 			outro.setMessage(BEAST, beast_outro1);
 			
-			dialogueSet.push(intro);
+			if (!BeastMan.isAnnoyed) dialogueSet.push(intro);
 			dialogueSet.push(saveRequestMessage);
 			dialogueSet.push(saveGame);
 			dialogueSet.push(outro);
 			
+			
+			BeastMan.isAnnoyed = false;
 			return dialogueSet;
 		}
 		
