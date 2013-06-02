@@ -35,7 +35,8 @@ package units
 				FlxVelocity.moveTowardsObject(this, player, 500);
 			}
 			
-			else if ((justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT)) && !beastMan.angry)
+			else if ((justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT)) 
+				&& (beastMan == null || !beastMan.angry || !beastMan.alive))
 			{
 				//function callback for dialogue box
 				functionCallback("girl");

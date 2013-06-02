@@ -1,6 +1,7 @@
 package menus 
 {
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxDelay;
 	import units.Player;
 	/**
 	 * ...
@@ -70,7 +71,11 @@ package menus
 						conversationActive = false;
 						isClickable = true;
 						dialogueSet = null;
-						player.active = true;
+						
+						//so player doesnt fire right away
+						var fireTimer:FlxDelay = new FlxDelay(100);
+						fireTimer.callback = makePlayerActive;
+						fireTimer.start();
 						return;
 					}
 					
@@ -124,7 +129,7 @@ package menus
 			var guyMessage:Dialogue = new Dialogue();
 			var outro:Dialogue = new Dialogue();
 			
-			intro.setMessage("girl", girlTitle + "Hello");
+			intro.setMessage("girl", girlTitle + "Hello this is the best ever I can't even believe it so awsome and good and amazing!");
 			guyMessage.setMessage("guy", guyTitle + "Yea whatever");
 			outro.setMessage("girl", girlTitle + "Goodbye");
 			
@@ -183,6 +188,11 @@ package menus
 			background.visible = !background.visible;
 			portrait.visible  = !portrait.visible;
 			textField.visible = !textField.visible;
+		}
+		
+		private function makePlayerActive():void
+		{
+			player.active = true;
 		}
 		
 	}

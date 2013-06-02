@@ -7,7 +7,7 @@ package menus
 	
 	import org.flixel.*; 
 	 
-	public class Dialogue extends FlxGroup
+	public class Dialogue
 	{
 		
 		public var buttonsGroup:FlxGroup;
