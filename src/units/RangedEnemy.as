@@ -28,16 +28,13 @@ package  units
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
-			makeGraphic(20, 20, 0xff000000);
-			
-			width = 20;
-			height = 20;
+			makeGraphic(40, 40, 0xff000000);
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);
 			
 			weapon = new FlxWeapon("normal", this);
-			weapon.makePixelBullet(10, 8, 8);
+			weapon.makePixelBullet(10, 16, 16);
 			weapon.setBulletSpeed(200);
 			weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			weapon.setFireRate(500);

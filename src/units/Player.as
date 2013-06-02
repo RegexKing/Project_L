@@ -19,10 +19,10 @@ package  units
 		{
 			super();
 			
-			makeGraphic(20, 20, 0xff00FF00);
+			makeGraphic(40, 40, 0xff00FF00);
 			
-			width = 20;
-			height = 20;
+			width = 40;
+			height = 40;
 			
 			playerGibs = new FlxEmitter(0, 0, 50);
 			playerGibs.particleDrag = new FlxPoint(300, 300);

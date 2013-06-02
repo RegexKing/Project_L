@@ -31,7 +31,7 @@ package units
 			
 			elasticity = 0.5;
 			
-			makeGraphic(25, 30, 0xff00FF00);
+			makeGraphic(50, 60, 0xff00FF00);
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);

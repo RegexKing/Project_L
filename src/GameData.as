@@ -12,8 +12,8 @@ package
 		public static var saveFile:SharedObject = SharedObject.getLocal("myData");
 		
 		//Constants
-		public static const RENDER_WIDTH:uint = 256;
-		public static const RENDER_HEIGHT:uint = 240;
+		public static const RENDER_WIDTH:uint = 512;
+		public static const RENDER_HEIGHT:uint = 480;
 		
 		public static const HEALTH_FACTOR:Number = 1; 
 		public static const DEFENSE_FACTOR:Number = 0.1; 

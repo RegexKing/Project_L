@@ -86,8 +86,8 @@ package
 			FlxG.camera.setBounds(0, 0, map.tileMap.width, map.tileMap.height);
 			FlxG.camera.follow(null);
 			
-			player.x = 100;
-			player.y = 100;
+			player.x = 200;
+			player.y = 200;
 		}
 		
 		override public function bgmInit():void

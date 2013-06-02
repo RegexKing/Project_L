@@ -22,9 +22,7 @@ package   items
 			
 			lifeBar = _lifeBar;
 			
-			loadGraphic(AssetsRegistry.HealthItemPNG, false, false, 10, 10);
-			width = 10;
-			height = 10;	
+			loadGraphic(AssetsRegistry.HealthItemPNG, false, false, 20, 20);	
 		}
 		
 		override public function onEmit():void

@@ -26,21 +26,15 @@ package   items
 			switch(weaponID)
 			{
 				case Player.NORMAL_GUN:
-					makeGraphic(15, 15, 0xffFFFFFF);
-					width = 15;
-					height = 15;
+					makeGraphic(30, 30, 0xffFFFFFF);
 					break;
 					
 				case Player.BOUNCE_GUN:
-					makeGraphic(15, 15, 0xffFFFFFF);
-					width = 15;
-					height = 15;
+					makeGraphic(30, 30, 0xffFFFFFF);
 					break;
 					
 				default:
-					makeGraphic(15, 15, 0xffFFFFFF);
-					width = 15;
-					height = 15;
+					makeGraphic(30, 30, 0xffFFFFFF);
 					break;
 					
 			}

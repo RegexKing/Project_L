@@ -21,7 +21,7 @@ package util
 		
 		public function CameraFocus(_player:Player) 
 		{
-			super(0, 0, 20, 20);
+			super(0, 0, _player.width, _player.height);
 			
 			player = _player;
 			

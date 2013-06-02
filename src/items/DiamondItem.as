@@ -20,9 +20,7 @@ package  items
 			
 			super();
 			
-			makeGraphic(16, 16, 0xffFF0000);
-			width = 16;
-			height = 16;
+			makeGraphic(32, 32, 0xffFF0000);
 		}
 		
 		override public function onEmit():void

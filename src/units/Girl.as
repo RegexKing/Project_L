@@ -25,7 +25,7 @@ package units
 			player = _player;
 			beastMan = _beastMan;
 			
-			makeGraphic(20, 20);
+			makeGraphic(40, 40);
 		}
 		
 		override public function update():void
