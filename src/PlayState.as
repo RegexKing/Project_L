@@ -2,6 +2,7 @@ package
 {	
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
+	import org.flixel.plugin.photonstorm.FX.CenterSlideFX;
 	
 	import hud.*;
 	import items.*;
@@ -32,6 +33,10 @@ package
 		protected var enemyBullets:FlxGroup;
 		protected var gibsGroup:FlxGroup;
 		
+		protected var slide:CenterSlideFX;
+		protected var slidePic:FlxSprite;
+		protected var slideContainer:FlxSprite;
+		
 		//Gun Vars
 		protected const NORMAL_RATE:Number = 500;
 		protected const BOUNCE_RATE:Number = 400;
@@ -49,6 +54,17 @@ package
 		override public function create():void
 		{
 			FlxG.bgColor = 0xff191200;
+			
+			if (FlxG.getPlugin(FlxSpecialFX) == null)
+			{
+				FlxG.addPlugin(new FlxSpecialFX);
+			}
+			
+			slide = FlxSpecialFX.centerSlide();
+			slidePic = new FlxSprite();
+			slidePic.makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
+			
+			slideContainer = slide.createFromFlxSprite(slidePic, CenterSlideFX.HIDE_VERTICAL, 5);
 			
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
@@ -109,6 +125,7 @@ package
 			add(lightsGroup);
 			add(hudGroup);
 			add(cameraFocus);
+			add(slideContainer);
 			
 			// Guns
 			normalGun = new BaseGun("normal", player);
@@ -130,6 +147,7 @@ package
 			playerBulletsGroup.add(normalGun.group);
 			playerBulletsGroup.add(bounceGun.group);
 			
+			slide.start();
 		}
 		
 		override public function update():void
@@ -146,7 +164,10 @@ package
 		
 		public function controlGun():void
 		{
-			fireGun();
+			if (player.alive && player.active)
+			{
+				fireGun();
+			}
 		}
 		
 		protected function fireGun():void
@@ -179,6 +200,10 @@ package
 		{
 		}
 		
+		public function transitionNextState():void
+		{
+			goNextState();
+		}
 		
 		public function goNextState():void
 		{
@@ -226,6 +251,14 @@ package
 					enemy.aware = true;
 				}
 			}
+		}
+		
+		override public function destroy():void
+		{
+			//	Important! Clear out the plugin, otherwise resources will get messed right up after a while
+			FlxSpecialFX.clear();
+
+			super.destroy();
 		}
 	}
 

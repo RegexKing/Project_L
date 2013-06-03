@@ -9,6 +9,7 @@ package
 		
 		//Sprites
 		
+		[Embed(source = "../assets/sprites/disableContinue.png")] public static var disableContinuePNG:Class;
 		[Embed(source = "../assets/sprites/titleScreen.png")] public static var titleScreenPNG:Class;
 		[Embed(source = "../assets/sprites/beastPortrait.png")] public static var beastPortraitPNG:Class;
 		[Embed(source = "../assets/sprites/guyPortrait.png")] public static var guyPortraitPNG:Class;
@@ -37,6 +38,7 @@ package
 		[Embed(source = "../assets/maps/hub.csv", mimeType = "application/octet-stream")] public static var hubCSV:Class;
 		
 		//Bgms
+		[Embed(source = "../assets/sounds/titleScreenBGM.mp3")] public static var BGM_titleScreenMP3:Class;
 		[Embed(source = "../assets/sounds/dungeonBGM.mp3")] public static var BGM_dungeonMP3:Class;
 		[Embed(source = "../assets/sounds/hubBGM.mp3")] public static var BGM_hubMP3:Class;
 		

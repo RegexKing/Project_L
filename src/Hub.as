@@ -61,7 +61,7 @@ package
 			
 			if (beastMan != null && !BeastMan.angry) FlxG.collide(player, beastMan);
 			
-			if (player.y > GameData.RENDER_HEIGHT) goNextState();
+			if (player.y > GameData.RENDER_HEIGHT) transitionNextState();
 			
 			//test key
 			if (FlxG.keys.justPressed("SPACE"))
@@ -77,14 +77,6 @@ package
 		private function activateDialogue(npcName:String):void
 		{
 			dialogueBox.initConversation(npcName);	
-		}
-		
-		override public function controlGun():void
-		{
-			if (player.alive && player.active)
-			{
-				fireGun();
-			}
 		}
 		
 		override public function stageInit():void

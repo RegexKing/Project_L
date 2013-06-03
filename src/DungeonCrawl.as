@@ -97,14 +97,6 @@ package
 			}
 		}
 		
-		override public function controlGun():void
-		{
-			if (player.alive)
-			{
-				fireGun();
-			}
-		}
-		
 		override public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
 		{
 			if (unit.flickering) return
@@ -143,15 +135,9 @@ package
 		
 		override public function goNextState():void
 		{
-			FlxG.switchState(new Hub());
-		}
-		
-		private function completeLevel():void
-		{
 			GameData.playerHealth = lifeBar.currentValue;
 			GameData.level++;
-			goNextState();
-			
+			FlxG.switchState(new Hub());
 		}
 		
 		private function itemPickup(player:FlxObject, item:FlxObject):void
