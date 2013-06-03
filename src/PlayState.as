@@ -1,5 +1,6 @@
 package  
 {	
+	import menu.PauseMenu;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
 	import org.flixel.plugin.photonstorm.FX.CenterSlideFX;
@@ -14,6 +15,7 @@ package
 	public class PlayState extends FlxState
 	{
 		protected var stateDone:Boolean;
+		protected var pauseMenu:PauseMenu;
 		
 		protected var darkness:Darkness;
 		
@@ -65,6 +67,7 @@ package
 				FlxG.addPlugin(new FlxSpecialFX);
 			}
 			
+			
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
 			playerBulletsGroup = new FlxGroup();
@@ -75,6 +78,10 @@ package
 			enemyBullets = new FlxGroup();
 			gibsGroup = new FlxGroup();
 			lightsGroup = new FlxGroup();
+			
+			pauseMenu = new PauseMenu();
+			pauseMenu.setAll("scrollFactor", new FlxPoint());
+			pauseMenu.kill();
 			
 			player = new Player(gibsGroup);
 			cameraFocus = new CameraFocus(player);
@@ -164,20 +171,29 @@ package
 		
 		override public function update():void
 		{
-			super.update();
-			
-			if (FlxG.keys.justPressed("P") || FlxG.keys.justPressed("ESCAPE"))
+			//The pause menu is popped up here
+			if (!pauseMenu.alive)
 			{
-				FlxG.paused = !FlxG.paused;
-				FlxG.log(FlxG.paused);
+				super.update();
+				controlGun();
+			
+				FlxG.collide(collideableGroup, map);
+				cameraFocus.updateCamera();
+				
+				// Pause game
+				if (FlxG.keys.justPressed("ESCAPE"))
+				{
+					pauseMenu.revive();	
+					add(pauseMenu);
+				}
+				
 			}
 			
-			controlGun();
-			
-			FlxG.collide(collideableGroup, map);
-			cameraFocus.updateCamera();	
-			
-			//FlxG.collide(enemiesGroup, enemiesGroup);
+			else
+			{
+				pauseMenu.update();	
+			}
+		
 		}
 		
 		public function controlGun():void

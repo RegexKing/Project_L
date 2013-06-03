@@ -14,6 +14,7 @@ package
 	 import hud.*;
 	 import items.*;
 	 import weapons.*;
+	 import menu.PauseMenu;
 	 
 	public class DungeonCrawl extends PlayState
 	{
@@ -134,6 +135,7 @@ package
 		{
 			
 			FlxG.playMusic(AssetsRegistry.BGM_dungeonMP3);
+			if (!PauseMenu.isMusicOn) FlxG.music.pause();
 			FlxG.music.survive = false;
 
 		}

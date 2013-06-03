@@ -1,43 +1,128 @@
 package menu 
 {
-	/**
-	 * ...
-	 * @author Frank Fazio
-	 */
+	
 	
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	import org.flixel.plugin.photonstorm.FlxGradient;
+	import flash.display.Sprite;
+    import flash.display.StageQuality;
+        
 	 
 	public class PauseMenu extends FlxGroup
 	{
+		public static var isMusicOn:Boolean = true;
+		
+		private var resume:FlxButton;
+		private var toggleMusic:FlxButton;
+		private var toggleSounds:FlxButton;
+		private var lowQuality:FlxButton;
+		private var mediumQuality:FlxButton;
+		private var highQuality:FlxButton;
+		private var bestQuality:FlxButton;
 		
 		public function PauseMenu() 
 		{
 			super();
 			
-			var resume:FlxButtonPlus = new FlxButtonPlus(200, 100, null, null, "Resume Game");
-			var toggleMusic:FlxButtonPlus = new FlxButtonPlus(200, 150, null, null, "Toggle BGM");
-			var toggleSounds:FlxButtonPlus = new FlxButtonPlus(200, 200, null, null, "ToggleSound");
+			resume = new FlxButton(206, 160, "Resume", resumeGame);
+			toggleMusic = new FlxButton(206, 180, "Toggle BGM", toggleBgm);
+			toggleSounds = new FlxButton(206, 200, "Toggle Sound", toggleSound);
+			
+			bestQuality = new FlxButton(206, 240, "Best", setBest);
+			highQuality = new FlxButton(206, 260, "High", setHigh);
+			mediumQuality = new FlxButton(206, 280, "Medium", setMedium);
+			lowQuality = new FlxButton(206, 300, "Low", setLow);
 			
 			add(resume);
 			add(toggleMusic);
 			add(toggleSounds);
+			add(bestQuality);
+			add(highQuality);
+			add(mediumQuality);
+			add(lowQuality);
 		}
 		
 		override public function update():void
 		{
-			super.update();
-			
-			if (FlxG.keys.justPressed("P") || FlxG.keys.justPressed("ESCAPE"))
+			if (FlxG.keys.justPressed("ESCAPE"))
 			{
-				FlxG.paused = !FlxG.paused;
-			}
+				leaveMenu();
+			} 
+			
+			super.update();	
 		}
 		
 		private function resumeGame():void
 		{
-			FlxG.paused = !FlxG.paused;
+			leaveMenu();
+		}
+		
+		private function toggleBgm():void
+		{
+			if (isMusicOn) 
+			{
+				FlxG.music.pause();
+				isMusicOn = false;
+			}
+			
+			else 
+			{
+				FlxG.music.resume();
+				isMusicOn = true;
+			}
+		}
+		
+		private function toggleSound():void
+		{
+			FlxG.mute = !FlxG.mute;
+		}
+		
+		private function setBest():void
+		{
+			FlxG.stage.quality = StageQuality.BEST;
+		}
+		
+		private function setHigh():void
+		{
+			FlxG.stage.quality = StageQuality.HIGH;
+		}
+		
+		private function setMedium():void
+		{
+			FlxG.stage.quality = StageQuality.MEDIUM;
+		}
+		
+		private function setLow():void
+		{
+			FlxG.stage.quality = StageQuality.LOW;
+		}
+		
+		private function leaveMenu():void
+		{
+			this.kill();
+			this.exists = false;
+		}
+		
+		override public function revive():void
+		{
+			super.revive();
+			
+			resume.revive();
+			toggleMusic.revive();
+			toggleSounds.revive();
+			bestQuality.revive();
+			highQuality.revive();
+			mediumQuality.revive();
+			lowQuality.revive();
+			
+			add(resume);
+			add(toggleMusic);
+			add(toggleSounds);
+			add(bestQuality);
+			add(highQuality);
+			add(mediumQuality);
+			add(lowQuality);
 		}
 		
 	}

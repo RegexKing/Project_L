@@ -8,6 +8,7 @@ package
 	 import hud.*;
 	 import items.*;
 	 import weapons.*;
+	 import menu.PauseMenu;
 	 
 	 import org.flixel.plugin.photonstorm.*;
 	 import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
@@ -100,6 +101,7 @@ package
 		{
 			
 			FlxG.playMusic(AssetsRegistry.BGM_hubMP3);
+			if (!PauseMenu.isMusicOn) FlxG.music.pause();
 			FlxG.music.survive = false;
 
 		}
