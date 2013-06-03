@@ -85,7 +85,7 @@ package
 			if (FlxG.keys.justPressed("SPACE"))
 			{
 				//diamondCounter.changeQuantity(1);
-				lifeBar.increaseBarRange();
+				//lifeBar.increaseBarRange();
 				//player.active = !player.active;
 				//FlxG.mute = !FlxG.mute;
 				//trace(FlxG.mute);

@@ -46,7 +46,7 @@ package
 			girl.x = GameData.RENDER_WIDTH/2 - girl.width/2;
 			girl.y = Map.TILE_SIZE;
 			
-			dialogueBox = new DialogueBox(player);
+			dialogueBox = new DialogueBox(player, setHealthUpgrade);
 			add(dialogueBox);
 		}
 		
@@ -62,6 +62,16 @@ package
 			if (beastMan != null && !BeastMan.angry) FlxG.collide(player, beastMan);
 			
 			if (player.y > GameData.RENDER_HEIGHT) goNextState();
+			
+			//test key
+			if (FlxG.keys.justPressed("SPACE"))
+			{
+				diamondCounter.changeQuantity(1);
+				//lifeBar.increaseBarRange();
+				//player.active = !player.active;
+				//FlxG.mute = !FlxG.mute;
+				//trace(FlxG.mute);
+			}
 		}
 		
 		private function activateDialogue(npcName:String):void
@@ -128,7 +138,13 @@ package
 			FlxG.switchState(new DungeonCrawl());
 		}
 		
-		override public function alertEnemies():void {} // erases super class alert enemies 
+		private function setHealthUpgrade():void
+		{
+			lifeBar.increaseBarRange();
+		}
+		
+		override public function alertEnemies():void { } // erases super class alert enemies 
+		
 		
 	}
 

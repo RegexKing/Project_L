@@ -27,6 +27,7 @@ package
 		public static var isNewGame:Boolean; //TODO if this is false, enable the continue button
 		
 		//changable
+		
 		public static var level:uint = 1;
 		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
@@ -35,6 +36,11 @@ package
 		public static var isBeastManDead:Boolean = false;
 		
 		//player attributes
+		public static var vitalityUpgrades:uint = 0; 
+		public static var defenseUpgrades:uint = 0; 
+		public static var attackUpgrades:uint = 0; 
+		public static var rateUpgrades:uint = 0;
+		
 		public static var totalHealth:Number = 3; // when this is needs to be increased, call increaseBarRange on lifebar
 		public static var defenseMultiplier:Number = 0; //this is to be incrememnted by .1 up to 5 upgrades
 		public static var damageMultiplier:Number = 0; // this to be incrememnted by .6 up to 5 upgrades
@@ -98,6 +104,11 @@ package
 			defenseMultiplier = saveFile.data.defenseMultiplier;
 			damageMultiplier = saveFile.data.damageMultiplier;
 			fireRateMultiplier = saveFile.data.fireRateMultiplier;
+		}
+		
+		public static function checkNewGame():Boolean
+		{
+			return saveFile.data.isNewGame;
 		}
 	}
 }

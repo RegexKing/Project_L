@@ -46,12 +46,12 @@ package
 		{
 		}
 		
-		public static function generateConversation(_npcName:String, _advanceAfterButton:Function):Array
+		public static function generateConversation(_npcName:String, _advanceAfterButton:Function, _setHealthUpgrade:Function):Array
 		{
 			switch(_npcName)
 			{
 				case GIRL:
-					return generateGirlConversation(_advanceAfterButton);
+					return generateGirlConversation(_advanceAfterButton, _setHealthUpgrade);
 					break;
 				case BEAST:
 					return generateBeastConversation(_advanceAfterButton);
@@ -62,7 +62,7 @@ package
 			}
 		}
 		
-		public static function generateGirlConversation(_advanceAfterButton:Function):Array
+		public static function generateGirlConversation(_advanceAfterButton:Function, _setHealthUpgrade:Function):Array
 		{
 			var dialogueSet:Array = new Array();
 			
@@ -88,7 +88,7 @@ package
 			else
 			{
 				var intro:Dialogue = new Dialogue();
-				var upgrade:Dialogue = new Dialogue(_advanceAfterButton);
+				var upgrade:Dialogue = new Dialogue(_advanceAfterButton, _setHealthUpgrade);
 				var outro:Dialogue = new Dialogue();
 				
 				intro.setMessage(GIRL, girl_intro1);

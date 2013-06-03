@@ -9,6 +9,7 @@ package
 		
 		//Sprites
 		
+		[Embed(source = "../assets/sprites/titleScreen.png")] public static var titleScreenPNG:Class;
 		[Embed(source = "../assets/sprites/beastPortrait.png")] public static var beastPortraitPNG:Class;
 		[Embed(source = "../assets/sprites/guyPortrait.png")] public static var guyPortraitPNG:Class;
 		[Embed(source = "../assets/sprites/girlPortrait.png")] public static var girlPortraitPNG:Class;

@@ -20,10 +20,12 @@ package menus
 		protected var counter:int = 0;
 		
 		protected var player:Player;
+		protected var setHealthUpgrade:Function;
 		
-		public function DialogueBox(_player:Player) 
+		public function DialogueBox(_player:Player, _setHealthUpgrade:Function) 
 		{
 			player = _player;
+			setHealthUpgrade = _setHealthUpgrade;
 			
 			background = FlxGradient.createGradientFlxSprite(468, 136, [0xff0066FF, 0xff000066], 10);
 			//background.alpha = 0.5;
@@ -95,7 +97,7 @@ package menus
 			changeCharPortrait(_npcName);
 			toggle();
 			
-			dialogueSet = DialogueRegistry.generateConversation(_npcName, advanceAfterButton);
+			dialogueSet = DialogueRegistry.generateConversation(_npcName, advanceAfterButton, setHealthUpgrade);
 			
 			textField.text = dialogueSet[counter].message;
 			changeCharPortrait(dialogueSet[counter].characterName);

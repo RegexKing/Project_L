@@ -16,16 +16,9 @@ package
 		
 		public function Main():void 
 		{
-			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, Hub, 1, 60, 60, true);
+			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, TitleScreen, 1, 60, 60, true);
 			
 			forceDebugger = true;
-		}
-		
-		override protected function create(FlashEvent:Event):void
-		{
-			super.create(FlashEvent);
-			stage.removeEventListener(Event.DEACTIVATE, onFocusLost);
-			stage.removeEventListener(Event.ACTIVATE, onFocus);
 		}
 
 	}

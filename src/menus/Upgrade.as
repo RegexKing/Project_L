@@ -12,11 +12,17 @@ package menus
 		private const MAX_UPGRADES:uint = 5;
 		
 		private var advanceConversation:Function;
+		private var setHealthUpgrade:Function;
 		private var header:FlxText;
 		
-		public function Upgrade(_advanceConversation:Function) 
+		private var vitBar:FlxBar;
+		
+		private var healthCost:FlxText;
+		
+		public function Upgrade(_advanceConversation:Function, _setHealthUpgrade:Function) 
 		{
 			advanceConversation = _advanceConversation;
+			setHealthUpgrade = _setHealthUpgrade;
 			
 			header = new FlxText(37, 262, 468, "");
 			header.setFormat("NES", 16);
@@ -43,9 +49,20 @@ package menus
 			defense.setMouseOutCallback(updateHeader);
 			rate.setMouseOutCallback(updateHeader);
 			
-			var vitBar:FlxBar = new FlxBar(300, 299, FlxBar.FILL_LEFT_TO_RIGHT, 78, 14, GameData, "playerHealth", 3, 8);
+			//
+			vitBar = new FlxBar(300, 299, FlxBar.FILL_LEFT_TO_RIGHT, 78, 14);
 			vitBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
+			vitBar.setRange(0, 5);
 			
+			vitBar.currentValue = GameData.totalHealth - 3;
+			
+			healthCost = new FlxText(237, 299, 100, String(findCost(GameData.vitalityUpgrades)));
+			healthCost.setFormat("NES", 16);
+			
+			//var attackBar:FlxBar = new FlxBar(300, 200, FlxBar.FILL_LEFT_TO_RIGHT, 78, 14);
+			//attackBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
+			//attackBar.setRange (0, 5);
+			//
 			
 			add(background);
 			add(header);
@@ -55,6 +72,7 @@ package menus
 			add(rate);
 			add(cancelButton);
 			add(vitBar);
+			add(healthCost);
 			
 			
 		}
@@ -62,6 +80,24 @@ package menus
 		override public function update():void
 		{
 			super.update();
+		}
+		
+		private function upgradeHealth():void
+		{
+			if (vitBar.currentValue < 5 && GameData.diamonds >= findCost(GameData.vitalityUpgrades))
+			{
+				vitBar.currentValue++;
+				setHealthUpgrade();
+				
+				GameData.diamonds -= findCost(GameData.vitalityUpgrades);
+				GameData.vitalityUpgrades++;
+				if (findCost(GameData.vitalityUpgrades) < 6)
+				{
+					healthCost.text = String(findCost(GameData.vitalityUpgrades));
+				}
+				else
+					healthCost.text = "max";
+			}
 		}
 		
 		private function updateHeader(_description:String = null):void
@@ -90,6 +126,31 @@ package menus
 		{
 			super.kill();
 			advanceConversation();
+		}
+		
+		private function findCost(_upgradeQuantity:uint):uint
+		{
+			switch(_upgradeQuantity)
+			{
+				case 0:
+					return 1;
+					break;
+				case 1:
+					return 2;
+					break;
+				case 2:
+					return 3;
+					break;
+				case 3:
+					return 4;
+					break;
+				case 4:
+					return 6;
+					break;
+				default:
+					throw new Error("upgrade quantity is not in valid range");
+					break;
+			}
 		}
 		
 		private function vitalityDescription():void { updateHeader("vitality"); }

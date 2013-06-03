@@ -16,10 +16,12 @@ package menus
 		public var isClickable:Boolean;
 		public var characterName:String;
 		protected var advanceConversation:Function;
+		protected var setHealthUpgrade:Function;
 		
-		public function Dialogue(_advanceConversation:Function = null) 
+		public function Dialogue(_advanceConversation:Function = null, _setHealthUpgrade:Function=null) 
 		{
 			advanceConversation = _advanceConversation;
+			setHealthUpgrade = _setHealthUpgrade;
 		}
 		
 		public function setMessage(_characterName:String, _message:String):void
@@ -79,7 +81,7 @@ package menus
 			// make flx group usable
 			buttonsGroup.revive();
 			
-			var upgrade:Upgrade = new Upgrade(advanceConversation);
+			var upgrade:Upgrade = new Upgrade(advanceConversation, setHealthUpgrade);
 			buttonsGroup.add(upgrade);
 		}
 		
