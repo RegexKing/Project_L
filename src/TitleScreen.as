@@ -8,9 +8,11 @@ package
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	import org.flixel.plugin.photonstorm.FX.FloodFillFX;
+	import menu.*;
 	 
 	public class TitleScreen extends FlxState
 	{
+		protected var pauseMenu:PauseMenu;
 		private var introActive:Boolean;
 		private var flood:FloodFillFX;
 		private var effectContainer:FlxSprite;
@@ -29,6 +31,10 @@ package
 			{
 				FlxG.addPlugin(new FlxSpecialFX);
 			}
+			
+			pauseMenu = new PauseMenu();
+			pauseMenu.setAll("scrollFactor", new FlxPoint());
+			pauseMenu.kill();
 			
 			FlxG.playMusic(AssetsRegistry.BGM_titleScreenMP3);
 			FlxG.music.survive = false;
@@ -52,14 +58,24 @@ package
 		
 		override public function update():void
 		{
-			super.update();
-			
-			if (FlxG.mouse.justPressed() && introActive)
+			//The pause menu is popped up here
+			if (!pauseMenu.alive)
 			{
-				flood.stop();
-				FlxSpecialFX.clear();
+				super.update();
+			
+				if (FlxG.mouse.justPressed() && introActive)
+				{
+					flood.stop();
+					FlxSpecialFX.clear();
 				
-				initScreen();
+					initScreen();
+				}
+				
+			}
+			
+			else
+			{
+				pauseMenu.update();	
 			}
 		}
 		
@@ -84,7 +100,12 @@ package
 		
 		private function goOptions():void
 		{
-			
+			if (!pauseMenu.alive)
+			{
+				pauseMenu = null;
+				pauseMenu = new PauseMenu();
+				add(pauseMenu);
+			}
 		}
 		
 		private function goExtras():void

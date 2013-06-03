@@ -181,7 +181,7 @@ package
 				cameraFocus.updateCamera();
 				
 				// Pause game
-				if (FlxG.keys.justPressed("ESCAPE"))
+				if (FlxG.keys.justPressed("ESCAPE") || FlxG.keys.justPressed("P"))
 				{
 					pauseMenu.revive();	
 					add(pauseMenu);
