@@ -56,7 +56,7 @@ package  units
 			enemyCoords = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
 			playerCoords = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
 			
-			inSight = map.tileMap.ray(enemyCoords, playerCoords);
+			inSight = map.tileMap.rayCast(enemyCoords, playerCoords);
 			
 			if (aware)
 			{
