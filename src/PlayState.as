@@ -65,16 +65,6 @@ package
 				FlxG.addPlugin(new FlxSpecialFX);
 			}
 			
-			slide = FlxSpecialFX.centerSlide();
-			slidePic = new FlxSprite();
-			slidePic.makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
-			
-			slideContainer = slide.createFromFlxSprite(slidePic, CenterSlideFX.HIDE_VERTICAL, 5);
-			slidePic.scrollFactor.x = 0;
-			slidePic.scrollFactor.y = 0;
-			slideContainer.scrollFactor.x = 0;
-			slideContainer.scrollFactor.y  = 0;
-			
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
 			playerBulletsGroup = new FlxGroup();
@@ -105,8 +95,7 @@ package
 			
 			darkness = new Darkness();
 			
-			playerLight = new PlayerLight(darkness, player);
-			lightsGroup.add(playerLight);
+			lightsGroup.add(new PlayerLight(darkness, player));
 			
 			
 			hudGroup.add(darkness);
@@ -136,7 +125,6 @@ package
 			add(playerBulletsGroup);
 			add(lightsGroup);
 			add(hudGroup);
-			add(slideContainer);
 			add(cameraFocus);
 			
 			// Guns
@@ -159,12 +147,30 @@ package
 			playerBulletsGroup.add(normalGun.group);
 			playerBulletsGroup.add(bounceGun.group);
 			
+			slide = FlxSpecialFX.centerSlide();
+			slidePic = new FlxSprite();
+			slidePic.makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
+			
+			slideContainer = slide.createFromFlxSprite(slidePic, CenterSlideFX.HIDE_VERTICAL, 5);
+			slidePic.scrollFactor.x = 0;
+			slidePic.scrollFactor.y = 0;
+			slideContainer.scrollFactor.x = 0;
+			slideContainer.scrollFactor.y  = 0;
+			
+			add(slideContainer);
+			
 			slide.start();
 		}
 		
 		override public function update():void
 		{
 			super.update();
+			
+			if (FlxG.keys.justPressed("P") || FlxG.keys.justPressed("ESCAPE"))
+			{
+				FlxG.paused = !FlxG.paused;
+				FlxG.log(FlxG.paused);
+			}
 			
 			controlGun();
 			
@@ -216,11 +222,8 @@ package
 		{
 			player.active = false;
 			
-			slideContainer = slide.createFromFlxSprite(slidePic, CenterSlideFX.REVEAL_VERTICAL, 5);
-			slide.completeCallback = goNextState;
-			add(slideContainer);
-			
-			slide.start();
+			FlxG.music.fadeOut(1);
+			FlxG.camera.fade(0xff000000, 1, goNextState);
 		}
 		
 		public function goNextState():void
@@ -245,7 +248,7 @@ package
 			trace("Game ended");
 			
 			FlxG.music.fadeOut(1);
-			FlxG.fade(0xff000000, 2, gameOverState);
+			FlxG.fade(0xff000000, 1, gameOverState);
 		}
 		
 		private function gameOverState():void

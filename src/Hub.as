@@ -1,7 +1,7 @@
 package
 {
 	 import maps.HubMap;
-	 import menus.DialogueBox;
+	 import dialogue.DialogueBox;
 	 import org.flixel.*;
 	 import maps.*;
 	 import units.*;

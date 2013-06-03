@@ -210,6 +210,13 @@ package org.flixel
 		}
 		
 		/**
+		 * If the Sprite is beeing rendered in simple mode.
+		 */
+		public function get simpleRender():Boolean { 
+			return ((angle == 0) || (_bakedRotation > 0)) && (scale.x == 1) && (scale.y == 1) && (blend == null)
+		}
+		
+		/**
 		 * Clean up memory.
 		 */
 		override public function destroy():void
@@ -451,11 +458,11 @@ package org.flixel
 				camera = cameras[i++];
 				if(!onScreen(camera))
 					continue;
-				_point.x = x - int(camera.scroll.x*scrollFactor.x) - offset.x;
-				_point.y = y - int(camera.scroll.y*scrollFactor.y) - offset.y;
+				_point.x = x - int(camera.scroll.x*scrollFactor.x) - FlxU.floor(offset.x);
+				_point.y = y - int(camera.scroll.y * scrollFactor.y) - FlxU.floor(offset.y);
 				_point.x += (_point.x > 0)?0.0000001:-0.0000001;
 				_point.y += (_point.y > 0)?0.0000001:-0.0000001;
-				if(((angle == 0) || (_bakedRotation > 0)) && (scale.x == 1) && (scale.y == 1) && (blend == null))
+				if(simpleRender)
 				{	//Simple render
 					_flashPoint.x = _point.x;
 					_flashPoint.y = _point.y;

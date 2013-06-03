@@ -94,7 +94,6 @@ package
 		
 		private function goStartArea():void
 		{
-			
 		}
 		
 		private function goHub():void

@@ -1,10 +1,9 @@
-package  
+package dialogue
 {
 	/**
 	 * ...
 	 * @author Frank Fazio
 	 */
-	import menus.Dialogue;
 	import units.BeastMan;
 	 
 	public class DialogueRegistry 

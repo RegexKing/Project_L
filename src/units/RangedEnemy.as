@@ -29,6 +29,8 @@ package  units
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
 			makeGraphic(40, 40, 0xff000000);
+			width = 40;
+			height = 40;
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);

@@ -23,6 +23,8 @@ package weapons
 				var tempBullet:BounceBullet = new BounceBullet(this, b);
 				
 				tempBullet.makeGraphic(width, height, color);
+				tempBullet.width = width;
+				tempBullet.height = height;
 				
 				group.add(tempBullet);
 			}
