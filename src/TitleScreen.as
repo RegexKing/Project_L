@@ -16,7 +16,6 @@ package
 		private var effectContainer:FlxSprite;
 		private var mainMenuButtons:FlxGroup;
 		private var titleScreen:FlxSprite;
-		private var introTimer:FlxDelay;
 	
 		public function TitleScreen() 
 		{
@@ -37,20 +36,18 @@ package
 			mainMenuButtons = new FlxGroup(4);
 			
 			titleScreen = new FlxSprite();
-			titleScreen.loadGraphic(AssetsRegistry.titleScreenPNG, false, false, 512, 480);
+			if (GameData.checkNewGame() != false) titleScreen.loadGraphic(AssetsRegistry.disableContinuePNG, false, false, 512, 480);
+			else titleScreen.loadGraphic(AssetsRegistry.titleScreenPNG, false, false, 512, 480);
+			
 			titleScreen.visible = false;
 			flood = FlxSpecialFX.floodFill();
-			effectContainer = flood.create(titleScreen, 0, 0, titleScreen.width, titleScreen.height, 0);
+			effectContainer = flood.create(titleScreen, 0, 0, titleScreen.width, titleScreen.height, 0, 1, false, 0x0, activateMenu);
 			
 			add(titleScreen);
 			add(effectContainer);
 			add(mainMenuButtons);
 			
 			flood.start(0);
-			
-			introTimer = new FlxDelay(8500); //this is used to activate menu after flood effect
-			introTimer.callback = timerHandler;
-			introTimer.start();
 		}
 		
 		override public function update():void
@@ -59,11 +56,9 @@ package
 			
 			if (FlxG.mouse.justPressed() && introActive)
 			{
-				introActive = false;
 				flood.stop();
-				introTimer.abort();
-				
 				FlxSpecialFX.clear();
+				
 				initScreen();
 			}
 		}
@@ -129,12 +124,6 @@ package
 			optionsButton.makeGraphic(154, 45, 0x0);
 			extrasButton.makeGraphic(154, 45, 0x0);
 			
-			if (GameData.checkNewGame() != false) 
-			{
-				var disableContinue:FlxSprite = new FlxSprite(332, 280, AssetsRegistry.disableContinuePNG);
-				add(disableContinue);
-			}
-			
 			mainMenuButtons.add(continueButton);
 			mainMenuButtons.add(playButton);
 			mainMenuButtons.add(optionsButton);
@@ -143,16 +132,15 @@ package
 		
 		private function initScreen():void
 		{
+			introActive = false;
 			titleScreen.visible = true;
 			createMenuButtons();
 		}
 		
-		private function timerHandler():void
+		private function activateMenu():void
 		{
-			FlxG.log("hit");
 			if (introActive)
 			{
-				introActive = false;
 				initScreen();
 			}
 		}

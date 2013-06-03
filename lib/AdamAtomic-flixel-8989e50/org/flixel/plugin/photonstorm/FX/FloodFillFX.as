@@ -31,6 +31,8 @@ package org.flixel.plugin.photonstorm.FX
 		private var dropRect:Rectangle;
 		private var dropPoint:Point;
 		private var dropY:uint;
+		private var isActive:Boolean;
+		private var functionCallback:Function;
 		
 		public function FloodFillFX() 
 		{
@@ -51,8 +53,11 @@ package org.flixel.plugin.photonstorm.FX
 		 * 
 		 * @return	An FlxSprite with the effect ready to run in it
 		 */
-		public function create(source:FlxSprite, x:int, y:int, width:uint, height:uint, direction:uint = 0, pixels:uint = 1, split:Boolean = false, backgroundColor:uint = 0x0):FlxSprite
+		public function create(source:FlxSprite, x:int, y:int, width:uint, height:uint, direction:uint = 0, pixels:uint = 1, split:Boolean = false, backgroundColor:uint = 0x0, _functionCallback:Function=null):FlxSprite
 		{
+			isActive = true;
+			functionCallback = _functionCallback;
+			
 			sprite = new FlxSprite(x, y).makeGraphic(width, height, backgroundColor);
 			
 			canvas = new BitmapData(width, height, true, backgroundColor);
@@ -122,6 +127,15 @@ package org.flixel.plugin.photonstorm.FX
 				
 				sprite.pixels = canvas;
 				sprite.dirty = true;
+			}
+			
+			else
+			{
+				if (isActive)
+				{
+					isActive = false;
+					functionCallback();
+				}
 			}
 		}
 		

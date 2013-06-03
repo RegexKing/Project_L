@@ -29,7 +29,8 @@ package  util
 		{
 			var screenXY:FlxPoint = getScreenXY();
  
-			darkness.stamp(this, screenXY.x - this.width / 2, screenXY.y - this.height / 2);
+			darkness.stamp(this, screenXY.x - this.width / 2, screenXY.y - this.height / 2); 
 		}
+
 	}
 }
