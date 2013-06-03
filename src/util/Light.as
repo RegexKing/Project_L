@@ -31,7 +31,5 @@ package  util
  
 			darkness.stamp(this, screenXY.x - this.width / 2, screenXY.y - this.height / 2);
 		}
-		
-		
 	}
 }

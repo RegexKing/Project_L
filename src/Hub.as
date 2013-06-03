@@ -28,7 +28,6 @@ package
 		{
 			npcGroup = new FlxGroup();
 			
-			
 			super.create();
 			
 			if (!GameData.isBeastManDead) 
@@ -48,11 +47,13 @@ package
 			
 			dialogueBox = new DialogueBox(player, setHealthUpgrade);
 			add(dialogueBox);
+			
 		}
 		
 		override public function update():void
 		{
 			super.update();
+			
 			
 			FlxG.overlap(player, enemiesGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
@@ -61,7 +62,11 @@ package
 			
 			if (beastMan != null && !BeastMan.angry) FlxG.collide(player, beastMan);
 			
-			if (player.y > GameData.RENDER_HEIGHT) transitionNextState();
+			if (player.y > GameData.RENDER_HEIGHT && !stateDone)
+			{
+				stateDone = true;
+				transitionNextState();
+			}
 			
 			//test key
 			if (FlxG.keys.justPressed("SPACE"))
@@ -72,6 +77,7 @@ package
 				//FlxG.mute = !FlxG.mute;
 				//trace(FlxG.mute);
 			}
+			
 		}
 		
 		private function activateDialogue(npcName:String):void

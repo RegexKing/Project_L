@@ -16,6 +16,7 @@ package
 		private var effectContainer:FlxSprite;
 		private var mainMenuButtons:FlxGroup;
 		private var titleScreen:FlxSprite;
+		private var introTimer:FlxDelay;
 	
 		public function TitleScreen() 
 		{
@@ -46,7 +47,8 @@ package
 			add(mainMenuButtons);
 			
 			flood.start(0);
-			var introTimer:FlxDelay = new FlxDelay(8500); //this is used to activate menu after flood effect
+			
+			introTimer = new FlxDelay(8500); //this is used to activate menu after flood effect
 			introTimer.callback = timerHandler;
 			introTimer.start();
 		}
@@ -59,6 +61,8 @@ package
 			{
 				introActive = false;
 				flood.stop();
+				introTimer.abort();
+				
 				FlxSpecialFX.clear();
 				initScreen();
 			}

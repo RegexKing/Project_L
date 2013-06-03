@@ -13,6 +13,8 @@ package
 	 
 	public class PlayState extends FlxState
 	{
+		protected var stateDone:Boolean;
+		
 		protected var darkness:Darkness;
 		
 		protected var player:Player;
@@ -20,6 +22,7 @@ package
 		protected var miniMap:MiniMap;
 		protected var lifeBar:LifeBar;
 		protected var diamondCounter:DiamondCounter;
+		protected var playerLight:PlayerLight;
 		protected var cameraFocus:CameraFocus;
 		
 		protected var hudGroup:FlxGroup;
@@ -53,6 +56,8 @@ package
 		
 		override public function create():void
 		{
+			stateDone = false;
+			
 			FlxG.bgColor = 0xff191200;
 			
 			if (FlxG.getPlugin(FlxSpecialFX) == null)
@@ -65,6 +70,10 @@ package
 			slidePic.makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
 			
 			slideContainer = slide.createFromFlxSprite(slidePic, CenterSlideFX.HIDE_VERTICAL, 5);
+			slidePic.scrollFactor.x = 0;
+			slidePic.scrollFactor.y = 0;
+			slideContainer.scrollFactor.x = 0;
+			slideContainer.scrollFactor.y  = 0;
 			
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
@@ -86,6 +95,7 @@ package
 			bgmInit();
 			//-----------------------------------------------------
 			
+			
 			FlxG.worldBounds = new FlxRect(0, 0, map.tileMap.width, map.tileMap.height);
 			
 			miniMap = new MiniMap(map, player);
@@ -95,7 +105,9 @@ package
 			
 			darkness = new Darkness();
 			
-			lightsGroup.add(new PlayerLight(darkness, player));
+			playerLight = new PlayerLight(darkness, player);
+			lightsGroup.add(playerLight);
+			
 			
 			hudGroup.add(darkness);
 			hudGroup.add(miniMap);
@@ -124,19 +136,19 @@ package
 			add(playerBulletsGroup);
 			add(lightsGroup);
 			add(hudGroup);
-			add(cameraFocus);
 			add(slideContainer);
+			add(cameraFocus);
 			
 			// Guns
 			normalGun = new BaseGun("normal", player);
-			normalGun.makePixelBullet(25, 16, 16, 0xffffffff, 12, 12);
+			normalGun.makePixelBullet(25, 12, 12, 0xffffffff)
 			normalGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			normalGun.setBulletSpeed(600);
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
 			bounceGun = new BounceGun("bounce", player);
-			bounceGun.makePixelBullet(25, 16, 16, 0xffffffff, 12, 12);
+			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff)
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			bounceGun.setBulletSpeed(600);
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
@@ -202,7 +214,13 @@ package
 		
 		public function transitionNextState():void
 		{
-			goNextState();
+			player.active = false;
+			
+			slideContainer = slide.createFromFlxSprite(slidePic, CenterSlideFX.REVEAL_VERTICAL, 5);
+			slide.completeCallback = goNextState;
+			add(slideContainer);
+			
+			slide.start();
 		}
 		
 		public function goNextState():void

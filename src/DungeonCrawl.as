@@ -71,11 +71,13 @@ package
 				enemiesGroup.add(enemy);
 				
 			}
+			
 		}
 		
 		override public function update():void
 		{
 			super.update();
+			
 			
 			FlxG.overlap(player, playerHazzardsGroup, hurtObject);
 			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
@@ -95,7 +97,9 @@ package
 			{
 				miniMap.toggleMiniMap();
 			}
+			
 		}
+		
 		
 		override public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
 		{
@@ -115,6 +119,7 @@ package
 			if (hazzard is Bullet) hazzard.kill();
 		}
 		
+		
 		override public function stageInit():void
 		{
 			map = new DungeonMap();
@@ -133,6 +138,7 @@ package
 
 		}
 		
+		
 		override public function goNextState():void
 		{
 			GameData.playerHealth = lifeBar.currentValue;
@@ -145,6 +151,7 @@ package
 			(item as Item).pickup();
 			item.kill();
 		}
+		
 		
 	}
 
