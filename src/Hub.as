@@ -46,7 +46,7 @@ package
 			girl.x = GameData.RENDER_WIDTH/2 - girl.width/2;
 			girl.y = Map.TILE_SIZE;
 			
-			dialogueBox = new DialogueBox(player, setHealthUpgrade);
+			dialogueBox = new DialogueBox(player, lifeBar, setFireRate, diamondCounter);
 			add(dialogueBox);
 			
 		}
@@ -138,10 +138,6 @@ package
 			FlxG.switchState(new DungeonCrawl());
 		}
 		
-		private function setHealthUpgrade():void
-		{
-			lifeBar.increaseBarRange();
-		}
 		
 		override public function alertEnemies():void { } // erases super class alert enemies 
 		

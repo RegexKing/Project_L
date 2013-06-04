@@ -16,6 +16,8 @@ package
 		public static const RENDER_WIDTH:uint = 512;
 		public static const RENDER_HEIGHT:uint = 480;
 		
+		public static const MAX_UPGRADES:uint = 5;
+		
 		public static const HEALTH_FACTOR:Number = 1; 
 		public static const DEFENSE_FACTOR:Number = 0.1; 
 		public static const DAMAGE_FACTOR:Number = 0.6;
@@ -26,14 +28,15 @@ package
 		//Flag to check if new game
 		public static var isNewGame:Boolean; //TODO if this is false, enable the continue button
 		
+		// check if beast is dead
+		public static var isBeastManDead:Boolean = false;
+		
 		//changable
 		
 		public static var level:uint = 1;
 		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
 		public static var weapon:uint = 0;
-		
-		public static var isBeastManDead:Boolean = false;
 		
 		//player attributes
 		public static var vitalityUpgrades:uint = 0; 
@@ -67,6 +70,11 @@ package
 			damageMultiplier = 0;
 			fireRateMultiplier = 0;
 			
+			vitalityUpgrades = 0; 
+			defenseUpgrades = 0; 
+			attackUpgrades = 0; 
+			rateUpgrades = 0;
+			
 			saveData(true);
 		}
 		
@@ -88,6 +96,11 @@ package
 			saveFile.data.damageMultiplier = damageMultiplier;
 			saveFile.data.fireRateMultiplier = fireRateMultiplier;
 			
+			saveFile.data.vitalityUpgrades = vitalityUpgrades;
+			saveFile.data.defenseUpgrades = defenseUpgrades;
+			saveFile.data.attackUpgrades = attackUpgrades;
+			saveFile.data.rateUpgrades = rateUpgrades;
+			
 			saveFile.flush();
 		}
 		
@@ -104,6 +117,11 @@ package
 			defenseMultiplier = saveFile.data.defenseMultiplier;
 			damageMultiplier = saveFile.data.damageMultiplier;
 			fireRateMultiplier = saveFile.data.fireRateMultiplier;
+			
+			vitalityUpgrades = saveFile.data.vitalityUpgrades
+			defenseUpgrades = saveFile.data.defenseUpgrades
+			attackUpgrades = saveFile.data.attackUpgrades
+			rateUpgrades = saveFile.data.rateUpgrades
 		}
 		
 		public static function checkNewGame():Boolean

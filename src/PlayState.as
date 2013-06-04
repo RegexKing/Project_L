@@ -58,6 +58,8 @@ package
 		
 		override public function create():void
 		{
+			FlxG.log(GameData.playerHealth);
+			
 			stateDone = false;
 			
 			FlxG.bgColor = 0xff191200;
@@ -153,6 +155,8 @@ package
 			
 			playerBulletsGroup.add(normalGun.group);
 			playerBulletsGroup.add(bounceGun.group);
+			//
+			
 			
 			slide = FlxSpecialFX.centerSlide();
 			slidePic = new FlxSprite();
@@ -196,12 +200,10 @@ package
 		
 		}
 		
-		public function controlGun():void
+		protected function setFireRate():void
 		{
-			if (player.alive && player.active)
-			{
-				fireGun();
-			}
+			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
+			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
 		}
 		
 		protected function fireGun():void
@@ -223,6 +225,14 @@ package
 							throw new Error("Weapon id number is out acceptable range");
 							break;
 				}
+			}
+		}
+		
+		public function controlGun():void
+		{
+			if (player.alive && player.active)
+			{
+				fireGun();
 			}
 		}
 		

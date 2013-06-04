@@ -4,6 +4,8 @@ package dialogue
 	 * ...
 	 * @author Frank Fazio
 	 */
+	import hud.DiamondCounter;
+	import hud.LifeBar;
 	import units.BeastMan;
 	 
 	public class DialogueRegistry 
@@ -45,12 +47,12 @@ package dialogue
 		{
 		}
 		
-		public static function generateConversation(_npcName:String, _advanceAfterButton:Function, _setHealthUpgrade:Function):Array
+		public static function generateConversation(_npcName:String, _advanceAfterButton:Function, _lifeBar:LifeBar, _setFireRate:Function, _diamondCounter:DiamondCounter):Array
 		{
 			switch(_npcName)
 			{
 				case GIRL:
-					return generateGirlConversation(_advanceAfterButton, _setHealthUpgrade);
+					return generateGirlConversation(_advanceAfterButton, _lifeBar, _setFireRate, _diamondCounter);
 					break;
 				case BEAST:
 					return generateBeastConversation(_advanceAfterButton);
@@ -61,7 +63,7 @@ package dialogue
 			}
 		}
 		
-		public static function generateGirlConversation(_advanceAfterButton:Function, _setHealthUpgrade:Function):Array
+		public static function generateGirlConversation(_advanceAfterButton:Function, _lifeBar:LifeBar, _setFireRate:Function, _diamondCounter:DiamondCounter):Array
 		{
 			var dialogueSet:Array = new Array();
 			
@@ -87,7 +89,7 @@ package dialogue
 			else
 			{
 				var intro:Dialogue = new Dialogue();
-				var upgrade:Dialogue = new Dialogue(_advanceAfterButton, _setHealthUpgrade);
+				var upgrade:Dialogue = new Dialogue(_advanceAfterButton, _lifeBar, _setFireRate, _diamondCounter);
 				var outro:Dialogue = new Dialogue();
 				
 				intro.setMessage(GIRL, girl_intro1);

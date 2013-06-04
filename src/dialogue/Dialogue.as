@@ -7,6 +7,7 @@ package dialogue
 	
 	import org.flixel.*; 
 	import org.flixel.plugin.photonstorm.FlxButtonPlus;
+	import hud.*;
 	 
 	public class Dialogue
 	{
@@ -16,12 +17,16 @@ package dialogue
 		public var isClickable:Boolean;
 		public var characterName:String;
 		protected var advanceConversation:Function;
-		protected var setHealthUpgrade:Function;
+		protected var lifeBar:LifeBar;
+		protected var setFireRate:Function;
+		protected var diamondCounter:DiamondCounter;
 		
-		public function Dialogue(_advanceConversation:Function = null, _setHealthUpgrade:Function=null) 
+		public function Dialogue(_advanceConversation:Function = null, _lifeBar:LifeBar=null, _setFireRate:Function=null, _diamondCounter:DiamondCounter=null) 
 		{
 			advanceConversation = _advanceConversation;
-			setHealthUpgrade = _setHealthUpgrade;
+			lifeBar = _lifeBar;
+			setFireRate = _setFireRate;
+			diamondCounter = _diamondCounter;
 		}
 		
 		public function setMessage(_characterName:String, _message:String):void
@@ -81,7 +86,7 @@ package dialogue
 			// make flx group usable
 			buttonsGroup.revive();
 			
-			var upgrade:Upgrade = new Upgrade(advanceConversation, setHealthUpgrade);
+			var upgrade:Upgrade = new Upgrade(advanceConversation, lifeBar, setFireRate, diamondCounter);
 			buttonsGroup.add(upgrade);
 		}
 		

@@ -47,7 +47,7 @@ package
 				}
 			}
 			
-			for (var j:int = 1; j < 31; j++)
+			for (var j:int = 1; j < 21; j++)
 			{
 				var enemy:Enemy;
 				

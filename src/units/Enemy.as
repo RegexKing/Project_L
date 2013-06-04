@@ -148,7 +148,7 @@ package  units
 			FlxG.play(AssetsRegistry.enemyDieMP3);
 		}
 		
-		
+		/*
 		override public function draw():void
 		{
 			super.draw();
@@ -158,6 +158,7 @@ package  units
 				this.path.drawDebug();
 			}
 		}
+		*/
 		
 	}
 }

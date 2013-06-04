@@ -1,5 +1,7 @@
 package dialogue 
 {
+	import hud.DiamondCounter;
+	import hud.LifeBar;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxDelay;
 	import org.flixel.plugin.photonstorm.FlxGradient;
@@ -20,12 +22,17 @@ package dialogue
 		protected var counter:int = 0;
 		
 		protected var player:Player;
-		protected var setHealthUpgrade:Function;
+		protected var lifeBar:LifeBar;
+		protected var setFireRate:Function;
+		protected var diamondCounter:DiamondCounter;
 		
-		public function DialogueBox(_player:Player, _setHealthUpgrade:Function) 
+		public function DialogueBox(_player:Player, _lifeBar:LifeBar, _setFireRate:Function, _diamondCounter:DiamondCounter) 
 		{
 			player = _player;
-			setHealthUpgrade = _setHealthUpgrade;
+			
+			lifeBar = _lifeBar;
+			setFireRate = _setFireRate;
+			diamondCounter = _diamondCounter;
 			
 			background = FlxGradient.createGradientFlxSprite(468, 136, [0xff0066FF, 0xff000066], 10);
 			//background.alpha = 0.5;
@@ -97,7 +104,7 @@ package dialogue
 			changeCharPortrait(_npcName);
 			toggle();
 			
-			dialogueSet = DialogueRegistry.generateConversation(_npcName, advanceAfterButton, setHealthUpgrade);
+			dialogueSet = DialogueRegistry.generateConversation(_npcName, advanceAfterButton, lifeBar, setFireRate, diamondCounter);
 			
 			textField.text = dialogueSet[counter].message;
 			changeCharPortrait(dialogueSet[counter].characterName);
