@@ -25,7 +25,7 @@ package maps
 		public function randomRoom():FlxPoint {return null}
 		public function randomAllRooms():FlxPoint {return null}
 		public function randomCorridor():FlxPoint { return null}
-		public function randomLastRoom():FlxPoint {return null}
+		public function randomLastRoom():FlxPoint { return null }
 		
 	}
 

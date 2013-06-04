@@ -7,6 +7,7 @@ package maps
 	 */
 	
 	 
+	 import org.flixel.FlxPoint;
 	 import org.flixel.FlxRect;
 	 import org.flixel.plugin.photonstorm.FlxMath;
 	 import org.flixel.plugin.photonstorm.FlxVelocity;
@@ -21,6 +22,7 @@ package maps
 		protected var firstRoomCoords:Array; // array containing coordinates of first room
 		protected var allRooms:Array; //array containing all room coords
 		protected var lastRoomCoords:Array; //array of last room points
+		protected var diamondRooms:Array; // array of all rooms between player and treasure
 		
 		private var roomObjs:Array; // helps figure out farthest room
 		private var firstRoomRect:FlxRect; // rectangle containing points of first room
@@ -48,6 +50,7 @@ package maps
 			corridors = new Array();			
 			prevDoor = new Array();
 			firstRoomCoords = new Array();
+			diamondRooms = new Array();
 			roomObjs = new Array();
 			
 			// Generate the map
@@ -75,6 +78,7 @@ package maps
 			// Get a random amount of rooms (up to the top limit)
 			// Ceil is used for rounding here, to avoid getting 0 rooms
 			var totalRooms:int = FlxMath.rand(MIN_ROOMS, MAX_ROOMS);
+			trace("Total Rooms " + totalRooms);
 			
 			// Create each room
 			for (var i:int = 0; i < totalRooms; i++) {
@@ -359,6 +363,20 @@ package maps
 			return lastRoomCoords[index];
 		}
 		
+		public function get diamondCoords():Array
+		{
+			var diamondCoords:Array = new Array();
+			
+			for (var i:int = 0; i < GameData.DIAMONDS_PER_LEVEL; i++)
+			{
+				var index:int = Math.floor(Math.random() * diamondRooms[i].length);
+				
+				diamondCoords.push(diamondRooms[i][index]);
+			}
+			
+			return diamondCoords;
+		}
+		
 		
 		/**
 		 * Checks to see if coordinate is on the border of dungeon
@@ -381,13 +399,19 @@ package maps
 					
 				if (tempDistance >= farthestDistance)
 				{
+					if (i != 0) diamondRooms.push(tempRoomObj.coordsList);
+					
 					tempRoomObj = roomObjs[i];
 					farthestDistance = tempDistance;
+				}
+				
+				else
+				{
+					diamondRooms.push(roomObjs[i].coordsList);
 				}
 			}
 			
 			return tempRoomObj.coordsList;
 		}
 	}
-
 }

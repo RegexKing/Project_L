@@ -56,6 +56,7 @@ package  maps
 			player.y = playerStart.y;
 			
 			generateContent();
+			spawnDiamonds();
 			
 		}
 		
@@ -87,22 +88,6 @@ package  maps
 				
 			}
 			
-			//save
-			var diamondEmitter:DiamondEmitter = new DiamondEmitter(diamondCounter);
-			itemsGroup.add(diamondEmitter);
-			
-			for (var k:int = 0; k < GameData.DIAMONDS_PER_LEVEL; k++)
-			{
-				var diamondCarrier:Enemy = enemiesGroup.getRandom() as Enemy;
-				
-				while (diamondCarrier.itemEmitter != null)
-				{
-					diamondCarrier = enemiesGroup.getRandom() as Enemy;
-				}
-				
-				diamondCarrier.setItemEmitter(diamondEmitter);
-			}
-			
 				//--testing area--//
 			/*
 			var itemEmitter:FlxEmitter = new FlxEmitter(0, 0, 300);
@@ -127,6 +112,30 @@ package  maps
 		}
 		
 		
+		private function spawnDiamonds():void
+		{
+			var diamondCoords:Array = dungeonGen.diamondCoords;
+			
+			for (var i:int = 0; i < diamondCoords.length; i++)
+			{
+				var diamond:DiamondItem = new DiamondItem(diamondCounter);
+				itemsGroup.add(diamond);
+				
+				
+				diamond.x = diamondCoords[i][0]* TILE_SIZE;
+				diamond.y = diamondCoords[i][1] * TILE_SIZE;
+				
+				FlxG.log(diamond.x + ", " + diamond.y);
+			}
+		}
+		
+		override public function update():void
+		{
+			super.update();
+			if (FlxG.keys.C)
+			FlxG.log(Math.round(player.x) + ", " + Math.round(player.y));
+			
+		}
 		
 		override public function randomFirstRoom():FlxPoint
 		{
