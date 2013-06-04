@@ -14,7 +14,8 @@ package
 	 
 	public class PlayState extends FlxState
 	{
-		protected var stateDone:Boolean;
+		protected var stateDone:Boolean = false;
+		
 		protected var pauseMenu:PauseMenu;
 		
 		protected var darkness:Darkness;
@@ -58,17 +59,12 @@ package
 		
 		override public function create():void
 		{
-			FlxG.log(GameData.playerHealth);
-			
-			stateDone = false;
-			
 			FlxG.bgColor = 0xff191200;
 			
 			if (FlxG.getPlugin(FlxSpecialFX) == null)
 			{
 				FlxG.addPlugin(new FlxSpecialFX);
 			}
-			
 			
 			hudGroup = new FlxGroup();
 			collideableGroup = new FlxGroup();
@@ -89,6 +85,10 @@ package
 			cameraFocus = new CameraFocus(player);
 			FlxG.camera.target = cameraFocus;
 			
+			diamondCounter = new DiamondCounter();
+			lifeBar = new LifeBar();
+			lifeBar.setCallbacks(endGame, null);
+			
 			// Need to be overwritten
 			stageInit();
 			bgmInit();
@@ -98,14 +98,10 @@ package
 			FlxG.worldBounds = new FlxRect(0, 0, map.tileMap.width, map.tileMap.height);
 			
 			miniMap = new MiniMap(map, player);
-			diamondCounter = new DiamondCounter();
-			lifeBar = new LifeBar();
-			lifeBar.setCallbacks(endGame, null);
 			
 			darkness = new Darkness();
 			
 			lightsGroup.add(new PlayerLight(darkness, player));
-			
 			
 			hudGroup.add(darkness);
 			hudGroup.add(miniMap);
@@ -115,8 +111,8 @@ package
 			
 			collideableGroup.add(gibsGroup);
 			collideableGroup.add(player);
-			collideableGroup.add(playerBulletsGroup);
-			collideableGroup.add(enemyBullets);
+			//collideableGroup.add(playerBulletsGroup);
+			//collideableGroup.add(enemyBullets);
 			collideableGroup.add(itemsGroup);
 			collideableGroup.add(enemiesGroup);
 			
@@ -130,15 +126,15 @@ package
 			add(itemsGroup);
 			add(player);
 			add(enemiesGroup);
-			add(enemyBullets);
 			add(playerBulletsGroup);
+			add(enemyBullets);
 			add(lightsGroup);
 			add(hudGroup);
 			add(cameraFocus);
 			
 			// Guns
 			normalGun = new BaseGun("normal", player);
-			normalGun.makePixelBullet(25, 12, 12, 0xffffffff)
+			normalGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
 			normalGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			normalGun.setBulletSpeed(600);
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
@@ -182,6 +178,8 @@ package
 				controlGun();
 			
 				FlxG.collide(collideableGroup, map);
+				FlxG.collide(playerBulletsGroup, map, destroyBullet);
+				FlxG.collide(enemyBullets, map, destroyBullet);
 				cameraFocus.updateCamera();
 				
 				// Pause game
@@ -198,6 +196,11 @@ package
 				pauseMenu.update();	
 			}
 		
+		}
+		
+		protected function destroyBullet(b:FlxObject, m:FlxObject):void
+		{
+			b.kill();
 		}
 		
 		protected function setFireRate():void

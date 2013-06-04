@@ -22,16 +22,16 @@ package maps
 		protected var firstRoomRect:FlxRect; // rectangle containing points of first room
 		
 		// Constants, used to configure the floors
-		public static const TOTAL_ROWS:int = 80;
-		public static const TOTAL_COLS:int = 80;
+		public static const TOTAL_ROWS:int = 40;
+		public static const TOTAL_COLS:int = 40;
 		protected const WALL:int = 2;
 		protected const FLOOR:int = 1;
 		protected const MIN_ROOM_WIDTH:int = 4;
 		protected const MAX_ROOM_WIDTH:int = 12;
 		protected const MIN_ROOM_HEIGHT:int = 4;
 		protected const MAX_ROOM_HEIGHT:int = 12;
-		protected const MIN_ROOMS:int = 15;
-		protected const MAX_ROOMS:int = 30;
+		protected const MIN_ROOMS:int = 3;
+		protected const MAX_ROOMS:int = 4;
 
 		/**
 		 * Constructor

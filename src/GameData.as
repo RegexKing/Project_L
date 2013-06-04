@@ -16,6 +16,7 @@ package
 		public static const RENDER_WIDTH:uint = 512;
 		public static const RENDER_HEIGHT:uint = 480;
 		
+		public static const DIAMONDS_PER_LEVEL:uint = 3;
 		public static const MAX_UPGRADES:uint = 5;
 		
 		public static const HEALTH_FACTOR:Number = 1; 

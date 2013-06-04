@@ -27,52 +27,6 @@ package
 		{
 			super.create();
 			
-			//--testing area--//
-			var itemEmitter:FlxEmitter = new FlxEmitter(0, 0, 300);
-			itemsGroup.add(itemEmitter);
-			itemEmitter.setRotation(0, 0);
-			itemEmitter.setXSpeed(-400,400);
-			itemEmitter.setYSpeed( -400, 400);
-			
-			for (var i:int = 0; i < itemEmitter.maxSize; i++)
-			{
-				switch (int(Math.ceil(Math.random() * 2)))
-				{
-					case 1:
-						itemEmitter.add(new DiamondItem(diamondCounter));
-						break;
-					case 2:
-						itemEmitter.add(new HealthItem(lifeBar));
-						break;	
-				}
-			}
-			
-			for (var j:int = 1; j < 21; j++)
-			{
-				var enemy:Enemy;
-				
-				switch(int(Math.ceil(Math.random() * 2)))
-				{
-					case 1:
-						enemy = new PurpleEnemy(player, map, gibsGroup, itemEmitter);
-						break;
-					case 2:
-						enemy = new RangedEnemy(player, map, enemyBullets, gibsGroup, itemEmitter);
-						break;
-					default:
-						throw new Error("enemy id is ouside acceptable range");
-						break;
-				}
-				
-				var randomPoint:FlxPoint = map.randomRoom();
-				
-				enemy.x = randomPoint.x
-				enemy.y = randomPoint.y;
-				
-				enemiesGroup.add(enemy);
-				
-			}
-			
 		}
 		
 		override public function update():void
@@ -123,12 +77,7 @@ package
 		
 		override public function stageInit():void
 		{
-			map = new DungeonMap();
-			
-			var start:FlxPoint = map.randomFirstRoom();
-			
-			player.x = start.x;
-			player.y = start.y;
+			map = new DungeonMap(player, enemiesGroup, enemyBullets, itemsGroup, gibsGroup, lightsGroup, lifeBar, diamondCounter, transitionNextState);
 		}
 		
 		override public function bgmInit():void

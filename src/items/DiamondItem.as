@@ -19,6 +19,7 @@ package  items
 			diamondCounter = _diamondCounter;
 			
 			super();
+			expireTime = 0;
 			
 			makeGraphic(32, 32, 0xffFF0000);
 		}

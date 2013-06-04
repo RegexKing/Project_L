@@ -229,7 +229,7 @@ package org.flixel.plugin.photonstorm.BaseTypes
 				kill();
 			}
 			
-			if (touching || !this.onScreen()) kill();
+			if (!this.onScreen()) kill();
 			
 		}
 		

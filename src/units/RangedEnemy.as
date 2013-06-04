@@ -14,9 +14,9 @@ package  units
 		private var enemyBullets:FlxGroup;
 		private var weapon:FlxWeapon;
 		
-		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _gibsGroup:FlxGroup, _itemEmitter:FlxEmitter) 
+		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _gibsGroup:FlxGroup) 
 		{
-			super(_player, _map, _itemEmitter);
+			super(_player, _map);
 			
 			enemyBullets = _enemyBullets;
 			

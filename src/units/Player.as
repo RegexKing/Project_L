@@ -45,15 +45,6 @@ package  units
 		{	
 		}
 		
-		/*
-		public function set fireRateMultiplier(_fireRateMultiplier:Number):void //To use at home
-		{
-			//TODO: update the firerates of all weapons
-			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * _fireRateMultiplier));
-			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * _fireRateMultiplier));
-		}
-		*/
-		
 		override public function hurt(_damageNumber:Number):void
 		{
 			this.flicker(1);

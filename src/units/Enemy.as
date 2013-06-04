@@ -1,5 +1,6 @@
 package  units
 {
+	import items.DiamondEmitter;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
 	
@@ -20,17 +21,16 @@ package  units
 		protected var myPath:FlxPath;
 		protected var patrolPath:FlxPath;
 		protected var gibs:FlxEmitter;
-		protected var itemEmitter:FlxEmitter
+		public var itemEmitter:FlxEmitter
 		private var enemyCoords:FlxPoint;
 		private var playerCoords:FlxPoint;
 		
-		public function Enemy(_player:Player, _map:Map=null, _itemEmitter:FlxEmitter=null) 
+		public function Enemy(_player:Player, _map:Map=null) 
 		{
 			super();
 			
 			player = _player;
 			map = _map;
-			itemEmitter = _itemEmitter;
 			
 			elasticity = 1;
 			
@@ -128,6 +128,11 @@ package  units
 			FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}
 		
+		public function setItemEmitter(_itemEmitter:FlxEmitter = null):void
+		{
+			itemEmitter = _itemEmitter;
+		}
+		
 		override public function kill():void
 		{
 			super.kill();
@@ -141,7 +146,9 @@ package  units
 			if(itemEmitter != null)
 			{
 				itemEmitter.at(this);
-				itemEmitter.start(true, 15, 0, Math.ceil(Math.random() * 3));
+				
+				if (itemEmitter is DiamondEmitter) itemEmitter.start(true, 0, 0, 1);
+				else itemEmitter.start(true, 15, 0, 1);
 			}
 			
 			//temp universal sound effect
