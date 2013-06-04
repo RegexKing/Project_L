@@ -9,6 +9,7 @@ package maps
 	 
 	 import org.flixel.FlxRect;
 	 import org.flixel.plugin.photonstorm.FlxMath;
+	 import org.flixel.plugin.photonstorm.FlxVelocity;
 	 
 	public class DungeonGenerator 
 	{
@@ -19,7 +20,10 @@ package maps
 		protected var prevDoor:Array; // Array of the format (x, y). Contains the coordinates of the previous room's door
 		protected var firstRoomCoords:Array; // array containing coordinates of first room
 		protected var allRooms:Array; //array containing all room coords
-		protected var firstRoomRect:FlxRect; // rectangle containing points of first room
+		protected var lastRoomCoords:Array; //array of last room points
+		
+		private var roomObjs:Array; // helps figure out farthest room
+		private var firstRoomRect:FlxRect; // rectangle containing points of first room
 		
 		// Constants, used to configure the floors
 		public static const TOTAL_ROWS:int = 40;
@@ -30,8 +34,8 @@ package maps
 		protected const MAX_ROOM_WIDTH:int = 12;
 		protected const MIN_ROOM_HEIGHT:int = 4;
 		protected const MAX_ROOM_HEIGHT:int = 12;
-		protected const MIN_ROOMS:int = 3;
-		protected const MAX_ROOMS:int = 4;
+		protected const MIN_ROOMS:int = 5;
+		protected const MAX_ROOMS:int = 12;
 
 		/**
 		 * Constructor
@@ -44,16 +48,19 @@ package maps
 			corridors = new Array();			
 			prevDoor = new Array();
 			firstRoomCoords = new Array();
+			roomObjs = new Array();
 			
 			// Generate the map
 			generateMap();
 			sealMap();
 			
 			allRooms = firstRoomCoords.concat(rooms);
+			lastRoomCoords = findLastRoomCoords();
 			
 			// clear unneeded vars
 			prevDoor = null;
 			firstRoomRect = null;
+			roomObjs = null;
 		}
 				
 		/**
@@ -155,6 +162,13 @@ package maps
 		 * @param	height integer. The room's height
 		 */
 		protected function fillRect(startX:int, startY:int, width:int, height:int, firstRoom:Boolean):void {
+			
+			if (!firstRoom)
+			{
+				var roomObj:Room = new Room();
+				roomObj.rect = new FlxRect(startX, startY, width, height);
+			}
+			
 			for (var x:int = 0; x < width; x++) {
 				for (var y:int = 0; y < height; y++) {
 					
@@ -165,11 +179,20 @@ package maps
 					// Store the coordinates in the rooms array, to keep track of all rooms' floors	
 					if (isCoordinateValid(index))
 					{	
-						if (firstRoom) storeFirstRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // stores first room cooords
-						else storeRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // stores rest room coords
+						if (firstRoom) storeFirstRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));// stores first room cooords
+						
+						// stores rest room coords
+						else
+						{
+							storeRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));
+							
+							roomObj.coordsList.push([index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)]);
+						}
 					}
 				}
-			}			
+			}	
+			
+			if (!firstRoom) roomObjs.push(roomObj);
 		}
 		
 		/**
@@ -328,7 +351,13 @@ package maps
 		public function getRandomCorridorTile():Array {
 			var index:int = Math.floor(Math.random() * corridors.length);
 			return corridors[index];
-		}	
+		}
+		
+		public function getRandomLastRoomTile():Array
+		{
+			var index:int = Math.floor(Math.random() * lastRoomCoords.length);
+			return lastRoomCoords[index];
+		}
 		
 		
 		/**
@@ -338,6 +367,26 @@ package maps
 		{
 			if (Math.floor(i / TOTAL_COLS) == 0 || Math.ceil(i / TOTAL_COLS) == TOTAL_COLS ||  i % TOTAL_ROWS == 0 || i % TOTAL_ROWS == TOTAL_ROWS - 1) return false;
 			else return true;
+		}
+		
+		private function findLastRoomCoords():Array
+		{
+			var tempRoomObj:Room;
+			var farthestDistance:int = 0;
+			
+			for (var i:int = 0; i < roomObjs.length; i++)
+			{
+				
+				var tempDistance:int = FlxVelocity.distanceBetweenRects(firstRoomRect, roomObjs[i].rect);
+					
+				if (tempDistance >= farthestDistance)
+				{
+					tempRoomObj = roomObjs[i];
+					farthestDistance = tempDistance;
+				}
+			}
+			
+			return tempRoomObj.coordsList;
 		}
 	}
 

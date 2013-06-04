@@ -196,6 +196,14 @@ package org.flixel.plugin.photonstorm
 			return int(FlxMath.vectorLength(dx, dy));
 		}
 		
+		public static function distanceBetweenRects(a:FlxRect, target:FlxRect):int
+		{
+			var dx:Number = (a.x) - (target.x);
+			var dy:Number = (a.y) - (target.y);
+			
+			return int(FlxMath.vectorLength(dx, dy));
+		}
+		
 		/**
 		 * Find the distance (in pixels, rounded) from an FlxSprite to the given FlxPoint, taking the source origin into account
 		 * 

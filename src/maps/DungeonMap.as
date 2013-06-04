@@ -46,13 +46,14 @@ package  maps
 			var treasure:Treasure = new Treasure(transitionNextState);
 			itemsGroup.add(treasure);
 			
+			var treasureCoords:FlxPoint = randomLastRoom();
+			treasure.x = treasureCoords.x;
+			treasure.y = treasureCoords.y;
+			
 			var playerStart:FlxPoint = randomFirstRoom();
 			
 			player.x = playerStart.x;
 			player.y = playerStart.y;
-			
-			treasure.x = player.x+ 50;
-			treasure.y = player.y;
 			
 			generateContent();
 			
@@ -60,7 +61,7 @@ package  maps
 		
 		public function generateContent():void
 		{
-			for (var j:int = 1; j < 21; j++)
+			for (var j:int = 1; j < 5; j++)
 			{
 				var enemy:Enemy;
 				
@@ -84,8 +85,6 @@ package  maps
 				
 				enemiesGroup.add(enemy);
 				
-				//enemiesGroup.getRandom(
-				
 			}
 			
 			//save
@@ -102,7 +101,6 @@ package  maps
 				}
 				
 				diamondCarrier.setItemEmitter(diamondEmitter);
-				FlxG.log("diamondAdded");
 			}
 			
 				//--testing area--//
@@ -156,6 +154,13 @@ package  maps
 		{
 			
 			var arrayCoords:Array = dungeonGen.getRandomCorridorTile();
+			
+			return new FlxPoint(arrayCoords[0] * TILE_SIZE, arrayCoords[1] * TILE_SIZE);
+		}
+		
+		override public function randomLastRoom():FlxPoint
+		{
+			var arrayCoords:Array = dungeonGen.getRandomLastRoomTile();
 			
 			return new FlxPoint(arrayCoords[0] * TILE_SIZE, arrayCoords[1] * TILE_SIZE);
 		}

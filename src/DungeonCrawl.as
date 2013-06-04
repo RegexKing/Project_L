@@ -26,7 +26,6 @@ package
 		override public function create():void
 		{
 			super.create();
-			
 		}
 		
 		override public function update():void

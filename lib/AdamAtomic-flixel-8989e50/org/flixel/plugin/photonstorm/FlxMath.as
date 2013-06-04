@@ -161,6 +161,13 @@ package org.flixel.plugin.photonstorm
 			return y < 0 ? -angle : angle;
 		}
 		
+		public static function DistanceTwoPoints(x1:Number, x2:Number,  y1:Number, y2:Number):Number 
+		{
+			var dx:Number = x1-x2;
+			var dy:Number = y1-y2;
+			return Math.sqrt(dx * dx + dy * dy);
+		}
+		
 		/**
 		 * Generate a sine and cosine table simultaneously and extremely quickly. Based on research by Franky of scene.at
 		 * <p>
