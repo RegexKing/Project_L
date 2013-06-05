@@ -16,15 +16,15 @@ package
 		public static const RENDER_WIDTH:uint = 512;
 		public static const RENDER_HEIGHT:uint = 480;
 		
-		public static const DIAMONDS_PER_LEVEL:uint = 3;
-		public static const MAX_UPGRADES:uint = 5;
+		public static const DIAMONDS_PER_LEVEL:uint = 4;
+		public static const MAX_UPGRADES:uint = 8;
 		
 		public static const HEALTH_FACTOR:Number = 1; 
 		public static const DEFENSE_FACTOR:Number = 0.1; 
 		public static const DAMAGE_FACTOR:Number = 0.6;
 		public static const FIRERATE_FACTOR:Number = 0.1;
 		
-		public static const LAST_LEVEL:uint = 21;
+		public static const LAST_LEVEL:uint = 37;
 		
 		//Flag to check if new game
 		public static var isNewGame:Boolean; //TODO if this is false, enable the continue button

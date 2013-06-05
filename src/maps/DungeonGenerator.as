@@ -36,7 +36,7 @@ package maps
 		protected const MAX_ROOM_WIDTH:int = 12;
 		protected const MIN_ROOM_HEIGHT:int = 4;
 		protected const MAX_ROOM_HEIGHT:int = 12;
-		protected const MIN_ROOMS:int = 5;
+		protected const MIN_ROOMS:int = 6;
 		protected const MAX_ROOMS:int = 12;
 
 		/**

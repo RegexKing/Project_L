@@ -61,21 +61,21 @@ package dialogue
 			rate.setMouseOutCallback(updateHeader);
 			
 			// create the upgrade bars
-			vitBar = new FlxBar(300, 299, FlxBar.FILL_LEFT_TO_RIGHT, 78, 14);
-			vitBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
-			vitBar.setRange(0, 5);
+			vitBar = new FlxBar(300, 299, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
+			vitBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
+			vitBar.setRange(0, GameData.MAX_UPGRADES);
 			
-			attackBar = new FlxBar(300, 329, FlxBar.FILL_LEFT_TO_RIGHT, 78, 14);
-			attackBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
-			attackBar.setRange (0, 5);
+			attackBar = new FlxBar(300, 329, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
+			attackBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
+			attackBar.setRange (0, GameData.MAX_UPGRADES);
 			
-			defenseBar = new FlxBar(300, 359, FlxBar.FILL_LEFT_TO_RIGHT, 78, 14);
-			defenseBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
-			defenseBar.setRange (0, 5);
+			defenseBar = new FlxBar(300, 359, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
+			defenseBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
+			defenseBar.setRange (0, GameData.MAX_UPGRADES);
 			
-			rateBar = new FlxBar(300, 389, FlxBar.FILL_LEFT_TO_RIGHT, 78, 14);
-			rateBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
-			rateBar.setRange (0, 5);
+			rateBar = new FlxBar(300, 389, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
+			rateBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
+			rateBar.setRange (0, GameData.MAX_UPGRADES);
 			
 			vitBar.currentValue = GameData.vitalityUpgrades;
 			attackBar.currentValue = GameData.attackUpgrades;
@@ -239,30 +239,7 @@ package dialogue
 		
 		private function findCost(_upgradeQuantity:uint):uint
 		{
-			switch(_upgradeQuantity)
-			{
-				case 0:
-					return 1;
-					break;
-				case 1:
-					return 2;
-					break;
-				case 2:
-					return 3;
-					break;
-				case 3:
-					return 4;
-					break;
-				case 4:
-					return 5;
-					break;	
-				case 5:
-					return 6;
-					break;
-				default:
-					throw new Error("upgrade quantity is not in valid range");
-					break;
-			}
+			return _upgradeQuantity+1;
 		}
 		
 		private function initDisplayCost(_upgradeQuantity:uint):String
