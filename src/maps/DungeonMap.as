@@ -79,7 +79,7 @@ package  maps
 						spriteAddons.add((enemy as Ghost).trail);
 						break;
 					case 2:
-						enemy = new RangedEnemy(player, this, enemyBullets, gibs);
+						enemy = new Skeleton(player, this, gibs);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
