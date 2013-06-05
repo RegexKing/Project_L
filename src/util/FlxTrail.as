@@ -10,26 +10,6 @@ package util
 	 * 
 	 * @author Gama11
 	 */
-	
-	/* Example
-	// Assigning a trail to a sprite called "ball". The trailimage is "ballImage", the number of sprites is "5", and the trails position will update every 2 frames. 
-	// The first trailsprite was an alpha value of "0.6", "0.02" is sutracted from that alpha value for each subsequent sprite
-	var ball:FlxSprite = new FlxSprite(0, 0, ballImage);
-	var trail:FlxTrail = new FlxTrail(ball, ballImage, 5, 2, 0.6, 0.02);
-	add(trail);
-	add(ball);
-
-	// Sprite needs to move for you to see the trail
-	ball.velocity.y = 300;
-	ball.velocity.x = 300;
-
-	// Change the image of all trailsprites
-	trail.changeGraphic(newImage);
-
-	// Increase the length of the trail by 5 sprites
-	trail.increaseLength(5); 
-	*/
-	 
 	public class FlxTrail extends FlxGroup 
 	{		
 		/**
@@ -172,6 +152,8 @@ package util
 				transp -= difference;
 				
 				if (trailSprite.alpha <= 0) trailSprite.kill();
+				
+				add(trailSprite);
 			}	
 		}
 		

@@ -48,7 +48,6 @@ package
 			
 			dialogueBox = new DialogueBox(player, lifeBar, setFireRate, diamondCounter);
 			add(dialogueBox);
-			
 		}
 		
 		override public function update():void

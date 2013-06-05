@@ -38,6 +38,8 @@ package
 		protected var trapsGroup:FlxGroup;
 		protected var enemyBullets:FlxGroup;
 		protected var gibsGroup:FlxGroup;
+		protected var collideableEnemies:FlxGroup;
+		protected var spriteAddons:FlxGroup;
 		
 		protected var slide:CenterSlideFX;
 		protected var slidePic:FlxSprite;
@@ -72,10 +74,12 @@ package
 			playerHazzardsGroup = new FlxGroup();
 			itemsGroup = new FlxGroup();
 			enemiesGroup = new FlxGroup();
+			collideableEnemies= new FlxGroup();
 			trapsGroup = new FlxGroup();
 			enemyBullets = new FlxGroup();
 			gibsGroup = new FlxGroup();
 			lightsGroup = new FlxGroup();
+			spriteAddons = new FlxGroup();
 			
 			pauseMenu = new PauseMenu();
 			pauseMenu.setAll("scrollFactor", new FlxPoint());
@@ -114,7 +118,7 @@ package
 			//collideableGroup.add(playerBulletsGroup);
 			//collideableGroup.add(enemyBullets);
 			collideableGroup.add(itemsGroup);
-			collideableGroup.add(enemiesGroup);
+			collideableGroup.add(collideableEnemies);
 			
 			playerHazzardsGroup.add(enemiesGroup);
 			playerHazzardsGroup.add(enemyBullets);
@@ -126,6 +130,7 @@ package
 			add(itemsGroup);
 			add(player);
 			add(enemiesGroup);
+			add(spriteAddons);
 			add(playerBulletsGroup);
 			add(enemyBullets);
 			add(lightsGroup);

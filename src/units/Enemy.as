@@ -22,8 +22,8 @@ package  units
 		protected var patrolPath:FlxPath;
 		protected var gibs:FlxEmitter;
 		public var itemEmitter:FlxEmitter
-		private var enemyCoords:FlxPoint;
-		private var playerCoords:FlxPoint;
+		protected var enemyCoords:FlxPoint;
+		protected var playerCoords:FlxPoint;
 		
 		public function Enemy(_player:Player, _map:Map=null) 
 		{
@@ -96,7 +96,7 @@ package  units
 			return  (FlxVelocity.distanceBetween(this, player) < (GameData.RENDER_HEIGHT/2 )) ? true : false;
 		}
 		
-		private function findRandEmptyTile():FlxPoint
+		protected function findRandEmptyTile():FlxPoint
 		{
 			var randEmptyTile:FlxPoint = map.randomAllRooms();
 			
@@ -104,12 +104,12 @@ package  units
 			
 		}
 		
-		private function calculatePath(start:FlxPoint, end:FlxPoint):FlxPath
+		protected function calculatePath(start:FlxPoint, end:FlxPoint):FlxPath
 		{
 			return map.tileMap.findPath(start, end)
 		}
 		
-		private function destroyPath():void
+		protected function destroyPath():void
 		{
 			this.stopFollowingPath(true);
             this.velocity.x = this.velocity.y = 0;

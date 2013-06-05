@@ -5,6 +5,7 @@ package  maps
 	import units.*;
 	 import hud.*;
 	 import items.*;
+	 import util.FlxTrail;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -22,9 +23,11 @@ package  maps
 		private var lights:FlxGroup;
 		private var lifeBar:LifeBar;
 		private var diamondCounter:DiamondCounter;
+		private var collideableEnemies:FlxGroup;
+		private var spriteAddons:FlxGroup;
 		
-		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
-			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
+		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
+			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _spriteAddons:FlxGroup, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super(addToStage, onAddSpritesCallback);
 			
@@ -36,6 +39,8 @@ package  maps
 			lights = _lights;
 			lifeBar = _lifeBar;
 			diamondCounter = _diamondCounter;
+			collideableEnemies = _collideableEnemies;
+			spriteAddons = _spriteAddons;
 			
 			dungeonGen = new DungeonGenerator();
 			
@@ -69,10 +74,14 @@ package  maps
 				switch(int(Math.ceil(Math.random() * 2)))
 				{
 					case 1:
-						enemy = new PurpleEnemy(player, this, gibs);
+						enemy = new Ghost(player, this, gibs);
+						enemiesGroup.add(enemy);
+						spriteAddons.add((enemy as Ghost).trail);
 						break;
 					case 2:
 						enemy = new RangedEnemy(player, this, enemyBullets, gibs);
+						enemiesGroup.add(enemy);
+						collideableEnemies.add(enemy);
 						break;
 					default:
 						throw new Error("enemy id is ouside acceptable range");
@@ -84,7 +93,6 @@ package  maps
 				enemy.x = randomPoint.x
 				enemy.y = randomPoint.y;
 				
-				enemiesGroup.add(enemy);
 				
 			}
 			

@@ -78,7 +78,6 @@ package maps
 			// Get a random amount of rooms (up to the top limit)
 			// Ceil is used for rounding here, to avoid getting 0 rooms
 			var totalRooms:int = FlxMath.rand(MIN_ROOMS, MAX_ROOMS);
-			trace("Total Rooms " + totalRooms);
 			
 			// Create each room
 			for (var i:int = 0; i < totalRooms; i++) {

@@ -15,6 +15,7 @@ package
 	 import items.*;
 	 import weapons.*;
 	 import menu.PauseMenu;
+	 import util.*;
 	 
 	public class DungeonCrawl extends PlayState
 	{
@@ -76,7 +77,7 @@ package
 		
 		override public function stageInit():void
 		{
-			map = new DungeonMap(player, enemiesGroup, enemyBullets, itemsGroup, gibsGroup, lightsGroup, lifeBar, diamondCounter, transitionNextState);
+			map = new DungeonMap(player, enemiesGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, lightsGroup, lifeBar, diamondCounter, spriteAddons, transitionNextState);
 		}
 		
 		override public function bgmInit():void
