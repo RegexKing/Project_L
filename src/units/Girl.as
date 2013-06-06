@@ -30,12 +30,8 @@ package units
 		
 		override public function update():void
 		{
-			if (GameData.level == GameData.LAST_LEVEL && !touching)
-			{
-				FlxVelocity.moveTowardsObject(this, player, 500);
-			}
 			
-			else if ((justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT)) 
+			if ((justTouched(FLOOR) || justTouched(CEILING) || justTouched(LEFT) || justTouched(RIGHT)) 
 				&& (beastMan == null || !BeastMan.angry || !beastMan.alive))
 			{
 				//function callback for dialogue box

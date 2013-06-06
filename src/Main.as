@@ -17,7 +17,7 @@ package
 		
 		public function Main():void 
 		{
-			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT,TitleScreen, 1, 60, 60, true);
+			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, Hub, 1, 60, 60, true);
 			
 			forceDebugger = true;
 		}
