@@ -67,11 +67,11 @@ package  maps
 		
 		public function generateContent():void
 		{
-			for (var j:int = 1; j < 5; j++)
+			for (var j:int = 1; j < 10; j++)
 			{
 				var enemy:Enemy;
 				
-				switch(int(Math.ceil(Math.random() * 2)))
+				switch(int(Math.ceil(Math.random() * 5)))
 				{
 					case 1:
 						enemy = new Ghost(player, this, gibs);
@@ -80,6 +80,22 @@ package  maps
 						break;
 					case 2:
 						enemy = new Skeleton(player, this, gibs);
+						enemiesGroup.add(enemy);
+						collideableEnemies.add(enemy);
+						break;
+					case 3:
+						enemy = new RangedEnemy(player, this, enemyBullets, gibs);
+						enemiesGroup.add(enemy);
+						collideableEnemies.add(enemy);
+						break;
+					case 4: 
+						enemy = new PurpleEnemy(player, this, gibs);
+						enemiesGroup.add(enemy);
+						collideableEnemies.add(enemy);
+						break;
+						
+					case 5: 
+						enemy = new SkeletonArcher(player, this, gibs, enemyBullets);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;

@@ -128,8 +128,8 @@ package
 			add(gibsGroup);
 			add(trapsGroup);
 			add(itemsGroup);
-			add(player);
 			add(enemiesGroup);
+			add(player);
 			add(spriteAddons);
 			add(playerBulletsGroup);
 			add(enemyBullets);

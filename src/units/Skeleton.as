@@ -44,10 +44,6 @@ package units
 				if (this.path != null) 
 				{
 					destroyPath();
-				
-					this.velocity.x = 0;
-					this.velocity.y = 0;
-				
 					//play death animation
 				}
 			}

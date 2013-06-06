@@ -41,6 +41,8 @@ package
 		[Embed(source = "../assets/sounds/titleScreenBGM.mp3")] public static var BGM_titleScreenMP3:Class;
 		[Embed(source = "../assets/sounds/dungeonBGM.mp3")] public static var BGM_dungeonMP3:Class;
 		[Embed(source = "../assets/sounds/hubBGM.mp3")] public static var BGM_hubMP3:Class;
+		//danosongs.com-origo-vitae
+		[Embed(source = "../assets/sounds/beastBGM.mp3")] public static var BGM_beastMP3:Class;
 		
 		//Sounds
 		[Embed(source = "../assets/sounds/shoot.mp3")] public static var shootMP3:Class;
