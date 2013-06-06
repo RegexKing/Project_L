@@ -40,6 +40,7 @@ package
 		protected var gibsGroup:FlxGroup;
 		protected var collideableEnemies:FlxGroup;
 		protected var spriteAddons:FlxGroup;
+		protected var areaHeader:FlxText;
 		
 		protected var slide:CenterSlideFX;
 		protected var slidePic:FlxSprite;
@@ -160,6 +161,7 @@ package
 			
 			
 			slide = FlxSpecialFX.centerSlide();
+			slide.completeCallback = slideComplete;
 			slidePic = new FlxSprite();
 			slidePic.makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
 			
@@ -169,7 +171,12 @@ package
 			slideContainer.scrollFactor.x = 0;
 			slideContainer.scrollFactor.y  = 0;
 			
+			areaHeader = new FlxText(GameData.RENDER_WIDTH / 2 -30, GameData.RENDER_HEIGHT / 2-10, 60);
+			areaHeader.scrollFactor.x = areaHeader.scrollFactor.y = 0;
+			areaHeader.setFormat("NES", 16, 0xffFFFFFF);
+			
 			add(slideContainer);
+			add(areaHeader);
 			
 			slide.start();
 		}
@@ -306,6 +313,13 @@ package
 					enemy.aware = true;
 				}
 			}
+		}
+		
+		protected function slideComplete():void
+		{
+			slideContainer.kill();
+			slidePic.kill();
+			areaHeader.kill();
 		}
 		
 		override public function destroy():void

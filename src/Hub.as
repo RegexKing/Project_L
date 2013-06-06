@@ -31,6 +31,8 @@ package
 			
 			super.create();
 			
+			areaHeader.text = "HUB";
+			
 			if (!GameData.isBeastManDead) 
 			{
 				beastMan = new BeastMan(player, gibsGroup, activateDialogue);

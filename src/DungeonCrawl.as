@@ -27,6 +27,9 @@ package
 		override public function create():void
 		{
 			super.create();
+			
+			if (GameData.level < 10) areaHeader.text = "0" + String(GameData.level);
+			else areaHeader.text = String(GameData.level);
 		}
 		
 		override public function update():void
