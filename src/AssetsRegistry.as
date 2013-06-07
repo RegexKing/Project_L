@@ -54,6 +54,9 @@ package
 		[Embed(source = "../assets/sounds/playerHurt.mp3")] public static var playerHurtMP3:Class;
 		[Embed(source = "../assets/sounds/enemyHurt.mp3")] public static var enemyHurtMP3:Class;
 		[Embed(source = "../assets/sounds/enemyDie.mp3")] public static var enemyDieMP3:Class;
+		[Embed(source = "../assets/sounds/treasureAlert.mp3")] public static var treasureAlertMP3:Class;
+		[Embed(source = "../assets/sounds/upgrade.mp3")] public static var upgradeMP3:Class;
+		[Embed(source = "../assets/sounds/pickupWeapon.mp3")] public static var pickupWeaponMP3:Class;
 		
 		//Fonts
 		[Embed(source="../assets/fonts/megaman.ttf", fontFamily="NES", embedAsCFF="false")] public static var fontNES:String;

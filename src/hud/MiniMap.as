@@ -96,6 +96,9 @@ package  hud
 			(map as DungeonMap).spawnTeasure();
 			
 			treasureIcon.alpha = 1;
+			
+			// play treasure song
+			FlxG.play(AssetsRegistry.treasureAlertMP3);
 		}
 	}
 

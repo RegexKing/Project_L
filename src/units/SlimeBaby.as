@@ -37,7 +37,7 @@ package units
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
-			movementDelay = new FlxDelay(1000);
+			movementDelay = new FlxDelay(700);
 			movementDelay.callback = startMovement;
 		}
 		

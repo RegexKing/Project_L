@@ -127,6 +127,8 @@ package dialogue
 				lifeBar.increaseBarRange(); //actually sets the attribute
 				GameData.playerHealth = lifeBar.currentValue;
 				
+				playUpgradeSound();
+				
 				diamondCounter.changeQuantity(-findCost(GameData.vitalityUpgrades));
 				GameData.vitalityUpgrades++;
 				
@@ -149,6 +151,8 @@ package dialogue
 				attackBar.currentValue++; //increases the upgrade bar
 				GameData.damageMultiplier += GameData.DAMAGE_FACTOR; //actually sets the attribute
 				
+				playUpgradeSound();
+				
 				diamondCounter.changeQuantity(-findCost(GameData.attackUpgrades));
 				GameData.attackUpgrades++;
 				
@@ -170,6 +174,8 @@ package dialogue
 			{
 				defenseBar.currentValue++; //increases the upgrade bar
 				GameData.defenseMultiplier += GameData.DEFENSE_FACTOR; //actually sets the attribute
+				
+				playUpgradeSound();
 				
 				diamondCounter.changeQuantity(-findCost(GameData.defenseUpgrades));
 				GameData.defenseUpgrades++;
@@ -194,6 +200,8 @@ package dialogue
 				GameData.fireRateMultiplier += GameData.FIRERATE_FACTOR; //actually sets the attribute
 				setFireRate();
 				
+				playUpgradeSound();
+				
 				diamondCounter.changeQuantity(-findCost(GameData.rateUpgrades));
 				GameData.rateUpgrades++;
 				
@@ -205,6 +213,7 @@ package dialogue
 					rateCost.text = "max";
 
 			}
+			
 			
 			FlxG.log(GameData.fireRateMultiplier);
 		}
@@ -246,6 +255,11 @@ package dialogue
 		{
 			if (findCost(_upgradeQuantity) < GameData.MAX_UPGRADES + 1) return String(_upgradeQuantity);
 			else return "MAX";
+		}
+		
+		private function playUpgradeSound():void
+		{
+			FlxG.play(AssetsRegistry.upgradeMP3);
 		}
 		
 		private function vitalityDescription():void { updateHeader("vitality"); }
