@@ -150,8 +150,7 @@ package  units
 			{
 				itemEmitter.at(this);
 				
-				if (itemEmitter is DiamondEmitter) itemEmitter.start(true, 0, 0, 1);
-				else itemEmitter.start(true, 15, 0, 1);
+				itemEmitter.start(true, 15, 0, 1);
 			}
 			
 			//temp universal sound effect

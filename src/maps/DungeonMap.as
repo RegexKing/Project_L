@@ -61,44 +61,50 @@ package  maps
 			player.x = playerStart.x;
 			player.y = playerStart.y;
 			
-			generateContent();
+			spawnEnemies();
 			spawnDiamonds();
 			
 		}
 		
-		public function generateContent():void
+		public function spawnEnemies():void
 		{
-			for (var j:int = 0; j < 3; j++)
+			var enemyRange:uint;
+			
+			// spawns a certain range of enemies depending on level
+			if (GameData.level < 10) enemyRange = 5;
+			
+			for (var j:int = 0; j < 10; j++)
 			{
 				var enemy:Enemy;
 				
-				switch(int(Math.ceil(Math.random() * 1)))
+				switch(int(Math.ceil(Math.random() * enemyRange)))
 				{
 					case 1:
-						enemy = new Slime(player, this, enemiesGroup, collideableEnemies);
-						enemiesGroup.add(enemy);
-						collideableEnemies.add(enemy);
-						//enemy = new Ghost(player, this, gibs);
-						//enemiesGroup.add(enemy);
-						//spriteAddons.add((enemy as Ghost).trail);
-						break;
-					case 2:
-						enemy = new Skeleton(player, this, gibs);
-						enemiesGroup.add(enemy);
-						collideableEnemies.add(enemy);
-						break;
-					case 3:
-						enemy = new RangedEnemy(player, this, enemyBullets, gibs);
-						enemiesGroup.add(enemy);
-						collideableEnemies.add(enemy);
-						break;
-					case 4: 
 						enemy = new PurpleEnemy(player, this, gibs);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
-						
+					case 2:
+						enemy = new RangedEnemy(player, this, enemyBullets, gibs);
+						enemiesGroup.add(enemy);
+						collideableEnemies.add(enemy);
+						break;
+					case 3:
+						enemy = new Ghost(player, this, gibs);
+						enemiesGroup.add(enemy);
+						spriteAddons.add((enemy as Ghost).trail);
+						break;
+					case 4: 
+						enemy = new Skeleton(player, this, gibs);
+						enemiesGroup.add(enemy);
+						collideableEnemies.add(enemy);
+						break;
 					case 5: 
+						enemy = new Slime(player, this, enemiesGroup, collideableEnemies);
+						enemiesGroup.add(enemy);
+						collideableEnemies.add(enemy);
+						break;
+					case 6:
 						enemy = new SkeletonArcher(player, this, gibs, enemyBullets);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
@@ -112,31 +118,7 @@ package  maps
 				
 				enemy.x = randomPoint.x
 				enemy.y = randomPoint.y;
-				
-				
 			}
-			
-				//--testing area--//
-			/*
-			var itemEmitter:FlxEmitter = new FlxEmitter(0, 0, 300);
-			itemsGroup.add(itemEmitter);
-			itemEmitter.setRotation(0, 0);
-			itemEmitter.setXSpeed(-400,400);
-			itemEmitter.setYSpeed( -400, 400);
-			
-			for (var i:int = 0; i < itemEmitter.maxSize; i++)
-			{
-				switch (int(Math.ceil(Math.random() * 2)))
-				{
-					case 1:
-						itemEmitter.add(new DiamondItem(diamondCounter));
-						break;
-					case 2:
-						itemEmitter.add(new HealthItem(lifeBar));
-						break;	
-				}
-			}
-			*/
 		}
 		
 		public function spawnTeasure():void

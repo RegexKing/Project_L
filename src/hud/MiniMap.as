@@ -47,7 +47,7 @@ package  hud
 			if (map is DungeonMap)
 			{
 				treasureIcon = new FlxSprite();
-				treasureIcon.makeGraphic(12, 12,  0xffFFFF00);
+				treasureIcon.loadGraphic(AssetsRegistry.treasureMiniMapIconPNG);
 				treasureIcon.alpha = 0;
 			
 				treasureIcon.x = Math.round((_map as DungeonMap).treasure.x / Map.TILE_SIZE) * 12;

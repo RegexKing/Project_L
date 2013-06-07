@@ -16,6 +16,7 @@ package
 		[Embed(source = "../assets/sprites/girlPortrait.png")] public static var girlPortraitPNG:Class;
 		[Embed(source = "../assets/sprites/crystalLight.png")] public static var crystalLightPNG:Class;
 		[Embed(source = "../assets/sprites/playerMiniMapIcon.png")] public static var playerMiniMapIconPNG:Class;
+		[Embed(source = "../assets/sprites/treasureMiniMapIcon.png")] public static var treasureMiniMapIconPNG:Class;
 		[Embed(source = "../assets/sprites/playerGibs.png")] public static var playerGibsPNG:Class;
 		[Embed(source = "../assets/sprites/healthItem.png")] public static var HealthItemPNG:Class;
 		[Embed(source = "../assets/sprites/lifeBar-3.png")] public static var lifeBar_3PNG:Class;
