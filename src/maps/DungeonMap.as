@@ -55,7 +55,7 @@ package  maps
 			treasure.x = treasureCoords.x;
 			treasure.y = treasureCoords.y;
 			
-			var playerStart:FlxPoint = randomCorridor();
+			var playerStart:FlxPoint = randomFirstRoom();
 			
 			player.x = playerStart.x;
 			player.y = playerStart.y;
@@ -148,17 +148,7 @@ package  maps
 				
 				diamond.x = diamondCoords[i][0]* TILE_SIZE;
 				diamond.y = diamondCoords[i][1] * TILE_SIZE;
-				
-				FlxG.log(diamond.x + ", " + diamond.y);
 			}
-		}
-		
-		override public function update():void
-		{
-			super.update();
-			if (FlxG.keys.C)
-			FlxG.log(Math.round(player.x) + ", " + Math.round(player.y));
-			
 		}
 		
 		override public function randomFirstRoom():FlxPoint
