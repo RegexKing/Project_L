@@ -12,7 +12,7 @@ package  maps
 	 */
 	public class DungeonMap extends Map
 	{
-		
+		public var treasure:Treasure;
 		public var dungeonGen:DungeonGenerator;
 		
 		private var player:Player;
@@ -48,8 +48,7 @@ package  maps
 			
 			add(tileMap);
 			
-			var treasure:Treasure = new Treasure(transitionNextState);
-			itemsGroup.add(treasure);
+			treasure = new Treasure(transitionNextState);
 			
 			var treasureCoords:FlxPoint = randomLastRoom();
 			treasure.x = treasureCoords.x;
@@ -67,7 +66,7 @@ package  maps
 		
 		public function generateContent():void
 		{
-			for (var j:int = 1; j < 10; j++)
+			for (var j:int = 0; j < 3; j++)
 			{
 				var enemy:Enemy;
 				
@@ -133,6 +132,11 @@ package  maps
 				}
 			}
 			*/
+		}
+		
+		public function spawnTeasure():void
+		{
+			itemsGroup.add(treasure);
 		}
 		
 		

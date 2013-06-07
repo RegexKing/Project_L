@@ -11,6 +11,7 @@ package  units
 	 */
 	public class Enemy extends FlxSprite
 	{
+		public static var totalEnemies:uint=0;
 		
 		protected var player:Player;
 		protected var map:Map;
@@ -27,6 +28,8 @@ package  units
 		
 		public function Enemy(_player:Player, _map:Map=null) 
 		{
+			totalEnemies++;
+			
 			super();
 			
 			player = _player;
@@ -153,9 +156,12 @@ package  units
 			
 			//temp universal sound effect
 			FlxG.play(AssetsRegistry.enemyDieMP3);
+			
+			//decrement total enemies counter
+			totalEnemies--;
 		}
 		
-		/*
+		
 		override public function draw():void
 		{
 			super.draw();
@@ -165,7 +171,7 @@ package  units
 				this.path.drawDebug();
 			}
 		}
-		*/
+		
 		
 	}
 }

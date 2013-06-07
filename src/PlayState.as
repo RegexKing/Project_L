@@ -326,6 +326,8 @@ package
 		{
 			//	Important! Clear out the plugin, otherwise resources will get messed right up after a while
 			FlxSpecialFX.clear();
+			
+			Enemy.totalEnemies = 0;
 
 			super.destroy();
 		}
