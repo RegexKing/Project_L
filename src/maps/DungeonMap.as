@@ -90,14 +90,14 @@ package  maps
 						collideableEnemies.add(enemy);
 						break;
 					case 3:
-						enemy = new Ghost(player, this, gibs);
-						enemiesGroup.add(enemy);
-						spriteAddons.add((enemy as Ghost).trail);
-						break;
-					case 4: 
 						enemy = new Skeleton(player, this, gibs);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
+						break;
+					case 4: 
+						enemy = new Ghost(player, this, gibs);
+						enemiesGroup.add(enemy);
+						spriteAddons.add((enemy as Ghost).trail);
 						break;
 					case 5: 
 						enemy = new Slime(player, this, enemiesGroup, collideableEnemies);
@@ -106,6 +106,11 @@ package  maps
 						break;
 					case 6:
 						enemy = new SkeletonArcher(player, this, gibs, enemyBullets);
+						enemiesGroup.add(enemy);
+						collideableEnemies.add(enemy);
+						break;
+					case 7:
+						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;

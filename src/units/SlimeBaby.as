@@ -5,12 +5,11 @@ package units
 	import org.flixel.plugin.photonstorm.FlxDelay;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import org.flixel.FlxPoint
+	import maps.Map; 
 	/**
 	 * ...
 	 * @author Frank Fazio
 	 */
-	
-	import maps.Map; 
 	 
 	public class SlimeBaby extends Enemy
 	{
@@ -31,11 +30,11 @@ package units
 			
 			health = 1;
 			attackValue = 1;
+			health = GameUtil.scaleHealth(health);
+			attackValue = GameUtil.scaleDamage(attackValue);
 			
 			makeGraphic(10, 10, 0xff00FF00);
 			
-			health = GameUtil.scaleHealth(health);
-			attackValue = GameUtil.scaleDamage(attackValue);
 			
 			movementDelay = new FlxDelay(700);
 			movementDelay.callback = startMovement;

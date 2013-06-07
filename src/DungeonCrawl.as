@@ -28,8 +28,8 @@ package
 		{
 			super.create();
 			
-			if (GameData.level < 10) areaHeader.text = "0" + String(GameData.level);
-			else areaHeader.text = String(GameData.level);
+			if (GameData.level < 10) areaHeader.text = " 0" + String(GameData.level);
+			else areaHeader.text = " " + String(GameData.level);
 		}
 		
 		override public function update():void
@@ -66,7 +66,8 @@ package
 					unit.hurt(0);
 				}
 				
-				else unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
+				else if (!(hazzard is Acid))
+					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
 			}
 			
 			if (hazzard is Bullet) hazzard.kill();
