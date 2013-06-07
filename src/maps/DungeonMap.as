@@ -55,7 +55,7 @@ package  maps
 			treasure.x = treasureCoords.x;
 			treasure.y = treasureCoords.y;
 			
-			var playerStart:FlxPoint = randomFirstRoom();
+			var playerStart:FlxPoint = randomCorridor();
 			
 			player.x = playerStart.x;
 			player.y = playerStart.y;

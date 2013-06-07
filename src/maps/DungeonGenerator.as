@@ -16,7 +16,7 @@ package maps
 	{
 		public var map:Array; // One-dimensional array containing the actual map data
 		
-		protected var rooms:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of rooms
+		protected var rooms:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of rooms between first room and farthest room
 		protected var corridors:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of corridors
 		protected var prevDoor:Array; // Array of the format (x, y). Contains the coordinates of the previous room's door
 		protected var firstRoomCoords:Array; // array containing coordinates of first room
@@ -59,6 +59,9 @@ package maps
 			
 			allRooms = firstRoomCoords.concat(rooms);
 			lastRoomCoords = findLastRoomCoords();
+			
+			//take out cooridor points in rooms
+			spliceCorridors();
 			
 			// clear unneeded vars
 			prevDoor = null;
@@ -255,34 +258,73 @@ package maps
 			if (start < end) {
 				for (i = start; i <= end; i++) {
 					if (horizontal == true) { 
-						map[y + i * TOTAL_COLS] = FLOOR;
 						
 						index = y + i * TOTAL_COLS;
+						
+						map[index] = FLOOR;
+						
+						if (isCoordinateValid(index - 1))
+						{
+							map[index - 1] = FLOOR;
+							storeCorridor((index+1) % TOTAL_ROWS, Math.floor((index+1) / TOTAL_COLS));
+						}
+						if (isCoordinateValid(index + 1))
+						{
+							map[index + 1] = FLOOR;
+							storeCorridor((index-1) % TOTAL_ROWS, Math.floor((index-1) / TOTAL_COLS));
+						}
 						
 						storeCorridor(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
 					}
 					else { 
-						map[i + x * TOTAL_COLS] = FLOOR; 
 						
-						index = i + x * TOTAL_COLS;
+						index = i + x * TOTAL_COLS
 						
-						storeCorridor(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
+						map[index] = FLOOR; 
+						
+						if (isCoordinateValid(index - TOTAL_ROWS))
+						{
+							map[index - TOTAL_ROWS] = FLOOR;
+							storeCorridor((index - TOTAL_ROWS) % TOTAL_ROWS, Math.floor((index - TOTAL_ROWS) / TOTAL_COLS));
+						}
+						if (isCoordinateValid(index + TOTAL_ROWS))
+						{
+							map[index + TOTAL_ROWS] = FLOOR;
+						}
+						
+						storeCorridor((index + TOTAL_ROWS) % TOTAL_ROWS, Math.floor((index + TOTAL_ROWS) / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
 					}
 				}
 			}
 			else if (start > end) {
 				for (i = end; i <= start; i++) {
 					if (horizontal == true) { 
-						map[y + i * TOTAL_COLS] = FLOOR; 
 						
 						index = y + i * TOTAL_COLS;
+						
+						map[index] = FLOOR; 
+						
+						if (isCoordinateValid(index - 1))
+						{
+							map[index - 1] = FLOOR;
+							storeCorridor((index+1) % TOTAL_ROWS, Math.floor((index+1) / TOTAL_COLS));
+						}
+						if (isCoordinateValid(index + 1))
+						{
+							map[index + 1] = FLOOR;
+							storeCorridor((index-1) % TOTAL_ROWS, Math.floor((index-1) / TOTAL_COLS));
+						}
 						
 						storeCorridor(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
 					}
 					else { 
-						map[i + x * TOTAL_COLS] = FLOOR; 
 						
 						index = i + x * TOTAL_COLS;
+						
+						map[index] = FLOOR;
+						
+						if(isCoordinateValid(index-TOTAL_ROWS)) map[index - TOTAL_ROWS] = FLOOR;
+						if(isCoordinateValid(index+TOTAL_ROWS)) map[index + TOTAL_ROWS] = FLOOR;
 						
 						storeCorridor(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS)); // Store the coordinates in the corridors array, to keep track of all corridors' floors
 					}
@@ -411,6 +453,21 @@ package maps
 			}
 			
 			return tempRoomObj.coordsList;
+		}
+		
+		private function spliceCorridors():void
+		{
+			for (var i:int = 0; i < allRooms.length; i++)
+			{
+				for (var j:int = 0; j < corridors.length; j++)
+				{
+					if (allRooms[i][0] == corridors[j][0] && allRooms[i][1] == corridors[j][1])
+					{
+						corridors.splice(j, 1);
+						j--;
+					}
+				}
+			}
 		}
 	}
 }
