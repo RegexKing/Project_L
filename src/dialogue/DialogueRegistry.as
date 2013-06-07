@@ -61,8 +61,8 @@ package dialogue
 		public static var ending17:String = GIRL_TITLE + "I have fallen for you Patches.";
 		public static var ending18:String = GUY_TITLE + "...";
 		public static var ending19:String = GUY_TITLE + "HAHAHAHAHAHAAAAA!!!\nAnd I thought I was vain.";
-		public static var ending20:String = GUY_TITLE + "In honesty, your life would be more of an investment than a treasure."
-		public static var ending21:String = GUY_TITLE + "And for your sake? You give me too much credit for a simple thief like me.";
+		public static var ending20:String = GUY_TITLE + "In honesty, your life would be more akin to an investment rather than a treasure."
+		public static var ending21:String = GUY_TITLE + "And for your sake? You give me too much credit. I am but a simple thief!";
 		public static var ending22:String = GUY_TITLE + "No, I think I shall take this chalice along with the world in the palm of my hand.";
 		public static var ending23:String = BEAST_TITLE + "How dare you Patches, you are lower than scum! This is unforgivable.";
 		public static var ending24:String = BEAST_TITLE + "Killing you a thousand times over wouldn't be enough to satisfy me!";

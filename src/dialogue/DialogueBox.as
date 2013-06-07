@@ -41,7 +41,7 @@ package dialogue
 			diamondCounter = _diamondCounter;
 			
 			background = FlxGradient.createGradientFlxSprite(468, 136, [0xff0066FF, 0xff000066], 10);
-			//background.alpha = 0.5;
+			background.alpha = 0.6;
 			
 			textField = new FlxText(0, 0, 322, "");
 			textField.setFormat("NES", 16, 0xffFFFFFF);
