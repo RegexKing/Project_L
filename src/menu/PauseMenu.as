@@ -27,6 +27,7 @@ package menu
 			super();
 			
 			background = FlxGradient.createGradientFlxSprite(120, 200, [0xff0066FF, 0xff000066], 20);
+			background.alpha = 0.6
 			background.x = 186;
 			background.y = 140;
 			

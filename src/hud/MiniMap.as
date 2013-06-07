@@ -69,7 +69,6 @@ package  hud
 			tileMap.x = playerIcon.x - (Math.round(player.x / Map.TILE_SIZE) * 12);
 			tileMap.y = playerIcon.y - (Math.round(player.y / Map.TILE_SIZE) * 12);
 			
-			FlxG.log(Enemy.totalEnemies);
 			
 			if (map is DungeonMap)
 			{
@@ -97,8 +96,6 @@ package  hud
 			(map as DungeonMap).spawnTeasure();
 			
 			treasureIcon.alpha = 1;
-			
-			FlxG.log("treasure has spawned");
 		}
 	}
 

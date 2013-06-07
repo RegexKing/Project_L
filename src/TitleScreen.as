@@ -135,7 +135,6 @@ package
 		private function createMenuButtons():void
 		{
 			var continueButton:FlxButton = new FlxButton(330, 278, null, continueGame);
-			continueButton.
 			var playButton:FlxButton = new FlxButton(330, 323, null, playGame);
 			var optionsButton:FlxButton = new FlxButton(330, 368, null, goOptions);
 			var extrasButton:FlxButton = new FlxButton(330, 413, null, goExtras);
