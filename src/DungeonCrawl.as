@@ -51,11 +51,6 @@ package
 				//trace(FlxG.mute);
 			}
 			
-			if (FlxG.keys.justPressed("M"))
-			{
-				miniMap.toggleMiniMap();
-			}
-			
 		}
 		
 		

@@ -194,6 +194,12 @@ package
 				FlxG.collide(enemyBullets, map, destroyBullet);
 				cameraFocus.updateCamera();
 				
+				// minimap
+				if (FlxG.keys.justPressed("M"))
+				{
+					miniMap.toggleMiniMap();
+				}
+				
 				// Pause game
 				if (FlxG.keys.justPressed("ESCAPE") || FlxG.keys.justPressed("P"))
 				{
