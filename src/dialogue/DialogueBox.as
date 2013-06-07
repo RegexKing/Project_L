@@ -5,6 +5,8 @@ package dialogue
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxDelay;
 	import org.flixel.plugin.photonstorm.FlxGradient;
+	import units.BeastMan;
+	import units.Girl;
 	import units.Player;
 	/**
 	 * ...
@@ -22,13 +24,17 @@ package dialogue
 		protected var counter:int = 0;
 		
 		protected var player:Player;
+		protected var girl:Girl;
+		protected var beastMan:BeastMan;
 		protected var lifeBar:LifeBar;
 		protected var setFireRate:Function;
 		protected var diamondCounter:DiamondCounter;
 		
-		public function DialogueBox(_player:Player, _lifeBar:LifeBar, _setFireRate:Function, _diamondCounter:DiamondCounter) 
+		public function DialogueBox(_player:Player, _girl:Girl, _beast:BeastMan, _lifeBar:LifeBar, _setFireRate:Function, _diamondCounter:DiamondCounter) 
 		{
 			player = _player;
+			girl = _girl;
+			beastMan = _beast;
 			
 			lifeBar = _lifeBar;
 			setFireRate = _setFireRate;
@@ -101,6 +107,8 @@ package dialogue
 		public function initConversation(_npcName:String):void
 		{
 			player.active = false;
+			girl.active = false;
+			beastMan.active = false;
 			changeCharPortrait(_npcName);
 			toggle();
 			
@@ -155,6 +163,8 @@ package dialogue
 		private function makePlayerActive():void
 		{
 			player.active = true;
+			girl.active = true;
+			beastMan.active = true;
 		}
 		
 	}

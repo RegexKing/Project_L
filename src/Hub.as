@@ -48,7 +48,7 @@ package
 			girl.x = GameData.RENDER_WIDTH/2 - girl.width/2;
 			girl.y = Map.TILE_SIZE;
 			
-			dialogueBox = new DialogueBox(player, lifeBar, setFireRate, diamondCounter);
+			dialogueBox = new DialogueBox(player, girl, beastMan, lifeBar, setFireRate, diamondCounter);
 			add(dialogueBox);
 		}
 		

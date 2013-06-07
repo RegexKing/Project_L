@@ -43,11 +43,11 @@ package dialogue
 		
 		// ending
 		public static var ending1:String = GIRL_TITLE + "At long last, you have found what I have sought for so long!";
-		public static var ending2:String = GIRL_TITLE + "Please hand it over to my companion so that it can be destroyed,";
+		public static var ending2:String = GIRL_TITLE + "Please hand it over to me so that it can be destroyed,";
 		public static var ending3:String = GIRL_TITLE + "thus freeing me from this curse of everlasting life.";
 		public static var ending4:String = GUY_TITLE + "Wait a moment, are you telling me that this chalice can grant immortality?";
 		public static var ending5:String = GIRL_TITLE + "...yes.";
-		public static var ending6:String = GUY_TITLE + "Pray tell, what can you give me in return that is more valuable than this?";
+		public static var ending6:String = GUY_TITLE + "Pray tell, what can you give me in return that is more valuable than that?";
 		public static var ending7:String = GIRL_TITLE + "Do not take this lightly, graverobber.  I have seen loved ones lost many a time...";
 		public static var ending8:String = GIRL_TITLE + "As such I have confined myself here to keep the world at a distance..";
 		public static var ending9:String = GIRL_TITLE + "yet without the warmth of others, it pains me even more.";
@@ -60,9 +60,9 @@ package dialogue
 		public static var ending16:String = GIRL_TITLE + "The only man that would face the deepest, darkest pits of hell for my sake.";
 		public static var ending17:String = GIRL_TITLE + "I have fallen for you Patches.";
 		public static var ending18:String = GUY_TITLE + "...";
-		public static var ending19:String = GUY_TITLE + "HAHAHAHAHAHAAAAA!!!";
-		public static var ending20:String = GUY_TITLE + "And I thought I was vain. In honesty, your life is more of an investment"
-		public static var ending21:String = GUY_TITLE + "than a treasure. And for your sake? You give me too much credit for a simple thief like me.";
+		public static var ending19:String = GUY_TITLE + "HAHAHAHAHAHAAAAA!!!\nAnd I thought I was vain.";
+		public static var ending20:String = GUY_TITLE + "In honesty, your life would be more of an investment than a treasure."
+		public static var ending21:String = GUY_TITLE + "And for your sake? You give me too much credit for a simple thief like me.";
 		public static var ending22:String = GUY_TITLE + "No, I think I shall take this chalice along with the world in the palm of my hand.";
 		public static var ending23:String = BEAST_TITLE + "How dare you Patches, you are lower than scum! This is unforgivable.";
 		public static var ending24:String = BEAST_TITLE + "Killing you a thousand times over wouldn't be enough to satisfy me!";
@@ -126,7 +126,7 @@ package dialogue
 			
 			else if (GameData.level == GameData.LAST_LEVEL)
 			{
-				//BeastMan.angry = true;
+				BeastMan.angry = true;
 				
 				var endingMessage1:Dialogue = new Dialogue();
 				var endingMessage2:Dialogue = new Dialogue();
