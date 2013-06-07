@@ -75,7 +75,7 @@ package
 		
 		override public function stageInit():void
 		{
-			map = new DungeonMap(player, enemiesGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
+			map = new DungeonMap(player, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
 				lightsGroup, lifeBar, diamondCounter, spriteAddons, transitionNextState);
 		}
 		

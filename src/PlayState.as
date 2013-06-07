@@ -312,7 +312,7 @@ package
 		
 		public function alertEnemies():void
 		{
-			for each (var enemy:Enemy in enemiesGroup.members)
+			for each (var enemy:Enemy in enemiesGroup.members && !(enemy is FlxEmitter))
 			{
 				if (enemy.alive && enemy.isEnemyNear())
 				{

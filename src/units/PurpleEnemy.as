@@ -28,7 +28,7 @@ package  units
 			makeGraphic(40, 40, 0xff00FF00);
 			width = 40;
 			height = 40;
-	
+			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);
 			

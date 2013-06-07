@@ -25,8 +25,9 @@ package  maps
 		private var diamondCounter:DiamondCounter;
 		private var collideableEnemies:FlxGroup;
 		private var spriteAddons:FlxGroup;
+		private var playerHazzards:FlxGroup;
 		
-		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
+		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
 			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _spriteAddons:FlxGroup, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super(addToStage, onAddSpritesCallback);
@@ -41,6 +42,7 @@ package  maps
 			diamondCounter = _diamondCounter;
 			collideableEnemies = _collideableEnemies;
 			spriteAddons = _spriteAddons;
+			playerHazzards = _playerHazzards;
 			
 			dungeonGen = new DungeonGenerator();
 			
@@ -70,12 +72,15 @@ package  maps
 			{
 				var enemy:Enemy;
 				
-				switch(int(Math.ceil(Math.random() * 5)))
+				switch(int(Math.ceil(Math.random() * 1)))
 				{
 					case 1:
-						enemy = new Ghost(player, this, gibs);
+						enemy = new Slime(player, this, enemiesGroup, collideableEnemies);
 						enemiesGroup.add(enemy);
-						spriteAddons.add((enemy as Ghost).trail);
+						collideableEnemies.add(enemy);
+						//enemy = new Ghost(player, this, gibs);
+						//enemiesGroup.add(enemy);
+						//spriteAddons.add((enemy as Ghost).trail);
 						break;
 					case 2:
 						enemy = new Skeleton(player, this, gibs);

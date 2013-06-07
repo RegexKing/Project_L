@@ -9,7 +9,7 @@ package  units
 	 * ...
 	 * @author Frank Fazio
 	 */
-	public class Enemy extends FlxSprite
+	public class Enemy extends FlxParticle
 	{
 		public static var totalEnemies:uint=0;
 		
