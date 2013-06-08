@@ -3,6 +3,7 @@ package
 	import menu.PauseMenu;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
+	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FX.CenterSlideFX;
 	
 	import hud.*;
@@ -53,7 +54,7 @@ package
 		public static const NORMAL_GUN:uint = 0;
 		public static const BOUNCE_GUN:uint = 1;
 		
-		protected var normalGun:BaseGun;
+		protected var normalGun:FlxWeapon;
 		protected var bounceGun:BounceGun;
 		
 		public function PlayState() 
@@ -116,29 +117,17 @@ package
 			
 			collideableGroup.add(gibsGroup);
 			collideableGroup.add(player);
-			collideableGroup.add(playerBulletsGroup);
-			collideableGroup.add(enemyBullets);
 			collideableGroup.add(itemsGroup);
 			collideableGroup.add(collideableEnemies);
+			collideableGroup.add(playerBulletsGroup);
+			collideableGroup.add(enemyBullets);
 			
 			playerHazzardsGroup.add(enemiesGroup);
 			playerHazzardsGroup.add(enemyBullets);
 			playerHazzardsGroup.add(trapsGroup);
 			
-			add(map);
-			add(gibsGroup);
-			add(trapsGroup);
-			add(itemsGroup);
-			add(player);
-			add(enemiesGroup);
-			add(spriteAddons);
-			add(playerBulletsGroup);
-			add(enemyBullets);
-			add(lightsGroup);
-			add(hudGroup);
-			add(cameraFocus);
-			
 			// Guns
+			
 			normalGun = new BaseGun("normal", player);
 			normalGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
 			normalGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
@@ -174,6 +163,19 @@ package
 			areaHeader = new FlxText(GameData.RENDER_WIDTH / 2 -30, GameData.RENDER_HEIGHT / 2-10, 60);
 			areaHeader.scrollFactor.x = areaHeader.scrollFactor.y = 0;
 			areaHeader.setFormat("NES", 16, 0xffFFFFFF);
+			
+			add(map);
+			add(gibsGroup);
+			add(trapsGroup);
+			add(itemsGroup);
+			add(player);
+			add(enemiesGroup);
+			add(spriteAddons);
+			add(playerBulletsGroup);
+			add(enemyBullets);
+			add(lightsGroup);
+			add(hudGroup);
+			add(cameraFocus);
 			
 			add(slideContainer);
 			add(areaHeader);

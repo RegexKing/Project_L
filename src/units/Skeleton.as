@@ -58,7 +58,7 @@ package units
 			{
 				solid = false;
 				
-				ressurectDelay = new FlxDelay(4000);
+				ressurectDelay = new FlxDelay(3000);
 				ressurectDelay.callback = ressurect;
 				ressurectDelay.start();
 			}
