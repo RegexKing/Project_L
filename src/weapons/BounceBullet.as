@@ -4,7 +4,9 @@ package weapons
 	
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	import org.flixel.plugin.photonstorm.FlxMath;
+	import org.flixel.FlxGroup;
 	import flash.utils.getTimer;
+	import util.FlxTrail;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -12,9 +14,14 @@ package weapons
 	public class BounceBullet extends Bullet
 	{
 		
-		public function BounceBullet(weapon:FlxWeapon, id:uint) 
+		private var trail:FlxTrail;
+		private var spriteAddons:FlxGroup;
+		
+		public function BounceBullet(weapon:FlxWeapon, id:uint, _spriteAddons:FlxGroup) 
 		{
 			super(weapon, id);
+			spriteAddons = _spriteAddons;
+			
 			attackValue = 1;
 		}
 		
@@ -31,6 +38,20 @@ package weapons
 			}
 			
 			if (!this.onScreen()) kill();
+		}
+		
+		public function setTrail():void
+		{
+			trail = new FlxTrail(this, null, 10, 3);
+			trail.rotationsEnabled = false;
+			spriteAddons.add(trail);
+		}
+		
+		override public function kill():void
+		{
+			super.kill();
+			
+			trail.kill();
 		}
 		
 	}

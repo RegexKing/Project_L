@@ -71,7 +71,7 @@ package  maps
 			var enemyRange:uint;
 			
 			// spawns a certain range of enemies depending on level
-			if (GameData.level < 10) enemyRange = 5;
+			if (GameData.level < 10) enemyRange = 7;
 			
 			for (var j:int = 0; j < 10; j++)
 			{

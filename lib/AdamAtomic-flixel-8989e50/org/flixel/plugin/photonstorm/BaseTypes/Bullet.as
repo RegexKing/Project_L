@@ -231,6 +231,8 @@ package org.flixel.plugin.photonstorm.BaseTypes
 			
 			if (!this.onScreen()) kill();
 			
+			if (touching) kill();
+			
 		}
 		
 		public function dealDamage():Number

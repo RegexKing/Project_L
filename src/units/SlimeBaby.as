@@ -33,7 +33,7 @@ package units
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
-			makeGraphic(10, 10, 0xff00FF00);
+			makeGraphic(20, 20, 0xff00FF00);
 			
 			
 			movementDelay = new FlxDelay(700);

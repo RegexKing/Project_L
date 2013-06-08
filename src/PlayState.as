@@ -116,8 +116,8 @@ package
 			
 			collideableGroup.add(gibsGroup);
 			collideableGroup.add(player);
-			//collideableGroup.add(playerBulletsGroup);
-			//collideableGroup.add(enemyBullets);
+			collideableGroup.add(playerBulletsGroup);
+			collideableGroup.add(enemyBullets);
 			collideableGroup.add(itemsGroup);
 			collideableGroup.add(collideableEnemies);
 			
@@ -129,8 +129,8 @@ package
 			add(gibsGroup);
 			add(trapsGroup);
 			add(itemsGroup);
-			add(enemiesGroup);
 			add(player);
+			add(enemiesGroup);
 			add(spriteAddons);
 			add(playerBulletsGroup);
 			add(enemyBullets);
@@ -146,7 +146,7 @@ package
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
-			bounceGun = new BounceGun("bounce", player);
+			bounceGun = new BounceGun("bounce", spriteAddons, player);
 			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff)
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			bounceGun.setBulletSpeed(600);
@@ -190,8 +190,7 @@ package
 				controlGun();
 			
 				FlxG.collide(collideableGroup, map);
-				FlxG.collide(playerBulletsGroup, map, destroyBullet);
-				FlxG.collide(enemyBullets, map, destroyBullet);
+				
 				cameraFocus.updateCamera();
 				
 				// minimap
@@ -214,11 +213,6 @@ package
 				pauseMenu.update();	
 			}
 		
-		}
-		
-		protected function destroyBullet(b:FlxObject, m:FlxObject):void
-		{
-			b.kill();
 		}
 		
 		protected function setFireRate():void
