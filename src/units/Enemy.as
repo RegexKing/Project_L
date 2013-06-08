@@ -160,7 +160,7 @@ package  units
 			totalEnemies--;
 		}
 		
-		
+		/*
 		override public function draw():void
 		{
 			super.draw();
@@ -170,6 +170,7 @@ package  units
 				this.path.drawDebug();
 			}
 		}
+		*/
 		
 		
 	}

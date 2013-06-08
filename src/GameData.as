@@ -35,7 +35,7 @@ package
 		//changable
 		
 		public static var level:uint = 1;
-		public static var diamonds:int = 0;
+		public static var diamonds:int = 144;
 		public static var playerHealth:Number = 3;
 		public static var weapon:uint = 0;
 		
@@ -127,7 +127,8 @@ package
 		
 		public static function checkNewGame():Boolean
 		{
-			return saveFile.data.isNewGame;
+			if (saveFile.data.isNewGame != false) return true;
+			else return false;
 		}
 	}
 }

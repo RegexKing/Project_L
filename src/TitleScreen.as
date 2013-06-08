@@ -42,7 +42,7 @@ package
 			mainMenuButtons = new FlxGroup(4);
 			
 			titleScreen = new FlxSprite();
-			if (GameData.checkNewGame() != false) titleScreen.loadGraphic(AssetsRegistry.disableContinuePNG, false, false, 512, 480);
+			if (GameData.checkNewGame() == true) titleScreen.loadGraphic(AssetsRegistry.disableContinuePNG, false, false, 512, 480);
 			else titleScreen.loadGraphic(AssetsRegistry.titleScreenPNG, false, false, 512, 480);
 			
 			titleScreen.visible = false;

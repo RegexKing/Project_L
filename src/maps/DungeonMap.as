@@ -68,12 +68,17 @@ package  maps
 		
 		public function spawnEnemies():void
 		{
-			var enemyRange:uint;
+			
+			// figures out how many enemys to spwan based on level
+			var totalEnemies:uint;
+			totalEnemies = 6 + GameData.level * 3;
 			
 			// spawns a certain range of enemies depending on level
-			if (GameData.level < 10) enemyRange = 7;
+			//if (GameData.level < 10) enemyRange = 7;
+			var enemyRange:uint;
+			enemyRange = 7;
 			
-			for (var j:int = 0; j < 10; j++)
+			for (var j:int = 0; j < totalEnemies; j++)
 			{
 				var enemy:Enemy;
 				
@@ -124,6 +129,8 @@ package  maps
 				enemy.x = randomPoint.x
 				enemy.y = randomPoint.y;
 			}
+			
+			FlxG.log(totalEnemies);
 		}
 		
 		public function spawnTeasure():void
