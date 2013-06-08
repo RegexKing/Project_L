@@ -17,10 +17,10 @@ package weapons
 		private var trail:FlxTrail;
 		private var spriteAddons:FlxGroup;
 		
-		public function BounceBullet(weapon:FlxWeapon, id:uint, _spriteAddons:FlxGroup) 
+		public function BounceBullet(weapon:FlxWeapon, id:uint) 
 		{
 			super(weapon, id);
-			spriteAddons = _spriteAddons;
+			//spriteAddons = _spriteAddons;
 			
 			attackValue = 1;
 		}

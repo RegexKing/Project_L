@@ -68,6 +68,9 @@ package units
 		
 		protected function ressurect():void
 		{
+			health = 1;
+			health = GameUtil.scaleHealth(health);
+			
 			solid = true;
 			
 			//play ressurect animation

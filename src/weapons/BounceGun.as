@@ -9,13 +9,13 @@ package weapons
 	public class BounceGun extends FlxWeapon
 	{
 		
-		private var spriteAddons:FlxGroup;
+		//private var spriteAddons:FlxGroup;
 		
-		public function BounceGun(name:String, _spriteAddons:FlxGroup, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
+		public function BounceGun(name:String, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
 		{
 			super(name, parentRef, xVariable, yVariable);
 			
-			spriteAddons = _spriteAddons;
+			//spriteAddons = _spriteAddons;
 		}
 		
 		override public function makePixelBullet(quantity:uint, width:int = 2, height:int = 2, color:uint = 0xffffffff, offsetX:int = 0, offsetY:int = 0):void
@@ -24,13 +24,13 @@ package weapons
 			
 			for (var b:uint = 0; b < quantity; b++)
 			{
-				var tempBullet:BounceBullet = new BounceBullet(this, b, spriteAddons);
+				var tempBullet:BounceBullet = new BounceBullet(this, b);
 				
 				tempBullet.makeGraphic(width, height, color);
 				tempBullet.width = width;
 				tempBullet.height = height;
 				
-				tempBullet.setTrail();
+				//tempBullet.setTrail();
 				
 				group.add(tempBullet);
 			}

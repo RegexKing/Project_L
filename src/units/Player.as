@@ -1,7 +1,9 @@
 package  units
 {
+	import maps.Map;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
+	import weapons.*;
 	
 	/**
 	 * 
@@ -12,12 +14,28 @@ package  units
 	{
 		//constants
 		private const MOVEMENT_SPEED:Number = 100;
+		//
 		
 		public var playerGibs:FlxEmitter;
+		protected var playerBulletsGroup:FlxGroup;
+		protected var alertEnemies:Function;
 		
-		public function Player(_gibsGroup:FlxGroup) 
+		//Gun Vars
+		protected const NORMAL_RATE:Number = 500;
+		protected const BOUNCE_RATE:Number = 400;
+		
+		public static const NORMAL_GUN:uint = 0;
+		public static const BOUNCE_GUN:uint = 1;
+		
+		protected var normalGun:FlxWeapon;
+		protected var bounceGun:BounceGun;
+		
+		public function Player(_gibsGroup:FlxGroup, _playerBulletsGroup:FlxGroup, _alertEnemies:Function) 
 		{
 			super();
+			
+			playerBulletsGroup = _playerBulletsGroup;
+			alertEnemies = _alertEnemies;
 			
 			makeGraphic(40, 40, 0xffFF9900);
 			
@@ -39,10 +57,71 @@ package  units
 			FlxControl.create(this, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT, 1, false);
 			FlxControl.player1.setWASDControl();
 			FlxControl.player1.setStandardSpeed(200);
+			
+		}
+		
+		public function gunSetup(map:Map):void
+		{
+			// Guns
+			
+			normalGun = new BaseGun("normal", this);
+			normalGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
+			normalGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+			normalGun.setBulletSpeed(600);
+			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
+			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
+			
+			bounceGun = new BounceGun("bounce", this);
+			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff)
+			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+			bounceGun.setBulletSpeed(600);
+			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
+			bounceGun.setBulletElasticity(0.8);
+			bounceGun.setBulletLifeSpan(2000);
+			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
+			
+			playerBulletsGroup.add(normalGun.group);
+			playerBulletsGroup.add(bounceGun.group);
+			//
 		}
 		
 		override public function update():void
 		{	
+			super.update();
+			
+			if (this.alive && this.active)
+			{
+				// switch statement to fire correct weapon
+				if (FlxG.mouse.pressed())
+				{
+					switch(GameData.weapon)
+					{
+						case NORMAL_GUN:
+							normalGun.fireAtMouse();
+							break;
+							
+						case BOUNCE_GUN:
+							bounceGun.fireAtMouse();
+							break;
+							
+						default:
+							throw new Error("Weapon id number is out acceptable range");
+							break;
+					}
+				}
+			}
+		
+		}
+		
+		public function fireRate():void
+		{
+			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
+			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
+		}
+		
+		public function setFireRate():Function
+		{
+			return setFireRate;
 		}
 		
 		override public function hurt(_damageNumber:Number):void
@@ -79,6 +158,14 @@ package  units
 			
 			//sound effect
 			FlxG.play(AssetsRegistry.playerDieMP3);
+		}
+		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			normalGun = null;
+			bounceGun = null;
 		}
 		
 	}
