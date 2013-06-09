@@ -113,15 +113,10 @@ package  units
 		
 		}
 		
-		public function fireRate():void
+		public function setFireRate():void
 		{
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
-		}
-		
-		public function setFireRate():Function
-		{
-			return setFireRate;
 		}
 		
 		override public function hurt(_damageNumber:Number):void

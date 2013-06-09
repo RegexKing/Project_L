@@ -41,6 +41,7 @@ package
 		//Bgms
 		// yearning
 		[Embed(source = "../assets/sounds/titleScreenBGM.mp3")] public static var BGM_titleScreenMP3:Class;
+		//537660_Maw-of-Guilt
 		[Embed(source = "../assets/sounds/dungeonBGM.mp3")] public static var BGM_dungeonMP3:Class;
 		// Khuskan - Allegro (ID: 53103)
 		[Embed(source = "../assets/sounds/hubBGM.mp3")] public static var BGM_hubMP3:Class;

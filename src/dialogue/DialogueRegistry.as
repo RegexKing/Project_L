@@ -126,6 +126,8 @@ package dialogue
 			
 			else if (GameData.level == GameData.LAST_LEVEL)
 			{
+				//TODO: unlock true ending medal
+				
 				BeastMan.angry = true;
 				
 				var endingMessage1:Dialogue = new Dialogue();
