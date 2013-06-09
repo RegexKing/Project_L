@@ -50,7 +50,7 @@ package units
 			
 			for (var i:int = 0; i < babyNumber; i++)
 			{
-				babySlimes.add(new SlimeBaby(player, map, enemyBars));
+				babySlimes.add(new SlimeBaby(player, map, _enemiesGroup, enemyBars));
 			}
 			
 			_enemiesGroup.add(babySlimes);

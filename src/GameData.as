@@ -19,10 +19,12 @@ package
 		public static const DIAMONDS_PER_LEVEL:uint = 4;
 		public static const MAX_UPGRADES:uint = 8;
 		
+		
+		// Formula:  rate = (target max value/number_of_upgrades)
 		public static const HEALTH_FACTOR:Number = 1; 
-		public static const DEFENSE_FACTOR:Number = 0.1; 
-		public static const DAMAGE_FACTOR:Number = 0.6;
-		public static const FIRERATE_FACTOR:Number = 0.1;
+		public static const DEFENSE_FACTOR:Number = 0.0625; 
+		public static const DAMAGE_FACTOR:Number = 0.75;
+		public static const FIRERATE_FACTOR:Number = 0.0625;
 		
 		public static const LAST_LEVEL:uint = 37;
 		
@@ -34,8 +36,8 @@ package
 		
 		//changable
 		
-		public static var level:uint = 1;
-		public static var diamonds:int = 0;
+		public static var level:uint = 36;
+		public static var diamonds:int = 144;
 		public static var playerHealth:Number = 3;
 		public static var weapon:uint = 0;
 		

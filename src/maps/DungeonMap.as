@@ -83,7 +83,7 @@ package  maps
 			else if (GameData.level < 6) enemyRange = 4;
 			else if (GameData.level < 10) enemyRange = 5;
 			else if (GameData.level < 19) enemyRange = 6;
-			else if (GameData.level < 28) enemyRange = 7;
+			else enemyRange = 7;
 			
 			//enemyRange = 7;
 			

@@ -28,7 +28,7 @@ package  units
 		
 		protected var lifeBar:FlxBar;
 		protected var lifeBarHeight:uint = 5;
-		protected var lifeBarOffset:int = -10;
+		protected var lifeBarOffset:int = -15;
 		
 		public function Enemy(_player:Player, _map:Map = null) 
 		{

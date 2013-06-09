@@ -17,10 +17,9 @@ package units
 		protected var doneExploding:Boolean;
 		protected var movementDelay:FlxDelay;
 		
-		public function SlimeBaby(_player:Player, _map:Map, _enemyBars:FlxGroup) 
+		public function SlimeBaby(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBars:FlxGroup) 
 		{
 			super(_player, _map);
-			gibs = null;
 			player = _player;
 			
 			exists = false;
@@ -44,6 +43,9 @@ package units
 			
 			movementDelay = new FlxDelay(700);
 			movementDelay.callback = startMovement;
+			
+			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 10, 10, true);
+			_gibsGroup.add(gibs);
 		}
 		
 		override public function update():void
