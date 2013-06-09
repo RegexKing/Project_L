@@ -7,6 +7,7 @@ package units
 	
 	import org.flixel.*;  
 	import org.flixel.plugin.photonstorm.*;
+	import org.flixel.plugin.photonstorm.FlxBar;
 	 
 	public class BeastMan extends Enemy
 	{
@@ -16,9 +17,9 @@ package units
 		public static var angry:Boolean;
 		private var functionCallback:Function;
 		
-		public function BeastMan(_player:Player, _gibsGroup:FlxGroup, _functionCallback:Function, _enemyLifeBars:FlxGroup)
+		public function BeastMan(_player:Player, _gibsGroup:FlxGroup, _functionCallback:Function, _enemyBars:FlxGroup)
 		{
-			super(_player, null, _enemyLifeBars);
+			super(_player);
 			
 			functionCallback = _functionCallback;
 			
@@ -34,6 +35,12 @@ package units
 			elasticity = 0.5;
 			
 			makeGraphic(50, 60, 0xff00FF00);
+			
+			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
+			lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);
+			lifeBar.trackParent(0, lifeBarOffset);
+			lifeBar.visible = false;
+			_enemyBars.add(lifeBar);
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);

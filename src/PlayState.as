@@ -152,8 +152,6 @@ package
 			add(areaHeader);
 			
 			slide.start();
-			
-			FlxG.log(enemyBars.members.length);
 		}
 		
 		override public function update():void

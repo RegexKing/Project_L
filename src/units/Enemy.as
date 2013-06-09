@@ -27,8 +27,10 @@ package  units
 		protected var playerCoords:FlxPoint;
 		
 		protected var lifeBar:FlxBar;
+		protected var lifeBarHeight:uint = 5;
+		protected var lifeBarOffset:int = -10;
 		
-		public function Enemy(_player:Player, _map:Map = null, _enemyLifeBars:FlxGroup=null) 
+		public function Enemy(_player:Player, _map:Map = null) 
 		{
 			totalEnemies++;
 			
@@ -52,13 +54,6 @@ package  units
 			gibs.setYSpeed(-400,400);
 			gibs.setRotation(0, 0);
 			gibs.bounce = 0.5;
-			
-			
-				lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 40, 5, this, "health", 0, health);
-				lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);
-				//lifeBar.positionOffset.y = -10;
-				
-				//_enemyLifeBars.add(lifeBar);
 		}
 		
 		
@@ -135,6 +130,8 @@ package  units
 			super.hurt(_damagePoints);
 			
 			aware = true;
+			
+			if (lifeBar != null && !lifeBar.visible) lifeBar.visible = true;
 			
 			//sound effect
 			FlxG.play(AssetsRegistry.enemyHurtMP3);

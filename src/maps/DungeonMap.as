@@ -44,7 +44,7 @@ package  maps
 			collideableEnemies = _collideableEnemies;
 			spriteAddons = _spriteAddons;
 			playerHazzards = _playerHazzards;
-			enemyBars = _enemyBars;
+			enemyBars = _enemyBars
 			
 			dungeonGen = new DungeonGenerator();
 			
@@ -77,12 +77,15 @@ package  maps
 			totalEnemies = 6 + GameData.level * 4;
 			
 			// spawns a certain range of enemies depending on level
-			//if (GameData.level < 10) enemyRange = 5;
-			//else if (GameData.level < 19) enemyRange = 6;
-			//else enemyRange = 7;
-			
 			var enemyRange:uint;
-			enemyRange = 7;
+			
+			if (GameData.level < 3) enemyRange = 2;
+			else if (GameData.level < 6) enemyRange = 4;
+			else if (GameData.level < 10) enemyRange = 5;
+			else if (GameData.level < 19) enemyRange = 6;
+			else if (GameData.level < 28) enemyRange = 7;
+			
+			//enemyRange = 7;
 			
 			for (var j:int = 0; j < totalEnemies; j++)
 			{
