@@ -108,7 +108,7 @@ package dialogue
 		{
 			player.active = false;
 			girl.active = false;
-			beastMan.active = false;
+			if (beastMan != null) beastMan.active = false;
 			changeCharPortrait(_npcName);
 			toggle();
 			
@@ -164,7 +164,7 @@ package dialogue
 		{
 			player.active = true;
 			girl.active = true;
-			beastMan.active = true;
+			if(beastMan != null) beastMan.active = true;
 		}
 		
 	}

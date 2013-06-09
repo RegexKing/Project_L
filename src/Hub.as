@@ -38,8 +38,17 @@ package
 				beastMan = new BeastMan(player, gibsGroup, activateDialogue, enemyBars);
 				enemiesGroup.add(beastMan);
 				
-				beastMan.x = GameData.RENDER_WIDTH - (beastMan.width + Map.TILE_SIZE);
-				beastMan.y = GameData.RENDER_HEIGHT - (beastMan.height + Map.TILE_SIZE*2);
+				if (GameData.level == GameData.LAST_LEVEL)
+				{
+					beastMan.x = GameData.RENDER_WIDTH/2 - beastMan.width/2;
+					beastMan.y = GameData.RENDER_HEIGHT - Map.TILE_SIZE - beastMan.height;
+				}
+				
+				else
+				{
+					beastMan.x = GameData.RENDER_WIDTH - (beastMan.width + Map.TILE_SIZE);
+					beastMan.y = GameData.RENDER_HEIGHT - (beastMan.height + Map.TILE_SIZE * 2);
+				}
 			}
 			
 			girl = new Girl(player, activateDialogue, beastMan);

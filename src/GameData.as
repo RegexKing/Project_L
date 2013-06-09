@@ -32,11 +32,11 @@ package
 		public static var isNewGame:Boolean; //TODO if this is false, enable the continue button
 		
 		// check if beast is dead
-		public static var isBeastManDead:Boolean = false;
+		public static var isBeastManDead:Boolean = true;
 		
 		//changable
 		
-		public static var level:uint = 36;
+		public static var level:uint = 37;
 		public static var diamonds:int = 144;
 		public static var playerHealth:Number = 3;
 		public static var weapon:uint = 0;
