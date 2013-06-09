@@ -82,16 +82,16 @@ package dialogue
 			defenseBar.currentValue = GameData.defenseUpgrades;
 			rateBar.currentValue = GameData.rateUpgrades;
 			
-			healthCost = new FlxText(237, 299, 60, String(initDisplayCost(GameData.vitalityUpgrades)));
+			healthCost = new FlxText(237, 299, 60, String(initDisplayCost(GameData.vitalityUpgrades+1)));
 			healthCost.setFormat("NES", 16);
 			
-			attackCost = new FlxText(237, 329, 60, String(initDisplayCost(GameData.attackUpgrades)));
+			attackCost = new FlxText(237, 329, 60, String(initDisplayCost(GameData.attackUpgrades+1)));
 			attackCost.setFormat("NES", 16);
 			
-			defenseCost = new FlxText(237, 359, 60, String(initDisplayCost(GameData.defenseUpgrades)));
+			defenseCost = new FlxText(237, 359, 60, String(initDisplayCost(GameData.defenseUpgrades+1)));
 			defenseCost.setFormat("NES", 16);
 			
-			rateCost = new FlxText(237, 389, 60, String(initDisplayCost(GameData.rateUpgrades)));
+			rateCost = new FlxText(237, 389, 60, String(initDisplayCost(GameData.rateUpgrades+1)));
 			rateCost.setFormat("NES", 16);
 			
 			//
