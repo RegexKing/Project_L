@@ -16,9 +16,9 @@ package units
 		protected var doneExploding:Boolean;
 		protected var movementDelay:FlxDelay;
 		
-		public function SlimeBaby(_player:Player, _map:Map) 
+		public function SlimeBaby(_player:Player, _map:Map, _enemyLifeBars:FlxGroup) 
 		{
-			super(_player, _map);
+			super(_player, _map, _enemyLifeBars);
 			gibs = null;
 			player = _player;
 			

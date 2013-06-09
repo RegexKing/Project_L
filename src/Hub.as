@@ -35,7 +35,7 @@ package
 			
 			if (!GameData.isBeastManDead) 
 			{
-				beastMan = new BeastMan(player, gibsGroup, activateDialogue);
+				beastMan = new BeastMan(player, gibsGroup, activateDialogue, enemyBars);
 				enemiesGroup.add(beastMan);
 				
 				beastMan.x = GameData.RENDER_WIDTH - (beastMan.width + Map.TILE_SIZE);

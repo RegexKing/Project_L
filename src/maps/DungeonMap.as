@@ -26,9 +26,10 @@ package  maps
 		private var collideableEnemies:FlxGroup;
 		private var spriteAddons:FlxGroup;
 		private var playerHazzards:FlxGroup;
+		private var enemyBars:FlxGroup;
 		
 		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
-			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _spriteAddons:FlxGroup, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
+			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super(addToStage, onAddSpritesCallback);
 			
@@ -43,6 +44,7 @@ package  maps
 			collideableEnemies = _collideableEnemies;
 			spriteAddons = _spriteAddons;
 			playerHazzards = _playerHazzards;
+			enemyBars = _enemyBars;
 			
 			dungeonGen = new DungeonGenerator();
 			
@@ -55,6 +57,7 @@ package  maps
 			var treasureCoords:FlxPoint = randomLastRoom();
 			treasure.x = treasureCoords.x;
 			treasure.y = treasureCoords.y;
+			spawnTeasure();
 			
 			var playerStart:FlxPoint = randomFirstRoom();
 			
@@ -71,10 +74,13 @@ package  maps
 			
 			// figures out how many enemys to spwan based on level
 			var totalEnemies:uint;
-			totalEnemies = 6 + GameData.level * 3;
+			totalEnemies = 6 + GameData.level * 4;
 			
 			// spawns a certain range of enemies depending on level
-			//if (GameData.level < 10) enemyRange = 7;
+			//if (GameData.level < 10) enemyRange = 5;
+			//else if (GameData.level < 19) enemyRange = 6;
+			//else enemyRange = 7;
+			
 			var enemyRange:uint;
 			enemyRange = 7;
 			
@@ -85,37 +91,37 @@ package  maps
 				switch(int(Math.ceil(Math.random() * enemyRange)))
 				{
 					case 1:
-						enemy = new PurpleEnemy(player, this, gibs);
+						enemy = new PurpleEnemy(player, this, gibs, enemyBars);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
 					case 2:
-						enemy = new RangedEnemy(player, this, enemyBullets, gibs);
+						enemy = new RangedEnemy(player, this, enemyBullets, gibs, enemyBars);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
 					case 3:
-						enemy = new Skeleton(player, this, gibs);
+						enemy = new Skeleton(player, this, gibs, enemyBars);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
 					case 4: 
-						enemy = new Ghost(player, this, gibs);
+						enemy = new Ghost(player, this, gibs, enemyBars);
 						enemiesGroup.add(enemy);
 						spriteAddons.add((enemy as Ghost).trail);
 						break;
 					case 5: 
-						enemy = new Slime(player, this, enemiesGroup, collideableEnemies);
+						enemy = new Slime(player, this, enemiesGroup, collideableEnemies, enemyBars);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
 					case 6:
-						enemy = new SkeletonArcher(player, this, gibs, enemyBullets);
+						enemy = new SkeletonArcher(player, this, gibs, enemyBullets, enemyBars);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
 					case 7:
-						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies);
+						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;

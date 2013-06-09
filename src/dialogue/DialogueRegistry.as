@@ -28,11 +28,11 @@ package dialogue
 			
 		// girl
 		public static var girl_intro1:String = GIRL_TITLE + "Hello this is the best ever I can't even believe it so awesome and good and amazing!";
-		public static var girl_outro1:String = GIRL_TITLE + "Goodbye..";
-		public static var sad:String = GIRL_TITLE + "Thou hath taken away from me my dearest companion, mayhaps my last.";
+		public static var girl_outro1:String = GIRL_TITLE + "Farewell..";
+		public static var sad:String = GIRL_TITLE + "Thou hast taken away from me my dearest companion, mayhaps my last.";
 		public static var sad2:String = GIRL_TITLE + "I beg of thee, just let me be...";
-		public static var sadEnding:String = GIRL_TITLE + "I am a fool to have entrusted you to such a task..";
-		public static var sadEnding2:String = GIRL_TITLE + "Go, take you and your greed and leave my sight.";
+		public static var sadEnding:String = GIRL_TITLE + "I am a fool to have entrusted thee to such a task..";
+		public static var sadEnding2:String = GIRL_TITLE + "Go, leave my sight and takest thine greed with thee!";
 		
 		// beast
 		public static var beast_intro1:String = BEAST_TITLE + "Aye, it's Patches! You're pretty tough for such a small man.";
@@ -43,7 +43,7 @@ package dialogue
 		
 		// ending
 		public static var ending1:String = GIRL_TITLE + "At long last, you have found what I have sought for so long!";
-		public static var ending2:String = GIRL_TITLE + "Please hand it over to me so that it can be destroyed,";
+		public static var ending2:String = GIRL_TITLE + "Please hand it over to me so that it may be destroyed,";
 		public static var ending3:String = GIRL_TITLE + "thus freeing me from this curse of everlasting life.";
 		public static var ending4:String = GUY_TITLE + "Wait a moment, are you telling me that this chalice can grant immortality?";
 		public static var ending5:String = GIRL_TITLE + "...yes.";

@@ -26,7 +26,9 @@ package  units
 		protected var enemyCoords:FlxPoint;
 		protected var playerCoords:FlxPoint;
 		
-		public function Enemy(_player:Player, _map:Map=null) 
+		protected var lifeBar:FlxBar;
+		
+		public function Enemy(_player:Player, _map:Map = null, _enemyLifeBars:FlxGroup=null) 
 		{
 			totalEnemies++;
 			
@@ -50,6 +52,13 @@ package  units
 			gibs.setYSpeed(-400,400);
 			gibs.setRotation(0, 0);
 			gibs.bounce = 0.5;
+			
+			
+				lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, 40, 5, this, "health", 0, health);
+				lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);
+				//lifeBar.positionOffset.y = -10;
+				
+				//_enemyLifeBars.add(lifeBar);
 		}
 		
 		
@@ -139,6 +148,8 @@ package  units
 		override public function kill():void
 		{
 			super.kill();
+			
+			if (lifeBar != null) lifeBar.kill();
 			
 			if(gibs != null)
 			{

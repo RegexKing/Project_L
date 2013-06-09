@@ -51,7 +51,7 @@ package weapons
 		{
 			super.kill();
 			
-			trail.kill();
+			//trail.kill();
 		}
 		
 	}

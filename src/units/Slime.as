@@ -12,12 +12,12 @@ package units
 	public class Slime extends Enemy
 	{
 		
-		private var babyNumber:uint = 5;
+		private var babyNumber:uint = 3;
 		protected var babySlimes:FlxEmitter;
 		
-		public function Slime(_player:Player, _map:Map, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup) 
+		public function Slime(_player:Player, _map:Map, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup, _enemyLifeBars:FlxGroup) 
 		{
-			super(_player, _map);
+			super(_player, _map, _enemyLifeBars);
 			
 			babySlimes = new FlxEmitter(0, 0, babyNumber);
 			babySlimes.setRotation(0, 0);
@@ -42,7 +42,7 @@ package units
 			
 			for (var i:int = 0; i < babyNumber; i++)
 			{
-				babySlimes.add(new SlimeBaby(player, map));
+				babySlimes.add(new SlimeBaby(player, map, null));
 			}
 			
 			_enemiesGroup.add(babySlimes);

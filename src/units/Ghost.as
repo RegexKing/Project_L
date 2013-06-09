@@ -15,9 +15,9 @@ package units
 		
 		public var trail:FlxTrail;
 		
-		public function Ghost(_player:Player, _map:Map, _gibsGroup:FlxGroup) 
+		public function Ghost(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyLifeBars:FlxGroup) 
 		{
-			super(_player, _map);
+			super(_player, _map, _enemyLifeBars);
 			
 			patrolSpeed = 160;
 			alertSpeed = 100;

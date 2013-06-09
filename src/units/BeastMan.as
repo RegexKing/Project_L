@@ -16,9 +16,9 @@ package units
 		public static var angry:Boolean;
 		private var functionCallback:Function;
 		
-		public function BeastMan(_player:Player, _gibsGroup:FlxGroup, _functionCallback:Function)
+		public function BeastMan(_player:Player, _gibsGroup:FlxGroup, _functionCallback:Function, _enemyLifeBars:FlxGroup)
 		{
-			super(_player);
+			super(_player, null, _enemyLifeBars);
 			
 			functionCallback = _functionCallback;
 			

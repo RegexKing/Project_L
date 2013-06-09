@@ -77,7 +77,7 @@ package
 		override public function stageInit():void
 		{
 			map = new DungeonMap(player, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
-				lightsGroup, lifeBar, diamondCounter, spriteAddons, transitionNextState);
+				lightsGroup, lifeBar, diamondCounter, spriteAddons, enemyBars, transitionNextState);
 		}
 		
 		override public function bgmInit():void

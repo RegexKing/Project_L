@@ -93,7 +93,7 @@ package  hud
 		
 		private function treasureAppear():void
 		{
-			(map as DungeonMap).spawnTeasure();
+			//(map as DungeonMap).spawnTeasure();
 			
 			treasureIcon.alpha = 1;
 			

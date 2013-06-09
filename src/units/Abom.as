@@ -15,9 +15,9 @@ package units
 		private var acidNumber:uint = 30;
 		protected var acidParticles:FlxEmitter;
 		
-		public function Abom(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup) 
+		public function Abom(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup, _enemyLifeBars:FlxGroup) 
 		{
-			super(_player, _map);
+			super(_player, _map, _enemyLifeBars);
 			
 			
 			acidParticles = new FlxEmitter(0, 0, acidNumber);

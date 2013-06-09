@@ -56,8 +56,8 @@ package maps
 			// scale complexity
 			TOTAL_ROWS = 40 + GameData.level;
 			TOTAL_COLS = 40 + GameData.level;
-			MIN_ROOMS = 6 + GameData.level;
-			MAX_ROOMS = 12 + GameData.level;
+			MIN_ROOMS = 5 + GameData.level;
+			MAX_ROOMS = 10 + GameData.level;
 			
 			// Generate the map
 			generateMap();

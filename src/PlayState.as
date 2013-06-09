@@ -42,6 +42,7 @@ package
 		protected var collideableEnemies:FlxGroup;
 		protected var spriteAddons:FlxGroup;
 		protected var areaHeader:FlxText;
+		protected var enemyBars:FlxGroup;
 		
 		protected var slide:CenterSlideFX;
 		protected var slidePic:FlxSprite;
@@ -72,6 +73,7 @@ package
 			gibsGroup = new FlxGroup();
 			lightsGroup = new FlxGroup();
 			spriteAddons = new FlxGroup();
+			enemyBars = new FlxGroup();
 			
 			pauseMenu = new PauseMenu();
 			pauseMenu.setAll("scrollFactor", new FlxPoint());
@@ -140,16 +142,18 @@ package
 			add(player);
 			add(enemiesGroup);
 			add(spriteAddons);
+			add(enemyBars);
 			add(playerBulletsGroup);
 			add(enemyBullets);
 			add(lightsGroup);
 			add(hudGroup);
 			add(cameraFocus);
-			
 			add(slideContainer);
 			add(areaHeader);
 			
 			slide.start();
+			
+			FlxG.log(enemyBars.members.length);
 		}
 		
 		override public function update():void

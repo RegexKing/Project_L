@@ -13,9 +13,9 @@ package  units
 	public class PurpleEnemy extends Enemy
 	{
 		
-		public function PurpleEnemy(_player:Player, _map:Map, _gibsGroup:FlxGroup) 
+		public function PurpleEnemy(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyLifeBars:FlxGroup) 
 		{
-			super(_player, _map);
+			super(_player, _map, _enemyLifeBars);
 			
 			patrolSpeed = 160;
 			alertSpeed = 500;

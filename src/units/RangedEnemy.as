@@ -13,9 +13,9 @@ package  units
 		
 		private var weapon:FlxWeapon;
 		
-		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _gibsGroup:FlxGroup) 
+		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _gibsGroup:FlxGroup, _enemyLifeBars:FlxGroup) 
 		{
-			super(_player, _map);
+			super(_player, _map, _enemyLifeBars);
 			
 			patrolSpeed = 100;
 			alertSpeed = 160;

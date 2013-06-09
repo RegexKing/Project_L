@@ -13,9 +13,9 @@ package units
 		private var deaths:uint;
 		private var ressurectDelay:FlxDelay;
 		
-		public function Skeleton(_player:Player, _map:Map, _gibsGroup:FlxGroup) 
+		public function Skeleton(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyLifeBars:FlxGroup) 
 		{
-			super(_player, _map);
+			super(_player, _map, _enemyLifeBars);
 			
 			deaths = 0;
 			
