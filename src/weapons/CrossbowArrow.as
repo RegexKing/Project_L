@@ -81,6 +81,8 @@ package weapons
 			{
 				this.x =  trackingObject.x + stuckCoords.x;
 				this.y = trackingObject.y + stuckCoords.y;
+				
+				if (!trackingObject.alive) kill();
 			}
 			
 		}
@@ -109,8 +111,17 @@ package weapons
 				
 				explosionTimer.abort();
 			
-				explosionParticles.at(this);
-				explosionParticles.start(true, 0.5, 0);
+				if (trackingObject == null || trackingObject.alive)
+				{
+					explosionParticles.at(this);
+					explosionParticles.start(true, 0.5, 0);
+				}
+			}
+			
+			else
+			{
+				causeExplosion = false;
+				explosionTimer.abort();
 			}
 			
 			
@@ -118,6 +129,7 @@ package weapons
 			
 			solid = true;
 			isTracking = false;
+			trackingObject = null;
 			
 		}
 		
