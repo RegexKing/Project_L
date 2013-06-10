@@ -22,7 +22,7 @@ package weapons
 		
 		private var causeExplosion:Boolean = false;
 		
-		private var particleNumber:uint = 30;
+		private var particleNumber:uint = 50;
 		
 		public var isTracking:Boolean = false;
 		private var trackingObject:FlxObject;
@@ -110,7 +110,7 @@ package weapons
 				explosionTimer.abort();
 			
 				explosionParticles.at(this);
-				explosionParticles.start(true, 0.4, 0);
+				explosionParticles.start(true, 0.5, 0);
 			}
 			
 			
