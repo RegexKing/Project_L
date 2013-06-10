@@ -25,7 +25,7 @@ package  units
 		//Gun Vars
 		protected const NORMAL_RATE:Number = 500;
 		protected const BOUNCE_RATE:Number = 400;
-		protected const CROSSBOW_RATE:Number = 1500;
+		protected const CROSSBOW_RATE:Number = 1100;
 		
 		public static const NORMAL_GUN:uint = 0;
 		public static const BOUNCE_GUN:uint = 1;

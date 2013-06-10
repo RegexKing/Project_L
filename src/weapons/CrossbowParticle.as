@@ -15,9 +15,9 @@ package weapons
 			super();
 			exists = false;
 			
-			attackValue = .1;
+			attackValue = .2;
 			
-			makeGraphic(4, 4, 0xff00FF00);
+			makeGraphic(8, 8, 0xff00FF00);
 		}
 		
 		override public function onEmit():void

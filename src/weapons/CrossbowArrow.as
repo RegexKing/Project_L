@@ -37,7 +37,7 @@ package weapons
 			
 			attackValue = 0;
 					
-			explosionTimer = new FlxDelay(1500);
+			explosionTimer = new FlxDelay(1100);
 			explosionTimer.callback = kill;
 			
 			explosionParticles = new FlxEmitter(0, 0, particleNumber);
@@ -110,7 +110,7 @@ package weapons
 				explosionTimer.abort();
 			
 				explosionParticles.at(this);
-				explosionParticles.start(true, 0.35, 0);
+				explosionParticles.start(true, 0.4, 0);
 			}
 			
 			
