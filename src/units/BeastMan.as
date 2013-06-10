@@ -29,8 +29,8 @@ package units
 			health = 10;
 			attackValue = 2;
 			
-			health = GameUtil.scaleHealth(health);
-			attackValue = GameUtil.scaleDamage(attackValue);
+			health = GameUtil.beast_scaleHealth(health);
+			attackValue = GameUtil.beast_scaleDamage(attackValue);
 			
 			elasticity = 0.5;
 			

@@ -53,7 +53,7 @@ package
 			
 		}
 		
-		
+		/*
 		override public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
 		{
 			if (unit.flickering) return
@@ -66,13 +66,13 @@ package
 					unit.hurt(0);
 				}
 				
-				else if (!(hazzard is Acid))
+				else if (!(hazzard is Acid)&& !(hazzards is Girl))
 					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
 			}
 			
 			if (hazzard is Bullet || hazzard is FlxParticle) hazzard.kill();
 		}
-		
+		*/
 		
 		override public function stageInit():void
 		{

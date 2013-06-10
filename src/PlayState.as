@@ -208,6 +208,30 @@ package
 		
 		public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
 		{
+			if (unit.flickering) return
+			
+			else 
+			{
+				if (unit is Player) 
+				{
+					if ((hazzard is BeastMan && BeastMan.angry) || (!(hazzard is BeastMan) && hazzard is Enemy))
+					{
+						lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue * GameData.defenseMultiplier);
+						unit.hurt(0);
+					}
+					
+				}
+				
+				else if (!(hazzard is Acid))
+					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
+			}
+			
+			if ((hazzard is Bullet && !(hazzard is CrossbowArrow)) || hazzard is CrossbowParticle) hazzard.kill();
+			
+			else if (hazzard is CrossbowArrow && !(hazzard as CrossbowArrow).isTracking)
+			{
+				(hazzard as CrossbowArrow).trackTarget(unit);
+			}
 		}
 		
 		override public function draw():void

@@ -116,6 +116,7 @@ package
 
 		}
 		
+		/*
 		override public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
 		{
 			if (unit.flickering) return
@@ -141,6 +142,7 @@ package
 			
 			if (hazzard is Bullet || hazzard is CrossbowParticle) hazzard.kill();
 		}
+		*/
 		
 		override public function goNextState():void
 		{

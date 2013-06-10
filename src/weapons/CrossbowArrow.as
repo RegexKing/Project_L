@@ -1,6 +1,7 @@
 package weapons 
 {
 	import org.flixel.FlxEmitter;
+	import org.flixel.FlxObject;
 	import org.flixel.FlxPoint;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FlxDelay;
@@ -23,9 +24,16 @@ package weapons
 		
 		private var particleNumber:uint = 30;
 		
+		public var isTracking:Boolean = false;
+		private var trackingObject:FlxObject;
+		
+		private var stuckCoords:FlxPoint;
+		
 		public function CrossbowArrow(weapon:FlxWeapon, id:uint, _bulletGroup:FlxGroup) 
 		{
 			super(weapon, id);
+			
+			stuckCoords = new FlxPoint();
 			
 			attackValue = 0;
 					
@@ -69,7 +77,28 @@ package weapons
 				explosionTimer.start();
 			}
 			
+			if (isTracking)
+			{
+				this.x =  trackingObject.x + stuckCoords.x;
+				this.y = trackingObject.y + stuckCoords.y;
+			}
 			
+		}
+		
+		public function trackTarget(_sprite:FlxObject):void
+		{
+			isTracking = true;
+			trackingObject = _sprite;
+			
+			stuckCoords.x = this.x - trackingObject.x;
+			stuckCoords.y = this.y - trackingObject.y;
+			
+			causeExplosion = true;
+			
+			solid = false;
+			velocity.x = velocity.y = 0;
+				
+			explosionTimer.start();
 		}
 		
 		override public function kill():void
@@ -84,9 +113,11 @@ package weapons
 				explosionParticles.start(true, 0.35, 0);
 			}
 			
+			
 			super.kill();
 			
 			solid = true;
+			isTracking = false;
 			
 		}
 		
