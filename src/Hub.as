@@ -139,7 +139,7 @@ package
 				else unit.hurt(0);
 			}
 			
-			if (hazzard is Bullet) hazzard.kill();
+			if (hazzard is Bullet || hazzard is CrossbowParticle) hazzard.kill();
 		}
 		
 		override public function goNextState():void

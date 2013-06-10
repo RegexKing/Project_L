@@ -70,7 +70,7 @@ package
 					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
 			}
 			
-			if (hazzard is Bullet) hazzard.kill();
+			if (hazzard is Bullet || hazzard is FlxParticle) hazzard.kill();
 		}
 		
 		

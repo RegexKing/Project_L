@@ -134,7 +134,7 @@ package  units
 			if (lifeBar != null && !lifeBar.visible) lifeBar.visible = true;
 			
 			//sound effect
-			FlxG.play(AssetsRegistry.enemyHurtMP3);
+			 if (_damagePoints > 0) FlxG.play(AssetsRegistry.enemyHurtMP3);
 		}
 		
 		public function setItemEmitter(_itemEmitter:FlxEmitter = null):void

@@ -23,12 +23,15 @@ package  units
 		//Gun Vars
 		protected const NORMAL_RATE:Number = 500;
 		protected const BOUNCE_RATE:Number = 400;
+		protected const CROSSBOW_RATE:Number = 1500;
 		
 		public static const NORMAL_GUN:uint = 0;
 		public static const BOUNCE_GUN:uint = 1;
+		public static const CROSSBOW:uint = 2;
 		
 		protected var normalGun:FlxWeapon;
 		protected var bounceGun:BounceGun;
+		protected var crossbow:Crossbow;
 		
 		public function Player(_gibsGroup:FlxGroup, _playerBulletsGroup:FlxGroup, _alertEnemies:Function) 
 		{
@@ -80,8 +83,16 @@ package  units
 			bounceGun.setBulletLifeSpan(2000);
 			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
 			
+			crossbow = new Crossbow("crossbow", playerBulletsGroup, this);
+			crossbow.makePixelBullet(10, 12, 12, 0xffffffff, 14, 14);
+			crossbow.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+			crossbow.setBulletSpeed(600);
+			crossbow.setFireRate(CROSSBOW_RATE - (CROSSBOW_RATE * GameData.fireRateMultiplier));
+			crossbow.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
+			
 			playerBulletsGroup.add(normalGun.group);
 			playerBulletsGroup.add(bounceGun.group);
+			playerBulletsGroup.add(crossbow.group);
 			//
 		}
 		
@@ -103,6 +114,9 @@ package  units
 						case BOUNCE_GUN:
 							bounceGun.fireAtMouse();
 							break;
+						case CROSSBOW:
+							crossbow.fireAtMouse();
+							break;
 							
 						default:
 							throw new Error("Weapon id number is out acceptable range");
@@ -117,6 +131,7 @@ package  units
 		{
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
+			crossbow.setFireRate(CROSSBOW_RATE - (CROSSBOW_RATE * GameData.fireRateMultiplier));
 		}
 		
 		override public function hurt(_damageNumber:Number):void
@@ -161,6 +176,7 @@ package  units
 			
 			normalGun = null;
 			bounceGun = null;
+			crossbow = null;
 		}
 		
 	}
