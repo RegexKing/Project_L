@@ -91,7 +91,7 @@ package  maps
 			{
 				var enemy:Enemy;
 				
-				switch(7)//(int(Math.ceil(Math.random() * enemyRange)))
+				switch(int(Math.ceil(Math.random() * enemyRange)))
 				{
 					case 1:
 						enemy = new PurpleEnemy(player, this, gibs, enemyBars);

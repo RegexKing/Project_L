@@ -26,7 +26,7 @@ package
 		public static const DAMAGE_FACTOR:Number = 0.75;
 		public static const FIRERATE_FACTOR:Number = 0.0625;
 		
-		public static const LAST_LEVEL:uint = 37;
+		public static const LAST_LEVEL:uint = 41;
 		
 		//Flag to check if new game
 		public static var isNewGame:Boolean; //TODO if this is false, enable the continue button

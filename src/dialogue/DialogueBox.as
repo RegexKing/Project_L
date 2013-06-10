@@ -85,10 +85,7 @@ package dialogue
 						isClickable = true;
 						dialogueSet = null;
 						
-						//so player doesnt fire right away
-						var fireTimer:FlxDelay = new FlxDelay(500);
-						fireTimer.callback = makePlayerActive;
-						fireTimer.start();
+						makeUnitsActive();
 						return;
 					}
 					
@@ -160,7 +157,7 @@ package dialogue
 			textField.visible = !textField.visible;
 		}
 		
-		private function makePlayerActive():void
+		private function makeUnitsActive():void
 		{
 			player.active = true;
 			girl.active = true;

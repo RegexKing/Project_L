@@ -37,6 +37,16 @@ package units
 				//function callback for dialogue box
 				functionCallback("girl");
 			}
+			
+			if (FlxVelocity.distanceBetween(this, player) <= this.height * 2 || (beastMan != null && beastMan.closeToPlayer()))
+			{
+				if (beastMan != null && BeastMan.angry)
+					player.fireable = true;
+				else
+					player.fireable = false;
+			}
+			
+			else player.fireable = true;
 		}
 		
 		override public function hurt(_damagePoints:Number):void

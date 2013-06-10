@@ -20,6 +20,8 @@ package  units
 		protected var playerBulletsGroup:FlxGroup;
 		protected var alertEnemies:Function;
 		
+		public var fireable:Boolean;
+		
 		//Gun Vars
 		protected const NORMAL_RATE:Number = 500;
 		protected const BOUNCE_RATE:Number = 400;
@@ -39,6 +41,7 @@ package  units
 			
 			playerBulletsGroup = _playerBulletsGroup;
 			alertEnemies = _alertEnemies;
+			fireable = true;
 			
 			makeGraphic(40, 40, 0xffFF9900);
 			
@@ -100,7 +103,7 @@ package  units
 		{	
 			super.update();
 			
-			if (this.alive && this.active)
+			if (this.alive && this.fireable)
 			{
 				// switch statement to fire correct weapon
 				if (FlxG.mouse.pressed())

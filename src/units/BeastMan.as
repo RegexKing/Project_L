@@ -60,6 +60,16 @@ package units
 			}
 		}
 		
+		public function closeToPlayer():Boolean
+		{
+			if (FlxVelocity.distanceBetween(this, player) <= this.height * 2 && !angry)
+			{
+				return true;
+			}
+			
+			else return false;
+		}
+		
 		override public function hurt(_damagePoints:Number):void
 		{
 			super.hurt(_damagePoints);
