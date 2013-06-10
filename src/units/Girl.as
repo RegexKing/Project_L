@@ -41,8 +41,6 @@ package units
 		
 		override public function hurt(_damagePoints:Number):void
 		{
-			super.hurt(_damagePoints);
-			
 			if(beastMan != null) BeastMan.angry = true;
 			
 			FlxG.play(AssetsRegistry.enemyHurtMP3);
