@@ -214,7 +214,7 @@ package
 			{
 				if (unit is Player) 
 				{
-					if ((hazzard is BeastMan && BeastMan.angry) || (!(hazzard is BeastMan) && hazzard is Enemy))
+					if ((hazzard is BeastMan && BeastMan.angry) || ((!(hazzard is BeastMan) && !(hazzard is Girl))))
 					{
 						lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue * GameData.defenseMultiplier);
 						unit.hurt(0);
