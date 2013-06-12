@@ -129,6 +129,20 @@ package util
 			super.update();
 		}
 		
+		public function resetPos():void
+		{
+			// Now we need to update the all the Trailsprites' values
+				for (var i:int = 0; i < recentPositions.length; i++) 
+				{
+					members[i].x = recentPositions[i].x;
+					members[i].y = recentPositions[i].y;
+					// And the angle...
+					if (rotationsEnabled) members[i].angle = recentAngles[i];
+					// Is the trailsprite even visible?
+					if (!members[i].visible) members[i].visible = true; 
+				}
+		}
+		
 		/**
 		 * A function to add a specific number of sprites to the trail to increase its length.
 		 *

@@ -164,7 +164,7 @@ package org.flixel.plugin.photonstorm.BaseTypes
 			postFire();
 		}
 		
-		private function postFire():void
+		protected function postFire():void
 		{
 			if (animated)
 			{

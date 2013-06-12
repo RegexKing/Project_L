@@ -14,13 +14,11 @@ package weapons
 	public class BounceBullet extends Bullet
 	{
 		
-		private var trail:FlxTrail;
-		private var spriteAddons:FlxGroup;
+		public var trail:FlxTrail;
 		
 		public function BounceBullet(weapon:FlxWeapon, id:uint) 
 		{
 			super(weapon, id);
-			//spriteAddons = _spriteAddons;
 			
 			attackValue = 1;
 		}
@@ -38,22 +36,31 @@ package weapons
 			}
 			
 			if (!this.onScreen()) kill();
+			
 		}
 		
-		public function setTrail():void
+		override protected function postFire():void
 		{
-			trail = new FlxTrail(this, null, 10, 3);
+			super.postFire();
+			trail.resetTrail();
+			trail.increaseLength(10);
+			trail.exists = true;
+		}
+		
+		public function getTrail():FlxTrail
+		{
+			trail = new FlxTrail(this, null, 10, 1, 0.6);
 			trail.rotationsEnabled = false;
-			spriteAddons.add(trail);
+			
+			return trail;
 		}
 		
 		override public function kill():void
 		{
 			super.kill();
 			
-			//trail.kill();
+			trail.exists = false;
 		}
-		
 	}
 
 }

@@ -79,7 +79,7 @@ package
 			pauseMenu.setAll("scrollFactor", new FlxPoint());
 			pauseMenu.kill();
 			
-			player = new Player(gibsGroup, playerBulletsGroup, alertEnemies);
+			player = new Player(gibsGroup, playerBulletsGroup, spriteAddons, alertEnemies);
 			cameraFocus = new CameraFocus(player);
 			FlxG.camera.target = cameraFocus;
 			

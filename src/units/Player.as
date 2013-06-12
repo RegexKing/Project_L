@@ -18,6 +18,7 @@ package  units
 		
 		public var playerGibs:FlxEmitter;
 		protected var playerBulletsGroup:FlxGroup;
+		protected var spriteAddons:FlxGroup;
 		protected var alertEnemies:Function;
 		
 		public var fireable:Boolean;
@@ -35,11 +36,12 @@ package  units
 		protected var bounceGun:BounceGun;
 		protected var crossbow:Crossbow;
 		
-		public function Player(_gibsGroup:FlxGroup, _playerBulletsGroup:FlxGroup, _alertEnemies:Function) 
+		public function Player(_gibsGroup:FlxGroup, _playerBulletsGroup:FlxGroup, _spriteAddons:FlxGroup, _alertEnemies:Function) 
 		{
 			super();
 			
 			playerBulletsGroup = _playerBulletsGroup;
+			spriteAddons = _spriteAddons;
 			alertEnemies = _alertEnemies;
 			fireable = true;
 			
@@ -77,7 +79,7 @@ package  units
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
-			bounceGun = new BounceGun("bounce", this);
+			bounceGun = new BounceGun("bounce", spriteAddons, this);
 			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff)
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			bounceGun.setBulletSpeed(600);

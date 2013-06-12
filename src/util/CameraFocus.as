@@ -58,7 +58,7 @@ package util
 					this.x = player.x;
 					this.y = player.y;
 					
-					if (this.x != player.x) FlxG.log(this.x + " and " + player.x);
+					//if (this.x != player.x) FlxG.log(this.x + " and " + player.x);
 				}
 				
 			}
