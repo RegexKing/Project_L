@@ -16,16 +16,18 @@ package units
 	{
 		protected var doneExploding:Boolean;
 		protected var movementDelay:FlxDelay;
+		protected var enemiesGroup:FlxGroup;
 		
-		public function SlimeBaby(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBars:FlxGroup) 
+		public function SlimeBaby(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup, _enemyBars:FlxGroup) 
 		{
 			super(_player, _map);
 			player = _player;
+			enemiesGroup = _enemiesGroup;
 			
 			exists = false;
 			doneExploding = false;
 			
-			alertSpeed = 200
+			alertSpeed = 100;
 			aware = true;
 			
 			health = 1;
@@ -57,6 +59,9 @@ package units
 		{
 			elasticity = 0.8;
 			drag = new FlxPoint(200, 200);
+			
+			enemiesGroup.add(this);
+			
 			movementDelay.start();
 		}
 		

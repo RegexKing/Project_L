@@ -17,7 +17,7 @@ package units
 		protected var babySlimes:FlxEmitter;
 		protected var enemyBars:FlxGroup;
 		
-		public function Slime(_player:Player, _map:Map, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup, _enemyBars:FlxGroup) 
+		public function Slime(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup, _enemyBars:FlxGroup, _slimeAddons:FlxGroup) 
 		{
 			super(_player, _map);
 			
@@ -25,8 +25,8 @@ package units
 			
 			babySlimes = new FlxEmitter(0, 0, babyNumber);
 			babySlimes.setRotation(0, 0);
-			babySlimes.setXSpeed(-400,400);
-			babySlimes.setYSpeed( -400, 400);
+			babySlimes.setXSpeed(-300, 300);
+			babySlimes.setYSpeed( -300, 300);
 			
 			patrolSpeed = 160;
 			alertSpeed = 500;
@@ -50,11 +50,11 @@ package units
 			
 			for (var i:int = 0; i < babyNumber; i++)
 			{
-				babySlimes.add(new SlimeBaby(player, map, _enemiesGroup, enemyBars));
+				babySlimes.add(new SlimeBaby(player, map, _gibsGroup, _enemiesGroup, enemyBars));
 			}
 			
-			_enemiesGroup.add(babySlimes);
 			_collideableEnemies.add(babySlimes);
+			_slimeAddons.add(babySlimes);
 		}
 		
 		override public function update():void

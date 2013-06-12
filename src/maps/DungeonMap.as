@@ -114,7 +114,7 @@ package  maps
 						spriteAddons.add((enemy as Ghost).trail);
 						break;
 					case 5: 
-						enemy = new Slime(player, this, enemiesGroup, collideableEnemies, enemyBars);
+						enemy = new Slime(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, spriteAddons);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;

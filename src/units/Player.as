@@ -157,11 +157,14 @@ package  units
 		
 		override public function hurt(_damageNumber:Number):void
 		{
-			this.flicker(1);
-			FlxG.camera.shake(0.005, 0.35);
+			//if (_damageNumber > 0)
+			//{
+				this.flicker(1);
+				FlxG.camera.shake(0.005, 0.35);
 			
-			//sound effect
-			FlxG.play(AssetsRegistry.playerHurtMP3);
+				//sound effect
+				FlxG.play(AssetsRegistry.playerHurtMP3);
+			//}
 		}
 		
 		override public function kill():void
