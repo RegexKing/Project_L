@@ -47,28 +47,28 @@ package org.flixel.plugin.photonstorm
 		//	Bullet values
 		public var bounds:FlxRect;
 		
-		private var bulletSpeed:uint;
-		private var rotateToAngle:Boolean;
+		protected var bulletSpeed:uint;
+		protected var rotateToAngle:Boolean;
 		
 		//	When firing from a fixed position (i.e. Missile Command)
-		private var fireFromPosition:Boolean;
-		private var fireX:int;
-		private var fireY:int;
+		protected var fireFromPosition:Boolean;
+		protected var fireX:int;
+		protected var fireY:int;
 		
-		private var lastFired:uint = 0;
-		private var nextFire:uint = 0;
-		private var fireRate:uint = 0;
+		protected var lastFired:uint = 0;
+		protected var nextFire:uint = 0;
+		protected var fireRate:uint = 0;
 		
 		//	When firing from a parent sprites position (i.e. Space Invaders)
-		private var fireFromParent:Boolean;
-		private var parent:*;
-		private var parentXVariable:String;
-		private var parentYVariable:String;
+		protected var fireFromParent:Boolean;
+		protected var parent:*;
+		protected var parentXVariable:String;
+		protected var parentYVariable:String;
 		protected var positionOffset:FlxPoint;
-		private var directionFromParent:Boolean;
-		private var angleFromParent:Boolean;
+		protected var directionFromParent:Boolean;
+		protected var angleFromParent:Boolean;
 		
-		private var velocity:FlxPoint;
+		protected var velocity:FlxPoint;
 		
 		public var multiShot:uint = 0;
 		
@@ -119,12 +119,12 @@ package org.flixel.plugin.photonstorm
 		private var magazineSwapCallback:Function;
 		private var magazineSwapSound:FlxSound;
 		
-		private static const FIRE:uint = 0;
-		private static const FIRE_AT_MOUSE:uint = 1;
-		private static const FIRE_AT_POSITION:uint = 2;
-		private static const FIRE_AT_TARGET:uint = 3;
-		private static const FIRE_FROM_ANGLE:uint = 4;
-		private static const FIRE_FROM_PARENT_ANGLE:uint = 5;
+		protected static const FIRE:uint = 0;
+		protected static const FIRE_AT_MOUSE:uint = 1;
+		protected static const FIRE_AT_POSITION:uint = 2;
+		protected static const FIRE_AT_TARGET:uint = 3;
+		protected static const FIRE_FROM_ANGLE:uint = 4;
+		protected static const FIRE_FROM_PARENT_ANGLE:uint = 5;
 		
 		/**
 		 * Creates the FlxWeapon class which will fire your bullets.<br>
@@ -259,7 +259,7 @@ package org.flixel.plugin.photonstorm
 		 * @param	target
 		 * @return	true if a bullet was fired or false if one wasn't available. The bullet last fired is stored in FlxWeapon.prevBullet
 		 */
-		private function runFire(method:uint, x:int = 0, y:int = 0, target:FlxSprite = null, angle:int = 0):Boolean
+		protected function runFire(method:uint, x:int = 0, y:int = 0, target:FlxSprite = null, angle:int = 0):Boolean
 		{
 			if (fireRate > 0 && (getTimer() < nextFire))
 			{
@@ -316,7 +316,7 @@ package org.flixel.plugin.photonstorm
 			}
 			else if (method == FIRE_AT_MOUSE)
 			{
-				currentBullet.fireAtMouse(launchX, launchY, bulletSpeed);
+				currentBullet.fireAtMouse(launchX, launchY, bulletSpeed, 0);
 			}
 			else if (method == FIRE_AT_POSITION)
 			{
@@ -617,7 +617,7 @@ package org.flixel.plugin.photonstorm
 		 * 
 		 * @return	A bullet
 		 */
-		private function getFreeBullet():Bullet
+		protected function getFreeBullet():Bullet
 		{
 			var result:Bullet = null;
 			

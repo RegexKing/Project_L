@@ -92,7 +92,7 @@ package org.flixel.plugin.photonstorm.BaseTypes
 			postFire();
 		}
 		
-		public function fireAtMouse(fromX:int, fromY:int, speed:int):void
+		public function fireAtMouse(fromX:int, fromY:int, speed:int, deviation:Number):void
 		{
 			x = fromX + FlxMath.rand( -weapon.rndFactorPosition.x, weapon.rndFactorPosition.x);
 			y = fromY + FlxMath.rand( -weapon.rndFactorPosition.y, weapon.rndFactorPosition.y);
