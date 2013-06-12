@@ -16,6 +16,7 @@ package
 	public class PlayState extends FlxState
 	{
 		protected var stateDone:Boolean = false;
+		protected var startDiamonds:int = GameData.diamonds;
 		
 		protected var pauseMenu:PauseMenu;
 		
@@ -244,8 +245,14 @@ package
 		private function endGame():void
 		{
 			player.kill();
-			GameData.resetData();
-			trace("Game ended");
+			
+			if (GameData.cravenMode)
+			{
+				GameData.playerHealth = 3;
+				GameData.diamonds = startDiamonds;
+			}
+			
+			else GameData.resetData();
 			
 			FlxG.music.fadeOut(1);
 			FlxG.fade(0xff000000, 1, gameOverState);

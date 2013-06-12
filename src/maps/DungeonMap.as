@@ -139,7 +139,6 @@ package  maps
 				enemy.y = randomPoint.y;
 			}
 			
-			FlxG.log(totalEnemies);
 		}
 		
 		public function spawnTeasure():void

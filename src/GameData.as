@@ -29,7 +29,8 @@ package
 		public static const LAST_LEVEL:uint = 41;
 		
 		//Flag to check if new game
-		public static var isNewGame:Boolean; //TODO if this is false, enable the continue button
+		public static var isNewGame:Boolean;
+		public static var cravenMode:Boolean = true;
 		
 		// check if beast is dead
 		public static var isBeastManDead:Boolean = false;
@@ -86,6 +87,7 @@ package
 			isNewGame = _startNewGame;
 			
 			saveFile.data.isNewGame = isNewGame;
+			saveFile.data.cravenMode = cravenMode;
 			
 			saveFile.data.isBeastManDead = isBeastManDead;
 			
@@ -109,6 +111,8 @@ package
 		
 		public static function loadData():void // used to continue game, use at start
 		{
+			cravenMode = saveFile.data.cravenMode;
+			
 			isBeastManDead = saveFile.data.isBeastManDead;
 			
 			level = saveFile.data.level;
