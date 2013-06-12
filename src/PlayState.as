@@ -255,7 +255,7 @@ package
 				GameData.playerHealth = 3;
 				GameData.diamonds = startDiamonds;
 				
-				GameData.completionTime += time;
+				if(this is DungeonCrawl) GameData.completionTime += time;
 			}
 			
 			else GameData.resetData();

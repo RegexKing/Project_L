@@ -30,7 +30,7 @@ package
 		
 		//Flag to check if new game
 		public static var isNewGame:Boolean;
-		public static var cravenMode:Boolean = true;
+		public static var cravenMode:Boolean = false;
 		public static var completionTime:Number = 0;
 		
 		// check if beast is dead
