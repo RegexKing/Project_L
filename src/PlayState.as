@@ -231,7 +231,7 @@ package
 					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
 			}
 			
-			if ((hazzard is Bullet && !(hazzard is CrossbowArrow)) || hazzard is CrossbowParticle) hazzard.kill();
+			if ((hazzard is Bullet && !(hazzard is CrossbowArrow) && !(hazzard is SniperBullet)) || hazzard is CrossbowParticle) hazzard.kill();
 			
 			else if (hazzard is CrossbowArrow && !(hazzard as CrossbowArrow).isTracking)
 			{

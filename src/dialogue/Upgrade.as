@@ -260,6 +260,8 @@ package dialogue
 		private function playUpgradeSound():void
 		{
 			FlxG.play(AssetsRegistry.upgradeMP3);
+			
+			
 		}
 		
 		private function vitalityDescription():void { updateHeader("vitality"); }

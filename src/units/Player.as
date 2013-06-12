@@ -28,17 +28,20 @@ package  units
 		protected const BOUNCE_RATE:Number = 400;
 		protected const CROSSBOW_RATE:Number = 1100;
 		protected const SPREAD_RATE:Number = 800;
+		protected const SNIPER_RATE:Number = 800;
 		
 		public static const NORMAL_GUN:uint = 0;
 		public static const BOUNCE_GUN:uint = 1;
 		public static const CROSSBOW:uint = 2;
 		public static const SPREAD_GUN:uint = 3;
+		public static const SNIPER:uint = 4;
 		
 		
 		protected var normalGun:FlxWeapon;
 		protected var bounceGun:BounceGun;
 		protected var crossbow:Crossbow;
 		protected var spreadGun:SpreadGun;
+		protected var sniper:Sniper;
 		
 		public function Player(_gibsGroup:FlxGroup, _playerBulletsGroup:FlxGroup, _spriteAddons:FlxGroup, _alertEnemies:Function) 
 		{
@@ -106,11 +109,18 @@ package  units
 			spreadGun.setFireRate(SPREAD_RATE - (SPREAD_RATE * GameData.fireRateMultiplier));
 			spreadGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
+			sniper = new Sniper("sniper", this);
+			sniper.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
+			sniper.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+			sniper.setBulletSpeed(600);
+			sniper.setFireRate(SNIPER_RATE - (SNIPER_RATE * GameData.fireRateMultiplier));
+			sniper.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
 			
 			playerBulletsGroup.add(normalGun.group);
 			playerBulletsGroup.add(bounceGun.group);
 			playerBulletsGroup.add(crossbow.group);
 			playerBulletsGroup.add(spreadGun.group);
+			playerBulletsGroup.add(sniper.group);
 			//
 		}
 		
@@ -138,6 +148,9 @@ package  units
 						case SPREAD_GUN:
 							spreadGun.fireAtMouse();
 							break;
+						case SNIPER:
+							sniper.fireAtMouse();
+							break;
 						default:
 							throw new Error("Weapon id number is out acceptable range");
 							break;
@@ -153,6 +166,7 @@ package  units
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
 			crossbow.setFireRate(CROSSBOW_RATE - (CROSSBOW_RATE * GameData.fireRateMultiplier));
 			spreadGun.setFireRate(SPREAD_RATE - (SPREAD_RATE * GameData.fireRateMultiplier));
+			sniper.setFireRate(SNIPER_RATE - (SNIPER_RATE * GameData.fireRateMultiplier));
 		}
 		
 		override public function hurt(_damageNumber:Number):void
@@ -202,6 +216,7 @@ package  units
 			bounceGun = null;
 			crossbow = null;
 			spreadGun = null;
+			sniper = null;
 		}
 		
 	}
