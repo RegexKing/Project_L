@@ -112,7 +112,7 @@ package weapons
 				}
 				else if (method == FIRE_AT_TARGET)
 				{
-					currentBullet.fireAtTarget(launchX, launchY, target, bulletSpeed);
+					currentBullet.fireAtTarget(launchX, launchY, target, bulletSpeed, deviations[count]);
 				}
 				else if (method == FIRE_FROM_ANGLE)
 				{

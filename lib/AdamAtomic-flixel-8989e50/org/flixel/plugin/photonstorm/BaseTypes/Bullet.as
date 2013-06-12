@@ -126,7 +126,7 @@ package org.flixel.plugin.photonstorm.BaseTypes
 			postFire();
 		}
 		
-		public function fireAtTarget(fromX:int, fromY:int, target:FlxSprite, speed:int):void
+		public function fireAtTarget(fromX:int, fromY:int, target:FlxSprite, speed:int, deviation:Number):void
 		{
 			x = fromX + FlxMath.rand( -weapon.rndFactorPosition.x, weapon.rndFactorPosition.x);
 			y = fromY + FlxMath.rand( -weapon.rndFactorPosition.y, weapon.rndFactorPosition.y);

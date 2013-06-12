@@ -1,5 +1,6 @@
 package weapons 
 {
+	import org.flixel.FlxSprite;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
@@ -30,6 +31,23 @@ package weapons
 			else
 			{
 				FlxVelocity.moveTowardsMouse(this, speed + FlxMath.rand( -weapon.rndFactorSpeed, weapon.rndFactorSpeed), 0, _deviation);
+			}
+			
+			postFire();
+		}
+		
+		override public function fireAtTarget(fromX:int, fromY:int, target:FlxSprite, speed:int, _deviation:Number):void
+		{
+			x = fromX + FlxMath.rand( -weapon.rndFactorPosition.x, weapon.rndFactorPosition.x);
+			y = fromY + FlxMath.rand( -weapon.rndFactorPosition.y, weapon.rndFactorPosition.y);
+			
+			if (accelerates)
+			{
+				FlxVelocity.accelerateTowardsObject(this, target, speed + FlxMath.rand( -weapon.rndFactorSpeed, weapon.rndFactorSpeed), maxVelocity.x, maxVelocity.y);
+			}
+			else
+			{
+				FlxVelocity.moveTowardsObject(this, target, speed + FlxMath.rand( -weapon.rndFactorSpeed, weapon.rndFactorSpeed), 0, _deviation);
 			}
 			
 			postFire();

@@ -38,7 +38,7 @@ package org.flixel.plugin.photonstorm
 		 * @param	speed		The speed it will move, in pixels per second (default is 60 pixels/sec)
 		 * @param	maxTime		Time given in milliseconds (1000 = 1 sec). If set the speed is adjusted so the source will arrive at destination in the given number of ms
 		 */
-		public static function moveTowardsObject(source:FlxSprite, dest:FlxSprite, speed:int = 60, maxTime:int = 0):void
+		public static function moveTowardsObject(source:FlxSprite, dest:FlxSprite, speed:int = 60, maxTime:int = 0, deviation:Number=0):void
 		{
 			var a:Number = angleBetween(source, dest);
 			
@@ -50,8 +50,8 @@ package org.flixel.plugin.photonstorm
 				speed = d / (maxTime / 1000);
 			}
 			
-			source.velocity.x = Math.cos(a) * speed;
-			source.velocity.y = Math.sin(a) * speed;
+			source.velocity.x = Math.cos(a + deviation) * speed;
+			source.velocity.y = Math.sin(a + deviation) * speed;
 		}
 		
 		/**

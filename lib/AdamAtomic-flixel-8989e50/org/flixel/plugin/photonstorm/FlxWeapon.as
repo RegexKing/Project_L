@@ -324,7 +324,7 @@ package org.flixel.plugin.photonstorm
 			}
 			else if (method == FIRE_AT_TARGET)
 			{
-				currentBullet.fireAtTarget(launchX, launchY, target, bulletSpeed);
+				currentBullet.fireAtTarget(launchX, launchY, target, bulletSpeed, 0);
 			}
 			else if (method == FIRE_FROM_ANGLE)
 			{
