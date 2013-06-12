@@ -92,8 +92,11 @@ package
 		
 		override public function goNextState():void
 		{
-			GameData.playerHealth = lifeBar.currentValue;
+			super.goNextState();
+			
 			GameData.level++;
+			GameData.completionTime += time;
+			
 			FlxG.switchState(new Hub());
 		}
 		

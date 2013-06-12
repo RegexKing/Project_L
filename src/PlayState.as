@@ -17,6 +17,7 @@ package
 	{
 		protected var stateDone:Boolean = false;
 		protected var startDiamonds:int = GameData.diamonds;
+		protected var time:Number = 0;
 		
 		protected var pauseMenu:PauseMenu;
 		
@@ -178,6 +179,8 @@ package
 					add(pauseMenu);
 				}
 				
+				time += FlxG.elapsed;
+				
 			}
 			
 			else
@@ -205,6 +208,7 @@ package
 		
 		public function goNextState():void
 		{
+			GameData.playerHealth = lifeBar.currentValue;
 		}
 		
 		public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
@@ -250,6 +254,8 @@ package
 			{
 				GameData.playerHealth = 3;
 				GameData.diamonds = startDiamonds;
+				
+				GameData.completionTime += time;
 			}
 			
 			else GameData.resetData();

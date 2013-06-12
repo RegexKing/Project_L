@@ -31,6 +31,7 @@ package
 		//Flag to check if new game
 		public static var isNewGame:Boolean;
 		public static var cravenMode:Boolean = true;
+		public static var completionTime:Number = 0;
 		
 		// check if beast is dead
 		public static var isBeastManDead:Boolean = false;
@@ -60,6 +61,8 @@ package
 		{
 			isNewGame = true;
 			
+			completionTime = 0;
+			
 			isBeastManDead = false;
 			BeastMan.isAnnoyed = false;
 			
@@ -85,6 +88,8 @@ package
 		public static function saveData(_startNewGame:Boolean=false):void // used to save game
 		{
 			isNewGame = _startNewGame;
+			
+			saveFile.data.completionTime = completionTime;
 			
 			saveFile.data.isNewGame = isNewGame;
 			saveFile.data.cravenMode = cravenMode;
@@ -112,6 +117,8 @@ package
 		public static function loadData():void // used to continue game, use at start
 		{
 			cravenMode = saveFile.data.cravenMode;
+			
+			completionTime = saveFile.data.completionTime;
 			
 			isBeastManDead = saveFile.data.isBeastManDead;
 			

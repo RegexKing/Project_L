@@ -59,6 +59,8 @@ package
 			
 			dialogueBox = new DialogueBox(player, girl, beastMan, lifeBar, player.setFireRate, diamondCounter);
 			add(dialogueBox);
+			
+			FlxG.log(GameData.completionTime);
 		}
 		
 		override public function update():void
@@ -146,7 +148,8 @@ package
 		
 		override public function goNextState():void
 		{
-			GameData.playerHealth = lifeBar.currentValue;
+			super.goNextState();
+			
 			FlxG.switchState(new DungeonCrawl());
 		}
 		
