@@ -94,7 +94,7 @@ package  maps
 				switch(int(Math.ceil(Math.random() * enemyRange)))
 				{
 					case 1:
-						enemy = new PurpleEnemy(player, this, gibs, enemyBars);
+						enemy = new Bat(player, this, gibs, enemyBars);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;

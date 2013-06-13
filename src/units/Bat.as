@@ -10,10 +10,10 @@ package  units
 	import org.flixel.plugin.photonstorm.FlxBar;
 	import maps.*;
 	 
-	public class PurpleEnemy extends Enemy
+	public class Bat extends Enemy
 	{
 		
-		public function PurpleEnemy(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBars:FlxGroup) 
+		public function Bat(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBars:FlxGroup) 
 		{
 			super(_player, _map);
 			

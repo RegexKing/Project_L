@@ -136,7 +136,7 @@ package  units
 		{	
 			super.update();
 			
-			updateGun();
+			//updateGun();
 			
 			
 			if (this.alive && this.fireable)
@@ -171,12 +171,14 @@ package  units
 		
 		}
 		
-		public function updateGun():void
+		override public function postUpdate():void
 		{
+			super.postUpdate();
+			
 			gunSprite.x = this.x + this.width / 2 - gunSprite.width / 2;
 			gunSprite.y = this.y + this.height / 2 - gunSprite.height / 2;
 			
-			directionAngle = FlxVelocity.angleBetweenMouse(this, true);
+			directionAngle = FlxVelocity.angleBetweenMouse(gunSprite, true);
 			
 			gunSprite.angle = directionAngle;
 		}
