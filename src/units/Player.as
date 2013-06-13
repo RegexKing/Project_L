@@ -16,6 +16,9 @@ package  units
 		private const MOVEMENT_SPEED:Number = 100;
 		//
 		
+		private var gunSprite:FlxSprite;
+		private var directionAngle:Number;
+		
 		public var playerGibs:FlxEmitter;
 		protected var playerBulletsGroup:FlxGroup;
 		protected var spriteAddons:FlxGroup;
@@ -57,6 +60,11 @@ package  units
 			width = 40;
 			height = 40;
 			
+			
+			gunSprite = new FlxSprite();
+			gunSprite.makeGraphic(60, 10);
+			spriteAddons.add(gunSprite);
+			
 			playerGibs = new FlxEmitter(0, 0, 50);
 			playerGibs.particleDrag = new FlxPoint(600, 600);
 			playerGibs.setXSpeed(-400,400);
@@ -76,46 +84,46 @@ package  units
 		}
 		
 		public function gunSetup(map:Map):void
-		{
+		{	
 			// Guns
-			
+
 			normalGun = new BaseGun("normal", this);
 			normalGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
 			normalGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			normalGun.setBulletSpeed(600);
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
 			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
-			
+
 			bounceGun = new BounceGun("bounce", spriteAddons, this);
-			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff)
+			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			bounceGun.setBulletSpeed(600);
 			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setBulletElasticity(0.8);
 			bounceGun.setBulletLifeSpan(2000);
 			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
-			
+
 			crossbow = new Crossbow("crossbow", playerBulletsGroup, this);
 			crossbow.makePixelBullet(10, 12, 12, 0xffffffff, 14, 14);
 			crossbow.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			crossbow.setBulletSpeed(600);
 			crossbow.setFireRate(CROSSBOW_RATE - (CROSSBOW_RATE * GameData.fireRateMultiplier));
 			crossbow.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
-			
+
 			spreadGun = new SpreadGun("spread", this);
 			spreadGun.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
 			spreadGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			spreadGun.setBulletSpeed(600);
 			spreadGun.setFireRate(SPREAD_RATE - (SPREAD_RATE * GameData.fireRateMultiplier));
 			spreadGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
-			
+
 			sniper = new Sniper("sniper", this);
 			sniper.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
 			sniper.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			sniper.setBulletSpeed(600);
 			sniper.setFireRate(SNIPER_RATE - (SNIPER_RATE * GameData.fireRateMultiplier));
 			sniper.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
-			
+
 			playerBulletsGroup.add(normalGun.group);
 			playerBulletsGroup.add(bounceGun.group);
 			playerBulletsGroup.add(crossbow.group);
@@ -127,6 +135,9 @@ package  units
 		override public function update():void
 		{	
 			super.update();
+			
+			updateGun();
+			
 			
 			if (this.alive && this.fireable)
 			{
@@ -160,6 +171,16 @@ package  units
 		
 		}
 		
+		public function updateGun():void
+		{
+			gunSprite.x = this.x + this.width / 2 - gunSprite.width / 2;
+			gunSprite.y = this.y + this.height / 2 - gunSprite.height / 2;
+			
+			directionAngle = FlxVelocity.angleBetweenMouse(this, true);
+			
+			gunSprite.angle = directionAngle;
+		}
+		
 		public function setFireRate():void
 		{
 			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
@@ -185,6 +206,7 @@ package  units
 		{
 			if (!alive) return;
 			
+			gunSprite.kill();
 			
 			solid = false;
 			super.kill();

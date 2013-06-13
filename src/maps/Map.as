@@ -6,19 +6,18 @@ package maps
 	 */
 	
 	import org.flixel.*; 
-	import util.BTNTilemap;
 	 
 	public class Map extends FlxGroup
 	{
 		public static const TILE_SIZE:uint = 64;
-		public var tileMap:BTNTilemap;
+		public var tileMap:FlxTilemap;
 		
 		
 		public function Map(addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super();
 			
-			tileMap = new BTNTilemap();
+			tileMap = new FlxTilemap();
 		}
 		
 		public function randomFirstRoom():FlxPoint {return null}
