@@ -55,15 +55,17 @@ package  units
 			alertEnemies = _alertEnemies;
 			fireable = true;
 			
-			makeGraphic(40, 40, 0xffFF9900);
-			
-			width = 40;
-			height = 40;
-			
+			loadGraphic(AssetsRegistry.guyPNG, true, true, 54, 64);
+			width = 22;
+			height = 38;
+			offset.x = 16;
+			offset.y = 13;
+			this.addAnimation("idle", [24], 60);
+			this.addAnimation("run", [16, 17, 18, 19, 20, 21], 10);
 			
 			gunSprite = new FlxSprite();
 			gunSprite.makeGraphic(60, 10);
-			spriteAddons.add(gunSprite);
+			//spriteAddons.add(gunSprite);
 			
 			playerGibs = new FlxEmitter(0, 0, 50);
 			playerGibs.particleDrag = new FlxPoint(600, 600);
@@ -136,7 +138,18 @@ package  units
 		{	
 			super.update();
 			
-			//updateGun();
+			directionAngle = FlxVelocity.angleBetweenMouse(this, true);
+			
+			if ((directionAngle > -90 && directionAngle <= 0) || (directionAngle > 0 && directionAngle <= 90))
+				this._facing = RIGHT
+				
+			else
+				this._facing = LEFT
+			
+			FlxG.log(directionAngle);
+			
+			if (velocity.x == 0 && velocity.y == 0) play("idle");
+			else play("run");
 			
 			
 			if (this.alive && this.fireable)
@@ -177,8 +190,6 @@ package  units
 			
 			gunSprite.x = this.x + this.width / 2 - gunSprite.width / 2;
 			gunSprite.y = this.y + this.height / 2 - gunSprite.height / 2;
-			
-			directionAngle = FlxVelocity.angleBetweenMouse(gunSprite, true);
 			
 			gunSprite.angle = directionAngle;
 		}

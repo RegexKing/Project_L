@@ -25,9 +25,14 @@ package  units
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
-			makeGraphic(40, 40, 0xff000000);
-			width = 40;
-			height = 40;
+			loadGraphic(AssetsRegistry.guyPNG, true, true, 54, 64);
+			width = 22;
+			height = 38;
+			offset.x = 16;
+			offset.y = 13;
+			//this.addAnimation("idle", [24], 60);
+			this.addAnimation("run", [16, 17, 18, 19, 20, 21], 10);
+			this.play("run");
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
 			lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);

@@ -34,9 +34,13 @@ package units
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
-			makeGraphic(40, 40, 0xff00FF00);
-			width = 40;
-			height = 40;
+			loadGraphic(AssetsRegistry.abomPNG, true, true, 64, 64);
+			width = 36;
+			height = 62;
+			offset.x = 14;
+			offset.y = 1;
+			this.addAnimation("run", [0, 1, 2, 3], 10);
+			play("run");
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
 			lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);
@@ -61,6 +65,8 @@ package units
 			super.update();
 			
 			if (FlxVelocity.distanceBetween(this, player) <= this.width * 2) kill();
+			
+			
 		}
 		
 		override public function kill():void

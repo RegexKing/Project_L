@@ -35,7 +35,10 @@ package units
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
-			makeGraphic(20, 20, 0xff00FF00);
+			loadGraphic(AssetsRegistry.babySlimePNG, true, true, 16, 16);
+			height = 8;
+			offset.y = 4;
+			this.addAnimation("bounce", [0, 1, 2, 3], 10);
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
 			lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);
@@ -63,6 +66,7 @@ package units
 			enemiesGroup.add(this);
 			
 			movementDelay.start();
+			this.play("bounce");
 		}
 		
 		protected function startMovement():void

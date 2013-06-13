@@ -16,7 +16,7 @@ package units
 		
 		public function Girl(_player:Player, _functionCallback:Function, _beastMan:BeastMan=null) 
 		{
-			super();
+			super(0, 0, AssetsRegistry.girlPNG);
 			
 			functionCallback = _functionCallback;
 			
@@ -25,7 +25,6 @@ package units
 			player = _player;
 			beastMan = _beastMan;
 			
-			makeGraphic(40, 40);
 		}
 		
 		override public function update():void

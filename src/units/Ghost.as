@@ -28,9 +28,9 @@ package units
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
-			makeGraphic(40, 40, 0xff00FF00);
-			width = 40;
-			height = 40;
+			loadGraphic(AssetsRegistry.ghostPNG, true, true, 50, 50);
+			addAnimation("idle", [0, 1, 2, 3, 4], 10);
+			play("idle");
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
 			lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);

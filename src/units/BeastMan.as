@@ -34,7 +34,13 @@ package units
 			
 			elasticity = 0.5;
 			
-			makeGraphic(50, 60, 0xff00FF00);
+			loadGraphic(AssetsRegistry.beastPNG, true, true, 96, 96);
+			width = 36;
+			height = 56;
+			offset.x = 30;
+			offset.y = 20;
+			addAnimation("idle", [24, 25, 26, 27], 5);
+			addAnimation("run", [16, 17, 18, 19, 20, 21, 22, 23], 10);
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
 			lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);
@@ -58,6 +64,13 @@ package units
 				//function callback to dialogue box
 				functionCallback("beast");
 			}
+			
+			if (velocity.x == 0 && velocity.y == 0) play("idle");
+			else play("run");
+			
+			// change facing
+			if (velocity.x <= 0) _facing = LEFT;
+			else _facing = RIGHT;
 		}
 		
 		public function closeToPlayer():Boolean
