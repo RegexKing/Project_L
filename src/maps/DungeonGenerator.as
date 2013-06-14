@@ -30,8 +30,8 @@ package maps
 		// Constants, used to configure the floors
 		public static var TOTAL_ROWS:int = 40;
 		public static var TOTAL_COLS:int = 40;
-		protected const WALL:int = 2;
-		protected const FLOOR:int = 1;
+		protected const WALL:int = 1;
+		protected const FLOOR:int = 0;
 		protected const MIN_ROOM_WIDTH:int = 5;
 		protected const MAX_ROOM_WIDTH:int = 12;
 		protected const MIN_ROOM_HEIGHT:int = 5;

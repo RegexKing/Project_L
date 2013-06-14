@@ -36,11 +36,9 @@ package units
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);
 			
-			loadGraphic(AssetsRegistry.slimePNG, true, true, 32, 32);
-			width = 30;
-			height = 16;
-			offset.x = 1;
-			offset.y = 8;
+			loadGraphic(AssetsRegistry.slimePNG, true, true, 64, 32);
+			width = 60;
+			offset.x = 2;
 			this.addAnimation("bounce", [0, 1, 2, 3], 10);
 			play("bounce");
 			

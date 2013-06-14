@@ -88,12 +88,12 @@ package hud
 			{
 				if (timer >= 1)
 				{
-					backDrop.alpha = 1;
+					backDrop.alpha = 0.7;
 					message.alpha = 1;
 					tweenFinished = true;
 				}
 				
-				backDrop.alpha = timer;
+				backDrop.alpha = timer/1.4;
 				message.alpha = timer;
 			}
 			

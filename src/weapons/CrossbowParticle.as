@@ -17,7 +17,7 @@ package weapons
 			
 			attackValue = .2;
 			
-			makeGraphic(8, 8, 0xff00FF00);
+			makeGraphic(8, 8, 0xffFF3300);
 		}
 		
 		override public function onEmit():void

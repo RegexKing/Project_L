@@ -25,7 +25,7 @@ package units
 			
 			gibs = null;
 			
-			makeGraphic(10, 10, 0xffFF0000);
+			makeGraphic(10, 10, 0xff66FF00);
 		}
 		
 		override public function update():void { }
