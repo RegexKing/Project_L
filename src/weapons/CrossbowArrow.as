@@ -9,6 +9,7 @@ package weapons
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	import flash.utils.getTimer;
 	import org.flixel.plugin.photonstorm.FlxMath;
+	import org.flixel.FlxG;
 	
 	/**
 	 * ...
@@ -116,6 +117,9 @@ package weapons
 					explosionParticles.at(this);
 					explosionParticles.start(true, 0.5, 0);
 				}
+				
+				//play explosion sound
+				chooseExplosionSound();
 			}
 			
 			else
@@ -131,6 +135,16 @@ package weapons
 			isTracking = false;
 			trackingObject = null;
 			
+		}
+		
+		private function chooseExplosionSound():void
+		{
+			var diceRoll:uint = Math.ceil(Math.random() * 4);
+			
+			if (diceRoll == 1) FlxG.play(AssetsRegistry.crossbowExplosion1MP3);
+			else if (diceRoll == 2) FlxG.play(AssetsRegistry.crossbowExplosion2MP3);
+			else if (diceRoll == 3) FlxG.play(AssetsRegistry.crossbowExplosion3MP3);
+			else FlxG.play(AssetsRegistry.crossbowExplosion4MP3);
 		}
 		
 		override public function destroy():void

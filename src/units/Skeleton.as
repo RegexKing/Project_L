@@ -5,6 +5,7 @@ package units
 	import org.flixel.FlxGroup;
 	import org.flixel.plugin.photonstorm.FlxBar;
 	import org.flixel.FlxEmitter;
+	import org.flixel.FlxG;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -91,6 +92,9 @@ package units
 			}
 			
 			else super.kill();
+			
+			//play sound
+			FlxG.play(AssetsRegistry.skeletonDieMP3);
 		}
 		
 		protected function ressurect():void

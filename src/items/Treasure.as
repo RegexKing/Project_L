@@ -1,6 +1,7 @@
 package items 
 {
 	import org.flixel.FlxSprite;
+	import org.flixel.FlxG;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -28,6 +29,9 @@ package items
 		{
 			this.solid = false;
 			play("open");
+			
+			//play sound
+			FlxG.play(AssetsRegistry.openChestMP3);
 			
 			win();
 		}

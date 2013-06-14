@@ -7,7 +7,7 @@ package
 	public class AssetsRegistry 
 	{
 		
-		//Sprites
+		//-- Sprites --//
 		
 		//Artwork
 		[Embed(source = "../assets/sprites/disableContinue.png")] public static var disableContinuePNG:Class;
@@ -57,13 +57,18 @@ package
 		[Embed(source = "../assets/sprites/playerMiniMapIcon.png")] public static var playerMiniMapIconPNG:Class;
 		[Embed(source = "../assets/sprites/treasureMiniMapIcon.png")] public static var treasureMiniMapIconPNG:Class;
 		
+		
+		//-- Map Assets --//
+		
 		//Tiles
 		[Embed(source = "../assets/tiles/dun.png")] public static var randDunTilesPNG:Class;
 		
 		// Maps
 		[Embed(source = "../assets/maps/hub.csv", mimeType = "application/octet-stream")] public static var hubCSV:Class;
 		
-		//Bgms
+		
+		// -- BGMS --//
+		
 		// yearning
 		[Embed(source = "../assets/sounds/titleScreenBGM.mp3")] public static var BGM_titleScreenMP3:Class;
 		//537660_Maw-of-Guilt
@@ -73,19 +78,52 @@ package
 		//danosongs.com-origo-vitae
 		[Embed(source = "../assets/sounds/beastBGM.mp3")] public static var BGM_beastMP3:Class;
 		
-		//Sounds
-		[Embed(source = "../assets/sounds/shoot.mp3")] public static var shootMP3:Class;
-		[Embed(source = "../assets/sounds/healthPickup.mp3")] public static var healthPickupMP3:Class;
-		[Embed(source = "../assets/sounds/diamondPickup.mp3")] public static var diamondPickupMP3:Class;
-		[Embed(source = "../assets/sounds/playerDie.mp3")] public static var playerDieMP3:Class;
+		
+		//-- Sound Effects --//
+		
+		//death/hurt Sounds
 		[Embed(source = "../assets/sounds/playerHurt.mp3")] public static var playerHurtMP3:Class;
 		[Embed(source = "../assets/sounds/enemyHurt.mp3")] public static var enemyHurtMP3:Class;
+		[Embed(source = "../assets/sounds/playerDie.mp3")] public static var playerDieMP3:Class;
+		[Embed(source = "../assets/sounds/beastDie.mp3")] public static var beastDieMP3:Class;
 		[Embed(source = "../assets/sounds/batDie.mp3")] public static var batDieMP3:Class;
+		[Embed(source = "../assets/sounds/abomDie.mp3")] public static var abomDieMP3:Class;
+		[Embed(source = "../assets/sounds/ghostDie.mp3")] public static var ghostDieMP3:Class;
+		[Embed(source = "../assets/sounds/rangedDie.mp3")] public static var rangedDieMP3:Class;
+		[Embed(source = "../assets/sounds/skeletonDie.mp3")] public static var skeletonDieMP3:Class;
+		[Embed(source = "../assets/sounds/slimeDie.mp3")] public static var slimeDieMP3:Class;
+	
+		
+		// Gun Sounds
+		[Embed(source = "../assets/sounds/shoot.mp3")] public static var shootMP3:Class;
+		[Embed(source = "../assets/sounds/bounceGun.mp3")] public static var bounceGunMP3:Class;
+		[Embed(source = "../assets/sounds/shotGun.mp3")] public static var shotGunMP3:Class;
+		[Embed(source = "../assets/sounds/sniper.mp3")] public static var sniperMP3:Class;
+		[Embed(source = "../assets/sounds/crossbowExplosion1.mp3")] public static var crossbowExplosion1MP3:Class;
+		[Embed(source = "../assets/sounds/crossbowExplosion2.mp3")] public static var crossbowExplosion2MP3:Class;
+		[Embed(source = "../assets/sounds/crossbowExplosion3.mp3")] public static var crossbowExplosion3MP3:Class;
+		[Embed(source = "../assets/sounds/crossbowExplosion4.mp3")] public static var crossbowExplosion4MP3:Class;
+		
+		
+		
+		// Item Sounds
+		[Embed(source = "../assets/sounds/healthPickup.mp3")] public static var healthPickupMP3:Class;
+		[Embed(source = "../assets/sounds/diamondPickup.mp3")] public static var diamondPickupMP3:Class;
+		[Embed(source = "../assets/sounds/pickupWeapon.mp3")] public static var pickupWeaponMP3:Class;
+		[Embed(source = "../assets/sounds/openChest.mp3")] public static var openChestMP3:Class;
+		
+		// UI Sounds
 		[Embed(source = "../assets/sounds/treasureAlert.mp3")] public static var treasureAlertMP3:Class;
 		[Embed(source = "../assets/sounds/upgrade.mp3")] public static var upgradeMP3:Class;
-		[Embed(source = "../assets/sounds/pickupWeapon.mp3")] public static var pickupWeaponMP3:Class;
 		
-		//Fonts
+		// Chimes
+		[Embed(source = "../assets/sounds/win.mp3")] public static var winMP3:Class;
+		[Embed(source = "../assets/sounds/gameover.mp3")] public static var gameoverMP3:Class;
+		
+		
+		//-- Fonts --//
+		
+		//Megaman2
 		[Embed(source="../assets/fonts/megaman.ttf", fontFamily="NES", embedAsCFF="false")] public static var fontNES:String;
 		
 		

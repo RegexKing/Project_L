@@ -57,6 +57,8 @@ package  units
 		override public function kill():void
 		{
 			super.kill();
+			
+			// play sound
 			FlxG.play(AssetsRegistry.batDieMP3);
 		}
 	}

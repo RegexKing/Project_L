@@ -75,7 +75,7 @@ package  units
 				weapon.setFireRate(GameData.BOUNCE_RATE);
 				weapon.setBulletElasticity(0.8);
 				weapon.setBulletLifeSpan(2000);
-				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
+				weapon.setPreFireCallback(null, AssetsRegistry.bounceGunMP3);
 			}
 			
 			else if (weaponID == 2)
@@ -95,7 +95,7 @@ package  units
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setBulletSpeed(600);
 				weapon.setFireRate(GameData.SPREAD_RATE);
-				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3); 
+				weapon.setPreFireCallback(null, AssetsRegistry.shotGunMP3); 
 			}
 			
 			else if (weaponID == 4)
@@ -105,7 +105,7 @@ package  units
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setBulletSpeed(600);
 				weapon.setFireRate(GameData.SNIPER_RATE);
-				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
+				weapon.setPreFireCallback(null, AssetsRegistry.sniperMP3);
 			}
 			
 			enemyBullets.add(weapon.group);
@@ -121,6 +121,14 @@ package  units
 				weapon.fireAtTarget(player);
 			}
 		}	
+		
+		override public function kill():void
+		{
+			super.kill();
+			
+			//play sound
+			FlxG.play(AssetsRegistry.rangedDieMP3);
+		}
 	}
 
 }

@@ -20,7 +20,7 @@ package weapons
 		{
 			super(weapon, id);
 			
-			attackValue = 2;
+			attackValue = 1;
 			
 			if (_isEnemy)
 			{

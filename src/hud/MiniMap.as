@@ -76,7 +76,7 @@ package  hud
 				treasureIcon.x = tileMap.x +  Math.round((map as DungeonMap).treasure.x / Map.TILE_SIZE) * 12;
 				treasureIcon.y = tileMap.y + Math.round((map as DungeonMap).treasure.y / Map.TILE_SIZE) * 12;
 			
-				if ((map as DungeonMap).treasure.onScreen() && !isTreasure)
+				if ((map as DungeonMap).treasure.onScreen() && player.onScreen() && !isTreasure)
 				{
 					isTreasure = true;
 					treasureAppear();

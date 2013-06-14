@@ -7,6 +7,7 @@ package   items
 	
 	 import units.Player;
 	 import org.flixel.plugin.photonstorm.FlxMath;
+	 import org.flixel.FlxG;
 	 
 	public class WeaponItem extends Item
 	{
@@ -51,7 +52,8 @@ package   items
 		{
 			GameData.weapon = weaponID;
 			
-			//Todo: add sound effect
+			//sound effect
+			FlxG.play(AssetsRegistry.pickupWeaponMP3);
 		}
 		
 	}

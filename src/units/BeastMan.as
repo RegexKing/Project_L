@@ -94,6 +94,9 @@ package units
 		{
 			super.kill();
 			GameData.isBeastManDead = true;
+			
+			//play sound
+			FlxG.play(AssetsRegistry.beastDieMP3);
 		}
 	}
 

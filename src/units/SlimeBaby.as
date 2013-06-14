@@ -1,6 +1,7 @@
 package units 
 {
 	import org.flixel.FlxGroup;
+	import org.flixel.FlxG;
 	import org.flixel.FlxParticle;
 	import org.flixel.plugin.photonstorm.FlxDelay;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
@@ -76,6 +77,14 @@ package units
 			movementDelay = null;
 			
 			doneExploding = true;
+		}
+		
+		override public function kill():void
+		{
+			super.kill();
+			
+			//play sound
+			FlxG.play(AssetsRegistry.slimeDieMP3);
 		}
 		
 	}

@@ -102,7 +102,7 @@ package  units
 			bounceGun.setFireRate(GameData.BOUNCE_RATE - (GameData.BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setBulletElasticity(0.8);
 			bounceGun.setBulletLifeSpan(2000);
-			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
+			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.bounceGunMP3);
 			
 
 			crossbow = new Crossbow("crossbow", playerBulletsGroup, this);
@@ -117,14 +117,14 @@ package  units
 			spreadGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			spreadGun.setBulletSpeed(600);
 			spreadGun.setFireRate(GameData.SPREAD_RATE - (GameData.SPREAD_RATE * GameData.fireRateMultiplier));
-			spreadGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
+			spreadGun.setPreFireCallback(alertEnemies, AssetsRegistry.shotGunMP3); 
 
 			sniper = new Sniper("sniper", this);
 			sniper.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
 			sniper.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			sniper.setBulletSpeed(600);
 			sniper.setFireRate(GameData.SNIPER_RATE - (GameData.SNIPER_RATE * GameData.fireRateMultiplier));
-			sniper.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
+			sniper.setPreFireCallback(alertEnemies, AssetsRegistry.sniperMP3);
 
 			playerBulletsGroup.add(normalGun.group);
 			playerBulletsGroup.add(bounceGun.group);

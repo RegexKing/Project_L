@@ -9,6 +9,7 @@ package units
 	import org.flixel.FlxGroup;
 	import maps.Map;
 	import org.flixel.plugin.photonstorm.FlxBar;
+	import org.flixel.FlxG;
 	 
 	public class Slime extends Enemy
 	{
@@ -78,6 +79,9 @@ package units
 				babySlimes.at(this);
 				babySlimes.start(true, 0, 0);
 			}
+			
+			//play sound
+			FlxG.play(AssetsRegistry.slimeDieMP3);
 		}
 		
 	}

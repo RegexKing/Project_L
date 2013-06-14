@@ -7,6 +7,7 @@ package units
 	
 	import org.flixel.FlxEmitter;
 	import org.flixel.FlxGroup;
+	import org.flixel.FlxG;
 	import maps.Map;
 	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import org.flixel.plugin.photonstorm.FlxBar;
@@ -78,6 +79,9 @@ package units
 				acidParticles.at(this);
 				acidParticles.start(true, 0, 0);
 			}
+			
+			//play death
+			FlxG.play(AssetsRegistry.abomDieMP3);
 		}
 	}
 
