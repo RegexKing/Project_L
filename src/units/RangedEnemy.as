@@ -4,6 +4,7 @@ package  units
 	import org.flixel.plugin.photonstorm.*;
 	import org.flixel.plugin.photonstorm.FlxBar;
 	import maps.*;
+	import weapons.*;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -11,11 +12,17 @@ package  units
 	public class RangedEnemy extends Enemy
 	{
 		
-		private var weapon:FlxWeapon;
+		private var spriteAddons:FlxGroup;
+		private var enemyBullets:FlxGroup;
 		
-		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _gibsGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter=null) 
+		private var weapon:FlxWeapon;
+		private var weaponID:uint;
+		
+		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _spriteAddons:FlxGroup, _gibsGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter = null) 
 		{
 			super(_player, _map,  _itemEmitter);
+			spriteAddons = _spriteAddons;
+			enemyBullets = _enemyBullets;
 			
 			patrolSpeed = 100;
 			alertSpeed = 160;
@@ -43,14 +50,66 @@ package  units
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);
 			
-			weapon = new FlxWeapon("normal", this);
-			weapon.makePixelBullet(10, 16, 16);
-			weapon.setBulletSpeed(400);
-			weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
-			weapon.setFireRate(500);
-			weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
+			weaponID = Math.floor(Math.random()* 4+1);
+			chooseGun();
+		}
+		
+		protected function chooseGun():void
+		{
+			if (weaponID == 0)
+			{
+				weapon = new BaseGun("normal", this, true);
+				weapon.makePixelBullet(10, 16, 16);
+				weapon.setBulletSpeed(400);
+				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+				weapon.setFireRate(GameData.NORMAL_RATE);
+				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
+			}
 			
-			_enemyBullets.add(weapon.group);
+			else if (weaponID == 1)
+			{
+				weapon = new BounceGun("bounce", spriteAddons, this, true);
+				weapon.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
+				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+				weapon.setBulletSpeed(600);
+				weapon.setFireRate(GameData.BOUNCE_RATE);
+				weapon.setBulletElasticity(0.8);
+				weapon.setBulletLifeSpan(2000);
+				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
+			}
+			
+			else if (weaponID == 2)
+			{
+				weapon = new Crossbow("crossbow", enemyBullets, this, true);
+				weapon.makePixelBullet(10, 12, 12, 0xffffffff, 14, 14);
+				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+				weapon.setBulletSpeed(600);
+				weapon.setFireRate(GameData.CROSSBOW_RATE);
+				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3); 
+			}
+			
+			else if (weaponID == 3)
+			{
+				weapon = new SpreadGun("spread", this, true);
+				weapon.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
+				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+				weapon.setBulletSpeed(600);
+				weapon.setFireRate(GameData.SPREAD_RATE);
+				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3); 
+			}
+			
+			else if (weaponID == 4)
+			{
+				weapon = new Sniper("sniper", this, true);
+				weapon.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
+				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
+				weapon.setBulletSpeed(600);
+				weapon.setFireRate(GameData.SNIPER_RATE);
+				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
+			}
+			
+			enemyBullets.add(weapon.group);
+			
 		}
 		
 		override public function update():void

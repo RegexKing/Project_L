@@ -97,7 +97,7 @@ package  maps
 			{
 				var enemy:Enemy;
 				
-				switch(int(Math.ceil(Math.random() * enemyRange)))
+				switch(2)//int(Math.ceil(Math.random() * enemyRange)))
 				{
 					case 1:
 						enemy = new Bat(player, this, gibs, enemyBars, healthEmitter);
@@ -105,7 +105,7 @@ package  maps
 						collideableEnemies.add(enemy);
 						break;
 					case 2:
-						enemy = new RangedEnemy(player, this, enemyBullets, gibs, enemyBars, healthEmitter);
+						enemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;

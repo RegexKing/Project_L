@@ -12,11 +12,16 @@ package weapons
 	public class SpreadBullet extends Bullet
 	{
 		
-		public function SpreadBullet(weapon:FlxWeapon, id:uint) 
+		public function SpreadBullet(weapon:FlxWeapon, id:uint, _isEnemy:Boolean) 
 		{
 			super(weapon, id);
 			
 			attackValue = 1;
+			
+			if (_isEnemy)
+			{
+				attackValue = GameUtil.scaleDamage(attackValue);
+			}
 		}
 		
 		override public function fireAtMouse(fromX:int, fromY:int, speed:int, _deviation:Number):void

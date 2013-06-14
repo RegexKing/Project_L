@@ -10,12 +10,19 @@ package weapons
 	public class CrossbowParticle extends FlxParticle
 	{
 		
-		public function CrossbowParticle() 
+		public function CrossbowParticle(_isEnemy:Boolean) 
 		{
 			super();
 			exists = false;
 			
 			attackValue = .2;
+			
+			if (_isEnemy)
+			{
+				attackValue = 2;
+				
+				attackValue = GameUtil.scaleDamage(attackValue);
+			}
 			
 			makeGraphic(8, 8, 0xffFF3300);
 		}

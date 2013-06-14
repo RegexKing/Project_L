@@ -16,11 +16,16 @@ package weapons
 		
 		public var trail:FlxTrail;
 		
-		public function BounceBullet(weapon:FlxWeapon, id:uint) 
+		public function BounceBullet(weapon:FlxWeapon, id:uint, _isEnemy:Boolean) 
 		{
 			super(weapon, id);
 			
 			attackValue = 2;
+			
+			if (_isEnemy)
+			{
+				attackValue = GameUtil.scaleDamage(attackValue);
+			}
 		}
 		
 		override public function update():void

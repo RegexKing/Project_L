@@ -10,9 +10,12 @@ package weapons
 	public class Sniper extends BaseGun
 	{
 		
-		public function Sniper(name:String, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
+		private var isEnemy:Boolean;
+		
+		public function Sniper(name:String, parentRef:* = null, _isEnemy:Boolean=false, xVariable:String = "x", yVariable:String = "y") 
 		{
-			super(name, parentRef, xVariable, yVariable);
+			super(name, parentRef, _isEnemy, xVariable, yVariable);
+			isEnemy = _isEnemy;
 		}
 		
 		override public function makePixelBullet(quantity:uint, width:int = 2, height:int = 2, color:uint = 0xffffffff, offsetX:int = 0, offsetY:int = 0):void
@@ -21,7 +24,7 @@ package weapons
 			
 			for (var b:uint = 0; b < quantity; b++)
 			{
-				var tempBullet:SniperBullet = new SniperBullet(this, b);
+				var tempBullet:SniperBullet = new SniperBullet(this, b, isEnemy);
 				
 				tempBullet.makeGraphic(width, height, color);
 				

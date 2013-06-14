@@ -10,11 +10,12 @@ package weapons
 	{
 		
 		private var playerBulletsGroup:FlxGroup;
+		private var isEnemy:Boolean;
 		
-		public function Crossbow(name:String,  _playerBulletsGroup:FlxGroup, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
+		public function Crossbow(name:String,  _playerBulletsGroup:FlxGroup, parentRef:* = null, _isEnemy:Boolean=false, xVariable:String = "x", yVariable:String = "y") 
 		{
 			super(name, parentRef, xVariable, yVariable);
-			
+			isEnemy = _isEnemy;
 			playerBulletsGroup = _playerBulletsGroup;
 		}
 		
@@ -24,7 +25,7 @@ package weapons
 			
 			for (var b:uint = 0; b < quantity; b++)
 			{
-				var tempBullet:CrossbowArrow = new CrossbowArrow(this, b, playerBulletsGroup);
+				var tempBullet:CrossbowArrow = new CrossbowArrow(this, b, playerBulletsGroup, isEnemy);
 				
 				tempBullet.makeGraphic(width, height, color);
 				tempBullet.width = width;

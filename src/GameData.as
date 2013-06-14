@@ -16,6 +16,8 @@ package
 		public static const RENDER_WIDTH:uint = 540;
 		public static const RENDER_HEIGHT:uint = 480;
 		
+		public static const LAST_LEVEL:uint = 41;
+		
 		public static const DIAMONDS_PER_LEVEL:uint = 4;
 		public static const MAX_UPGRADES:uint = 8;
 		public static const LUCKY_NUMBER:uint = 7;  //helps determine item spawns
@@ -27,7 +29,12 @@ package
 		public static const DAMAGE_FACTOR:Number = 0.75;
 		public static const FIRERATE_FACTOR:Number = 0.0625;
 		
-		public static const LAST_LEVEL:uint = 41;
+		//Starting FireRates for weapons
+		public static const NORMAL_RATE:Number = 500;
+		public static const BOUNCE_RATE:Number = 400;
+		public static const CROSSBOW_RATE:Number = 1100;
+		public static const SPREAD_RATE:Number = 800;
+		public static const SNIPER_RATE:Number = 800;
 		
 		//Flag to check if new game
 		public static var isNewGame:Boolean;

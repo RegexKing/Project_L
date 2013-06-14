@@ -10,12 +10,14 @@ package weapons
 	{
 		
 		private var spriteAddons:FlxGroup;
+		private var isEnemy:Boolean;
 		
-		public function BounceGun(name:String, _spriteAddons:FlxGroup, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
+		public function BounceGun(name:String, _spriteAddons:FlxGroup, parentRef:* = null, _isEnemy:Boolean=false, xVariable:String = "x", yVariable:String = "y") 
 		{
 			super(name, parentRef, xVariable, yVariable);
 			
 			spriteAddons = _spriteAddons;
+			isEnemy = _isEnemy;
 		}
 		
 		override public function makePixelBullet(quantity:uint, width:int = 2, height:int = 2, color:uint = 0xffffffff, offsetX:int = 0, offsetY:int = 0):void
@@ -24,7 +26,7 @@ package weapons
 			
 			for (var b:uint = 0; b < quantity; b++)
 			{
-				var tempBullet:BounceBullet = new BounceBullet(this, b);
+				var tempBullet:BounceBullet = new BounceBullet(this, b, isEnemy);
 				
 				tempBullet.makeGraphic(width, height, color);
 				tempBullet.width = width;

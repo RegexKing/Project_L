@@ -9,14 +9,15 @@ package weapons
 	 */
 	public class SpreadGun extends FlxWeapon
 	{
-		
+		private var isEnemy:Boolean;
 		private var deviations:Array;
 		
 		private const bulletNumber:uint = 5;
 		
-		public function SpreadGun(name:String, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
+		public function SpreadGun(name:String, parentRef:* = null, _isEnemy:Boolean=false, xVariable:String = "x", yVariable:String = "y") 
 		{
 			super(name, parentRef, xVariable, yVariable);
+			isEnemy = _isEnemy;
 			
 			deviations = new Array();
 			deviations.push(-0.4);
@@ -33,7 +34,7 @@ package weapons
 			
 			for (var b:uint = 0; b < quantity; b++)
 			{
-				var tempBullet:SpreadBullet = new SpreadBullet(this, b);
+				var tempBullet:SpreadBullet = new SpreadBullet(this, b, isEnemy);
 				
 				tempBullet.makeGraphic(width, height, color);
 				

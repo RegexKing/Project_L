@@ -8,10 +8,12 @@ package weapons
 	 */
 	public class BaseGun extends FlxWeapon
 	{
+		private var isEnemy:Boolean;
 		
-		public function BaseGun(name:String, parentRef:* = null, xVariable:String = "x", yVariable:String = "y") 
+		public function BaseGun(name:String, parentRef:* = null, _isEnemy:Boolean=false, xVariable:String = "x", yVariable:String = "y") 
 		{
 			super(name, parentRef, xVariable, yVariable);
+			isEnemy = _isEnemy;
 		}
 		
 		override public function makePixelBullet(quantity:uint, width:int = 2, height:int = 2, color:uint = 0xffffffff, offsetX:int = 0, offsetY:int = 0):void
@@ -20,7 +22,7 @@ package weapons
 			
 			for (var b:uint = 0; b < quantity; b++)
 			{
-				var tempBullet:BaseBullet = new BaseBullet(this, b);
+				var tempBullet:BaseBullet = new BaseBullet(this, b, isEnemy);
 				
 				tempBullet.makeGraphic(width, height, color);
 				

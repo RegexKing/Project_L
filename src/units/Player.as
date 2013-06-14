@@ -28,12 +28,6 @@ package  units
 		public var fireable:Boolean;
 		
 		//Gun Vars
-		protected const NORMAL_RATE:Number = 500;
-		protected const BOUNCE_RATE:Number = 400;
-		protected const CROSSBOW_RATE:Number = 1100;
-		protected const SPREAD_RATE:Number = 800;
-		protected const SNIPER_RATE:Number = 800;
-		
 		public static const NORMAL_GUN:uint = 0;
 		public static const BOUNCE_GUN:uint = 1;
 		public static const CROSSBOW:uint = 2;
@@ -97,7 +91,7 @@ package  units
 			normalGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
 			normalGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			normalGun.setBulletSpeed(600);
-			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
+			normalGun.setFireRate(GameData.NORMAL_RATE - (GameData.NORMAL_RATE * GameData.fireRateMultiplier));
 			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
 			
@@ -105,7 +99,7 @@ package  units
 			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			bounceGun.setBulletSpeed(600);
-			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
+			bounceGun.setFireRate(GameData.BOUNCE_RATE - (GameData.BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setBulletElasticity(0.8);
 			bounceGun.setBulletLifeSpan(2000);
 			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
@@ -115,21 +109,21 @@ package  units
 			crossbow.makePixelBullet(10, 12, 12, 0xffffffff, 14, 14);
 			crossbow.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			crossbow.setBulletSpeed(600);
-			crossbow.setFireRate(CROSSBOW_RATE - (CROSSBOW_RATE * GameData.fireRateMultiplier));
+			crossbow.setFireRate(GameData.CROSSBOW_RATE - (GameData.CROSSBOW_RATE * GameData.fireRateMultiplier));
 			crossbow.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 
 			spreadGun = new SpreadGun("spread", this);
 			spreadGun.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
 			spreadGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			spreadGun.setBulletSpeed(600);
-			spreadGun.setFireRate(SPREAD_RATE - (SPREAD_RATE * GameData.fireRateMultiplier));
+			spreadGun.setFireRate(GameData.SPREAD_RATE - (GameData.SPREAD_RATE * GameData.fireRateMultiplier));
 			spreadGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 
 			sniper = new Sniper("sniper", this);
 			sniper.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
 			sniper.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			sniper.setBulletSpeed(600);
-			sniper.setFireRate(SNIPER_RATE - (SNIPER_RATE * GameData.fireRateMultiplier));
+			sniper.setFireRate(GameData.SNIPER_RATE - (GameData.SNIPER_RATE * GameData.fireRateMultiplier));
 			sniper.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3);
 
 			playerBulletsGroup.add(normalGun.group);
@@ -200,11 +194,11 @@ package  units
 		
 		public function setFireRate():void
 		{
-			normalGun.setFireRate(NORMAL_RATE - (NORMAL_RATE * GameData.fireRateMultiplier));
-			bounceGun.setFireRate(BOUNCE_RATE - (BOUNCE_RATE * GameData.fireRateMultiplier));
-			crossbow.setFireRate(CROSSBOW_RATE - (CROSSBOW_RATE * GameData.fireRateMultiplier));
-			spreadGun.setFireRate(SPREAD_RATE - (SPREAD_RATE * GameData.fireRateMultiplier));
-			sniper.setFireRate(SNIPER_RATE - (SNIPER_RATE * GameData.fireRateMultiplier));
+			normalGun.setFireRate(GameData.NORMAL_RATE - (GameData.NORMAL_RATE * GameData.fireRateMultiplier));
+			bounceGun.setFireRate(GameData.BOUNCE_RATE - (GameData.BOUNCE_RATE * GameData.fireRateMultiplier));
+			crossbow.setFireRate(GameData.CROSSBOW_RATE - (GameData.CROSSBOW_RATE * GameData.fireRateMultiplier));
+			spreadGun.setFireRate(GameData.SPREAD_RATE - (GameData.SPREAD_RATE * GameData.fireRateMultiplier));
+			sniper.setFireRate(GameData.SNIPER_RATE - (GameData.SNIPER_RATE * GameData.fireRateMultiplier));
 		}
 		
 		override public function hurt(_damageNumber:Number):void

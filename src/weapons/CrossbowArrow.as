@@ -29,7 +29,7 @@ package weapons
 		
 		private var stuckCoords:FlxPoint;
 		
-		public function CrossbowArrow(weapon:FlxWeapon, id:uint, _bulletGroup:FlxGroup) 
+		public function CrossbowArrow(weapon:FlxWeapon, id:uint, _bulletGroup:FlxGroup, _isEnemy:Boolean) 
 		{
 			super(weapon, id);
 			
@@ -47,7 +47,7 @@ package weapons
 			
 			for (var i:int = 0; i < particleNumber; i++)
 			{
-				explosionParticles.add(new CrossbowParticle());
+				explosionParticles.add(new CrossbowParticle(_isEnemy));
 			}
 			
 			_bulletGroup.add(explosionParticles);
