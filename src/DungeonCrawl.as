@@ -41,6 +41,8 @@ package
 			FlxG.overlap(enemiesGroup, playerBulletsGroup, hurtObject);
 			FlxG.overlap(player, itemsGroup, itemPickup);
 			
+			cameraFocus.updateCamera();
+			
 			//test key
 			if (FlxG.keys.justPressed("SPACE"))
 			{
@@ -55,8 +57,12 @@ package
 		
 		override public function stageInit():void
 		{
-			map = new DungeonMap(player, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
-				lightsGroup, lifeBar, diamondCounter, spriteAddons, enemyBars, levelComplete);
+			map = new DungeonMap(playerBulletsGroup, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
+				lightsGroup, lifeBar, diamondCounter, spriteAddons, enemyBars, alertEnemies, levelComplete);
+				
+			player = (map as DungeonMap).getPlayer();
+			cameraFocus = new CameraFocus(player);
+			FlxG.camera.target = cameraFocus;
 		}
 		
 		override public function bgmInit():void

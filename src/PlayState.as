@@ -81,10 +81,6 @@ package
 			pauseMenu.setAll("scrollFactor", new FlxPoint());
 			pauseMenu.kill();
 			
-			player = new Player(gibsGroup, playerBulletsGroup, spriteAddons, alertEnemies);
-			cameraFocus = new CameraFocus(player);
-			FlxG.camera.target = cameraFocus;
-			
 			diamondCounter = new DiamondCounter();
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
@@ -93,8 +89,6 @@ package
 			stageInit();
 			bgmInit();
 			//-----------------------------------------------------
-			
-			player.gunSetup(map);
 			
 			FlxG.worldBounds = new FlxRect(0, 0, map.tileMap.width, map.tileMap.height);
 			
@@ -164,7 +158,6 @@ package
 				super.update();
 			
 				FlxG.collide(collideableGroup, map);
-				cameraFocus.updateCamera();
 				
 				// minimap
 				if (FlxG.keys.justPressed("M"))

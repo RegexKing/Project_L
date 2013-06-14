@@ -102,11 +102,12 @@ package
 		{
 			map = new HubMap();
 			
-			FlxG.camera.setBounds(0, 0, map.tileMap.width, map.tileMap.height);
-			FlxG.camera.follow(null);
-			
+			player = new Player(gibsGroup, playerBulletsGroup, spriteAddons, alertEnemies, map);
 			player.x = 200;
 			player.y = 200;
+			
+			FlxG.camera.setBounds(0, 0, map.tileMap.width, map.tileMap.height);
+			FlxG.camera.follow(null);
 		}
 		
 		override public function bgmInit():void

@@ -29,12 +29,11 @@ package  maps
 		private var enemyBars:FlxGroup;
 		private var healthEmitter:FlxEmitter;
 		
-		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
-			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
+		public function DungeonMap(_playerBullets:FlxGroup, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
+			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, _alertEnemies:Function, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super(addToStage, onAddSpritesCallback);
 			
-			player = _player;
 			enemiesGroup = _enemiesGroup;
 			enemyBullets = _enemyBullets;
 			itemsGroup = _items;
@@ -60,15 +59,20 @@ package  maps
 			treasure.y = treasureCoords.y;
 			itemsGroup.add(treasure);
 			
+			
 			var playerStart:FlxPoint = randomFirstRoom();
 			
-			player.x = playerStart.x;
-			player.y = playerStart.y;
+			player = new Player(gibs, _playerBullets, spriteAddons, _alertEnemies, this, playerStart.x, playerStart.y);
 			
 			generateItems();
 			spawnEnemies();
 			spawnDiamonds();
 			
+		}
+		
+		public function getPlayer():Player
+		{
+			return player;
 		}
 		
 		public function spawnEnemies():void
