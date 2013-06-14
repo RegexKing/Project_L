@@ -27,7 +27,7 @@ package units
 			
 			angry = false;
 			health = 10;
-			attackValue = 2;
+			attackValue = 3;
 			
 			health = GameUtil.beast_scaleHealth(health);
 			attackValue = GameUtil.beast_scaleDamage(attackValue);

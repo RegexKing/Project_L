@@ -15,7 +15,7 @@ package weapons
 			super();
 			exists = false;
 			
-			attackValue = .1;
+			attackValue = .2;
 			
 			makeGraphic(8, 8, 0xff00FF00);
 		}

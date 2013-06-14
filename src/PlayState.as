@@ -264,8 +264,8 @@ package
 			
 			else GameData.resetData();
 			
-			FlxG.music.fadeOut(1);
-			FlxG.fade(0xff000000, 1, gameOverState);
+			hudGroup.add(new TransitionScreen("gameover", gameOverState));
+			
 		}
 		
 		private function gameOverState():void

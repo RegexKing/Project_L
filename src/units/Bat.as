@@ -19,7 +19,7 @@ package  units
 			
 			patrolSpeed = 160;
 			alertSpeed = 500;
-			health = 1;
+			health = 2;
 			attackValue = 1;
 			
 			health = GameUtil.scaleHealth(health);
@@ -53,6 +53,12 @@ package  units
 				this.pathSpeed = 120;
 			}
 		}	
+		
+		override public function kill():void
+		{
+			super.kill();
+			FlxG.play(AssetsRegistry.batDieMP3);
+		}
 	}
 
 }

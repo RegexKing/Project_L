@@ -56,7 +56,7 @@ package
 		override public function stageInit():void
 		{
 			map = new DungeonMap(player, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
-				lightsGroup, lifeBar, diamondCounter, spriteAddons, enemyBars, transitionNextState);
+				lightsGroup, lifeBar, diamondCounter, spriteAddons, enemyBars, levelComplete);
 		}
 		
 		override public function bgmInit():void
@@ -68,6 +68,17 @@ package
 
 		}
 		
+		
+		protected function levelComplete():void
+		{
+			player.solid = false;
+			player.alive = false;
+			player.velocity.x = player.velocity.y = 0;
+			
+			FlxControl.clear();
+			
+			hudGroup.add(new TransitionScreen("levelcomplete", goNextState));
+		}
 		
 		override public function goNextState():void
 		{

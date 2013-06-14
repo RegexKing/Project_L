@@ -20,7 +20,7 @@ package weapons
 		{
 			super(weapon, id);
 			
-			attackValue = 1;
+			attackValue = 2;
 		}
 		
 		override public function update():void

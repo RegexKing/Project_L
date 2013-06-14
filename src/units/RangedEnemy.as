@@ -19,8 +19,8 @@ package  units
 			
 			patrolSpeed = 100;
 			alertSpeed = 160;
-			health = 2;
-			attackValue = 2;
+			health = 3;
+			attackValue = 1;
 			
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);

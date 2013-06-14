@@ -165,9 +165,6 @@ package  units
 				itemEmitter.start(true, 15, 0, 1);
 			}
 			
-			//temp universal sound effect
-			//FlxG.play(AssetsRegistry.enemyDieMP3);
-			
 			//decrement total enemies counter
 			totalEnemies--;
 		}
