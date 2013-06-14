@@ -55,7 +55,7 @@ package
 			enemiesGroup.add(girl);
 			
 			girl.x = GameData.RENDER_WIDTH/2 - girl.width/2;
-			girl.y = Map.TILE_SIZE;
+			girl.y = Map.TILE_SIZE + girl.height;
 			
 			dialogueBox = new DialogueBox(player, girl, beastMan, lifeBar, player.setFireRate, diamondCounter);
 			add(dialogueBox);

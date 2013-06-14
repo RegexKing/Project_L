@@ -40,13 +40,13 @@ package hud
 			
 			if (_state == "gameover")
 			{
-				message.setFormat("NES", backDrop.height/4, 0xffFF0000, "center");
+				message.setFormat("NES", backDrop.height / 4, 0xffFF0000, "center", 0xffFFFFFF);
 				message.text = "You Died";
 			}
 			
 			else if (_state == "levelcomplete")
 			{
-				message.setFormat("NES", backDrop.height/4, 0xffffd700, "center");
+				message.setFormat("NES", backDrop.height/4, 0xffffd700, "center", 0xffFFFFFF);
 				message.text = "Level Complete";
 				message.y -= message.height / 4;
 				
