@@ -13,9 +13,9 @@ package units
 	{
 		private var weapon:FlxWeapon;
 		
-		public function SkeletonArcher(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBullets:FlxGroup, _enemyBars:FlxGroup) 
+		public function SkeletonArcher(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBullets:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter=null) 
 		{
-			super(_player, _map, _gibsGroup, _enemyBars);
+			super(_player, _map, _gibsGroup, _enemyBars,  _itemEmitter);
 			
 			patrolSpeed = 160;
 			alertSpeed = 200;

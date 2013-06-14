@@ -7,6 +7,7 @@ package units
 	import org.flixel.FlxPoint
 	import maps.Map; 
 	import org.flixel.plugin.photonstorm.FlxBar;
+	import org.flixel.FlxEmitter;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -18,9 +19,9 @@ package units
 		protected var movementDelay:FlxDelay;
 		protected var enemiesGroup:FlxGroup;
 		
-		public function SlimeBaby(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup, _enemyBars:FlxGroup) 
+		public function SlimeBaby(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter=null) 
 		{
-			super(_player, _map);
+			super(_player, _map,  _itemEmitter);
 			player = _player;
 			enemiesGroup = _enemiesGroup;
 			

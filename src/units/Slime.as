@@ -17,9 +17,9 @@ package units
 		protected var babySlimes:FlxEmitter;
 		protected var enemyBars:FlxGroup;
 		
-		public function Slime(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup, _enemyBars:FlxGroup, _slimeAddons:FlxGroup) 
+		public function Slime(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemiesGroup:FlxGroup, _collideableEnemies:FlxGroup, _enemyBars:FlxGroup, _slimeAddons:FlxGroup,  _itemEmitter:FlxEmitter=null) 
 		{
-			super(_player, _map);
+			super(_player, _map,  _itemEmitter);
 			
 			enemyBars = _enemyBars;
 			

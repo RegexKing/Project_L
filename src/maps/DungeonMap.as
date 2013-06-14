@@ -27,6 +27,7 @@ package  maps
 		private var spriteAddons:FlxGroup;
 		private var playerHazzards:FlxGroup;
 		private var enemyBars:FlxGroup;
+		private var healthEmitter:FlxEmitter;
 		
 		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
 			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
@@ -57,13 +58,14 @@ package  maps
 			var treasureCoords:FlxPoint = randomLastRoom();
 			treasure.x = treasureCoords.x;
 			treasure.y = treasureCoords.y;
-			spawnTeasure();
+			itemsGroup.add(treasure);
 			
 			var playerStart:FlxPoint = randomFirstRoom();
 			
 			player.x = playerStart.x;
 			player.y = playerStart.y;
 			
+			generateItems();
 			spawnEnemies();
 			spawnDiamonds();
 			
@@ -94,19 +96,19 @@ package  maps
 				switch(int(Math.ceil(Math.random() * enemyRange)))
 				{
 					case 1:
-						enemy = new Bat(player, this, gibs, enemyBars);
+						enemy = new Bat(player, this, gibs, enemyBars, healthEmitter);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
 					case 2:
-						enemy = new RangedEnemy(player, this, enemyBullets, gibs, enemyBars);
+						enemy = new RangedEnemy(player, this, enemyBullets, gibs, enemyBars, healthEmitter);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
 					case 3:
 						if (GameData.level > 9)
 						{
-							enemy = new SkeletonArcher(player, this, gibs, enemyBullets, enemyBars);
+							enemy = new SkeletonArcher(player, this, gibs, enemyBullets, enemyBars, healthEmitter);
 							enemiesGroup.add(enemy);
 							collideableEnemies.add(enemy);
 							break;
@@ -114,22 +116,22 @@ package  maps
 						
 						else 
 						{
-							enemy = new Skeleton(player, this, gibs, enemyBars);
+							enemy = new Skeleton(player, this, gibs, enemyBars, healthEmitter);
 							enemiesGroup.add(enemy);
 							collideableEnemies.add(enemy);
 							break;
 						}
 					case 4: 
-						enemy = new Ghost(player, this, gibs, enemyBars);
+						enemy = new Ghost(player, this, gibs, enemyBars, healthEmitter);
 						enemiesGroup.add(enemy);
 						break;
 					case 5: 
-						enemy = new Slime(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, spriteAddons);
+						enemy = new Slime(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, spriteAddons, healthEmitter);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
 					case 6:
-						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars);
+						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, healthEmitter);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
@@ -146,12 +148,6 @@ package  maps
 			
 		}
 		
-		public function spawnTeasure():void
-		{
-			itemsGroup.add(treasure);
-		}
-		
-		
 		private function spawnDiamonds():void
 		{
 			var diamondCoords:Array = dungeonGen.diamondCoords;
@@ -165,6 +161,22 @@ package  maps
 				diamond.x = diamondCoords[i][0]* TILE_SIZE;
 				diamond.y = diamondCoords[i][1] * TILE_SIZE;
 			}
+		}
+		
+		private function generateItems():void
+		{
+			healthEmitter = new FlxEmitter(0, 0, 22);
+			healthEmitter.setXSpeed(-160,160);
+			healthEmitter.setYSpeed(-160,160);
+			healthEmitter.setRotation(0, 0);
+			
+			for (var i:int = 0; i < healthEmitter.maxSize; i++)
+			{
+				healthEmitter.add(new HealthItem(lifeBar));
+			}
+			
+			itemsGroup.add(healthEmitter);
+			
 		}
 		
 		override public function randomFirstRoom():FlxPoint

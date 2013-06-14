@@ -4,6 +4,7 @@ package units
 	import maps.Map;
 	import org.flixel.FlxGroup;
 	import org.flixel.plugin.photonstorm.FlxBar;
+	import org.flixel.FlxEmitter;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -15,9 +16,9 @@ package units
 		private var ressurectDelay:FlxDelay;
 		private var riseDelay:FlxDelay;
 		
-		public function Skeleton(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBars:FlxGroup) 
+		public function Skeleton(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter=null) 
 		{
-			super(_player, _map);
+			super(_player, _map,  _itemEmitter);
 			
 			deaths = 0;
 			

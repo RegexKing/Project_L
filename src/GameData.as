@@ -18,6 +18,7 @@ package
 		
 		public static const DIAMONDS_PER_LEVEL:uint = 4;
 		public static const MAX_UPGRADES:uint = 8;
+		public static const LUCKY_NUMBER:uint = 7;  //helps determine item spawns
 		
 		
 		// Formula:  rate = (target max value/number_of_upgrades)
@@ -41,7 +42,7 @@ package
 		public static var level:uint = 1;
 		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
-		public static var weapon:uint = 0;
+		public static var weapon:uint = 3;
 		
 		//player attributes
 		public static var vitalityUpgrades:uint = 0; 

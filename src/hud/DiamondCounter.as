@@ -19,16 +19,16 @@ package hud
 			var diamondIcon:FlxSprite = new FlxSprite(0, 0, AssetsRegistry.diamondIconPNG);
 			
 			counter = new FlxText(0, 0, 60, String(GameData.diamonds));
-			counter.setFormat("NES", 16, 0xffFFFFFF, "left");
+			counter.setFormat("NES", 16, 0xffFFFFFF, "center");
 			
 			add(diamondIcon);
 			add(counter);
 			
-			diamondIcon.x = GameData.RENDER_WIDTH - diamondIcon.width - counter.width - 2;
-			diamondIcon.y = 8.2;
-			
 			counter.x = GameData.RENDER_WIDTH - counter.width-1;
 			counter.y = 5.6;
+			
+			diamondIcon.x = counter.x - diamondIcon.width;
+			diamondIcon.y = counter.y + 2.6;
 			
 		}
 		

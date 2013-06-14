@@ -76,7 +76,7 @@ package  hud
 				treasureIcon.x = tileMap.x +  Math.round((map as DungeonMap).treasure.x / Map.TILE_SIZE) * 12;
 				treasureIcon.y = tileMap.y + Math.round((map as DungeonMap).treasure.y / Map.TILE_SIZE) * 12;
 			
-				if (Enemy.totalEnemies <= 0 && !isTreasure)
+				if ((map as DungeonMap).treasure.onScreen() && !isTreasure)
 				{
 					isTreasure = true;
 					treasureAppear();
@@ -93,8 +93,6 @@ package  hud
 		
 		private function treasureAppear():void
 		{
-			//(map as DungeonMap).spawnTeasure();
-			
 			treasureIcon.alpha = 1;
 			
 			// play treasure song

@@ -49,6 +49,9 @@ package units
 			expire = null;
 		}
 		
+		override protected function addKillCount():void
+		{}
+		
 	}
 
 }

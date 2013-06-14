@@ -30,13 +30,12 @@ package  units
 		protected var lifeBarHeight:uint = 5;
 		protected var lifeBarOffset:int = -15;
 		
-		public function Enemy(_player:Player, _map:Map = null) 
+		public function Enemy(_player:Player, _map:Map = null, _itemEmitter:FlxEmitter=null) 
 		{
-			totalEnemies++;
-			
 			super();
 			
 			player = _player;
+			itemEmitter = _itemEmitter;
 			map = _map;
 			
 			elasticity = 1;
@@ -158,15 +157,39 @@ package  units
 				gibs.start(true, 10, 0);
 			}
 			
+			//increment total enemies killed counter
+			addKillCount();
+			
 			if(itemEmitter != null)
 			{
-				itemEmitter.at(this);
-				
-				itemEmitter.start(true, 15, 0, 1);
-			}
 			
-			//decrement total enemies counter
-			totalEnemies--;
+				if (totalEnemies >= GameData.LUCKY_NUMBER)
+				{
+					spawnItem();
+					totalEnemies = 0;
+				}
+				
+				else
+				{
+					var diceRoll:Number = Math.ceil(Math.random() * GameData.LUCKY_NUMBER);
+					
+					FlxG.log(diceRoll);
+					
+					if (diceRoll == GameData.LUCKY_NUMBER) spawnItem();
+				}
+			}
+		}
+		
+		
+		protected function addKillCount():void
+		{
+			totalEnemies++;
+		}
+		
+		protected function spawnItem():void
+		{	
+			itemEmitter.at(this);
+			itemEmitter.start(true, 15, 0, 1);
 		}
 		
 		/*
