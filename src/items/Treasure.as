@@ -17,12 +17,18 @@ package items
 			expireTime = 0;
 			win = _win;
 			
-			loadGraphic(AssetsRegistry.chestPNG, false, false, 40, 40);
+			loadGraphic(AssetsRegistry.chestPNG, true, false, 40, 40);
+			addAnimation("closed", [0]);
+			addAnimation("open", [1]);
+			play("closed");
 			
 		}
 		
 		override public function pickup():void
 		{
+			this.solid = false;
+			play("open");
+			
 			win();
 		}
 	}

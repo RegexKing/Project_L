@@ -8,13 +8,10 @@ package units
 	import org.flixel.plugin.photonstorm.FlxVelocity; 
 	import maps.Map;
 	import org.flixel.*;
-	import util.FlxTrail;
 	import org.flixel.plugin.photonstorm.FlxBar;
 	 
 	public class Ghost extends Enemy
 	{
-		
-		public var trail:FlxTrail;
 		
 		public function Ghost(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBars:FlxGroup) 
 		{
@@ -37,9 +34,6 @@ package units
 			lifeBar.trackParent(0, lifeBarOffset);
 			lifeBar.visible = false;
 			_enemyBars.add(lifeBar);
-			
-			trail = new FlxTrail(this);
-			trail.rotationsEnabled = false;
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);
@@ -82,13 +76,6 @@ package units
 			// change facing
 			if (velocity.x < 0) _facing = LEFT;
 			else _facing = RIGHT;
-		}
-		
-		override public function kill():void
-		{
-			super.kill();
-			
-			trail.kill();
 		}
 		
 	}

@@ -118,34 +118,6 @@ package
 
 		}
 		
-		/*
-		override public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
-		{
-			if (unit.flickering) return
-			
-			else 
-			{
-				if (unit is Player) 
-				{
-					if (hazzard is BeastMan && BeastMan.angry)
-					{
-						lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
-						unit.hurt(0);
-					}
-				}
-				
-				else if (unit is BeastMan)
-				{
-					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue * GameData.damageMultiplier));
-				}
-				
-				else unit.hurt(0);
-			}
-			
-			if (hazzard is Bullet || hazzard is CrossbowParticle) hazzard.kill();
-		}
-		*/
-		
 		override public function goNextState():void
 		{
 			super.goNextState();

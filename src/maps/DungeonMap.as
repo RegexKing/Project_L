@@ -80,10 +80,10 @@ package  maps
 			var enemyRange:uint;
 			
 			if (GameData.level < 3) enemyRange = 2;
-			else if (GameData.level < 6) enemyRange = 4;
-			else if (GameData.level < 10) enemyRange = 5;
-			else if (GameData.level < 19) enemyRange = 6;
-			else enemyRange = 7;
+			else if (GameData.level < 6) enemyRange = 3;
+			else if (GameData.level < 9) enemyRange = 4;
+			else if (GameData.level < 19) enemyRange = 5;
+			else if (GameData.level >= 19) enemyRange = 6;
 			
 			//enemyRange = 7;
 			
@@ -104,14 +104,24 @@ package  maps
 						collideableEnemies.add(enemy);
 						break;
 					case 3:
-						enemy = new Skeleton(player, this, gibs, enemyBars);
-						enemiesGroup.add(enemy);
-						collideableEnemies.add(enemy);
-						break;
+						if (GameData.level > 9)
+						{
+							enemy = new SkeletonArcher(player, this, gibs, enemyBullets, enemyBars);
+							enemiesGroup.add(enemy);
+							collideableEnemies.add(enemy);
+							break;
+						}
+						
+						else 
+						{
+							enemy = new Skeleton(player, this, gibs, enemyBars);
+							enemiesGroup.add(enemy);
+							collideableEnemies.add(enemy);
+							break;
+						}
 					case 4: 
 						enemy = new Ghost(player, this, gibs, enemyBars);
 						enemiesGroup.add(enemy);
-						//spriteAddons.add((enemy as Ghost).trail);
 						break;
 					case 5: 
 						enemy = new Slime(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, spriteAddons);
@@ -119,11 +129,6 @@ package  maps
 						collideableEnemies.add(enemy);
 						break;
 					case 6:
-						enemy = new SkeletonArcher(player, this, gibs, enemyBullets, enemyBars);
-						enemiesGroup.add(enemy);
-						collideableEnemies.add(enemy);
-						break;
-					case 7:
 						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);

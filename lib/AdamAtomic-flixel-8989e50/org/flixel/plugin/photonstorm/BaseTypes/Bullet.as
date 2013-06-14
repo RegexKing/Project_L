@@ -43,7 +43,7 @@ package org.flixel.plugin.photonstorm.BaseTypes
 		
 		public function Bullet(weapon:FlxWeapon, id:uint)
 		{
-			super(0, 0);
+			super(-50, -50);
 			
 			this.weapon = weapon;
 			this.ID = id;

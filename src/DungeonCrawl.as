@@ -53,27 +53,6 @@ package
 			
 		}
 		
-		/*
-		override public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
-		{
-			if (unit.flickering) return
-			
-			else 
-			{
-				if (unit is Player) 
-				{
-					lifeBar.currentValue -= (hazzard as FlxSprite).attackValue - ((hazzard as FlxSprite).attackValue*GameData.defenseMultiplier); 
-					unit.hurt(0);
-				}
-				
-				else if (!(hazzard is Acid)&& !(hazzards is Girl))
-					unit.hurt((hazzard as FlxSprite).attackValue + ((hazzard as FlxSprite).attackValue*GameData.damageMultiplier));
-			}
-			
-			if (hazzard is Bullet || hazzard is FlxParticle) hazzard.kill();
-		}
-		*/
-		
 		override public function stageInit():void
 		{
 			map = new DungeonMap(player, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
@@ -98,12 +77,6 @@ package
 			GameData.completionTime += time;
 			
 			FlxG.switchState(new Hub());
-		}
-		
-		private function itemPickup(player:FlxObject, item:FlxObject):void
-		{
-			(item as Item).pickup();
-			item.kill();
 		}
 		
 		

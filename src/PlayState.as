@@ -200,8 +200,11 @@ package
 		
 		public function transitionNextState():void
 		{
-			player.active = false;
 			player.solid = false;
+			player.alive = false;
+			player.velocity.x = player.velocity.y = 0;
+			
+			FlxControl.clear();
 			
 			FlxG.music.fadeOut(1);
 			FlxG.camera.fade(0xff000000, 1, goNextState);
@@ -271,10 +274,10 @@ package
 		}
 		
 		
-		private function itemPickup(player:FlxObject, item:FlxObject):void
+		protected function itemPickup(player:FlxObject, item:FlxObject):void
 		{
 			(item as Item).pickup();
-			item.kill();
+			if (!((item as Item) is Treasure)) item.kill();
 		}
 		
 		public function alertEnemies():void
