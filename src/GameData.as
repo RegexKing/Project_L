@@ -13,7 +13,7 @@ package
 		public static var saveFile:SharedObject = SharedObject.getLocal("myData");
 		
 		//Constants
-		public static const RENDER_WIDTH:uint = 512;
+		public static const RENDER_WIDTH:uint = 540;
 		public static const RENDER_HEIGHT:uint = 480;
 		
 		public static const DIAMONDS_PER_LEVEL:uint = 4;

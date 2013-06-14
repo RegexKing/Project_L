@@ -48,13 +48,13 @@ package dialogue
 			
 			portrait = new FlxSprite();
 			
-			background.x = 22;
+			background.x = 22+16;
 			background.y = 322;
 			
-			textField.x = 153;
+			textField.x = 153+16;
 			textField.y = 332;
 			
-			portrait.x = 22;
+			portrait.x = 22+16;
 			portrait.y = 278;
 			
 			add(background);

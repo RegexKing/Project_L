@@ -59,8 +59,8 @@ package dialogue
 		{
 			buttonsGroup = new FlxGroup();
 			
-			var upgradeButton:FlxButtonPlus = new FlxButtonPlus(153, 382, upgrade, null, "Upgrade");
-			var dontUpgradeButton:FlxButtonPlus = new FlxButtonPlus(153, 412, advanceConversation, null, "Cancel");
+			var upgradeButton:FlxButtonPlus = new FlxButtonPlus(153+16, 382, upgrade, null, "Upgrade");
+			var dontUpgradeButton:FlxButtonPlus = new FlxButtonPlus(153+16, 412, advanceConversation, null, "Cancel");
 			
 			buttonsGroup.add(upgradeButton);
 			buttonsGroup.add(dontUpgradeButton);
@@ -70,8 +70,8 @@ package dialogue
 		{
 			buttonsGroup = new FlxGroup();
 			
-			var saveButton:FlxButtonPlus = new FlxButtonPlus(153, 382, saveGame, null, "Save");
-			var dontSaveButton:FlxButtonPlus = new FlxButtonPlus(153, 412, advanceConversation, null, "Cancel");
+			var saveButton:FlxButtonPlus = new FlxButtonPlus(153+16, 382, saveGame, null, "Save");
+			var dontSaveButton:FlxButtonPlus = new FlxButtonPlus(153+16, 412, advanceConversation, null, "Cancel");
 			
 			buttonsGroup.add(saveButton);
 			buttonsGroup.add(dontSaveButton);

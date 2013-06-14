@@ -42,8 +42,9 @@ package
 			mainMenuButtons = new FlxGroup(4);
 			
 			titleScreen = new FlxSprite();
-			if (GameData.checkNewGame() == true) titleScreen.loadGraphic(AssetsRegistry.disableContinuePNG, false, false, 512, 480);
-			else titleScreen.loadGraphic(AssetsRegistry.titleScreenPNG, false, false, 512, 480);
+			if (GameData.checkNewGame() == true) titleScreen.loadGraphic(AssetsRegistry.disableContinuePNG, false, false, GameData
+			.RENDER_WIDTH, GameData.RENDER_HEIGHT);
+			else titleScreen.loadGraphic(AssetsRegistry.titleScreenPNG, false, false, GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT);
 			
 			titleScreen.visible = false;
 			flood = FlxSpecialFX.floodFill();
@@ -134,10 +135,10 @@ package
 		
 		private function createMenuButtons():void
 		{
-			var continueButton:FlxButton = new FlxButton(330, 278, null, continueGame);
-			var playButton:FlxButton = new FlxButton(330, 323, null, playGame);
-			var optionsButton:FlxButton = new FlxButton(330, 368, null, goOptions);
-			var extrasButton:FlxButton = new FlxButton(330, 413, null, goExtras);
+			var continueButton:FlxButton = new FlxButton(330+27, 278-5, null, continueGame);
+			var playButton:FlxButton = new FlxButton(330+27, 323-5, null, playGame);
+			var optionsButton:FlxButton = new FlxButton(330+27, 368-5, null, goOptions);
+			var extrasButton:FlxButton = new FlxButton(330+27, 413-5, null, goExtras);
 			
 			continueButton.makeGraphic(154, 45, 0x0);
 			playButton.makeGraphic(154, 45, 0x0);

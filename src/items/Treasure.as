@@ -17,7 +17,7 @@ package items
 			expireTime = 0;
 			win = _win;
 			
-			makeGraphic(40, 40, 0xffFFFF00);
+			loadGraphic(AssetsRegistry.chestPNG, false, false, 40, 40);
 			
 		}
 		

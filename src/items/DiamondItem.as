@@ -22,7 +22,11 @@ package  items
 			exists = true;
 			expireTime = 0;
 			
-			makeGraphic(32, 32, 0xffFF0000);
+			loadGraphic(AssetsRegistry.diamondsPNG, true, false, 32, 32);
+			addAnimation("blue", [0]);
+			addAnimation("green", [1]);
+			addAnimation("red", [2]);
+			addAnimation("yellow", [3]);
 		}
 		
 		override public function onEmit():void
@@ -30,6 +34,12 @@ package  items
 			super.onEmit();
 			
 			//todo add animation to play
+			var randomColor:uint = Math.floor(Math.random() * 4);
+			
+			if (randomColor == 0) play("blue");
+			else if (randomColor == 1) play("green");
+			else if (randomColor == 2) play("red");
+			else play("yellow");
 		}
 		
 		override public function pickup():void

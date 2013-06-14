@@ -91,7 +91,7 @@ package  maps
 			{
 				var enemy:Enemy;
 				
-				switch(3)// int(Math.ceil(Math.random() * enemyRange)))
+				switch(int(Math.ceil(Math.random() * enemyRange)))
 				{
 					case 1:
 						enemy = new Bat(player, this, gibs, enemyBars);
@@ -111,7 +111,7 @@ package  maps
 					case 4: 
 						enemy = new Ghost(player, this, gibs, enemyBars);
 						enemiesGroup.add(enemy);
-						spriteAddons.add((enemy as Ghost).trail);
+						//spriteAddons.add((enemy as Ghost).trail);
 						break;
 					case 5: 
 						enemy = new Slime(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, spriteAddons);

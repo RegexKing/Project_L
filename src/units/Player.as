@@ -146,8 +146,6 @@ package  units
 			else
 				this._facing = LEFT
 			
-			FlxG.log(directionAngle);
-			
 			if (velocity.x == 0 && velocity.y == 0) play("idle");
 			else play("run");
 			

@@ -78,6 +78,10 @@ package units
 				
 			}
 			
+			
+			// change facing
+			if (velocity.x < 0) _facing = LEFT;
+			else _facing = RIGHT;
 		}
 		
 		override public function kill():void

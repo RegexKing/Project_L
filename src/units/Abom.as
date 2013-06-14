@@ -36,9 +36,9 @@ package units
 			
 			loadGraphic(AssetsRegistry.abomPNG, true, true, 64, 64);
 			width = 36;
-			height = 62;
+			height = 60;
 			offset.x = 14;
-			offset.y = 1;
+			offset.y = 2;
 			this.addAnimation("run", [0, 1, 2, 3], 10);
 			play("run");
 			

@@ -9,7 +9,7 @@ package maps
 	 
 	public class Map extends FlxGroup
 	{
-		public static const TILE_SIZE:uint = 64;
+		public static const TILE_SIZE:uint = 60;
 		public var tileMap:FlxTilemap;
 		
 		

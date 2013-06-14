@@ -34,21 +34,21 @@ package dialogue
 			setFireRate = _setFireRate;
 			diamondCounter = _diamondCounter;
 			
-			header = new FlxText(37, 262, 468, "");
+			header = new FlxText(37+16, 262, 468, "");
 			header.setFormat("NES", 16);
 			
 			var background:FlxSprite = FlxGradient.createGradientFlxSprite(468, 209, [0xff0066FF, 0xff000066], 10);
-			background.x = 22;
+			background.x = 22+16;
 			background.y = 252;
 			
 			background.stamp(FlxGradient.createGradientFlxSprite(468, 174, [0xff0000FF, 0xff0099FF]), 22, 284);
 			
 			// Create the buttons
-			var vitality:FlxButtonPlus = new FlxButtonPlus(37, 299, upgradeHealth, null, "Vitality");
-			var attack:FlxButtonPlus = new FlxButtonPlus(37, 329, upgradeAttack, null, "Attack");
-			var defense:FlxButtonPlus = new FlxButtonPlus(37, 359, upgradeDefense, null, "Defense");
-			var rate:FlxButtonPlus = new FlxButtonPlus(37, 389, upgradeRate, null, "Rate");
-			var cancelButton:FlxButtonPlus = new FlxButtonPlus(37, 419, kill, null, "done");
+			var vitality:FlxButtonPlus = new FlxButtonPlus(37+16, 299, upgradeHealth, null, "Vitality");
+			var attack:FlxButtonPlus = new FlxButtonPlus(37+16, 329, upgradeAttack, null, "Attack");
+			var defense:FlxButtonPlus = new FlxButtonPlus(37+16, 359, upgradeDefense, null, "Defense");
+			var rate:FlxButtonPlus = new FlxButtonPlus(37+16, 389, upgradeRate, null, "Rate");
+			var cancelButton:FlxButtonPlus = new FlxButtonPlus(37+16, 419, kill, null, "done");
 			
 			vitality.setMouseOverCallback(vitalityDescription);
 			attack.setMouseOverCallback(attackDescription);
@@ -61,19 +61,19 @@ package dialogue
 			rate.setMouseOutCallback(updateHeader);
 			
 			// create the upgrade bars
-			vitBar = new FlxBar(300, 299, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
+			vitBar = new FlxBar(300+16, 299, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
 			vitBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
 			vitBar.setRange(0, GameData.MAX_UPGRADES);
 			
-			attackBar = new FlxBar(300, 329, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
+			attackBar = new FlxBar(300+16, 329, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
 			attackBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
 			attackBar.setRange (0, GameData.MAX_UPGRADES);
 			
-			defenseBar = new FlxBar(300, 359, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
+			defenseBar = new FlxBar(300+16, 359, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
 			defenseBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
 			defenseBar.setRange (0, GameData.MAX_UPGRADES);
 			
-			rateBar = new FlxBar(300, 389, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
+			rateBar = new FlxBar(300+16, 389, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
 			rateBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
 			rateBar.setRange (0, GameData.MAX_UPGRADES);
 			
@@ -82,16 +82,16 @@ package dialogue
 			defenseBar.currentValue = GameData.defenseUpgrades;
 			rateBar.currentValue = GameData.rateUpgrades;
 			
-			healthCost = new FlxText(237, 299, 60, String(initDisplayCost(GameData.vitalityUpgrades+1)));
+			healthCost = new FlxText(237+16, 299, 60, String(initDisplayCost(GameData.vitalityUpgrades+1)));
 			healthCost.setFormat("NES", 16);
 			
-			attackCost = new FlxText(237, 329, 60, String(initDisplayCost(GameData.attackUpgrades+1)));
+			attackCost = new FlxText(237+16, 329, 60, String(initDisplayCost(GameData.attackUpgrades+1)));
 			attackCost.setFormat("NES", 16);
 			
-			defenseCost = new FlxText(237, 359, 60, String(initDisplayCost(GameData.defenseUpgrades+1)));
+			defenseCost = new FlxText(237+16, 359, 60, String(initDisplayCost(GameData.defenseUpgrades+1)));
 			defenseCost.setFormat("NES", 16);
 			
-			rateCost = new FlxText(237, 389, 60, String(initDisplayCost(GameData.rateUpgrades+1)));
+			rateCost = new FlxText(237+16, 389, 60, String(initDisplayCost(GameData.rateUpgrades+1)));
 			rateCost.setFormat("NES", 16);
 			
 			//

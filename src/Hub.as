@@ -46,7 +46,7 @@ package
 				
 				else
 				{
-					beastMan.x = GameData.RENDER_WIDTH - (beastMan.width + Map.TILE_SIZE);
+					beastMan.x = GameData.RENDER_WIDTH - (beastMan.width + Map.TILE_SIZE + beastMan.offset.x);
 					beastMan.y = GameData.RENDER_HEIGHT - (beastMan.height + Map.TILE_SIZE * 2);
 				}
 			}

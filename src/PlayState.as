@@ -201,6 +201,7 @@ package
 		public function transitionNextState():void
 		{
 			player.active = false;
+			player.solid = false;
 			
 			FlxG.music.fadeOut(1);
 			FlxG.camera.fade(0xff000000, 1, goNextState);
