@@ -36,7 +36,7 @@ package dialogue
 		
 		// beast
 		public static var beast_intro1:String = BEAST_TITLE + "Aye, it's Patches! You're pretty tough for such a small man.";
-		public static var beast_intro1:String = BEAST_TITLE + "7th enemy has the heart.";
+		public static var beast_intro2:String = BEAST_TITLE + "7th enemy has the heart.";
 		public static var beast_outro1:String = BEAST_TITLE + "You're a jerk with a heart of gold.. Don't let them take it from ye!";
 		public static var saveRequest:String = BEAST_TITLE + "Shall I record thine progress?";
 		public static var angryReaction:String = BEAST_TITLE + "What was that about last time? Don't pick fights you cannot win.";

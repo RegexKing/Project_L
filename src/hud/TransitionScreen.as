@@ -53,8 +53,8 @@ package hud
 				var topLine:RainbowLineFX =  FlxSpecialFX.rainbowLine();
 				var bottomLine:RainbowLineFX =  FlxSpecialFX.rainbowLine();
 				
-				topLine.create(0, backDrop.y, GameData.RENDER_WIDTH, 1, null, 360, 8);
-				bottomLine.create(0, backDrop.y + backDrop.height, GameData.RENDER_WIDTH, 1, null, 360, 8);
+				topLine.create(0, backDrop.y-2, GameData.RENDER_WIDTH, 2, null, 360, 8, 1);
+				bottomLine.create(0, backDrop.y+2 + backDrop.height, GameData.RENDER_WIDTH, 2, null, 360, 8, 1);
 				topLine.setDirection(1);
 				
 				topLine.sprite.scrollFactor.x = topLine.sprite.scrollFactor.y = 0;

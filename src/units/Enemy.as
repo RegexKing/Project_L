@@ -173,8 +173,6 @@ package  units
 				{
 					var diceRoll:Number = Math.ceil(Math.random() * GameData.LUCKY_NUMBER);
 					
-					FlxG.log(diceRoll);
-					
 					if (diceRoll == GameData.LUCKY_NUMBER) spawnItem();
 				}
 			}
