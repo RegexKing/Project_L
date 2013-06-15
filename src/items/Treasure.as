@@ -2,6 +2,7 @@ package items
 {
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxG;
+	import com.newgrounds.API;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -32,6 +33,9 @@ package items
 			
 			//play sound
 			FlxG.play(AssetsRegistry.openChestMP3);
+			
+			//unlock medal
+			API.unlockMedal("Treasure Hunt");
 			
 			win();
 		}

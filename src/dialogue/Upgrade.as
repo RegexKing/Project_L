@@ -3,6 +3,7 @@ package dialogue
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	import hud.*;
+	import com.newgrounds.API;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -127,10 +128,10 @@ package dialogue
 				lifeBar.increaseBarRange(); //actually sets the attribute
 				GameData.playerHealth = lifeBar.currentValue;
 				
-				playUpgradeSound();
-				
 				diamondCounter.changeQuantity(-findCost(GameData.vitalityUpgrades));
 				GameData.vitalityUpgrades++;
+				
+				playUpgradeSound();
 				
 				if (findCost(GameData.vitalityUpgrades) < GameData.MAX_UPGRADES+1)
 				{
@@ -141,7 +142,6 @@ package dialogue
 
 			}
 			
-			FlxG.log(GameData.totalHealth);
 		}
 		
 		private function upgradeAttack():void
@@ -151,10 +151,10 @@ package dialogue
 				attackBar.currentValue++; //increases the upgrade bar
 				GameData.damageMultiplier += GameData.DAMAGE_FACTOR; //actually sets the attribute
 				
-				playUpgradeSound();
-				
 				diamondCounter.changeQuantity(-findCost(GameData.attackUpgrades));
 				GameData.attackUpgrades++;
+				
+				playUpgradeSound();
 				
 				if (findCost(GameData.attackUpgrades) < GameData.MAX_UPGRADES+1)
 				{
@@ -165,7 +165,6 @@ package dialogue
 
 			}
 			
-			FlxG.log(GameData.damageMultiplier);
 		}
 		
 		private function upgradeDefense():void
@@ -175,10 +174,10 @@ package dialogue
 				defenseBar.currentValue++; //increases the upgrade bar
 				GameData.defenseMultiplier += GameData.DEFENSE_FACTOR; //actually sets the attribute
 				
-				playUpgradeSound();
-				
 				diamondCounter.changeQuantity(-findCost(GameData.defenseUpgrades));
 				GameData.defenseUpgrades++;
+				
+				playUpgradeSound();
 				
 				if (findCost(GameData.defenseUpgrades) < GameData.MAX_UPGRADES+1)
 				{
@@ -189,7 +188,6 @@ package dialogue
 
 			}
 			
-			FlxG.log(GameData.defenseMultiplier);
 		}
 		
 		private function upgradeRate():void
@@ -200,10 +198,10 @@ package dialogue
 				GameData.fireRateMultiplier += GameData.FIRERATE_FACTOR; //actually sets the attribute
 				setFireRate();
 				
-				playUpgradeSound();
-				
 				diamondCounter.changeQuantity(-findCost(GameData.rateUpgrades));
 				GameData.rateUpgrades++;
+				
+				playUpgradeSound();
 				
 				if (findCost(GameData.rateUpgrades) < GameData.MAX_UPGRADES+1)
 				{
@@ -214,8 +212,6 @@ package dialogue
 
 			}
 			
-			
-			FlxG.log(GameData.fireRateMultiplier);
 		}
 		
 		private function updateHeader(_description:String = null):void
@@ -261,7 +257,17 @@ package dialogue
 		{
 			FlxG.play(AssetsRegistry.upgradeMP3);
 			
-			
+			if (GameData.attackUpgrades == GameData.MAX_UPGRADES || GameData.vitalityUpgrades == GameData.MAX_UPGRADES
+				|| GameData.defenseUpgrades == GameData.MAX_UPGRADES || GameData.rateUpgrades == GameData.MAX_UPGRADES)
+				{
+					API.unlockMedal("Maxed Attribute");
+				}
+				
+			if (GameData.attackUpgrades == GameData.MAX_UPGRADES && GameData.vitalityUpgrades == GameData.MAX_UPGRADES
+				&& GameData.defenseUpgrades == GameData.MAX_UPGRADES && GameData.rateUpgrades == GameData.MAX_UPGRADES)
+				{
+					API.unlockMedal("Maxed All");
+				}
 		}
 		
 		private function vitalityDescription():void { updateHeader("vitality"); }

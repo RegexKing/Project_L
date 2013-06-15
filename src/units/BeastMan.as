@@ -8,6 +8,7 @@ package units
 	import org.flixel.*;  
 	import org.flixel.plugin.photonstorm.*;
 	import org.flixel.plugin.photonstorm.FlxBar;
+	import com.newgrounds.API;
 	 
 	public class BeastMan extends Enemy
 	{
@@ -88,6 +89,9 @@ package units
 			super.hurt(_damagePoints);
 			angry = true;
 			isAnnoyed = true;
+			
+			//unlock medal
+			API.unlockMedal("Terrible Friend");
 		}
 		
 		override public function kill():void
@@ -97,6 +101,9 @@ package units
 			
 			//play sound
 			FlxG.play(AssetsRegistry.beastDieMP3);
+			
+			//unlock medal
+			API.unlockMedal("You Bastard!");
 		}
 	}
 

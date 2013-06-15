@@ -7,6 +7,7 @@ package dialogue
 	import hud.DiamondCounter;
 	import hud.LifeBar;
 	import units.BeastMan;
+	import com.newgrounds.API;
 	 
 	public class DialogueRegistry 
 	{
@@ -127,7 +128,8 @@ package dialogue
 			
 			else if (GameData.level == GameData.LAST_LEVEL)
 			{
-				//TODO: unlock true ending medal
+				//unlock true ending medal
+				API.unlockMedal("True Ending"); 
 				
 				BeastMan.angry = true;
 				

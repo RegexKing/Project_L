@@ -6,6 +6,7 @@ package units
 	import org.flixel.plugin.photonstorm.FlxBar;
 	import org.flixel.FlxEmitter;
 	import org.flixel.FlxG;
+	import com.newgrounds.API;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -16,6 +17,7 @@ package units
 		private var deaths:uint;
 		private var ressurectDelay:FlxDelay;
 		private var riseDelay:FlxDelay;
+		
 		
 		public function Skeleton(_player:Player, _map:Map, _gibsGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter=null) 
 		{
@@ -91,7 +93,13 @@ package units
 				play("kill");
 			}
 			
-			else super.kill();
+			else 
+			{
+				super.kill();
+				
+				//unlock medal
+				API.unlockMedal("And Stay Dead!");
+			}
 			
 			//play sound
 			FlxG.play(AssetsRegistry.skeletonDieMP3);

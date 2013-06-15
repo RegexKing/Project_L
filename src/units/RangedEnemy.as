@@ -26,7 +26,7 @@ package  units
 			
 			patrolSpeed = 100;
 			alertSpeed = 160;
-			health = 3;
+			health = 2;
 			attackValue = 1;
 			
 			health = GameUtil.scaleHealth(health);
@@ -59,7 +59,7 @@ package  units
 			if (weaponID == 0)
 			{
 				weapon = new BaseGun("normal", this, true);
-				weapon.makePixelBullet(10, 16, 16);
+				weapon.makePixelBullet(12, 14, 14);
 				weapon.setBulletSpeed(400);
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setFireRate(GameData.NORMAL_RATE);

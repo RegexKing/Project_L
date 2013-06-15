@@ -3,6 +3,7 @@ package  units
 	import items.DiamondEmitter;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*; 
+	import com.newgrounds.API;
 	
 	import maps.*;
 	/**
@@ -167,6 +168,9 @@ package  units
 				{
 					spawnItem();
 					totalEnemies = 0;
+					
+					//unlock medal
+					API.unlockMedal("7 In a Row");
 				}
 				
 				else

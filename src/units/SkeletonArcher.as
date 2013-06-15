@@ -35,7 +35,7 @@ package units
 			_gibsGroup.add(gibs);
 			
 			weapon = new FlxWeapon("normal", this);
-			weapon.makePixelBullet(10, 16, 16);
+			weapon.makePixelBullet(12, 14, 14);
 			weapon.setBulletSpeed(400);
 			weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			weapon.setFireRate(500);

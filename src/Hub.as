@@ -9,6 +9,7 @@ package
 	 import items.*;
 	 import weapons.*;
 	 import menu.PauseMenu;
+	 import com.newgrounds.API;
 	 
 	 import org.flixel.plugin.photonstorm.*;
 	 import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
@@ -60,7 +61,7 @@ package
 			dialogueBox = new DialogueBox(player, girl, beastMan, lifeBar, player.setFireRate, diamondCounter);
 			add(dialogueBox);
 			
-			FlxG.log(GameData.completionTime);
+			checkLastLevel();
 		}
 		
 		override public function update():void
@@ -126,6 +127,24 @@ package
 			FlxG.switchState(new DungeonCrawl());
 		}
 		
+		
+		protected function checkLastLevel():void
+		{
+			if (GameData.level == GameData.LAST_LEVEL)
+			{
+				if (GameData.cravenMode)
+				{
+					API.unlockMedal("Beat Craven Mode");
+					API.postScore("Craven Mode", GameData.completionTime * 1000);
+				}
+				
+				else
+				{
+					API.unlockMedal("Beat Rogue Mode");
+					API.postScore("Rogue Mode", GameData.completionTime * 1000);
+				}
+			}
+		}
 		
 		override public function alertEnemies():void { } // erases super class alert enemies 
 		
