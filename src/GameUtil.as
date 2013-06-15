@@ -4,6 +4,9 @@ package
 	 * ...
 	 * @author Frank Fazio
 	 */
+	
+	import flash.utils.ByteArray;  
+	 
 	public class GameUtil 
 	{
 		
@@ -45,6 +48,14 @@ package
 			
 			if (scaledDamage < _damage) return _damage;
 			else return scaledDamage;
+		}
+		
+		public static function clone(source:Object):* 
+		{ 
+			var myBA:ByteArray = new ByteArray(); 
+			myBA.writeObject(source); 
+			myBA.position = 0; 
+			return(myBA.readObject()); 
 		}
 		
 	}

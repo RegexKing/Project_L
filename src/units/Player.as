@@ -28,13 +28,6 @@ package  units
 		public var fireable:Boolean;
 		
 		//Gun Vars
-		public static const NORMAL_GUN:uint = 0;
-		public static const BOUNCE_GUN:uint = 1;
-		public static const CROSSBOW:uint = 2;
-		public static const SPREAD_GUN:uint = 3;
-		public static const SNIPER:uint = 4;
-		
-		
 		protected var normalGun:FlxWeapon;
 		protected var bounceGun:BounceGun;
 		protected var crossbow:Crossbow;
@@ -88,7 +81,7 @@ package  units
 			// Guns
 
 			normalGun = new BaseGun("normal", this);
-			normalGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
+			normalGun.makePixelBullet(25, 12, 12, 0xffffffff, 5, 13)
 			normalGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			normalGun.setBulletSpeed(600);
 			normalGun.setFireRate(GameData.NORMAL_RATE - (GameData.NORMAL_RATE * GameData.fireRateMultiplier));
@@ -96,7 +89,7 @@ package  units
 			
 			
 			bounceGun = new BounceGun("bounce", spriteAddons, this);
-			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
+			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff, 5, 13)
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			bounceGun.setBulletSpeed(600);
 			bounceGun.setFireRate(GameData.BOUNCE_RATE - (GameData.BOUNCE_RATE * GameData.fireRateMultiplier));
@@ -106,21 +99,21 @@ package  units
 			
 
 			crossbow = new Crossbow("crossbow", playerBulletsGroup, this);
-			crossbow.makePixelBullet(10, 12, 12, 0xffffffff, 14, 14);
+			crossbow.makePixelBullet(10, 12, 12, 0xffffffff, 5, 13);
 			crossbow.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			crossbow.setBulletSpeed(600);
 			crossbow.setFireRate(GameData.CROSSBOW_RATE - (GameData.CROSSBOW_RATE * GameData.fireRateMultiplier));
 			crossbow.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 
 			spreadGun = new SpreadGun("spread", this);
-			spreadGun.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
+			spreadGun.makePixelBullet(25, 12, 12, 0xffFFFFFF, 5, 13);
 			spreadGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			spreadGun.setBulletSpeed(600);
 			spreadGun.setFireRate(GameData.SPREAD_RATE - (GameData.SPREAD_RATE * GameData.fireRateMultiplier));
 			spreadGun.setPreFireCallback(alertEnemies, AssetsRegistry.shotGunMP3); 
 
 			sniper = new Sniper("sniper", this);
-			sniper.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
+			sniper.makePixelBullet(25, 12, 12, 0xffFFFFFF, 5, 13);
 			sniper.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			sniper.setBulletSpeed(600);
 			sniper.setFireRate(GameData.SNIPER_RATE - (GameData.SNIPER_RATE * GameData.fireRateMultiplier));
@@ -149,34 +142,50 @@ package  units
 			if (velocity.x == 0 && velocity.y == 0) play("idle");
 			else play("run");
 			
+			if (FlxG.keys.justPressed("E"))
+			{
+				GameData.weaponID++;
+				
+				if (GameData.weaponID > GameData.weapon.length - 1) GameData.weaponID = 0;
+			}
+			
+			if (FlxG.keys.justPressed("Q"))
+			{
+				GameData.weaponID--;
+				
+				if (GameData.weaponID < 0) GameData.weaponID = GameData.weapon.length - 1;
+			}
+			
 			
 			if (this.alive && this.fireable)
 			{
 				// switch statement to fire correct weapon
 				if (FlxG.mouse.pressed())
 				{
-					switch(GameData.weapon)
+					trace(GameData.weapon[GameData.weaponID]);
+					
+					if (GameData.weapon[GameData.weaponID] == GameData.NORMAL_GUN)
 					{
-						case NORMAL_GUN:
-							normalGun.fireAtMouse();
-							break;
-							
-						case BOUNCE_GUN:
-							bounceGun.fireAtMouse();
-							break;
-						case CROSSBOW:
-							crossbow.fireAtMouse();
-							break;
-						case SPREAD_GUN:
-							spreadGun.fireAtMouse();
-							break;
-						case SNIPER:
-							sniper.fireAtMouse();
-							break;
-						default:
-							throw new Error("Weapon id number is out acceptable range");
-							break;
+						normalGun.fireAtMouse();
 					}
+					else if (GameData.weapon[GameData.weaponID] == GameData.BOUNCE_GUN)
+					{
+						bounceGun.fireAtMouse();
+					}
+					else if (GameData.weapon[GameData.weaponID] == GameData.CROSSBOW)
+					{
+						crossbow.fireAtMouse();
+					}
+					else if (GameData.weapon[GameData.weaponID] == GameData.SPREAD_GUN)
+					{
+						spreadGun.fireAtMouse();
+					}
+					else if (GameData.weapon[GameData.weaponID] == GameData.SNIPER)
+					{
+						sniper.fireAtMouse();
+					}
+					else throw new Error("weapon id outside available range");
+					
 				}
 			}
 		

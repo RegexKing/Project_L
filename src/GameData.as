@@ -29,6 +29,13 @@ package
 		public static const DAMAGE_FACTOR:Number = 0.75;
 		public static const FIRERATE_FACTOR:Number = 0.0625;
 		
+		// Weapon ID's
+		public static const NORMAL_GUN:uint = 0;
+		public static const BOUNCE_GUN:uint = 1;
+		public static const CROSSBOW:uint = 2;
+		public static const SPREAD_GUN:uint = 3;
+		public static const SNIPER:uint = 4;
+		
 		//Starting FireRates for weapons
 		public static const NORMAL_RATE:Number = 500;
 		public static const BOUNCE_RATE:Number = 400;
@@ -47,9 +54,10 @@ package
 		//changable
 		
 		public static var level:uint = 1;
-		public static var diamonds:int = 144;
+		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
-		public static var weapon:uint = 0;
+		public static var weapon:Array = [0, 1, 2, 3, 4];
+		public static var weaponID:int = 0;
 		
 		//player attributes
 		public static var vitalityUpgrades:uint = 0; 
@@ -78,7 +86,8 @@ package
 			diamonds = 0;
 			playerHealth = 3;
 			
-			weapon = 0;
+			weapon = [0];
+			weaponID = 0;
 			
 			totalHealth = 3;
 			defenseMultiplier = 0;
@@ -108,6 +117,7 @@ package
 			saveFile.data.diamonds = diamonds;
 			saveFile.data.playerHealth = playerHealth;
 			saveFile.data.weapon = weapon;
+			saveFile.data.weaponID = weaponID;
 			
 			saveFile.data.totalHealth = totalHealth;
 			saveFile.data.defenseMultiplier = defenseMultiplier;
@@ -134,6 +144,7 @@ package
 			diamonds = saveFile.data.diamonds;
 			playerHealth = saveFile.data.playerHealth;
 			weapon = saveFile.data.weapon;
+			weaponID = saveFile.data.weaponID;
 			
 			totalHealth = saveFile.data.totalHealth;
 			defenseMultiplier = saveFile.data.defenseMultiplier;

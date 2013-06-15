@@ -2,6 +2,7 @@ package
 {
 	import menu.PauseMenu;
 	import org.flixel.FlxGame;
+	import org.flixel.FlxG;
 	import flash.events.Event;
 
 	/**
@@ -17,7 +18,9 @@ package
 		
 		public function Main():void 
 		{
-			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, TitleScreen, 1, 60, 60, true);
+			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, TitleScreen, 1, 60, 60, false);
+			
+			FlxG.mouse.load(AssetsRegistry.crosshairPNG, 1, -14, -14);
 			
 			forceDebugger = true;
 		}

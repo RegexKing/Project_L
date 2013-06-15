@@ -17,6 +17,7 @@ package
 	{
 		protected var stateDone:Boolean = false;
 		protected var startDiamonds:int = GameData.diamonds;
+		protected var startWeapons:Array = GameUtil.clone(GameData.weapon);
 		protected var time:Number = 0;
 		
 		protected var pauseMenu:PauseMenu;
@@ -55,7 +56,7 @@ package
 		}
 		
 		override public function create():void
-		{
+		{	
 			FlxG.bgColor = 0xff191200;
 			
 			if (FlxG.getPlugin(FlxSpecialFX) == null)
@@ -257,6 +258,7 @@ package
 			{
 				GameData.playerHealth = 3;
 				GameData.diamonds = startDiamonds;
+				GameData.weapon = startWeapons;
 				
 				if(this is DungeonCrawl) GameData.completionTime += time;
 			}

@@ -50,26 +50,27 @@ package  units
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);
 			
-			weaponID = Math.floor(Math.random()* 4+1);
+			weaponID = GameData.weapon[Math.floor(Math.random() * GameData.weapon.length)];
+			FlxG.log(weaponID);
 			chooseGun();
 		}
 		
 		protected function chooseGun():void
 		{
-			if (weaponID == 0)
+			if (weaponID == GameData.NORMAL_GUN)
 			{
 				weapon = new BaseGun("normal", this, true);
-				weapon.makePixelBullet(12, 14, 14);
+				weapon.makePixelBullet(25, 12, 12, 0xffFFFFFF, 5, 13);
 				weapon.setBulletSpeed(400);
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setFireRate(GameData.NORMAL_RATE);
 				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
 			}
 			
-			else if (weaponID == 1)
+			else if (weaponID == GameData.BOUNCE_GUN)
 			{
 				weapon = new BounceGun("bounce", spriteAddons, this, true);
-				weapon.makePixelBullet(25, 12, 12, 0xffffffff, 14, 14)
+				weapon.makePixelBullet(25, 12, 12, 0xffffffff, 5, 13)
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setBulletSpeed(600);
 				weapon.setFireRate(GameData.BOUNCE_RATE);
@@ -78,30 +79,30 @@ package  units
 				weapon.setPreFireCallback(null, AssetsRegistry.bounceGunMP3);
 			}
 			
-			else if (weaponID == 2)
+			else if (weaponID == GameData.CROSSBOW)
 			{
 				weapon = new Crossbow("crossbow", enemyBullets, this, true);
-				weapon.makePixelBullet(10, 12, 12, 0xffffffff, 14, 14);
+				weapon.makePixelBullet(10, 12, 12, 0xffffffff, 5, 13);
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setBulletSpeed(600);
 				weapon.setFireRate(GameData.CROSSBOW_RATE);
 				weapon.setPreFireCallback(null, AssetsRegistry.shootMP3); 
 			}
 			
-			else if (weaponID == 3)
+			else if (weaponID == GameData.SPREAD_GUN)
 			{
 				weapon = new SpreadGun("spread", this, true);
-				weapon.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
+				weapon.makePixelBullet(25, 12, 12, 0xffFFFFFF, 5, 13);
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setBulletSpeed(600);
 				weapon.setFireRate(GameData.SPREAD_RATE);
 				weapon.setPreFireCallback(null, AssetsRegistry.shotGunMP3); 
 			}
 			
-			else if (weaponID == 4)
+			else if (weaponID == GameData.SNIPER)
 			{
 				weapon = new Sniper("sniper", this, true);
-				weapon.makePixelBullet(25, 12, 12, 0xffFFFFFF, 14, 14);
+				weapon.makePixelBullet(25, 12, 12, 0xffFFFFFF, 5, 13);
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setBulletSpeed(600);
 				weapon.setFireRate(GameData.SNIPER_RATE);
