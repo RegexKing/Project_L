@@ -270,7 +270,7 @@ package
 		protected function itemPickup(player:FlxObject, item:FlxObject):void
 		{
 			(item as Item).pickup();
-			if (!((item as Item) is Treasure)) item.kill();
+			if (!(((item as Item) is Treasure) || ((item as Item) is ItemChest))) item.kill();
 		}
 		
 		public function alertEnemies():void

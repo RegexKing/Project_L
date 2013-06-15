@@ -43,6 +43,7 @@ package
 		
 		//items
 		[Embed(source = "../assets/sprites/chest.png")] public static var chestPNG:Class;
+		[Embed(source = "../assets/sprites/emptyChest.png")] public static var emptyChestPNG:Class;
 		[Embed(source = "../assets/sprites/diamonds.png")] public static var diamondsPNG:Class;
 		[Embed(source = "../assets/sprites/healthItem.png")] public static var HealthItemPNG:Class;
 		

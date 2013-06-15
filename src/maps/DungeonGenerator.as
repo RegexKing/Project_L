@@ -424,6 +424,24 @@ package maps
 			return diamondCoords;
 		}
 		
+		public function get chestCoords():Array
+		{
+			var chestCoords:Array = new Array();
+			var chestNumber:int = Math.ceil(GameData.level / (GameData.LAST_LEVEL - 1));
+			
+			//reverse diamond rooms so different spawn that diamonds
+			diamondRooms.reverse();
+			
+			for (var i:int = 0; i < chestNumber; i++)
+			{
+				var index:int = Math.floor(Math.random() * diamondRooms[i].length);
+				
+				chestCoords.push(diamondRooms[i][index]);
+			}
+			
+			return chestCoords;
+		}
+		
 		
 		/**
 		 * Checks to see if coordinate is on the border of dungeon

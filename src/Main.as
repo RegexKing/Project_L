@@ -19,7 +19,7 @@ package
 		{
 			super(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, Hub, 1, 60, 60, true);
 			
-			//forceDebugger = true;
+			forceDebugger = true;
 		}
 		
 		

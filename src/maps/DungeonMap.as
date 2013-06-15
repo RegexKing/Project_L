@@ -67,7 +67,15 @@ package  maps
 			generateItems();
 			spawnEnemies();
 			spawnDiamonds();
+			spawnChests();
+			//so items spawn over chests
+			addItems();
 			
+		}
+		
+		private function addItems():void
+		{
+			itemsGroup.add(healthEmitter);
 		}
 		
 		public function getPlayer():Player
@@ -167,19 +175,33 @@ package  maps
 			}
 		}
 		
+		
+		private function spawnChests():void
+		{
+			var chestCoords:Array = dungeonGen.chestCoords;
+			
+			for (var i:int = 0; i < chestCoords.length; i++)
+			{
+				var chest:ItemChest = new ItemChest(healthEmitter);
+				itemsGroup.add(chest);
+				
+				
+				chest.x = chestCoords[i][0]* TILE_SIZE;
+				chest.y = chestCoords[i][1] * TILE_SIZE;
+			}
+		}
+		
 		private function generateItems():void
 		{
 			healthEmitter = new FlxEmitter(0, 0, 22);
-			healthEmitter.setXSpeed(-160,160);
-			healthEmitter.setYSpeed(-160,160);
+			healthEmitter.setXSpeed(-300,300);
+			healthEmitter.setYSpeed(-300,300);
 			healthEmitter.setRotation(0, 0);
 			
 			for (var i:int = 0; i < healthEmitter.maxSize; i++)
 			{
 				healthEmitter.add(new HealthItem(lifeBar));
 			}
-			
-			itemsGroup.add(healthEmitter);
 			
 		}
 		
