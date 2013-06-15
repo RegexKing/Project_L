@@ -136,14 +136,18 @@ package
 				{
 					API.unlockMedal("Beat Craven Mode");
 					API.postScore("Craven Mode", GameData.completionTime * 1000);
+					API.logCustomEvent("Craven Mode Completions");
 				}
 				
 				else
 				{
 					API.unlockMedal("Beat Rogue Mode");
 					API.postScore("Rogue Mode", GameData.completionTime * 1000);
+					API.logCustomEvent("Rogue Mode Completions");
 				}
 			}
+			
+			API.logCustomEvent("Game Completions");
 		}
 		
 		override public function alertEnemies():void { } // erases super class alert enemies 
