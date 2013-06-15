@@ -18,7 +18,7 @@ package  units
 		private var weapon:FlxWeapon;
 		private var weaponID:uint;
 		
-		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _spriteAddons:FlxGroup, _gibsGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter = null) 
+		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _spriteAddons:FlxGroup, _gibsGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter = null, _weaponID:int=-1) 
 		{
 			super(_player, _map,  _itemEmitter);
 			spriteAddons = _spriteAddons;
@@ -39,7 +39,8 @@ package  units
 			offset.y = 13;
 			//this.addAnimation("idle", [24], 60);
 			this.addAnimation("run", [16, 17, 18, 19, 20, 21], 10);
-			this.play("run");
+			this.addAnimation("idle", [24], 60);
+			this.play("idle");
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
 			lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);
@@ -50,9 +51,18 @@ package  units
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);
 			
-			weaponID = GameData.weapon[Math.floor(Math.random() * GameData.weapon.length)];
-			FlxG.log(weaponID);
+			var whichFacing:uint = Math.round(Math.random());
+			
+			if (whichFacing > 0) _facing = LEFT;
+			else _facing = RIGHT;
+			
+			
+			if(_weaponID < 0) weaponID = GameData.weapon[Math.floor(Math.random() * GameData.weapon.length)];
+			else weaponID = _weaponID;
+			
 			chooseGun();
+			
+			
 		}
 		
 		protected function chooseGun():void
@@ -113,15 +123,24 @@ package  units
 			
 		}
 		
+		
 		override public function update():void
 		{
 			super.update();
 			
 			if (aware && inSight)
 			{
+				// play run
+				this.play("run");
+				
 				weapon.fireAtTarget(player);
 			}
-		}	
+		}
+		
+		override protected function patrol():void
+		{
+			
+		}
 		
 		override public function kill():void
 		{

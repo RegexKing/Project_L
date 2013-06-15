@@ -17,8 +17,8 @@ package units
 		{
 			super(_player, _map,  _itemEmitter);
 			
-			patrolSpeed = 160;
-			alertSpeed = 100;
+			patrolSpeed = 80;
+			alertSpeed = 80;
 			health = 2;
 			attackValue = 1;
 			
@@ -50,10 +50,13 @@ package units
 			{
 				if (patrolPath != null) destroyPath();
 				
+				//accelerate
+				if(alertSpeed < 200) alertSpeed += 1;
+				
 				FlxVelocity.moveTowardsObject(this, player, alertSpeed);
 			}
 			
-			else if ((!aware && inSight) && isEnemyNear())
+			else if (!aware && isEnemyNear())
 			{
 				aware = true;
 				
@@ -80,7 +83,7 @@ package units
 		
 		override public function isEnemyNear():Boolean
 		{
-			return  (FlxVelocity.distanceBetween(this, player) < (GameData.RENDER_HEIGHT)) ? true : false;
+			return  (FlxVelocity.distanceBetween(this, player) < (GameData.RENDER_HEIGHT/2 + GameData.RENDER_HEIGHT/3)) ? true : false;
 		}
 		
 		override public function kill():void

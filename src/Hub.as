@@ -61,7 +61,7 @@ package
 			dialogueBox = new DialogueBox(player, girl, beastMan, lifeBar, player.setFireRate, diamondCounter);
 			add(dialogueBox);
 			
-			checkLastLevel();
+			checkMedals();
 		}
 		
 		override public function update():void
@@ -128,26 +128,39 @@ package
 		}
 		
 		
-		protected function checkLastLevel():void
+		protected function checkMedals():void
 		{
 			if (GameData.level == GameData.LAST_LEVEL)
 			{
 				if (GameData.cravenMode)
 				{
-					API.unlockMedal("Beat Craven Mode");
-					API.postScore("Craven Mode", GameData.completionTime * 1000);
-					API.logCustomEvent("Craven Mode Completions");
+					API.unlockMedal("Beat Story Mode");
+					API.postScore("Story Mode", GameData.completionTime * 1000);
+					API.logCustomEvent("Game Completions");
 				}
 				
 				else
 				{
-					API.unlockMedal("Beat Rogue Mode");
-					API.postScore("Rogue Mode", GameData.completionTime * 1000);
-					API.logCustomEvent("Rogue Mode Completions");
+					API.unlockMedal("Ain't Nobody Got Time For Death!");
 				}
 			}
 			
-			API.logCustomEvent("Game Completions");
+			if (!GameData.cravenMode)
+			{
+				if (GameData.level == 3)
+				{
+					API.unlockMedal("Just Getting Started");
+				}
+				else if (GameData.level == 10)
+				{
+					API.unlockMedal("Don't Stop Me Now");
+				}
+				else if (GameData.level == 25)
+				{
+					API.unlockMedal("We Need To Go Deeper");
+				}
+			}
+			
 		}
 		
 		override public function alertEnemies():void { } // erases super class alert enemies 

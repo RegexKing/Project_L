@@ -12,6 +12,7 @@ package
 	import units.*;
 	import util.*;
 	import weapons.*;
+	import com.newgrounds.API;
 	 
 	public class PlayState extends FlxState
 	{
@@ -263,7 +264,12 @@ package
 				if(this is DungeonCrawl) GameData.completionTime += time;
 			}
 			
-			else GameData.resetData();
+			else
+			{
+				API.postScore("Rogue Mode", GameData.level);
+				
+				GameData.resetData();
+			}
 			
 			hudGroup.add(new TransitionScreen("gameover", gameOverState));
 			

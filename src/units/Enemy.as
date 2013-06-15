@@ -87,19 +87,24 @@ package  units
 			
 			else
 			{
-				if (this.path == null || this.pathSpeed == 0)
+				patrol();
+			}
+			
+			// change facing
+			if (velocity.x < 0) _facing = LEFT;
+			else _facing = RIGHT;
+		}
+		
+		
+		protected function patrol():void
+		{
+			if (this.path == null || this.pathSpeed == 0)
 				{
 					if (this.pathSpeed == 0) destroyPath();
 					
 					patrolPath = calculatePath(enemyCoords, findRandEmptyTile());
 					this.followPath(patrolPath, patrolSpeed);
 				}
-				
-			}
-			
-			// change facing
-			if (velocity.x < 0) _facing = LEFT;
-			else _facing = RIGHT;
 		}
 		
 		public function isEnemyNear():Boolean
