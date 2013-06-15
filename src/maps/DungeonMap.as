@@ -105,7 +105,7 @@ package  maps
 			{
 				var enemy:Enemy;
 				
-				switch(4)//int(Math.ceil(Math.random() * enemyRange)))
+				switch(int(Math.ceil(Math.random() * enemyRange)))
 				{
 					case 1:
 						enemy = new Bat(player, this, gibs, enemyBars, healthEmitter);

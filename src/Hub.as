@@ -163,6 +163,13 @@ package
 			
 		}
 		
+		override protected function endGame():void
+		{
+			super.endGame();
+			
+			API.logCustomEvent("Killed by Beast");
+		}
+		
 		override public function alertEnemies():void { } // erases super class alert enemies 
 		
 		

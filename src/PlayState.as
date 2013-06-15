@@ -251,7 +251,7 @@ package
 			super.draw();
 		}
 		
-		private function endGame():void
+		protected function endGame():void
 		{
 			player.kill();
 			
