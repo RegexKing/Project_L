@@ -78,6 +78,11 @@ package units
 			else _facing = RIGHT;
 		}
 		
+		override public function isEnemyNear():Boolean
+		{
+			return  (FlxVelocity.distanceBetween(this, player) < (GameData.RENDER_HEIGHT)) ? true : false;
+		}
+		
 		override public function kill():void
 		{
 			super.kill();

@@ -206,6 +206,12 @@ package
 		public function goNextState():void
 		{
 			GameData.playerHealth = lifeBar.currentValue;
+			
+			FlxG.camera.stopFX();
+			
+			var loadingScreen:FlxSprite = new FlxSprite(0, 0, AssetsRegistry.loadingScreenPNG);
+			loadingScreen.scrollFactor.x = loadingScreen.scrollFactor.y = 0;
+			add(loadingScreen);
 		}
 		
 		public function hurtObject(unit:FlxObject, hazzard:FlxObject):void
@@ -263,6 +269,12 @@ package
 		
 		private function gameOverState():void
 		{
+			FlxG.camera.stopFX();
+			
+			var loadingScreen:FlxSprite = new FlxSprite(0, 0, AssetsRegistry.loadingScreenPNG);
+			loadingScreen.scrollFactor.x = loadingScreen.scrollFactor.y = 0;
+			add(loadingScreen);
+			
 			FlxG.switchState(new Hub());
 		}
 		
