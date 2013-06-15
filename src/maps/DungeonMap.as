@@ -88,7 +88,7 @@ package  maps
 			
 			// figures out how many enemys to spwan based on level
 			var totalEnemies:uint;
-			totalEnemies = 6 + GameData.level * 4;
+			totalEnemies = 6 + 3 * GameData.level;
 			
 			// spawns a certain range of enemies depending on level
 			var enemyRange:uint;

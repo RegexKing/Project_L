@@ -427,7 +427,7 @@ package maps
 		public function get chestCoords():Array
 		{
 			var chestCoords:Array = new Array();
-			var chestNumber:int = Math.ceil(GameData.level / (GameData.LAST_LEVEL - 1));
+			var chestNumber:int = Math.ceil(GameData.level / 5);
 			
 			//reverse diamond rooms so different spawn that diamonds
 			diamondRooms.reverse();
