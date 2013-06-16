@@ -18,7 +18,7 @@ package  units
 			super(_player, _map,  _itemEmitter);
 			
 			patrolSpeed = 160;
-			alertSpeed = 500;
+			alertSpeed = 200;
 			health = 2;
 			attackValue = 1;
 			
@@ -42,16 +42,6 @@ package  units
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);
 			
-		}	
-		
-		override public function update():void
-		{
-			super.update();
-			
-			if (aware)
-			{
-				this.pathSpeed = 120;
-			}
 		}	
 		
 		override public function kill():void

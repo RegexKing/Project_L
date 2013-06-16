@@ -1,6 +1,7 @@
 package  maps
 {
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxMath;
 	import items.*;
 	import units.*;
 	 import hud.*;
@@ -65,11 +66,13 @@ package  maps
 			player = new Player(gibs, _playerBullets, spriteAddons, _alertEnemies, this, playerStart.x, playerStart.y);
 			
 			generateItems();
-			spawnEnemies();
 			spawnDiamonds();
 			spawnChests();
 			//so items spawn over chests
 			addItems();
+			
+			//spawn the enemies
+			spawnEnemies();
 			
 		}
 		
@@ -156,6 +159,22 @@ package  maps
 				
 				enemy.x = randomPoint.x
 				enemy.y = randomPoint.y;
+			}
+			
+			//check for bad ass enemy
+			if (GameData.level == 3 || GameData.level == 9 || GameData.level == 15 || GameData.level == 27)
+			{
+				var newWeap:uint = FlxMath.rand(0, 4, GameData.weapon);
+				
+				var badAssEnemy:RangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, newWeap);
+				
+				//var badAssPoint:FlxPoint = randomLastRoom();
+				
+				badAssEnemy.x = treasure.x //badAssPoint.x;
+				badAssEnemy.y = treasure.y //badAssPoint.y;
+				
+				enemiesGroup.add(badAssEnemy);
+				collideableEnemies.add(badAssEnemy);
 			}
 			
 		}

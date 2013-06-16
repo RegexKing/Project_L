@@ -4,6 +4,7 @@ package
 	import org.flixel.FlxGame;
 	import org.flixel.FlxG;
 	import flash.events.Event;
+	import com.newgrounds.components.*;
 
 	/**
 	 * ...
@@ -31,6 +32,11 @@ package
 			super.create(FlashEvent);
 			stage.removeEventListener(Event.DEACTIVATE, onFocusLost);
 			stage.removeEventListener(Event.ACTIVATE, onFocus);
+			
+			var medalPopup:MedalPopup = new MedalPopup();
+            medalPopup.x = GameData.RENDER_WIDTH / 2 - medalPopup.width / 2;
+			medalPopup.y = GameData.RENDER_HEIGHT - medalPopup.height;
+            stage.addChild(medalPopup);
 		}
 		
 

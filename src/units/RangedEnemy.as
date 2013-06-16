@@ -11,7 +11,7 @@ package  units
 	 */
 	public class RangedEnemy extends Enemy
 	{
-		
+		private var isBadAss:Boolean = false;
 		private var spriteAddons:FlxGroup;
 		private var enemyBullets:FlxGroup;
 		
@@ -24,9 +24,14 @@ package  units
 			spriteAddons = _spriteAddons;
 			enemyBullets = _enemyBullets;
 			
-			patrolSpeed = 100;
+			patrolSpeed = 40;
 			alertSpeed = 160;
-			health = 2;
+			if (_weaponID < 0) health = 2;
+			else
+			{
+				isBadAss = true;
+				health = 4;
+			}
 			attackValue = 1;
 			
 			health = GameUtil.scaleHealth(health);
@@ -39,7 +44,7 @@ package  units
 			offset.y = 13;
 			//this.addAnimation("idle", [24], 60);
 			this.addAnimation("run", [16, 17, 18, 19, 20, 21], 10);
-			this.addAnimation("idle", [24], 60);
+			this.addAnimation("idle", [16, 17, 18, 19, 20, 21], 5);
 			this.play("idle");
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
@@ -137,14 +142,15 @@ package  units
 			}
 		}
 		
-		override protected function patrol():void
-		{
-			
-		}
-		
 		override public function kill():void
 		{
 			super.kill();
+			
+			if (isBadAss)
+			{
+				GameData.weapon.push(weaponID);
+				player.playNewWeapon();
+			}
 			
 			//play sound
 			FlxG.play(AssetsRegistry.rangedDieMP3);

@@ -161,9 +161,7 @@ package  units
 			{
 				// switch statement to fire correct weapon
 				if (FlxG.mouse.pressed())
-				{
-					trace(GameData.weapon[GameData.weaponID]);
-					
+				{	
 					if (GameData.weapon[GameData.weaponID] == GameData.NORMAL_GUN)
 					{
 						normalGun.fireAtMouse();
@@ -208,6 +206,13 @@ package  units
 			crossbow.setFireRate(GameData.CROSSBOW_RATE - (GameData.CROSSBOW_RATE * GameData.fireRateMultiplier));
 			spreadGun.setFireRate(GameData.SPREAD_RATE - (GameData.SPREAD_RATE * GameData.fireRateMultiplier));
 			sniper.setFireRate(GameData.SNIPER_RATE - (GameData.SNIPER_RATE * GameData.fireRateMultiplier));
+		}
+		
+		public function playNewWeapon():void
+		{
+			//TODO: play a sprite that scrolls upwards, add to sprite addons
+			FlxG.log("weaponID: " + GameData.weapon[GameData.weapon.length - 1]);
+			FlxG.camera.flash(0xffFF0000, 0.35)
 		}
 		
 		override public function hurt(_damageNumber:Number):void

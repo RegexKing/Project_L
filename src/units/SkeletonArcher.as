@@ -38,7 +38,7 @@ package units
 			weapon.makePixelBullet(12, 14, 14);
 			weapon.setBulletSpeed(400);
 			weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
-			weapon.setFireRate(500);
+			weapon.setFireRate(800);
 			weapon.setPreFireCallback(null, AssetsRegistry.shootMP3);
 			
 			_enemyBullets.add(weapon.group);

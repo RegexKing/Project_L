@@ -56,7 +56,7 @@ package
 		public static var level:uint = 1;
 		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
-		public static var weapon:Array = [0, 1, 2, 3, 4];
+		public static var weapon:Array = [0];
 		public static var weaponID:int = 0;
 		
 		//player attributes
