@@ -10,7 +10,7 @@ package util
 	
 	import units.Player;
 	 
-	public class CameraFocus extends FlxObject
+	public class CameraFocus extends FlxSprite
 	{
 		
 		private var player:Player;
@@ -21,9 +21,10 @@ package util
 		
 		public function CameraFocus(_player:Player) 
 		{
-			super(0, 0, _player.width, _player.height);
-			
+			super(_player.x, _player.y);
 			player = _player;
+			
+			makeGraphic(player.width, player.height, 0x0);
 			
 			radius = MIN_RADIUS;
 		}
@@ -33,15 +34,19 @@ package util
 		
 			angleBetween = FlxVelocity.angleBetweenMouse(player);
 			
+			if (FlxVelocity.distanceToMouse(player) > radius)
+			{
+				this.x = player.x + (radius * Math.cos(angleBetween));
+				this.y = player.y + (radius * Math.sin(angleBetween));
+			}
+			
 			
 			//Move the wand around the fairy
+			
 			if (FlxG.keys.pressed("SHIFT"))
 			{
 				if (radius < maxRadius) radius += 16;
 				else radius = maxRadius;
-				
-				this.x = player.x + (radius * Math.cos(angleBetween));
-				this.y = player.y + (radius * Math.sin(angleBetween));
 			}
 			
 			else
@@ -49,8 +54,6 @@ package util
 				if (radius > MIN_RADIUS)
 				{
 					radius -= 16;
-					this.x = player.x + (radius * Math.cos(angleBetween));
-					this.y = player.y + (radius * Math.sin(angleBetween));
 				}
 				else
 				{
@@ -60,7 +63,6 @@ package util
 				}
 				
 			}
-			
 			
 		}
 	}

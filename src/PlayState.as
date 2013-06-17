@@ -30,6 +30,7 @@ package
 		protected var miniMap:MiniMap;
 		protected var lifeBar:LifeBar;
 		protected var diamondCounter:DiamondCounter;
+		protected var weaponUI:WeaponUI;
 		protected var playerLight:PlayerLight;
 		protected var cameraFocus:CameraFocus;
 		
@@ -86,6 +87,8 @@ package
 			diamondCounter = new DiamondCounter();
 			lifeBar = new LifeBar();
 			lifeBar.setCallbacks(endGame, null);
+			weaponUI = new WeaponUI();
+			
 			
 			// Need to be overwritten
 			stageInit();
@@ -104,6 +107,7 @@ package
 			hudGroup.add(miniMap);
 			hudGroup.add(lifeBar);
 			hudGroup.add(diamondCounter);
+			hudGroup.add(weaponUI);
 			hudGroup.setAll("scrollFactor", new FlxPoint(0, 0));
 			
 			collideableGroup.add(gibsGroup);

@@ -142,21 +142,6 @@ package  units
 			if (velocity.x == 0 && velocity.y == 0) play("idle");
 			else play("run");
 			
-			if (FlxG.keys.justPressed("E"))
-			{
-				GameData.weaponID++;
-				
-				if (GameData.weaponID > GameData.weapon.length - 1) GameData.weaponID = 0;
-			}
-			
-			if (FlxG.keys.justPressed("Q"))
-			{
-				GameData.weaponID--;
-				
-				if (GameData.weaponID < 0) GameData.weaponID = GameData.weapon.length - 1;
-			}
-			
-			
 			if (this.alive && this.fireable)
 			{
 				// switch statement to fire correct weapon

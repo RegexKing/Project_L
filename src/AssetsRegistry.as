@@ -56,6 +56,7 @@ package
 		// UI
 		[Embed(source = "../assets/sprites/crosshair.png")] public static var crosshairPNG:Class;
 		[Embed(source = "../assets/sprites/diamondIcon.png")] public static var diamondIconPNG:Class;
+		[Embed(source = "../assets/sprites/weaponUI.png")] public static var weaponUIPNG:Class;
 		[Embed(source = "../assets/sprites/playerMiniMapIcon.png")] public static var playerMiniMapIconPNG:Class;
 		[Embed(source = "../assets/sprites/treasureMiniMapIcon.png")] public static var treasureMiniMapIconPNG:Class;
 		[Embed(source = "../assets/sprites/loadingScreen.png")] public static var loadingScreenPNG:Class;

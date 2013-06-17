@@ -24,7 +24,7 @@ package  units
 			spriteAddons = _spriteAddons;
 			enemyBullets = _enemyBullets;
 			
-			patrolSpeed = 40;
+			patrolSpeed = 50;
 			alertSpeed = 160;
 			if (_weaponID < 0) health = 2;
 			else
@@ -42,10 +42,11 @@ package  units
 			height = 38;
 			offset.x = 16;
 			offset.y = 13;
-			//this.addAnimation("idle", [24], 60);
+			this.addAnimation("idle", [24], 60);
 			this.addAnimation("run", [16, 17, 18, 19, 20, 21], 10);
-			this.addAnimation("idle", [16, 17, 18, 19, 20, 21], 5);
-			this.play("idle");
+			this.addAnimation("walk", [16, 17, 18, 19, 20, 21], 5);
+			if (!isBadAss) this.play("walk");
+			else this.play("idle");
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
 			lifeBar.createFilledBar(0xffFF0000, 0xff00FF00);
@@ -126,6 +127,11 @@ package  units
 			
 			enemyBullets.add(weapon.group);
 			
+		}
+		
+		override protected function patrol():void
+		{
+			if (!isBadAss) super.patrol();
 		}
 		
 		
