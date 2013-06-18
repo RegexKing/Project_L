@@ -18,7 +18,7 @@ package  hud
 		
 		private var player:Player;
 		public var playerIcon:FlxSprite;
-		public var treasureIcon:FlxSprite;
+		public var treasureIcons:Array;
 		public var tileMap:FlxTilemap;
 		public var map:Map;
 		
@@ -28,6 +28,8 @@ package  hud
 			
 			player = _player;
 			map = _map;
+			treasureIcons = new Array();
+			
 			
 			var mapArray:Array = _map.tileMap.getData(true);
 			
@@ -44,20 +46,26 @@ package  hud
 			playerIcon.x = GameData.RENDER_WIDTH / 2 - playerIcon.width / 2;
 			playerIcon.y = GameData.RENDER_HEIGHT / 2 - playerIcon.height / 2;
 			
-			if (map is DungeonMap)
-			{
-				treasureIcon = new FlxSprite();
-				treasureIcon.loadGraphic(AssetsRegistry.treasureMiniMapIconPNG);
-				treasureIcon.alpha = 0;
-			
-				treasureIcon.x = Math.round((_map as DungeonMap).treasure.x / Map.TILE_SIZE) * 12;
-				treasureIcon.y = Math.round((_map as DungeonMap).treasure.y / Map.TILE_SIZE) * 12;
-			}
 			
 			add(tileMap);
-			add(playerIcon);
-			add(treasureIcon);
 			
+			if (map is DungeonMap)
+			{
+				for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL; i++)
+				{
+					var treasureIcon:FlxSprite = new FlxSprite();
+					treasureIcon.loadGraphic(AssetsRegistry.treasureMiniMapIconPNG);
+					treasureIcon.alpha = 0;
+			
+					treasureIcon.x = Math.round((_map as DungeonMap).treasures[i].x / Map.TILE_SIZE) * 12;
+					treasureIcon.y = Math.round((_map as DungeonMap).treasures[i].y / Map.TILE_SIZE) * 12;
+					
+					treasureIcons.push(treasureIcon);
+					add(treasureIcon);
+				}
+			}
+			
+			add(playerIcon);	
 			
 			toggleMiniMap();
 		}
@@ -72,14 +80,17 @@ package  hud
 			
 			if (map is DungeonMap)
 			{
-				//fuck this
-				treasureIcon.x = tileMap.x +  Math.round((map as DungeonMap).treasure.x / Map.TILE_SIZE) * 12;
-				treasureIcon.y = tileMap.y + Math.round((map as DungeonMap).treasure.y / Map.TILE_SIZE) * 12;
-			
-				if ((map as DungeonMap).treasure.onScreen() && player.onScreen() && !isTreasure)
+				for (var i:int = 0; i < treasureIcons.length; i++)
 				{
-					isTreasure = true;
-					treasureAppear();
+				
+					//fuck this
+					treasureIcons[i].x = tileMap.x +  Math.round((map as DungeonMap).treasures[i].x / Map.TILE_SIZE) * 12;
+					treasureIcons[i].y = tileMap.y + Math.round((map as DungeonMap).treasures[i].y / Map.TILE_SIZE) * 12;
+					
+					if ((map as DungeonMap).treasures[i].onScreen() && player.onScreen())
+					{
+						treasureIcons[i].alpha = 1;
+					}
 				}
 			}
 		}
@@ -88,15 +99,13 @@ package  hud
 		{
 			tileMap.visible = !tileMap.visible;
 			playerIcon.visible = !playerIcon.visible;
-			if (map is DungeonMap) treasureIcon.visible = !treasureIcon.visible;
-		}
-		
-		private function treasureAppear():void
-		{
-			treasureIcon.alpha = 1;
-			
-			// play treasure song
-			FlxG.play(AssetsRegistry.treasureAlertMP3);
+			if (map is DungeonMap)
+			{
+				for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL; i++)
+				{
+					treasureIcons[i].visible = !treasureIcons[i].visible;
+				}
+			}
 		}
 	}
 

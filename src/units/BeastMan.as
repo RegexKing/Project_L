@@ -27,7 +27,7 @@ package units
 			immovable = true;
 			
 			angry = false;
-			health = 10;
+			health = 12;
 			attackValue = 3;
 			
 			health = GameUtil.beast_scaleHealth(health);

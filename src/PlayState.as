@@ -16,10 +16,20 @@ package
 	 
 	public class PlayState extends FlxState
 	{
-		protected var stateDone:Boolean = false;
+		//stored vars
 		protected var startDiamonds:int = GameData.diamonds;
 		protected var startWeapons:Array = GameUtil.clone(GameData.weapon);
+		protected var startVitUpgrades:uint = GameData.vitalityUpgrades;
+		protected var startDefUpgrades:uint = GameData.defenseUpgrades;
+		protected var startattackUpgrades:uint = GameData.attackUpgrades;
+		protected var rateUpgrades:uint = GameData.rateUpgrades;
+		protected var startTotalHealth:Number = GameData.totalHealth;
+		protected var startDamageMultiplier:Number = GameData.damageMultiplier;
+		protected var startDefenseMultiplier:Number = GameData.defenseMultiplier;
+		protected var startRateMultiplier:Number = GameData.fireRateMultiplier;
+		
 		protected var time:Number = 0;
+		protected var stateDone:Boolean = false;
 		
 		protected var pauseMenu:PauseMenu;
 		
@@ -264,7 +274,17 @@ package
 				GameData.playerHealth = 3;
 				GameData.diamonds = startDiamonds;
 				GameData.weapon = startWeapons;
+				GameData.weaponID = 0;
 				
+				GameData.vitalityUpgrades = startVitUpgrades;
+				GameData.defenseUpgrades = startDefUpgrades;
+				GameData.attackUpgrades = startattackUpgrades;
+				GameData.rateUpgrades = rateUpgrades;
+				GameData.totalHealth = startTotalHealth;
+				GameData.damageMultiplier = startDamageMultiplier;
+				GameData.defenseMultiplier = startDefenseMultiplier;
+				GameData.fireRateMultiplier = startRateMultiplier;
+					
 				if(this is DungeonCrawl) GameData.completionTime += time;
 			}
 			
@@ -294,7 +314,7 @@ package
 		protected function itemPickup(player:FlxObject, item:FlxObject):void
 		{
 			(item as Item).pickup();
-			if (!(((item as Item) is Treasure) || ((item as Item) is ItemChest))) item.kill();
+			if (!((item as Item) is Chest)) item.kill();
 		}
 		
 		public function alertEnemies():void
@@ -321,6 +341,7 @@ package
 			FlxSpecialFX.clear();
 			
 			Enemy.totalEnemies = 0;
+			BeastMan.isAnnoyed = false;
 
 			super.destroy();
 		}

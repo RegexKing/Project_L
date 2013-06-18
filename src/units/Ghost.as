@@ -51,7 +51,7 @@ package units
 				if (patrolPath != null) destroyPath();
 				
 				//accelerate
-				if(alertSpeed < 200) alertSpeed += 1;
+				if(alertSpeed < 220) alertSpeed += 1;
 				
 				FlxVelocity.moveTowardsObject(this, player, alertSpeed);
 			}

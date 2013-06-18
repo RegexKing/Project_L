@@ -26,18 +26,20 @@ package  units
 		public var itemEmitter:FlxEmitter
 		protected var enemyCoords:FlxPoint;
 		protected var playerCoords:FlxPoint;
+		protected var hasPatrol:Boolean;
 		
 		protected var lifeBar:FlxBar;
 		protected var lifeBarHeight:uint = 5;
 		protected var lifeBarOffset:int = -15;
 		
-		public function Enemy(_player:Player, _map:Map = null, _itemEmitter:FlxEmitter=null) 
+		public function Enemy(_player:Player, _map:Map = null, _itemEmitter:FlxEmitter = null, _hasPatrol:Boolean = true) 
 		{
 			super();
 			
 			player = _player;
 			itemEmitter = _itemEmitter;
 			map = _map;
+			hasPatrol = _hasPatrol;
 			
 			elasticity = 1;
 			
@@ -87,7 +89,7 @@ package  units
 			
 			else
 			{
-				patrol();
+				if(hasPatrol) patrol();
 			}
 			
 			// change facing

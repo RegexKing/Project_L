@@ -34,11 +34,11 @@ package util
 		
 			angleBetween = FlxVelocity.angleBetweenMouse(player);
 			
-			if (FlxVelocity.distanceToMouse(player) > radius)
-			{
+			//if (FlxVelocity.distanceToMouse(player) > radius)
+			//{
 				this.x = player.x + (radius * Math.cos(angleBetween));
 				this.y = player.y + (radius * Math.sin(angleBetween));
-			}
+			//}
 			
 			
 			//Move the wand around the fairy

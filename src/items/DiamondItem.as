@@ -19,7 +19,6 @@ package  items
 			diamondCounter = _diamondCounter;
 			
 			super();
-			exists = true;
 			expireTime = 0;
 			
 			loadGraphic(AssetsRegistry.diamondsPNG, true, false, 32, 32);

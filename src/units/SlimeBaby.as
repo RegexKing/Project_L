@@ -32,7 +32,7 @@ package units
 			alertSpeed = 100;
 			aware = true;
 			
-			health = 1;
+			health = 2;
 			attackValue = 1;
 			health = GameUtil.scaleHealth(health);
 			attackValue = GameUtil.scaleDamage(attackValue);

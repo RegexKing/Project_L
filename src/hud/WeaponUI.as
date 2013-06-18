@@ -53,11 +53,11 @@ package hud
 		
 		public function changeGraphic(_weaponID:uint):void
 		{
-			if (_weaponID == 0) play("normal");
-			else if (_weaponID == 1) play("bounce");
-			else if (_weaponID == 2) play("crossbow");
-			else if (_weaponID == 3) play("spread");
-			else if (_weaponID == 4) play("sniper");
+			if (GameData.weapon[_weaponID] == 0) play("normal");
+			else if (GameData.weapon[_weaponID] == 1) play("bounce");
+			else if (GameData.weapon[_weaponID] == 2) play("crossbow");
+			else if (GameData.weapon[_weaponID] == 3) play("spread");
+			else if (GameData.weapon[_weaponID] == 4) play("sniper");
 		}
 		
 	}

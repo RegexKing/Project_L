@@ -13,7 +13,7 @@ package  maps
 	 */
 	public class DungeonMap extends Map
 	{
-		public var treasure:Treasure;
+		public var treasures:Array;
 		public var dungeonGen:DungeonGenerator;
 		
 		private var player:Player;
@@ -28,10 +28,13 @@ package  maps
 		private var spriteAddons:FlxGroup;
 		private var playerHazzards:FlxGroup;
 		private var enemyBars:FlxGroup;
+		private var chestUI:ChestUi;
 		private var healthEmitter:FlxEmitter;
+		private var diamondEmitter:DiamondEmitter;
+		private var totalEnemies:uint;
 		
 		public function DungeonMap(_playerBullets:FlxGroup, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
-			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, _alertEnemies:Function, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
+			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _chestUI:ChestUi, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, _alertEnemies:Function, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super(addToStage, onAddSpritesCallback);
 			
@@ -42,10 +45,13 @@ package  maps
 			lights = _lights;
 			lifeBar = _lifeBar;
 			diamondCounter = _diamondCounter;
+			chestUI = _chestUI;
 			collideableEnemies = _collideableEnemies;
 			spriteAddons = _spriteAddons;
 			playerHazzards = _playerHazzards;
 			enemyBars = _enemyBars
+			
+			treasures = new Array();
 			
 			dungeonGen = new DungeonGenerator();
 			
@@ -53,23 +59,23 @@ package  maps
 			
 			add(tileMap);
 			
-			treasure = new Treasure(transitionNextState);
-			
-			var treasureCoords:FlxPoint = randomLastRoom();
-			treasure.x = treasureCoords.x;
-			treasure.y = treasureCoords.y;
-			itemsGroup.add(treasure);
-			
-			
 			var playerStart:FlxPoint = randomFirstRoom();
 			
 			player = new Player(gibs, _playerBullets, spriteAddons, _alertEnemies, this, playerStart.x, playerStart.y);
 			
 			generateItems();
-			spawnDiamonds();
+			//spawnDiamonds();
 			spawnChests();
 			//so items spawn over chests
 			addItems();
+			
+			var treasure:Chest = new Chest(chestUI, diamondEmitter, healthEmitter);
+			
+			var treasureCoords:FlxPoint = randomLastRoom();
+			treasure.x = treasureCoords.x;
+			treasure.y = treasureCoords.y;
+			itemsGroup.add(treasure);
+			treasures.push(treasure);
 			
 			//spawn the enemies
 			spawnEnemies();
@@ -79,6 +85,7 @@ package  maps
 		private function addItems():void
 		{
 			itemsGroup.add(healthEmitter);
+			itemsGroup.add(diamondEmitter);
 		}
 		
 		public function getPlayer():Player
@@ -90,23 +97,40 @@ package  maps
 		{
 			
 			// figures out how many enemys to spwan based on level
-			var totalEnemies:uint;
 			totalEnemies = 6 + 3 * GameData.level;
+			
+			var rangedEnemyNum:uint = Math.ceil(totalEnemies * 0.4);
+			var otherEnemies:uint = totalEnemies - rangedEnemyNum;
 			
 			// spawns a certain range of enemies depending on level
 			var enemyRange:uint;
 			
-			if (GameData.level < 3) enemyRange = 2;
-			else if (GameData.level < 6) enemyRange = 3;
-			else if (GameData.level < 9) enemyRange = 4;
-			else if (GameData.level < 19) enemyRange = 5;
-			else if (GameData.level >= 19) enemyRange = 6;
+			if (GameData.level < 3) enemyRange = 1;
+			else if (GameData.level < 6) enemyRange = 2;
+			else if (GameData.level < 9) enemyRange = 3;
+			else if (GameData.level < 19) enemyRange = 4;
+			else if (GameData.level >= 19) enemyRange = 5;
 			
 			//enemyRange = 7;
 			
-			for (var j:int = 0; j < totalEnemies; j++)
+			for (var i:int = 0; i < rangedEnemyNum; i++)
+			{
+				var rangedEnemy:Enemy;
+				
+				rangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, -1, Boolean(Math.round(Math.random())));
+				enemiesGroup.add(rangedEnemy);
+				collideableEnemies.add(rangedEnemy);
+				
+				var rangedRandomPoint:FlxPoint = randomRoom();
+				
+				rangedEnemy.x = rangedRandomPoint.x
+				rangedEnemy.y = rangedRandomPoint.y;
+			}
+			
+			for (var j:int = 0; j < otherEnemies; j++)
 			{
 				var enemy:Enemy;
+				
 				
 				switch(int(Math.ceil(Math.random() * enemyRange)))
 				{
@@ -116,11 +140,6 @@ package  maps
 						collideableEnemies.add(enemy);
 						break;
 					case 2:
-						enemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter);
-						enemiesGroup.add(enemy);
-						collideableEnemies.add(enemy);
-						break;
-					case 3:
 						if (GameData.level > 9)
 						{
 							enemy = new SkeletonArcher(player, this, gibs, enemyBullets, enemyBars, healthEmitter);
@@ -136,16 +155,16 @@ package  maps
 							collideableEnemies.add(enemy);
 							break;
 						}
-					case 4: 
+					case 3: 
 						enemy = new Ghost(player, this, gibs, enemyBars, healthEmitter);
 						enemiesGroup.add(enemy);
 						break;
-					case 5: 
+					case 4: 
 						enemy = new Slime(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, spriteAddons, healthEmitter);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
-					case 6:
+					case 5:
 						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, healthEmitter);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
@@ -162,16 +181,16 @@ package  maps
 			}
 			
 			//check for bad ass enemy
-			if (GameData.level == 3 || GameData.level == 9 || GameData.level == 15 || GameData.level == 27)
+			if (GameData.level == 3 || GameData.level == 7 || GameData.level == 12 || GameData.level == 18)
 			{
 				var newWeap:uint = FlxMath.rand(0, 4, GameData.weapon);
 				
-				var badAssEnemy:RangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, newWeap);
+				var badAssEnemy:RangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, newWeap, false);
 				
 				//var badAssPoint:FlxPoint = randomLastRoom();
 				
-				badAssEnemy.x = treasure.x //badAssPoint.x;
-				badAssEnemy.y = treasure.y //badAssPoint.y;
+				badAssEnemy.x = treasures[1].x //badAssPoint.x;
+				badAssEnemy.y = treasures[1].y //badAssPoint.y;
 				
 				enemiesGroup.add(badAssEnemy);
 				collideableEnemies.add(badAssEnemy);
@@ -179,22 +198,24 @@ package  maps
 			
 		}
 		
-		private function spawnDiamonds():void
+		private function spawnChests():void
 		{
-			var diamondCoords:Array = dungeonGen.diamondCoords;
+			var chestCoords:Array = dungeonGen.chestCoords;
 			
-			for (var i:int = 0; i < diamondCoords.length; i++)
+			for (var i:int = 0; i < chestCoords.length; i++)
 			{
-				var diamond:DiamondItem = new DiamondItem(diamondCounter);
-				itemsGroup.add(diamond);
+				var chest:Chest = new Chest(chestUI, diamondEmitter, healthEmitter);
+				itemsGroup.add(chest);
 				
 				
-				diamond.x = diamondCoords[i][0]* TILE_SIZE;
-				diamond.y = diamondCoords[i][1] * TILE_SIZE;
+				chest.x =chestCoords[i][0]* TILE_SIZE;
+				chest.y = chestCoords[i][1] * TILE_SIZE;
+				
+				treasures.push(chest);
 			}
 		}
 		
-		
+		/*
 		private function spawnChests():void
 		{
 			var chestCoords:Array = dungeonGen.chestCoords;
@@ -209,10 +230,11 @@ package  maps
 				chest.y = chestCoords[i][1] * TILE_SIZE;
 			}
 		}
+		*/
 		
 		private function generateItems():void
 		{
-			healthEmitter = new FlxEmitter(0, 0, 22);
+			healthEmitter = new FlxEmitter(0, 0, totalEnemies);
 			healthEmitter.setXSpeed(-300,300);
 			healthEmitter.setYSpeed(-300,300);
 			healthEmitter.setRotation(0, 0);
@@ -222,6 +244,7 @@ package  maps
 				healthEmitter.add(new HealthItem(lifeBar));
 			}
 			
+			diamondEmitter = new DiamondEmitter(diamondCounter);
 		}
 		
 		override public function randomFirstRoom():FlxPoint

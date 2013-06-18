@@ -27,7 +27,7 @@ package units
 			
 			patrolSpeed = 160;
 			alertSpeed = 200;
-			health = 2;
+			health = 3;
 			attackValue = 1;
 			
 			health = GameUtil.scaleHealth(health);
@@ -107,7 +107,7 @@ package units
 		
 		protected function ressurect():void
 		{
-			health = 1;
+			health = 2;
 			health = GameUtil.scaleHealth(health);
 			
 			solid = true;

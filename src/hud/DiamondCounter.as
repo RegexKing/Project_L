@@ -18,7 +18,7 @@ package hud
 			
 			var diamondIcon:FlxSprite = new FlxSprite(0, 0, AssetsRegistry.diamondIconPNG);
 			
-			counter = new FlxText(0, 0, 60, String(GameData.diamonds));
+			counter = new FlxText(0, 0, 36, String(GameData.diamonds));
 			counter.setFormat("NES", 16, 0xffFFFFFF, "center");
 			
 			add(diamondIcon);

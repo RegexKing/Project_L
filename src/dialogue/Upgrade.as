@@ -63,19 +63,19 @@ package dialogue
 			
 			// create the upgrade bars
 			vitBar = new FlxBar(300+16, 299, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
-			vitBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
+			vitBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
 			vitBar.setRange(0, GameData.MAX_UPGRADES);
 			
 			attackBar = new FlxBar(300+16, 329, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
-			attackBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
+			attackBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
 			attackBar.setRange (0, GameData.MAX_UPGRADES);
 			
 			defenseBar = new FlxBar(300+16, 359, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
-			defenseBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
+			defenseBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
 			defenseBar.setRange (0, GameData.MAX_UPGRADES);
 			
 			rateBar = new FlxBar(300+16, 389, FlxBar.FILL_LEFT_TO_RIGHT, 126, 14);
-			rateBar.createImageBar(AssetsRegistry.lifeBar_border_8PNG, AssetsRegistry.lifeBar_8PNG, 0x0);
+			rateBar.createImageBar(AssetsRegistry.lifeBar_border_5PNG, AssetsRegistry.lifeBar_5PNG, 0x0);
 			rateBar.setRange (0, GameData.MAX_UPGRADES);
 			
 			vitBar.currentValue = GameData.vitalityUpgrades;

@@ -16,18 +16,18 @@ package
 		public static const RENDER_WIDTH:uint = 540;
 		public static const RENDER_HEIGHT:uint = 480;
 		
-		public static const LAST_LEVEL:uint = 41;
+		public static const LAST_LEVEL:uint = 31;
 		
-		public static const DIAMONDS_PER_LEVEL:uint = 4;
-		public static const MAX_UPGRADES:uint = 8;
+		public static const CHESTS_PER_LEVEL:uint = 3;
+		public static const MAX_UPGRADES:uint = 5;
 		public static const LUCKY_NUMBER:uint = 7;  //helps determine item spawns
 		
 		
 		// Formula:  rate = (target max value/number_of_upgrades)
 		public static const HEALTH_FACTOR:Number = 1; 
-		public static const DEFENSE_FACTOR:Number = 0.0625; 
-		public static const DAMAGE_FACTOR:Number = 0.75;
-		public static const FIRERATE_FACTOR:Number = 0.0625;
+		public static const DEFENSE_FACTOR:Number = 0.1; 
+		public static const DAMAGE_FACTOR:Number = 1.2;
+		public static const FIRERATE_FACTOR:Number = 0.1;
 		
 		// Weapon ID's
 		public static const NORMAL_GUN:uint = 0;

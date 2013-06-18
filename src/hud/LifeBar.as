@@ -23,7 +23,7 @@ package  hud
 		
 		public function increaseBarRange():void
 		{
-			if (GameData.totalHealth < GameData.MAX_UPGRADES)
+			if (GameData.totalHealth < GameData.MAX_UPGRADES+3)
 			{
 				GameData.totalHealth++;
 				updateBarRange();

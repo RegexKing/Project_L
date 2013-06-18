@@ -13,7 +13,7 @@ package items
 		
 		public function DiamondEmitter(_diamondCounter:DiamondCounter) 
 		{
-			super(0, 0, GameData.DIAMONDS_PER_LEVEL);
+			super(0, 0, GameData.CHESTS_PER_LEVEL-1);
 			
 			diamondCounter = _diamondCounter;
 			
@@ -21,7 +21,7 @@ package items
 			setXSpeed(-400,400);
 			setYSpeed( -400, 400);
 			
-			for (var i:int = 0; i < GameData.DIAMONDS_PER_LEVEL; i++)
+			for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL-1; i++)
 			{
 				add(new DiamondItem(diamondCounter));
 			}

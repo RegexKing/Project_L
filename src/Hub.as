@@ -147,15 +147,15 @@ package
 			
 			if (!GameData.cravenMode)
 			{
-				if (GameData.level == 3)
+				if (GameData.level == 4)
 				{
 					API.unlockMedal("Just Getting Started");
 				}
-				else if (GameData.level == 10)
+				else if (GameData.level == 11)
 				{
 					API.unlockMedal("Don't Stop Me Now");
 				}
-				else if (GameData.level == 25)
+				else if (GameData.level == 21)
 				{
 					API.unlockMedal("We Need To Go Deeper");
 				}
@@ -171,7 +171,6 @@ package
 		}
 		
 		override public function alertEnemies():void { } // erases super class alert enemies 
-		
 		
 	}
 

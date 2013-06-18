@@ -20,16 +20,23 @@ package
 	public class DungeonCrawl extends PlayState
 	{
 		
+		protected var chestUI:ChestUi;
+		
 		public function DungeonCrawl() 
 		{
 		}
 		
 		override public function create():void
 		{
+			chestUI = new ChestUi();
+			chestUI.setCallbacks(null, levelComplete);
+			
 			super.create();
 			
 			if (GameData.level < 10) areaHeader.text = " 0" + String(GameData.level);
 			else areaHeader.text = " " + String(GameData.level);
+			
+			hudGroup.add(chestUI);
 		}
 		
 		override public function update():void
@@ -58,7 +65,7 @@ package
 		override public function stageInit():void
 		{
 			map = new DungeonMap(playerBulletsGroup, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
-				lightsGroup, lifeBar, diamondCounter, spriteAddons, enemyBars, alertEnemies, levelComplete);
+				lightsGroup, lifeBar, diamondCounter, chestUI, spriteAddons, enemyBars, alertEnemies, levelComplete);
 				
 			player = (map as DungeonMap).getPlayer();
 			cameraFocus = new CameraFocus(player);

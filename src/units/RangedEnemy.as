@@ -18,19 +18,19 @@ package  units
 		private var weapon:FlxWeapon;
 		private var weaponID:uint;
 		
-		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _spriteAddons:FlxGroup, _gibsGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter = null, _weaponID:int=-1) 
+		public function RangedEnemy(_player:Player, _map:Map, _enemyBullets:FlxGroup, _spriteAddons:FlxGroup, _gibsGroup:FlxGroup, _enemyBars:FlxGroup,  _itemEmitter:FlxEmitter = null, _weaponID:int=-1, _hasPatrol:Boolean=true) 
 		{
-			super(_player, _map,  _itemEmitter);
+			super(_player, _map,  _itemEmitter, _hasPatrol);
 			spriteAddons = _spriteAddons;
 			enemyBullets = _enemyBullets;
 			
-			patrolSpeed = 50;
+			patrolSpeed = 60;
 			alertSpeed = 160;
-			if (_weaponID < 0) health = 2;
+			if (_weaponID < 0) health = 3;
 			else
 			{
 				isBadAss = true;
-				health = 4;
+				health = 5;
 			}
 			attackValue = 1;
 			
@@ -45,7 +45,7 @@ package  units
 			this.addAnimation("idle", [24], 60);
 			this.addAnimation("run", [16, 17, 18, 19, 20, 21], 10);
 			this.addAnimation("walk", [16, 17, 18, 19, 20, 21], 5);
-			if (!isBadAss) this.play("walk");
+			if (!_hasPatrol) this.play("walk");
 			else this.play("idle");
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
@@ -128,12 +128,6 @@ package  units
 			enemyBullets.add(weapon.group);
 			
 		}
-		
-		override protected function patrol():void
-		{
-			if (!isBadAss) super.patrol();
-		}
-		
 		
 		override public function update():void
 		{

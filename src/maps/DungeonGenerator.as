@@ -410,20 +410,22 @@ package maps
 			return lastRoomCoords[index];
 		}
 		
-		public function get diamondCoords():Array
+		public function get chestCoords():Array
 		{
 			var diamondCoords:Array = new Array();
+			var excludeCoords:Array = new Array();
 			
-			for (var i:int = 0; i < GameData.DIAMONDS_PER_LEVEL; i++)
+			for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL-1; i++)
 			{
-				var index:int = Math.floor(Math.random() * diamondRooms[i].length);
+				var index:int = FlxMath.rand(0, diamondRooms[i].length-1, excludeCoords);
+				excludeCoords.push(index);
 				
 				diamondCoords.push(diamondRooms[i][index]);
 			}
 			
 			return diamondCoords;
 		}
-		
+		/*
 		public function get chestCoords():Array
 		{
 			var chestCoords:Array = new Array();
@@ -441,6 +443,7 @@ package maps
 			
 			return chestCoords;
 		}
+		*/
 		
 		
 		/**
