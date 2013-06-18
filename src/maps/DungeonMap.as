@@ -186,7 +186,7 @@ package  maps
 			//check for bad ass enemy
 			if (GameData.level == 3 || GameData.level == 7 || GameData.level == 12 || GameData.level == 18)
 			{
-				var newWeap:uint = FlxMath.rand(0, 4, GameData.weapon);
+				var newWeap:uint = FlxMath.rand(0, 5, GameData.weapon);
 				
 				var badAssEnemy:RangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, newWeap, false);
 				
