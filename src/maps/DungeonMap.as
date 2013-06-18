@@ -63,6 +63,10 @@ package  maps
 			
 			player = new Player(gibs, _playerBullets, spriteAddons, _alertEnemies, this, playerStart.x, playerStart.y);
 			
+			
+			// figures out how many enemys to spwan based on level
+			totalEnemies = 6 + 3 * GameData.level;
+			
 			generateItems();
 			//spawnDiamonds();
 			spawnChests();
@@ -95,10 +99,6 @@ package  maps
 		
 		public function spawnEnemies():void
 		{
-			
-			// figures out how many enemys to spwan based on level
-			totalEnemies = 6 + 3 * GameData.level;
-			
 			var rangedEnemyNum:uint = Math.ceil(totalEnemies * 0.4);
 			var otherEnemies:uint = totalEnemies - rangedEnemyNum;
 			
@@ -116,8 +116,11 @@ package  maps
 			for (var i:int = 0; i < rangedEnemyNum; i++)
 			{
 				var rangedEnemy:Enemy;
+				var diceRoll:Number = Math.round(Math.random());
+				var patrol:Boolean = Boolean(diceRoll);
+				FlxG.log(patrol);
 				
-				rangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, -1, Boolean(Math.round(Math.random())));
+				rangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, -1, patrol);
 				enemiesGroup.add(rangedEnemy);
 				collideableEnemies.add(rangedEnemy);
 				

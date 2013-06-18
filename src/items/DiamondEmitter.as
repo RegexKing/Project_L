@@ -18,8 +18,8 @@ package items
 			diamondCounter = _diamondCounter;
 			
 			setRotation(0, 0);
-			setXSpeed(-400,400);
-			setYSpeed( -400, 400);
+			setXSpeed(-300,300);
+			setYSpeed( -300, 300);
 			
 			for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL-1; i++)
 			{

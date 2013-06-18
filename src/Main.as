@@ -23,7 +23,7 @@ package
 			
 			FlxG.mouse.load(AssetsRegistry.crosshairPNG, 1, -14, -14);
 			
-			//forceDebugger = true;
+			forceDebugger = true;
 		}
 		
 		

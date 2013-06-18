@@ -17,7 +17,7 @@ package units
 		{
 			super(_player, _map,  _itemEmitter);
 			
-			patrolSpeed = 80;
+			patrolSpeed = 100;
 			alertSpeed = 80;
 			health = 2;
 			attackValue = 1;

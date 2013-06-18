@@ -192,7 +192,6 @@ package maps
 					if (isCoordinateValid(index))
 					{	
 						if (firstRoom) storeFirstRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));// stores first room cooords
-						
 						// stores rest room coords
 						else
 						{
@@ -465,9 +464,9 @@ package maps
 				
 				var tempDistance:int = FlxVelocity.distanceBetweenRects(firstRoomRect, roomObjs[i].rect);
 					
-				if (tempDistance >= farthestDistance)
+				if (tempDistance > farthestDistance)
 				{
-					if (i != 0) diamondRooms.push(tempRoomObj.coordsList);
+					if (i != 0) diamondRooms.push(roomObjs[i-1].coordsList);
 					
 					tempRoomObj = roomObjs[i];
 					farthestDistance = tempDistance;

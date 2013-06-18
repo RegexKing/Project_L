@@ -168,6 +168,8 @@ package  units
 			//increment total enemies killed counter
 			addKillCount();
 			
+			trace(totalEnemies);
+			
 			if(itemEmitter != null)
 			{
 			
@@ -182,7 +184,7 @@ package  units
 				
 				else
 				{
-					var diceRoll:Number = Math.ceil(Math.random() * GameData.LUCKY_NUMBER);
+					var diceRoll:Number = Math.ceil(Math.random() * GameData.LUCKY_NUMBER+1);
 					
 					if (diceRoll == GameData.LUCKY_NUMBER) spawnItem();
 				}

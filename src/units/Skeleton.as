@@ -25,7 +25,7 @@ package units
 			
 			deaths = 0;
 			
-			patrolSpeed = 160;
+			patrolSpeed = 120;
 			alertSpeed = 200;
 			health = 3;
 			attackValue = 1;

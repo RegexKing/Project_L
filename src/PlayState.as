@@ -27,6 +27,7 @@ package
 		protected var startDamageMultiplier:Number = GameData.damageMultiplier;
 		protected var startDefenseMultiplier:Number = GameData.defenseMultiplier;
 		protected var startRateMultiplier:Number = GameData.fireRateMultiplier;
+		protected var startWeaponID:uint = GameData.weaponID;
 		
 		protected var time:Number = 0;
 		protected var stateDone:Boolean = false;
@@ -274,7 +275,7 @@ package
 				GameData.playerHealth = 3;
 				GameData.diamonds = startDiamonds;
 				GameData.weapon = startWeapons;
-				GameData.weaponID = 0;
+				GameData.weaponID = startWeaponID;
 				
 				GameData.vitalityUpgrades = startVitUpgrades;
 				GameData.defenseUpgrades = startDefUpgrades;

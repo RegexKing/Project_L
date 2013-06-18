@@ -19,7 +19,7 @@ package items
 		{
 			super();
 			chestUI = _chestUI;
-			trace(chestUI);
+			
 			diamondEmitter = _diamondEmitter
 			itemEmitter = _itemEmitter;
 			
@@ -51,10 +51,10 @@ package items
 				diamondEmitter.at(this);
 				diamondEmitter.start(true, 0, 0, 1);
 				
-				var howManyItems:int = Math.ceil(Math.random() * 2);
+				//var howManyItems:int = Math.ceil(Math.random() * 2);
 				
 				itemEmitter.at(this);
-				itemEmitter.start(true, 15, 0, howManyItems);
+				itemEmitter.start(true, 15, 0, 1);
 			}
 			
 			else play("filled");

@@ -43,7 +43,6 @@ package
 		
 		//items
 		[Embed(source = "../assets/sprites/chest.png")] public static var chestPNG:Class;
-		[Embed(source = "../assets/sprites/emptyChest.png")] public static var emptyChestPNG:Class;
 		[Embed(source = "../assets/sprites/diamonds.png")] public static var diamondsPNG:Class;
 		[Embed(source = "../assets/sprites/healthItem.png")] public static var HealthItemPNG:Class;
 		
@@ -55,6 +54,7 @@ package
 		
 		// UI
 		[Embed(source = "../assets/sprites/crosshair.png")] public static var crosshairPNG:Class;
+		[Embed(source = "../assets/sprites/newWeapon.png")] public static var newWeaponPNG:Class;
 		[Embed(source = "../assets/sprites/diamondIcon.png")] public static var diamondIconPNG:Class;
 		[Embed(source = "../assets/sprites/weaponUI.png")] public static var weaponUIPNG:Class;
 		[Embed(source = "../assets/sprites/chestUIBorder.png")] public static var chestUIBorderPNG:Class;

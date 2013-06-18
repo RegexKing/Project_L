@@ -14,6 +14,9 @@ package  units
 		private var isBadAss:Boolean = false;
 		private var spriteAddons:FlxGroup;
 		private var enemyBullets:FlxGroup;
+		private var firstShotDelay:FlxDelay;
+		private var fireable:Boolean = false;
+		private var delayStarted:Boolean = false;
 		
 		private var weapon:FlxWeapon;
 		private var weaponID:uint;
@@ -30,7 +33,7 @@ package  units
 			else
 			{
 				isBadAss = true;
-				health = 5;
+				health = 6;
 			}
 			attackValue = 1;
 			
@@ -45,7 +48,7 @@ package  units
 			this.addAnimation("idle", [24], 60);
 			this.addAnimation("run", [16, 17, 18, 19, 20, 21], 10);
 			this.addAnimation("walk", [16, 17, 18, 19, 20, 21], 5);
-			if (!_hasPatrol) this.play("walk");
+			if (_hasPatrol) this.play("walk");
 			else this.play("idle");
 			
 			lifeBar = new FlxBar(0, 0, FlxBar.FILL_LEFT_TO_RIGHT, this.width, lifeBarHeight, this, "health", 0, health);
@@ -67,6 +70,11 @@ package  units
 			else weaponID = _weaponID;
 			
 			chooseGun();
+			
+			var shotDelay:uint = FlxMath.rand(150, 300);
+			
+			firstShotDelay = new FlxDelay(shotDelay);
+			firstShotDelay.callback = setFireable;
 			
 			
 		}
@@ -112,6 +120,7 @@ package  units
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setBulletSpeed(600);
 				weapon.setFireRate(GameData.SPREAD_RATE);
+				weapon.setBulletLifeSpan(450);
 				weapon.setPreFireCallback(null, AssetsRegistry.shotGunMP3); 
 			}
 			
@@ -138,7 +147,13 @@ package  units
 				// play run
 				this.play("run");
 				
-				weapon.fireAtTarget(player);
+				if (!delayStarted)
+				{
+					firstShotDelay.start();
+					delayStarted = true;
+				}
+				
+				if(fireable) weapon.fireAtTarget(player);
 			}
 		}
 		
@@ -154,6 +169,22 @@ package  units
 			
 			//play sound
 			FlxG.play(AssetsRegistry.rangedDieMP3);
+		}
+		
+		override public function destroy():void
+		{
+			super.destroy();
+			
+			if (firstShotDelay != null)
+			{
+				firstShotDelay.abort();
+				firstShotDelay = null;
+			}
+		}
+		
+		private function setFireable():void
+		{
+			fireable = true;
 		}
 	}
 

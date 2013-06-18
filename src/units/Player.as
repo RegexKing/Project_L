@@ -3,6 +3,7 @@ package  units
 	import maps.Map;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
+	import util.NewWeapon;
 	import weapons.*;
 	
 	/**
@@ -110,6 +111,7 @@ package  units
 			spreadGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			spreadGun.setBulletSpeed(600);
 			spreadGun.setFireRate(GameData.SPREAD_RATE - (GameData.SPREAD_RATE * GameData.fireRateMultiplier));
+			spreadGun.setBulletLifeSpan(450);
 			spreadGun.setPreFireCallback(alertEnemies, AssetsRegistry.shotGunMP3); 
 
 			sniper = new Sniper("sniper", this);
@@ -197,7 +199,11 @@ package  units
 		{
 			//TODO: play a sprite that scrolls upwards, add to sprite addons
 			FlxG.log("weaponID: " + GameData.weapon[GameData.weapon.length - 1]);
-			FlxG.camera.flash(0xffFF0000, 0.35)
+			FlxG.camera.flash(0xffFFFFFF, 0.35);
+			
+			var newWeapon:NewWeapon = new NewWeapon(this);
+			
+			spriteAddons.add(newWeapon);
 		}
 		
 		override public function hurt(_damageNumber:Number):void
