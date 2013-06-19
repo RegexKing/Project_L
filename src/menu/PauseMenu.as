@@ -29,20 +29,20 @@ package menu
 			
 			background = FlxGradient.createGradientFlxSprite(120, 240, [0xff0066FF, 0xff000066], 20);
 			background.alpha = 0.6
-			background.x = 186;
-			background.y = 140;
+			background.x = 210;
+			background.y = 132;
 			
-			resume = new FlxButton(206, 160, "Resume", resumeGame);
+			resume = new FlxButton(230, 152, "Resume", resumeGame);
 			
-			toggleMusic = new FlxButton(206, 180, "Toggle BGM", toggleBgm);
-			toggleSounds = new FlxButton(206, 200, "Toggle Sound", toggleSound);
+			toggleMusic = new FlxButton(230, 172, "Toggle BGM", toggleBgm);
+			toggleSounds = new FlxButton(230, 192, "Toggle Sound", toggleSound);
 			
-			bestQuality = new FlxButton(206, 240, "Best", setBest);
-			highQuality = new FlxButton(206, 260, "High", setHigh);
-			mediumQuality = new FlxButton(206, 280, "Medium", setMedium);
-			lowQuality = new FlxButton(206, 300, "Low", setLow);
+			bestQuality = new FlxButton(230, 232, "Best", setBest);
+			highQuality = new FlxButton(230, 252, "High", setHigh);
+			mediumQuality = new FlxButton(230, 272, "Medium", setMedium);
+			lowQuality = new FlxButton(230, 292, "Low", setLow);
 			
-			returnToTitle = new FlxButton(206, 340, "Return to Title", goTitleScreen);
+			returnToTitle = new FlxButton(230, 332, "Return to Title", goTitleScreen);
 			
 			add(background);
 			add(resume);

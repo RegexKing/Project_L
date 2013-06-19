@@ -53,7 +53,7 @@ package
 		
 		//changable
 		
-		public static var level:uint = 0;
+		public static var level:uint = 1;
 		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
 		public static var weapon:Array = [0];
