@@ -20,13 +20,14 @@ package menu
 		private var mediumQuality:FlxButton;
 		private var highQuality:FlxButton;
 		private var bestQuality:FlxButton;
+		private var returnToTitle:FlxButton;
 		private var background:FlxSprite;
 		
 		public function PauseMenu() 
 		{
 			super();
 			
-			background = FlxGradient.createGradientFlxSprite(120, 200, [0xff0066FF, 0xff000066], 20);
+			background = FlxGradient.createGradientFlxSprite(120, 240, [0xff0066FF, 0xff000066], 20);
 			background.alpha = 0.6
 			background.x = 186;
 			background.y = 140;
@@ -41,6 +42,8 @@ package menu
 			mediumQuality = new FlxButton(206, 280, "Medium", setMedium);
 			lowQuality = new FlxButton(206, 300, "Low", setLow);
 			
+			returnToTitle = new FlxButton(206, 340, "Return to Title", goTitleScreen);
+			
 			add(background);
 			add(resume);
 			add(toggleMusic);
@@ -49,6 +52,7 @@ package menu
 			add(highQuality);
 			add(mediumQuality);
 			add(lowQuality);
+			add(returnToTitle);
 		}
 		
 		override public function update():void
@@ -106,6 +110,11 @@ package menu
 			FlxG.stage.quality = StageQuality.LOW;
 		}
 		
+		private function goTitleScreen():void
+		{
+			FlxG.switchState(new TitleScreen());
+		}
+		
 		private function leaveMenu():void
 		{
 			this.kill();
@@ -124,6 +133,7 @@ package menu
 			highQuality.revive();
 			mediumQuality.revive();
 			lowQuality.revive();
+			returnToTitle.revive();
 			
 			add(background);
 			add(resume);
@@ -133,6 +143,7 @@ package menu
 			add(highQuality);
 			add(mediumQuality);
 			add(lowQuality);
+			add(returnToTitle);
 		}
 		
 	}
