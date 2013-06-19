@@ -197,8 +197,6 @@ package  units
 		
 		public function playNewWeapon():void
 		{
-			//TODO: play a sprite that scrolls upwards, add to sprite addons
-			FlxG.log("weaponID: " + GameData.weapon[GameData.weapon.length - 1]);
 			FlxG.camera.flash(0xffFFFFFF, 0.35);
 			
 			var newWeapon:NewWeapon = new NewWeapon(this);

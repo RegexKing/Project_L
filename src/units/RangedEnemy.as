@@ -71,7 +71,7 @@ package  units
 			
 			chooseGun();
 			
-			var shotDelay:uint = FlxMath.rand(150, 300);
+			var shotDelay:uint = FlxMath.rand(150, 301);
 			
 			firstShotDelay = new FlxDelay(shotDelay);
 			firstShotDelay.callback = setFireable;

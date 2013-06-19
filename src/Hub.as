@@ -85,6 +85,7 @@ package
 			//test key
 			if (FlxG.keys.justPressed("SPACE"))
 			{
+				
 				diamondCounter.changeQuantity(1);
 				//lifeBar.increaseBarRange();
 				//player.active = !player.active;

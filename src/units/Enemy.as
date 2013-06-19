@@ -168,8 +168,6 @@ package  units
 			//increment total enemies killed counter
 			addKillCount();
 			
-			trace(totalEnemies);
-			
 			if(itemEmitter != null)
 			{
 			

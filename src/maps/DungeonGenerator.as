@@ -63,8 +63,8 @@ package maps
 			generateMap();
 			sealMap();
 			
-			allRooms = firstRoomCoords.concat(rooms);
 			lastRoomCoords = findLastRoomCoords();
+			allRooms = firstRoomCoords.concat(rooms);
 			
 			//take out cooridor points in rooms
 			//spliceCorridors();
@@ -86,7 +86,7 @@ package maps
 			
 			// Get a random amount of rooms (up to the top limit)
 			// Ceil is used for rounding here, to avoid getting 0 rooms
-			var totalRooms:int = FlxMath.rand(MIN_ROOMS, MAX_ROOMS);
+			var totalRooms:int = FlxMath.rand(MIN_ROOMS, MAX_ROOMS+1);
 			
 			// Create each room
 			for (var i:int = 0; i < totalRooms; i++) {
@@ -147,7 +147,7 @@ package maps
 			
 			if (firstRoom)
 			{
-				firstRoomRect = new FlxRect(startX, startY, startX + roomWidth, startY + roomHeight);
+				firstRoomRect = new FlxRect(startX, startY, roomWidth, roomHeight);
 			}
 			// -------------------------------------------------------------
 			
@@ -192,7 +192,6 @@ package maps
 					if (isCoordinateValid(index))
 					{	
 						if (firstRoom) storeFirstRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));// stores first room cooords
-						// stores rest room coords
 						else
 						{
 							storeRoom(index % TOTAL_ROWS, Math.floor(index / TOTAL_COLS));
@@ -416,7 +415,7 @@ package maps
 			
 			for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL-1; i++)
 			{
-				var index:int = FlxMath.rand(0, diamondRooms[i].length-1, excludeCoords);
+				var index:int = FlxMath.rand(0, diamondRooms[i].length, excludeCoords);
 				excludeCoords.push(index);
 				
 				diamondCoords.push(diamondRooms[i][index]);
@@ -458,15 +457,16 @@ package maps
 		{
 			var tempRoomObj:Room;
 			var farthestDistance:int = 0;
+			var tempDistance:int = 0;
 			
 			for (var i:int = 0; i < roomObjs.length; i++)
 			{
 				
-				var tempDistance:int = FlxVelocity.distanceBetweenRects(firstRoomRect, roomObjs[i].rect);
+				tempDistance = FlxVelocity.distanceBetweenRects(firstRoomRect, roomObjs[i].rect);
 					
 				if (tempDistance > farthestDistance)
 				{
-					if (i != 0) diamondRooms.push(roomObjs[i-1].coordsList);
+					if (i != 0) diamondRooms.push(tempRoomObj.coordsList);
 					
 					tempRoomObj = roomObjs[i];
 					farthestDistance = tempDistance;

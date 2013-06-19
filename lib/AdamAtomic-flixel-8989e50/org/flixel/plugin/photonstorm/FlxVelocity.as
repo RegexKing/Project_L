@@ -198,8 +198,8 @@ package org.flixel.plugin.photonstorm
 		
 		public static function distanceBetweenRects(a:FlxRect, target:FlxRect):int
 		{
-			var dx:Number = (a.x) - (target.x);
-			var dy:Number = (a.y) - (target.y);
+			var dx:Number = (a.x + a.width/2) - (target.x + target.width/2);
+			var dy:Number = (a.y+ a.height/2) - (target.y + target.height/2);
 			
 			return int(FlxMath.vectorLength(dx, dy));
 		}

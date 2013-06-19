@@ -118,7 +118,6 @@ package  maps
 				var rangedEnemy:Enemy;
 				var diceRoll:Number = Math.round(Math.random());
 				var patrol:Boolean = Boolean(diceRoll);
-				FlxG.log(patrol);
 				
 				rangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, -1, patrol);
 				enemiesGroup.add(rangedEnemy);

@@ -21,7 +21,7 @@ package   items
 			
 			super();
 			
-			weaponID = FlxMath.rand(MIN_ID, MAX_ID);
+			weaponID = FlxMath.rand(MIN_ID, MAX_ID+1);
 			
 			//switch statement to choose graphic
 			switch(weaponID)
