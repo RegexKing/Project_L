@@ -83,6 +83,7 @@ package  maps
 			
 			//spawn the enemies
 			spawnEnemies();
+			//lastRoomMap();
 			
 		}
 		
@@ -198,6 +199,19 @@ package  maps
 				collideableEnemies.add(badAssEnemy);
 			}
 			
+		}
+		
+		private function lastRoomMap():void
+		{
+			var lastMap:Array = dungeonGen.rooms;
+			
+			for (var i:int = 0; i < lastMap.length; i++)
+			{
+					var block:FlxSprite = new FlxSprite(lastMap[i][0]*TILE_SIZE, lastMap[i][1]*TILE_SIZE);
+					block.makeGraphic(TILE_SIZE, TILE_SIZE);
+					block.alpha = 0.25;
+					spriteAddons.add(block);
+			}
 		}
 		
 		private function spawnChests():void

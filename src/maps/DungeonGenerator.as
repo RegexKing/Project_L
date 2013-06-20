@@ -16,16 +16,17 @@ package maps
 	{
 		public var map:Array; // One-dimensional array containing the actual map data
 		
-		protected var rooms:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of rooms between first room and farthest room
+		public var rooms:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of rooms between first room and farthest room
 		protected var corridors:Array; // Array containing arrays of the format (x, y). These coordinates are all floor spaces of corridors
 		protected var prevDoor:Array; // Array of the format (x, y). Contains the coordinates of the previous room's door
 		protected var firstRoomCoords:Array; // array containing coordinates of first room
 		protected var allRooms:Array; //array containing all room coords
-		protected var lastRoomCoords:Array; //array of last room points
+		public var lastRoomCoords:Array; //array of last room points
 		protected var diamondRooms:Array; // array of all rooms between player and treasure
 		
 		private var roomObjs:Array; // helps figure out farthest room
 		private var firstRoomRect:FlxRect; // rectangle containing points of first room
+		private var firstRoomSpawnBuffer:FlxRect; //so enemies dont spawn to close to player
 		
 		// Constants, used to configure the floors
 		public static var TOTAL_ROWS:int = 40;
@@ -72,6 +73,7 @@ package maps
 			// clear unneeded vars
 			prevDoor = null;
 			firstRoomRect = null;
+			firstRoomSpawnBuffer = null;
 			roomObjs = null;
 		}
 				
@@ -142,12 +144,14 @@ package maps
 				// Floor is used here to avoid index out of bound errors
 				startX = Math.floor(Math.random() * (TOTAL_ROWS - roomWidth));
 				startY = Math.floor(Math.random() * (TOTAL_COLS - roomHeight));
-			} while (!firstRoom && (FlxMath.pointInFlxRect(startX, startY, firstRoomRect) 
-				|| FlxMath.pointInFlxRect(startX + roomWidth, startY + roomHeight, firstRoomRect)));
+			} while (!firstRoom && (FlxMath.pointInFlxRect(startX, startY, firstRoomSpawnBuffer) 
+				|| FlxMath.pointInFlxRect(startX + roomWidth, startY + roomHeight, firstRoomSpawnBuffer)));
 			
 			if (firstRoom)
 			{
 				firstRoomRect = new FlxRect(startX, startY, roomWidth, roomHeight);
+				firstRoomSpawnBuffer = new FlxRect(firstRoomRect.x - Map.TILE_SIZE * 3, firstRoomRect.y- Map.TILE_SIZE * 3, 
+					firstRoomRect.width + Map.TILE_SIZE * 3, firstRoomRect.height + Map.TILE_SIZE * 3);
 			}
 			// -------------------------------------------------------------
 			
@@ -463,11 +467,13 @@ package maps
 			{
 				
 				tempDistance = FlxVelocity.distanceBetweenRects(firstRoomRect, roomObjs[i].rect);
+				trace(tempDistance);
 					
 				if (tempDistance > farthestDistance)
 				{
 					if (i != 0) diamondRooms.push(tempRoomObj.coordsList);
 					
+					tempRoomObj = null;
 					tempRoomObj = roomObjs[i];
 					farthestDistance = tempDistance;
 				}
@@ -477,6 +483,8 @@ package maps
 					diamondRooms.push(roomObjs[i].coordsList);
 				}
 			}
+			
+			trace("Farthest: " + farthestDistance);
 			
 			return tempRoomObj.coordsList;
 		}
