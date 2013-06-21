@@ -104,7 +104,8 @@ package
 		{
 			map = new HubMap();
 			
-			player = new Player(gibsGroup, playerBulletsGroup, spriteAddons, alertEnemies, map);
+			player = new Player(gibsGroup, playerBulletsGroup, spriteAddons, alertEnemies);
+			player.gunSetup(map);
 			player.x = 200;
 			player.y = 200;
 			

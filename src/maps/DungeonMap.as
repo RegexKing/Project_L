@@ -33,11 +33,12 @@ package  maps
 		private var diamondEmitter:DiamondEmitter;
 		private var totalEnemies:uint;
 		
-		public function DungeonMap(_playerBullets:FlxGroup, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
-			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _chestUI:ChestUi, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, _alertEnemies:Function, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
+		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
+			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _chestUI:ChestUi, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super(addToStage, onAddSpritesCallback);
 			
+			player = _player;
 			enemiesGroup = _enemiesGroup;
 			enemyBullets = _enemyBullets;
 			itemsGroup = _items;
@@ -58,10 +59,6 @@ package  maps
 			tileMap.loadMap(FlxTilemap.arrayToCSV(dungeonGen.map, DungeonGenerator.TOTAL_ROWS), AssetsRegistry.randDunTilesPNG, TILE_SIZE, TILE_SIZE, FlxTilemap.OFF, 0, 0, 1);
 			
 			add(tileMap);
-			
-			var playerStart:FlxPoint = randomFirstRoom();
-			
-			player = new Player(gibs, _playerBullets, spriteAddons, _alertEnemies, this, playerStart.x, playerStart.y);
 			
 			
 			// figures out how many enemys to spwan based on level
@@ -109,8 +106,8 @@ package  maps
 			if (GameData.level < 3) enemyRange = 1;
 			else if (GameData.level < 6) enemyRange = 2;
 			else if (GameData.level < 9) enemyRange = 3;
-			else if (GameData.level < 19) enemyRange = 4;
-			else if (GameData.level >= 19) enemyRange = 5;
+			else if (GameData.level < 15) enemyRange = 4;
+			else if (GameData.level >= 15) enemyRange = 5;
 			
 			//enemyRange = 7;
 			
@@ -168,7 +165,7 @@ package  maps
 						collideableEnemies.add(enemy);
 						break;
 					case 5:
-						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, healthEmitter);
+						enemy = new Abom(player, this, gibs, enemiesGroup, collideableEnemies, enemyBars, spriteAddons, healthEmitter);
 						enemiesGroup.add(enemy);
 						collideableEnemies.add(enemy);
 						break;
@@ -184,7 +181,7 @@ package  maps
 			}
 			
 			//check for bad ass enemy
-			if (GameData.level == 3 || GameData.level == 7 || GameData.level == 12 || GameData.level == 18)
+			if (GameData.level == 3 || GameData.level == 6 || GameData.level == 10 || GameData.level == 14)
 			{
 				var newWeap:uint = FlxMath.rand(0, 5, GameData.weapon);
 				

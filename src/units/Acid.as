@@ -14,10 +14,12 @@ package units
 	public class Acid extends Enemy
 	{
 		private var expire:FlxDelay;
+		private var enemiesGroup:FlxGroup;
 		
-		public function Acid(_player:Player, _map:Map) 
+		public function Acid(_player:Player, _map:Map, _enemiesGroup:FlxGroup) 
 		{
 			super(_player, _map);
+			enemiesGroup = _enemiesGroup;
 			exists = false;
 			
 			attackValue = 2;
@@ -34,6 +36,8 @@ package units
 		{
 			elasticity = 0.8;
 			drag = new FlxPoint(200, 200);
+			
+			enemiesGroup.add(this);
 			
 			expire = new FlxDelay(350);
 			expire.callback = kill;

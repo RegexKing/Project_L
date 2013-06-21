@@ -35,14 +35,13 @@ package  units
 		protected var spreadGun:SpreadGun;
 		protected var sniper:Sniper;
 		
-		public function Player(_gibsGroup:FlxGroup, _playerBulletsGroup:FlxGroup, _spriteAddons:FlxGroup, _alertEnemies:Function, _map:Map, _xPos:int=0, _yPos:int=0) 
+		public function Player(_gibsGroup:FlxGroup, _playerBulletsGroup:FlxGroup, _spriteAddons:FlxGroup, _alertEnemies:Function, _xPos:int=0, _yPos:int=0) 
 		{
 			super(_xPos, _yPos);
 			
 			playerBulletsGroup = _playerBulletsGroup;
 			spriteAddons = _spriteAddons;
 			alertEnemies = _alertEnemies;
-			map = _map;
 			fireable = true;
 			
 			loadGraphic(AssetsRegistry.guyPNG, true, true, 54, 64);
@@ -73,11 +72,9 @@ package  units
 			FlxControl.player1.setWASDControl();
 			FlxControl.player1.setStandardSpeed(200);
 			
-			gunSetup();
-			
 		}
 		
-		public function gunSetup():void
+		public function gunSetup(map:Map):void
 		{	
 			// Guns
 

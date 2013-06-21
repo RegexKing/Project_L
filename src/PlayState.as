@@ -320,13 +320,14 @@ package
 		
 		public function alertEnemies():void
 		{
-			for each (var enemy:Enemy in enemiesGroup.members && !(enemy is FlxEmitter))
+			for each (var enemy:Enemy in enemiesGroup.members)
 			{
 				if (enemy.alive && enemy.isEnemyNear())
 				{
 					enemy.aware = true;
 				}
 			}
+			trace("gunshot");
 		}
 		
 		protected function slideComplete():void

@@ -64,10 +64,18 @@ package
 		
 		override public function stageInit():void
 		{
-			map = new DungeonMap(playerBulletsGroup, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
-				lightsGroup, lifeBar, diamondCounter, chestUI, spriteAddons, enemyBars, alertEnemies, levelComplete);
+			player = new Player(gibsGroup, playerBulletsGroup, spriteAddons, alertEnemies);
+			
+			map = new DungeonMap(player, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
+				lightsGroup, lifeBar, diamondCounter, chestUI, spriteAddons, enemyBars, levelComplete);
+			
+			player.gunSetup(map);
+			var playerStart:FlxPoint = map.randomFirstRoom();
+			player.x = playerStart.x;
+			player.y = playerStart.y;
+			
+			
 				
-			player = (map as DungeonMap).getPlayer();
 			cameraFocus = new CameraFocus(player);
 			FlxG.camera.target = cameraFocus;
 		}
