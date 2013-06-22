@@ -164,6 +164,9 @@ package
 			add(slideContainer);
 			add(areaHeader);
 			
+			player.active = false;
+			enemiesGroup.setAll("active", false);
+			
 			slide.start();
 		}
 		
@@ -327,7 +330,6 @@ package
 					enemy.aware = true;
 				}
 			}
-			trace("gunshot");
 		}
 		
 		protected function slideComplete():void
@@ -335,6 +337,9 @@ package
 			slideContainer.kill();
 			slidePic.kill();
 			areaHeader.kill();
+			
+			player.active = true;
+			enemiesGroup.setAll("active", true);
 		}
 		
 		override public function destroy():void

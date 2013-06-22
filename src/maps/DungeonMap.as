@@ -30,7 +30,7 @@ package  maps
 		private var enemyBars:FlxGroup;
 		private var chestUI:ChestUi;
 		private var healthEmitter:FlxEmitter;
-		private var diamondEmitter:DiamondEmitter;
+		//private var diamondEmitter:DiamondEmitter;
 		private var totalEnemies:uint;
 		
 		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
@@ -70,7 +70,7 @@ package  maps
 			//so items spawn over chests
 			addItems();
 			
-			var treasure:Chest = new Chest(chestUI, diamondEmitter, healthEmitter);
+			var treasure:Chest = new Chest(chestUI, diamondCounter, healthEmitter);
 			
 			var treasureCoords:FlxPoint = randomLastRoom();
 			treasure.x = treasureCoords.x;
@@ -87,7 +87,7 @@ package  maps
 		private function addItems():void
 		{
 			itemsGroup.add(healthEmitter);
-			itemsGroup.add(diamondEmitter);
+			//itemsGroup.add(diamondEmitter);
 		}
 		
 		public function getPlayer():Player
@@ -217,7 +217,7 @@ package  maps
 			
 			for (var i:int = 0; i < chestCoords.length; i++)
 			{
-				var chest:Chest = new Chest(chestUI, diamondEmitter, healthEmitter);
+				var chest:Chest = new Chest(chestUI, diamondCounter, healthEmitter);
 				itemsGroup.add(chest);
 				
 				
@@ -257,7 +257,7 @@ package  maps
 				healthEmitter.add(new HealthItem(lifeBar));
 			}
 			
-			diamondEmitter = new DiamondEmitter(diamondCounter);
+			//diamondEmitter = new DiamondEmitter(diamondCounter);
 		}
 		
 		override public function randomFirstRoom():FlxPoint

@@ -13,11 +13,16 @@ package
 	public class TitleScreen extends FlxState
 	{
 		protected var pauseMenu:PauseMenu;
+		private var modeMenu:StartMenu;
 		private var introActive:Boolean;
 		private var flood:FloodFillFX;
 		private var effectContainer:FlxSprite;
 		private var mainMenuButtons:FlxGroup;
 		private var titleScreen:FlxSprite;
+		private var continueButton:FlxButton;
+		private var playButton:FlxButton;
+		private var optionsButton:FlxButton;
+		private var extrasButton:FlxButton;
 	
 		public function TitleScreen() 
 		{
@@ -95,8 +100,9 @@ package
 		private function playGame():void
 		{
 			disableMenuButtons();
-			FlxG.music.fadeOut(2);
-			FlxG.camera.fade(0xff000000, 2, goHub);
+			
+			var modeMenu:StartMenu = new StartMenu(goStory, goRogue);
+			this.add(modeMenu);
 		}
 		
 		private function goOptions():void
@@ -114,13 +120,26 @@ package
 			
 		}
 		
-		private function goStartArea():void
+		private function goStory():void
 		{
+			FlxG.music.fadeOut(2);
+			FlxG.camera.fade(0xff000000, 2, goStartArea);
+		}
+		
+		private function goRogue():void
+		{
+			FlxG.music.fadeOut(2);
+			FlxG.camera.fade(0xff000000, 2, goHub);
 		}
 		
 		private function goHub():void
 		{
 			FlxG.switchState(new Hub());
+		}
+		
+		private function goStartArea():void
+		{
+			FlxG.switchState(new Hub()); //to do switch state to tutorial
 		}
 		
 		public function disableMenuButtons():void
@@ -135,17 +154,36 @@ package
 		
 		private function createMenuButtons():void
 		{
-			var continueButton:FlxButton = new FlxButton(330+27, 278-5, null, continueGame);
-			var playButton:FlxButton = new FlxButton(330+27, 323-5, null, playGame);
-			var optionsButton:FlxButton = new FlxButton(330+27, 368-5, null, goOptions);
-			var extrasButton:FlxButton = new FlxButton(330+27, 413-5, null, goExtras);
+			if (GameData.checkNewGame() == false)
+			{
+				continueButton = new FlxButton(357, 273, null, continueGame);
+				continueButton.onOver = continueButtonOver;
+				continueButton.onOut = continueButtonOut;
+				continueButton.loadGraphic(AssetsRegistry.continueButtonPNG, false, false, 154, 45);
+				continueButton.visible = false;
+				mainMenuButtons.add(continueButton);
+			}
 			
-			continueButton.makeGraphic(154, 45, 0x0);
-			playButton.makeGraphic(154, 45, 0x0);
-			optionsButton.makeGraphic(154, 45, 0x0);
-			extrasButton.makeGraphic(154, 45, 0x0);
+			playButton = new FlxButton(357, 318, null, playGame);
+			optionsButton = new FlxButton(357, 363, null, goOptions);
+			extrasButton = new FlxButton(357, 408, null, goExtras);
 			
-			mainMenuButtons.add(continueButton);
+			playButton.onOver = playButtonOver;
+			optionsButton.onOver = optionsButtonOver;
+			extrasButton.onOver = extrasButtonOver;
+			
+			playButton.onOut = playButtonOut;
+			optionsButton.onOut = optionsButtonOut;
+			extrasButton.onOut = extrasButtonOut;
+			
+			playButton.loadGraphic(AssetsRegistry.playButtonPNG, false, false, 154, 45);
+			optionsButton.loadGraphic(AssetsRegistry.optionsButtonPNG, false, false, 154, 45);
+			extrasButton.loadGraphic(AssetsRegistry.extrasButtonPNG, false, false, 154, 45);
+			
+			playButton.visible = false;
+			optionsButton.visible = false;
+			extrasButton.visible = false;
+			
 			mainMenuButtons.add(playButton);
 			mainMenuButtons.add(optionsButton);
 			mainMenuButtons.add(extrasButton);
@@ -172,6 +210,46 @@ package
 			FlxSpecialFX.clear();
 
 			super.destroy();
+		}
+		
+		private function continueButtonOver():void
+		{
+			continueButton.visible = true;
+		}
+		
+		private function playButtonOver():void
+		{
+			playButton.visible = true;
+		}
+		
+		private function optionsButtonOver():void
+		{
+			optionsButton.visible = true;
+		}
+		
+		private function extrasButtonOver():void
+		{
+			extrasButton.visible = true;
+		}
+		
+		private function continueButtonOut():void
+		{
+			continueButton.visible = false;
+		}
+		
+		private function playButtonOut():void
+		{
+			playButton.visible = false;
+		}
+		
+		private function optionsButtonOut():void
+		{
+			optionsButton.visible = false;
+		}
+		
+		private function extrasButtonOut():void
+		{
+			extrasButton.visible = false;
 		}
 		
 	}

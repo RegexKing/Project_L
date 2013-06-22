@@ -39,7 +39,7 @@ package
 				beastMan = new BeastMan(player, gibsGroup, activateDialogue, enemyBars);
 				enemiesGroup.add(beastMan);
 				
-				if (GameData.level == GameData.LAST_LEVEL)
+				if (GameData.level == GameData.LAST_LEVEL && GameData.cravenMode)
 				{
 					beastMan.x = GameData.RENDER_WIDTH/2 - beastMan.width/2;
 					beastMan.y = GameData.RENDER_HEIGHT - Map.TILE_SIZE - beastMan.height;
@@ -126,13 +126,19 @@ package
 		{
 			super.goNextState();
 			
-			FlxG.switchState(new DungeonCrawl());
+			if (GameData.level == GameData.LAST_LEVEL && GameData.cravenMode)
+			{
+				FlxG.switchState(new TitleScreen());
+				GameData.resetData();
+			}
+			
+			else FlxG.switchState(new DungeonCrawl());
 		}
 		
 		
 		protected function checkMedals():void
 		{
-			if (GameData.level == GameData.LAST_LEVEL)
+			if (GameData.level == GameData.LAST_LEVEL && GameData.cravenMode)
 			{
 				if (GameData.cravenMode)
 				{
@@ -141,13 +147,9 @@ package
 					API.logCustomEvent("Game Completions");
 				}
 				
-				else
-				{
-					API.unlockMedal("Ain't Nobody Got Time For Death!");
-				}
 			}
 			
-			if (!GameData.cravenMode)
+			else if (!GameData.cravenMode)
 			{
 				if (GameData.level == 4)
 				{
@@ -160,6 +162,11 @@ package
 				else if (GameData.level == 21)
 				{
 					API.unlockMedal("We Need To Go Deeper");
+				}
+				
+				else if (GameData.level == 31)
+				{
+					API.unlockMedal("Ain't Nobody Got Time For Death!");
 				}
 			}
 			

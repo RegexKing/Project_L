@@ -53,6 +53,12 @@ package
 		[Embed(source = "../assets/sprites/crystalLight.png")] public static var crystalLightPNG:Class;
 		
 		// UI
+		[Embed(source = "../assets/sprites/continueButton.png")] public static var continueButtonPNG:Class;
+		[Embed(source = "../assets/sprites/playButton.png")] public static var playButtonPNG:Class;
+		[Embed(source = "../assets/sprites/optionsButton.png")] public static var optionsButtonPNG:Class;
+		[Embed(source = "../assets/sprites/extrasButton.png")] public static var extrasButtonPNG:Class;
+		[Embed(source = "../assets/sprites/startMenu.png")] public static var startMenuPNG:Class;
+		[Embed(source = "../assets/sprites/modeHighlight.png")] public static var modeHighlightPNG:Class;
 		[Embed(source = "../assets/sprites/crosshair.png")] public static var crosshairPNG:Class;
 		[Embed(source = "../assets/sprites/newWeapon.png")] public static var newWeaponPNG:Class;
 		[Embed(source = "../assets/sprites/diamondIcon.png")] public static var diamondIconPNG:Class;

@@ -1,6 +1,7 @@
 package items 
 {
 	import hud.ChestUi;
+	import hud.DiamondCounter;
 	import org.flixel.FlxEmitter;
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxG;
@@ -11,16 +12,16 @@ package items
 	public class Chest extends Item
 	{
 		private var chestUI:ChestUi;
-		private var diamondEmitter:FlxEmitter;
+		private var diamondCounter:DiamondCounter;
 		private var itemEmitter:FlxEmitter;
 		public var found:Boolean = false;
 		
-		public function Chest(_chestUI:ChestUi, _diamondEmitter:FlxEmitter, _itemEmitter:FlxEmitter) 
+		public function Chest(_chestUI:ChestUi, _diamondCounter:DiamondCounter, _itemEmitter:FlxEmitter) 
 		{
 			super();
 			chestUI = _chestUI;
 			
-			diamondEmitter = _diamondEmitter
+			diamondCounter = _diamondCounter
 			itemEmitter = _itemEmitter;
 			
 			exists = true;
@@ -48,17 +49,21 @@ package items
 			{
 				play("empty");
 				
-				diamondEmitter.at(this);
-				diamondEmitter.start(true, 0, 0, 1);
-				
 				//var howManyItems:int = Math.ceil(Math.random() * 2);
 				
 				itemEmitter.at(this);
 				itemEmitter.start(true, 15, 0, 1);
 			}
 			
-			else play("filled");
+			/*
+			else 
+			{
+				play("filled");
+			}
+			*/
 			
+			play("empty");
+			diamondCounter.changeQuantity(1);
 			
 		}
 	}
