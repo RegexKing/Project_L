@@ -277,8 +277,8 @@ package
 			{
 				GameData.playerHealth = 3;
 				GameData.diamonds = startDiamonds;
-				GameData.weapon = startWeapons;
-				GameData.weaponID = startWeaponID;
+				GameData.weapon = [0];
+				GameData.weaponID = 0;
 				
 				GameData.vitalityUpgrades = startVitUpgrades;
 				GameData.defenseUpgrades = startDefUpgrades;

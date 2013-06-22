@@ -47,23 +47,17 @@ package items
 			
 			if (chestUI.currentValue < GameData.CHESTS_PER_LEVEL)
 			{
-				play("empty");
-				
 				//var howManyItems:int = Math.ceil(Math.random() * 2);
 				
 				itemEmitter.at(this);
-				itemEmitter.start(true, 15, 0, 1);
+				
+				if(GameData.level < GameData.LAST_LEVEL)  itemEmitter.start(true, 15, 0, 1);
+				else itemEmitter.start(true, 15, 0, 2);
 			}
-			
-			/*
-			else 
-			{
-				play("filled");
-			}
-			*/
 			
 			play("empty");
-			diamondCounter.changeQuantity(1);
+			
+			if(GameData.level < GameData.LAST_LEVEL) diamondCounter.changeQuantity(1);
 			
 		}
 	}

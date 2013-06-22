@@ -28,17 +28,17 @@ package  maps
 		private var spriteAddons:FlxGroup;
 		private var playerHazzards:FlxGroup;
 		private var enemyBars:FlxGroup;
+		private var treasure:Chest;
 		private var chestUI:ChestUi;
 		private var healthEmitter:FlxEmitter;
 		//private var diamondEmitter:DiamondEmitter;
 		private var totalEnemies:uint;
 		
-		public function DungeonMap(_player:Player, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
-			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _chestUI:ChestUi, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
+		public function DungeonMap(_playerBullets:FlxGroup, _enemiesGroup:FlxGroup, _playerHazzards:FlxGroup, _collideableEnemies:FlxGroup, _enemyBullets:FlxGroup, _items:FlxGroup, _gibs:FlxGroup, _lights:FlxGroup,
+			_lifeBar:LifeBar, _diamondCounter:DiamondCounter, _chestUI:ChestUi, _spriteAddons:FlxGroup, _enemyBars:FlxGroup, _alertEnemies:Function, transitionNextState:Function, addToStage:Boolean = true, onAddSpritesCallback:Function = null) 
 		{
 			super(addToStage, onAddSpritesCallback);
 			
-			player = _player;
 			enemiesGroup = _enemiesGroup;
 			enemyBullets = _enemyBullets;
 			itemsGroup = _items;
@@ -60,6 +60,9 @@ package  maps
 			
 			add(tileMap);
 			
+			var playerStart:FlxPoint = randomFirstRoom();
+			player = new Player(this, gibs, _playerBullets, spriteAddons, _alertEnemies,  playerStart.x, playerStart.y);
+			
 			
 			// figures out how many enemys to spwan based on level
 			totalEnemies = 6 + 3 * GameData.level;
@@ -70,7 +73,7 @@ package  maps
 			//so items spawn over chests
 			addItems();
 			
-			var treasure:Chest = new Chest(chestUI, diamondCounter, healthEmitter);
+			treasure = new Chest(chestUI, diamondCounter, healthEmitter);
 			
 			var treasureCoords:FlxPoint = randomLastRoom();
 			treasure.x = treasureCoords.x;
@@ -106,8 +109,8 @@ package  maps
 			if (GameData.level < 3) enemyRange = 1;
 			else if (GameData.level < 6) enemyRange = 2;
 			else if (GameData.level < 9) enemyRange = 3;
-			else if (GameData.level < 15) enemyRange = 4;
-			else if (GameData.level >= 15) enemyRange = 5;
+			else if (GameData.level < 13) enemyRange = 4;
+			else if (GameData.level >= 16) enemyRange = 5;
 			
 			//enemyRange = 7;
 			
@@ -187,10 +190,10 @@ package  maps
 				
 				var badAssEnemy:RangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, newWeap, false);
 				
-				//var badAssPoint:FlxPoint = randomLastRoom();
+				var badAssPoint:FlxPoint = randomLastRoom();
 				
-				badAssEnemy.x = treasures[1].x //badAssPoint.x;
-				badAssEnemy.y = treasures[1].y //badAssPoint.y;
+				badAssEnemy.x = badAssPoint.x;
+				badAssEnemy.y = badAssPoint.y;
 				
 				enemiesGroup.add(badAssEnemy);
 				collideableEnemies.add(badAssEnemy);
