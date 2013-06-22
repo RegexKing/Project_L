@@ -76,8 +76,8 @@ package hud
 			
 			
 			//play chime
-			if (_state == "gameover") FlxG.play(AssetsRegistry.gameoverMP3);
-			else if (_state == "levelcomplete") FlxG.play(AssetsRegistry.winMP3);
+			//if (_state == "gameover") FlxG.play(AssetsRegistry.gameoverMP3);
+			if (_state == "levelcomplete") FlxG.play(AssetsRegistry.winMP3);
 		}
 		
 		override public function update():void

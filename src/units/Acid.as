@@ -39,7 +39,7 @@ package units
 			
 			enemiesGroup.add(this);
 			
-			expire = new FlxDelay(350);
+			expire = new FlxDelay(200);
 			expire.callback = kill;
 			
 			expire.start();

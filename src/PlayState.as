@@ -165,6 +165,7 @@ package
 			add(areaHeader);
 			
 			player.active = false;
+			player.solid = false;
 			enemiesGroup.setAll("active", false);
 			
 			slide.start();
@@ -180,7 +181,7 @@ package
 				FlxG.collide(collideableGroup, map);
 				
 				// minimap
-				if (FlxG.keys.justPressed("M"))
+				if (FlxG.keys.justPressed("M") || FlxG.keys.justPressed("TAB"))
 				{
 					miniMap.toggleMiniMap();
 				}
@@ -277,8 +278,8 @@ package
 			{
 				GameData.playerHealth = 3;
 				GameData.diamonds = startDiamonds;
-				GameData.weapon = [0];
-				GameData.weaponID = 0;
+				GameData.weapon = startWeapons;
+				GameData.weaponID = startWeaponID;
 				
 				GameData.vitalityUpgrades = startVitUpgrades;
 				GameData.defenseUpgrades = startDefUpgrades;
@@ -339,6 +340,7 @@ package
 			areaHeader.kill();
 			
 			player.active = true;
+			player.solid = true;
 			enemiesGroup.setAll("active", true);
 		}
 		

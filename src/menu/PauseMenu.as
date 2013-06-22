@@ -34,7 +34,7 @@ package menu
 			
 			resume = new FlxButton(230, 152, "Resume", resumeGame);
 			
-			toggleMusic = new FlxButton(230, 172, "Toggle BGM", toggleBgm);
+			toggleMusic = new FlxButton(230, 172, "Toggle Music", toggleBgm);
 			toggleSounds = new FlxButton(230, 192, "Toggle Sound", toggleSound);
 			
 			bestQuality = new FlxButton(230, 232, "Best", setBest);

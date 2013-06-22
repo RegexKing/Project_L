@@ -142,7 +142,7 @@ package  units
 		{
 			super.update();
 			
-			if (aware && inSight)
+			if (((aware && inSight) || (aware && weaponID == GameData.BOUNCE_GUN)) && this.onScreen())
 			{
 				// play run
 				this.play("run");

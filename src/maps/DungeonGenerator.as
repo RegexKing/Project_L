@@ -55,10 +55,10 @@ package maps
 			roomObjs = new Array();
 			
 			// scale complexity
-			TOTAL_ROWS = 40 + GameData.level;
-			TOTAL_COLS = 40 + GameData.level;
-			MIN_ROOMS = 5 + GameData.level;
-			MAX_ROOMS = 10 + GameData.level;
+			TOTAL_ROWS = 30 + GameData.level*2;
+			TOTAL_COLS = 30 + GameData.level*2;
+			MIN_ROOMS = 4 + GameData.level;
+			MAX_ROOMS = 8 + GameData.level;
 			
 			// Generate the map
 			generateMap();
@@ -150,8 +150,8 @@ package maps
 			if (firstRoom)
 			{
 				firstRoomRect = new FlxRect(startX, startY, roomWidth, roomHeight);
-				firstRoomSpawnBuffer = new FlxRect(firstRoomRect.x - Map.TILE_SIZE * 3, firstRoomRect.y- Map.TILE_SIZE * 3, 
-					firstRoomRect.width + Map.TILE_SIZE * 3, firstRoomRect.height + Map.TILE_SIZE * 3);
+				firstRoomSpawnBuffer = new FlxRect(firstRoomRect.x - Map.TILE_SIZE * 2, firstRoomRect.y- Map.TILE_SIZE * 2, 
+					firstRoomRect.width + Map.TILE_SIZE * 2, firstRoomRect.height + Map.TILE_SIZE * 2);
 			}
 			// -------------------------------------------------------------
 			
