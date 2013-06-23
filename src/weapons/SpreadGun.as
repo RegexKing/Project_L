@@ -20,11 +20,11 @@ package weapons
 			isEnemy = _isEnemy;
 			
 			deviations = new Array();
-			deviations.push(-0.4);
 			deviations.push(-0.2);
+			deviations.push(-0.1);
 			deviations.push(0);
+			deviations.push(0.1);
 			deviations.push(0.2);
-			deviations.push(0.4);
 			
 		}
 		

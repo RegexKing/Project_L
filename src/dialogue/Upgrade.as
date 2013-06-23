@@ -249,8 +249,8 @@ package dialogue
 		
 		private function initDisplayCost(_upgradeQuantity:uint):String
 		{
-			if (findCost(_upgradeQuantity) < GameData.MAX_UPGRADES + 1) return String(_upgradeQuantity);
-			else return "MAX";
+			if (_upgradeQuantity > GameData.MAX_UPGRADES) return "MAX";
+			else return String(_upgradeQuantity);
 		}
 		
 		private function playUpgradeSound():void

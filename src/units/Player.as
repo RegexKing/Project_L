@@ -110,7 +110,7 @@ package  units
 			spreadGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			spreadGun.setBulletSpeed(600);
 			spreadGun.setFireRate(GameData.SPREAD_RATE - (GameData.SPREAD_RATE * GameData.fireRateMultiplier));
-			spreadGun.setBulletLifeSpan(450);
+			spreadGun.setBulletLifeSpan(600);
 			spreadGun.setPreFireCallback(alertEnemies, AssetsRegistry.shotGunMP3); 
 
 			sniper = new Sniper("sniper", this);

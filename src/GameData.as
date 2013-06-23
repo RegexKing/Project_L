@@ -83,10 +83,10 @@ package
 			BeastMan.isAnnoyed = false;
 			
 			level = 1;
-			diamonds = 0;
+			diamonds = 60;
 			playerHealth = 3;
 			
-			weapon = [0];
+			weapon = [0, SPREAD_GUN];
 			weaponID = 0;
 			
 			totalHealth = 3;

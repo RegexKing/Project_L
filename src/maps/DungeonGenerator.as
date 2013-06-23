@@ -144,8 +144,8 @@ package maps
 				// Floor is used here to avoid index out of bound errors
 				startX = Math.floor(Math.random() * (TOTAL_ROWS - roomWidth));
 				startY = Math.floor(Math.random() * (TOTAL_COLS - roomHeight));
-			} while (!firstRoom && (FlxMath.pointInFlxRect(startX, startY, firstRoomSpawnBuffer) 
-				|| FlxMath.pointInFlxRect(startX + roomWidth, startY + roomHeight, firstRoomSpawnBuffer)));
+			} while (!firstRoom && (FlxMath.pointInFlxRect(startX, startY, firstRoomRect) 
+				|| FlxMath.pointInFlxRect(startX + roomWidth, startY + roomHeight, firstRoomRect)));
 			
 			if (firstRoom)
 			{
