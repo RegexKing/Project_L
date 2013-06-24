@@ -2,6 +2,7 @@ package  maps
 {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxMath;
+	import org.flixel.plugin.photonstorm.FlxVelocity;
 	import items.*;
 	import units.*;
 	 import hud.*;
@@ -124,10 +125,12 @@ package  maps
 				enemiesGroup.add(rangedEnemy);
 				collideableEnemies.add(rangedEnemy);
 				
+				do{
 				var rangedRandomPoint:FlxPoint = randomRoom();
 				
 				rangedEnemy.x = rangedRandomPoint.x
 				rangedEnemy.y = rangedRandomPoint.y;
+				} while (!isSpawnValid(rangedEnemy));
 			}
 			
 			for (var j:int = 0; j < otherEnemies; j++)
@@ -177,10 +180,12 @@ package  maps
 						break;
 				}
 				
+				do{
 				var randomPoint:FlxPoint = randomRoom();
 				
 				enemy.x = randomPoint.x
 				enemy.y = randomPoint.y;
+				} while (!isSpawnValid(enemy));
 			}
 			
 			//check for bad ass enemy
@@ -298,6 +303,12 @@ package  maps
 			var arrayCoords:Array = dungeonGen.getRandomLastRoomTile();
 			
 			return new FlxPoint(arrayCoords[0] * TILE_SIZE, arrayCoords[1] * TILE_SIZE);
+		}
+		
+		private function isSpawnValid(enemy:Enemy):Boolean
+		{
+			if (FlxVelocity.distanceBetween(enemy, player) < GameData.RENDER_HEIGHT) return false;
+			else return true;
 		}
 		
 	}
