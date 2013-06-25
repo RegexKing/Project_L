@@ -66,6 +66,7 @@ package
 		{
 			map = new DungeonMap(playerBulletsGroup, enemiesGroup, playerHazzardsGroup, collideableEnemies, enemyBullets, itemsGroup, gibsGroup, 
 				lightsGroup, lifeBar, diamondCounter, chestUI, spriteAddons, enemyBars, alertEnemies, levelComplete);
+				
 			
 			player = (map as DungeonMap).getPlayer();
 				

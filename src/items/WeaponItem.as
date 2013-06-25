@@ -50,7 +50,7 @@ package   items
 		
 		override public function pickup():void
 		{
-			GameData.weapon = weaponID;
+			//GameData.weapon = weaponID;
 			
 			//sound effect
 			FlxG.play(AssetsRegistry.pickupWeaponMP3);

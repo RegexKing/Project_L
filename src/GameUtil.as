@@ -50,12 +50,16 @@ package
 			else return scaledDamage;
 		}
 		
-		public static function clone(source:Object):* 
+		public static function cloneArray(source:Array):Array
 		{ 
-			var myBA:ByteArray = new ByteArray(); 
-			myBA.writeObject(source); 
-			myBA.position = 0; 
-			return(myBA.readObject()); 
+			var newArray:Array = new Array();
+			
+			for (var i:int = 0; i < source.length; i++)
+			{
+				newArray.push(source[i]);
+			}
+			
+			return newArray;
 		}
 		
 	}

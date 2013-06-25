@@ -18,7 +18,7 @@ package
 	{
 		//stored vars
 		protected var startDiamonds:int = GameData.diamonds;
-		protected var startWeapons:Array = GameUtil.clone(GameData.weapon);
+		protected var startWeapons:Array = GameUtil.cloneArray(GameData.weapon);
 		protected var startVitUpgrades:uint = GameData.vitalityUpgrades;
 		protected var startDefUpgrades:uint = GameData.defenseUpgrades;
 		protected var startattackUpgrades:uint = GameData.attackUpgrades;
@@ -174,17 +174,11 @@ package
 		override public function update():void
 		{
 			//The pause menu is popped up here
-			if (!pauseMenu.alive)
+			if (!pauseMenu.alive && !miniMap.isToggled)
 			{
 				super.update();
 			
 				FlxG.collide(collideableGroup, map);
-				
-				// minimap
-				if (FlxG.keys.justPressed("M") || FlxG.keys.justPressed("TAB"))
-				{
-					miniMap.toggleMiniMap();
-				}
 				
 				// Pause game
 				if (FlxG.keys.justPressed("ESCAPE") || FlxG.keys.justPressed("P"))
@@ -199,7 +193,8 @@ package
 			
 			else
 			{
-				pauseMenu.update();	
+				pauseMenu.update();
+				miniMap.update();
 			}
 		
 		}

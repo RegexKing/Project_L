@@ -21,10 +21,12 @@ package  hud
 		public var treasureIcons:Array;
 		public var tileMap:FlxTilemap;
 		public var map:Map;
+		public var isToggled:Boolean;
 		
 		public function MiniMap(_map:Map, _player:Player) 
 		{
 			super();
+			isToggled = true;
 			
 			player = _player;
 			map = _map;
@@ -74,6 +76,12 @@ package  hud
 		{
 			super.update();
 			
+			
+			if (FlxG.keys.justPressed("M") || FlxG.keys.justPressed("TAB"))
+				{
+					toggleMiniMap();
+				}
+			
 			tileMap.x = playerIcon.x - (Math.round(player.x / Map.TILE_SIZE) * 12);
 			tileMap.y = playerIcon.y - (Math.round(player.y / Map.TILE_SIZE) * 12);
 			
@@ -97,6 +105,7 @@ package  hud
 		
 		public function toggleMiniMap():void
 		{
+			isToggled = !isToggled;
 			tileMap.visible = !tileMap.visible;
 			playerIcon.visible = !playerIcon.visible;
 			if (map is DungeonMap)

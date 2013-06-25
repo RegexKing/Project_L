@@ -66,7 +66,7 @@ package  maps
 			
 			
 			// figures out how many enemys to spwan based on level
-			totalEnemies = 6 + 3 * GameData.level;
+			totalEnemies = GameData.LUCKY_NUMBER + 3 * GameData.level;
 			
 			generateItems();
 			//spawnDiamonds();
@@ -110,18 +110,18 @@ package  maps
 			if (GameData.level < 3) enemyRange = 1;
 			else if (GameData.level < 6) enemyRange = 2;
 			else if (GameData.level < 9) enemyRange = 3;
-			else if (GameData.level < 13) enemyRange = 4;
-			else if (GameData.level >= 16) enemyRange = 5;
+			else if (GameData.level < 15) enemyRange = 4;
+			else enemyRange = 5;
 			
 			//enemyRange = 7;
 			
 			for (var i:int = 0; i < rangedEnemyNum; i++)
 			{
 				var rangedEnemy:Enemy;
-				var diceRoll:Number = Math.round(Math.random());
-				var patrol:Boolean = Boolean(diceRoll);
+				//var diceRoll:Number = Math.round(Math.random());
+				//var patrol:Boolean = Boolean(diceRoll);
 				
-				rangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, -1, patrol);
+				rangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, -1, true);
 				enemiesGroup.add(rangedEnemy);
 				collideableEnemies.add(rangedEnemy);
 				
@@ -191,7 +191,10 @@ package  maps
 			//check for bad ass enemy
 			if (GameData.level == 3 || GameData.level == 6 || GameData.level == 10 || GameData.level == 14)
 			{
-				var newWeap:uint = FlxMath.rand(0, 5, GameData.weapon);
+				// so weapon doesnt get sorted
+				var weaponClone:Array = GameUtil.cloneArray(GameData.weapon);
+				
+				var newWeap:uint = FlxMath.rand(0, 5, weaponClone);
 				
 				var badAssEnemy:RangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, newWeap, false);
 				

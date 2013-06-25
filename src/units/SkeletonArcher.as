@@ -48,7 +48,7 @@ package units
 		{
 			super.update();
 			
-			if (aware && solid && inSight)
+			if (aware && solid && inSight && onScreen())
 			{
 				weapon.fireAtTarget(player);
 			}

@@ -34,7 +34,7 @@ package maps
 		protected const WALL:int = 1;
 		protected const FLOOR:int = 0;
 		protected const MIN_ROOM_WIDTH:int = 5;
-		protected const MAX_ROOM_WIDTH:int = 12;
+		protected const MAX_ROOM_WIDTH:int = 10;
 		protected const MIN_ROOM_HEIGHT:int = 5;
 		protected const MAX_ROOM_HEIGHT:int = 12;
 		protected static var  MIN_ROOMS:int = 6;
