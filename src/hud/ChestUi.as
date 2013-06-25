@@ -1,6 +1,7 @@
 package hud 
 {
 	import org.flixel.plugin.photonstorm.FlxBar;
+	import com.newgrounds.API;
 	/**
 	 * ...
 	 * @author Frank Fazio
@@ -19,6 +20,16 @@ package hud
 			createImageBar(AssetsRegistry.chestUIBorderPNG, AssetsRegistry.chestUIFillPNG, 0x0, 0x0);
 			
 			currentValue = 0;
+		}
+		
+		override protected function updateValue(newValue:Number):void
+		{
+			super.updateValue(newValue);
+			
+			if (value == max && filledCallback is Function)
+			{
+				API.unlockMedal("Treasure Hunt");
+			}
 		}
 		
 	}

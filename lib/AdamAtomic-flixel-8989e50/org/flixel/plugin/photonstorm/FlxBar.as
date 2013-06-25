@@ -56,7 +56,7 @@ package org.flixel.plugin.photonstorm
 		/**
 		 * The maximum value the bar can be (can never be <= min)
 		 */
-		private var max:Number;
+		protected var max:Number;
 		
 		/**
 		 * How wide is the range of this bar? (max - min)
@@ -71,7 +71,7 @@ package org.flixel.plugin.photonstorm
 		/**
 		 * The current value - must always be between min and max
 		 */
-		private var value:Number;
+		protected var value:Number;
 		
 		/**
 		 * How many pixels = 1% of the bar (barWidth (or height) / 100)
@@ -85,7 +85,7 @@ package org.flixel.plugin.photonstorm
 		private var emptyKill:Boolean;
 		private var zeroOffset:Point = new Point;
 		
-		private var filledCallback:Function;
+		protected var filledCallback:Function;
 		private var filledBar:BitmapData;
 		private var filledBarRect:Rectangle;
 		private var filledBarPoint:Point;
@@ -495,7 +495,7 @@ package org.flixel.plugin.photonstorm
 			updateValue(parent[parentVariable]);
 		}
 		
-		private function updateValue(newValue:Number):void
+		protected function updateValue(newValue:Number):void
 		{
 			if (newValue > max)
 			{

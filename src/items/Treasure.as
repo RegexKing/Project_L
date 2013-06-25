@@ -34,9 +34,6 @@ package items
 			//play sound
 			FlxG.play(AssetsRegistry.openChestMP3);
 			
-			//unlock medal
-			API.unlockMedal("Treasure Hunt");
-			
 			win();
 		}
 	}
