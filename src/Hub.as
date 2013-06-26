@@ -16,7 +16,6 @@ package
 	 
 	public class Hub extends PlayState
 	{
-		protected var npcGroup:FlxGroup;
 		protected var dialogueBox:DialogueBox;
 		
 		protected var girl:Girl;
@@ -28,8 +27,6 @@ package
 		
 		override public function create():void
 		{
-			npcGroup = new FlxGroup();
-			
 			super.create();
 			
 			areaHeader.text = "HUB";
@@ -58,7 +55,7 @@ package
 			girl.x = GameData.RENDER_WIDTH/2 - girl.width/2;
 			girl.y = Map.TILE_SIZE + girl.height;
 			
-			dialogueBox = new DialogueBox(player, girl, beastMan, lifeBar, player.setFireRate, diamondCounter);
+			dialogueBox = new DialogueBox(player, enemiesGroup, lifeBar, player.setFireRate, diamondCounter, girl);
 			add(dialogueBox);
 			
 			checkMedals();
@@ -95,7 +92,7 @@ package
 			
 		}
 		
-		private function activateDialogue(npcName:String):void
+		protected function activateDialogue(npcName:String):void
 		{
 			dialogueBox.initConversation(npcName);	
 		}
