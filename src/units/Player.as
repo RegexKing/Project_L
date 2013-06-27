@@ -205,14 +205,17 @@ package  units
 		
 		override public function hurt(_damageNumber:Number):void
 		{
-			//reset the reward counter when hurt
-			Enemy.totalEnemies = 0;
-			
-			this.flicker(1);
-			FlxG.camera.shake(0.005, 0.35);
-			
-			//sound effect
-			FlxG.play(AssetsRegistry.playerHurtMP3);
+			if (_damageNumber > 0)
+			{
+				//reset the reward counter when hurt
+				Enemy.totalEnemies = 0;
+				
+				this.flicker(1);
+				FlxG.camera.shake(0.005, 0.35);
+				
+				//sound effect
+				FlxG.play(AssetsRegistry.playerHurtMP3);
+			}
 		}
 		
 		override public function kill():void

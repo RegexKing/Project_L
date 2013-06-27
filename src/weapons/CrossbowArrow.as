@@ -38,7 +38,7 @@ package weapons
 			
 			attackValue = 0;
 					
-			explosionTimer = new FlxDelay(1100);
+			explosionTimer = new FlxDelay(800);
 			explosionTimer.callback = kill;
 			
 			explosionParticles = new FlxEmitter(0, 0, particleNumber);
