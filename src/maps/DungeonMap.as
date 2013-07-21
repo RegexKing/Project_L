@@ -107,10 +107,10 @@ package  maps
 			// spawns a certain range of enemies depending on level
 			var enemyRange:uint;
 			
-			if (GameData.level < 3) enemyRange = 1;
-			else if (GameData.level < 6) enemyRange = 2;
-			else if (GameData.level < 9) enemyRange = 3;
-			else if (GameData.level < 15) enemyRange = 4;
+			if (GameData.level < 3) enemyRange = 2;
+			else if (GameData.level < 6) enemyRange = 3;
+			else if (GameData.level < 9) enemyRange = 4;
+			//else if (GameData.level < 15) enemyRange = 5;
 			else enemyRange = 5;
 			
 			//enemyRange = 7;
@@ -189,7 +189,7 @@ package  maps
 			}
 			
 			//check for bad ass enemy
-			if (GameData.level == 3 || GameData.level == 6 || GameData.level == 10 || GameData.level == 14)
+			if (GameData.level == 3 || GameData.level == 6 || GameData.level == 9 || GameData.level == 12)
 			{
 				// so weapon doesnt get sorted
 				var weaponClone:Array = GameUtil.cloneArray(GameData.weapon);

@@ -16,9 +16,9 @@ package
 		public static const RENDER_WIDTH:uint = 540;
 		public static const RENDER_HEIGHT:uint = 480;
 		
-		public static const LAST_LEVEL:uint = 21;
+		public static const LAST_LEVEL:uint = 13;
 		
-		public static const CHESTS_PER_LEVEL:uint = 3;
+		public static const CHESTS_PER_LEVEL:uint = 5;
 		public static const MAX_UPGRADES:uint = 5;
 		public static const LUCKY_NUMBER:uint = 7;  //helps determine item spawns
 		

@@ -17,7 +17,7 @@ package util
 			makeGraphic(GameData.RENDER_WIDTH, GameData.RENDER_HEIGHT, 0xff000000);
 			
 			blend = "multiply";
-			alpha = 0.95;	
+			//alpha = 0.95;	
 		}	
 	}
 

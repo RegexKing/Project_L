@@ -13,8 +13,8 @@ package
 		// Formula:  rate = (totalLevels / last level difficulty factor)
 		//ex: 2 = 20 levels / 10x stronger
 		
-		private static const DAMAGE_SCALING:Number = 10;
-		private static const HEALTH_SCALING:Number = 1.5;
+		private static const DAMAGE_SCALING:Number = 6;
+		private static const HEALTH_SCALING:Number = 1;
 		
 		public function GameUtil() {}
 		
