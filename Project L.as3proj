@@ -4,13 +4,13 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\ProjectL.swf" />
+    <movie path="bin\Lemon Party..exe" />
     <movie fps="60" />
     <movie width="512" />
     <movie height="480" />
-    <movie version="10" />
-    <movie minorVersion="1" />
-    <movie platform="Flash Player" />
+    <movie version="3" />
+    <movie minorVersion="2" />
+    <movie platform="AIR" />
     <movie background="#000000" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
@@ -84,7 +84,7 @@
   <!-- Other project options -->
   <options>
     <option showHiddenPaths="False" />
-    <option testMovie="ExternalPlayer" />
+    <option testMovie="Unknown" />
   </options>
   <!-- Plugin storage -->
   <storage />
