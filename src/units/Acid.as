@@ -49,7 +49,7 @@ package units
 		{
 			super.kill();
 			
-			expire.abort();
+			//expire.abort();
 			expire = null;
 		}
 		

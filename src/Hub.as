@@ -80,7 +80,7 @@ package
 			}
 			
 			//test key
-			if (FlxG.keys.justPressed("SPACE"))
+			/*if (FlxG.keys.justPressed("SPACE"))
 			{
 				
 				diamondCounter.changeQuantity(1);
@@ -89,6 +89,7 @@ package
 				//FlxG.mute = !FlxG.mute;
 				//trace(FlxG.mute);
 			}
+			*/
 			
 		}
 		
