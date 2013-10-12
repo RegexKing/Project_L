@@ -23,6 +23,7 @@ package
 		private var playButton:FlxButton;
 		private var optionsButton:FlxButton;
 		private var extrasButton:FlxButton;
+		private var credit:FlxText;
 	
 		public function TitleScreen() 
 		{
@@ -58,6 +59,13 @@ package
 			add(titleScreen);
 			add(effectContainer);
 			add(mainMenuButtons);
+			
+			credit = new FlxText(0, GameData.RENDER_HEIGHT - 45, 160);
+			credit.scrollFactor.x = credit.scrollFactor.y = 0;
+			credit.setFormat("NES", 16, 0xffFFFFFF);
+			credit.text = "Snakebee 2013";
+			
+			add(credit);
 			
 			flood.start(0);
 		}
@@ -117,7 +125,7 @@ package
 		
 		private function goExtras():void
 		{
-			
+			FlxG.play(AssetsRegistry.rejectedMP3);
 		}
 		
 		private function goStory():void

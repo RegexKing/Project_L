@@ -194,7 +194,7 @@ package  maps
 				// so weapon doesnt get sorted
 				var weaponClone:Array = GameUtil.cloneArray(GameData.weapon);
 				
-				var newWeap:uint = FlxMath.rand(0, 5, weaponClone);
+				var newWeap:uint = FlxMath.rand(0, 4, weaponClone);
 				
 				var badAssEnemy:RangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, newWeap, false);
 				

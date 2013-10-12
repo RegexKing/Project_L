@@ -31,10 +31,10 @@ package
 		
 		// Weapon ID's
 		public static const NORMAL_GUN:uint = 0;
-		public static const BOUNCE_GUN:uint = 1;
-		public static const CROSSBOW:uint = 2;
-		public static const SPREAD_GUN:uint = 3;
-		public static const SNIPER:uint = 4;
+		public static const BOUNCE_GUN:uint = 4;
+		public static const CROSSBOW:uint = 1;
+		public static const SPREAD_GUN:uint = 2;
+		public static const SNIPER:uint = 3;
 		
 		//Starting FireRates for weapons
 		public static const NORMAL_RATE:Number = 500;
@@ -53,7 +53,7 @@ package
 		
 		//changable
 		
-		public static var level:uint = 0;
+		public static var level:uint = 1;
 		public static var diamonds:int = 0;
 		public static var playerHealth:Number = 3;
 		public static var weapon:Array = [0];
@@ -82,7 +82,7 @@ package
 			isBeastManDead = false;
 			BeastMan.isAnnoyed = false;
 			
-			level = 0;
+			level = 1;
 			diamonds = 0;
 			playerHealth = 3;
 			

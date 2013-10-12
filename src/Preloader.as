@@ -11,11 +11,27 @@ package
 	import flash.utils.getDefinitionByName;
 	import flash.display.StageQuality;
 	import com.newgrounds.*;
+	import org.flixel.system.*;
 	
 	/**
 	 * ...
 	 * @author Frank Fazio
 	 */
+	
+ 
+	public class Preloader extends FlxPreloader
+	{
+		public function Preloader():void
+		{
+			className = "Main";
+			super();
+			
+			// Connect to Newgrounds
+			API.connect(root, "29905:Rr8J6vmt", "FwDZrhXm4S7DDNfaSkjlCkhnTvhA4NNK");
+		}
+	} 
+	 
+	/*
 	public class Preloader extends MovieClip 
 	{
 		private var _loadBar:Sprite;
@@ -90,7 +106,7 @@ package
 		}
 		
 	}
-	
+	*/
 }
 
 

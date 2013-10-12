@@ -9,6 +9,7 @@ package maps
 	 
 	 import org.flixel.FlxPoint;
 	 import org.flixel.FlxRect;
+	 import org.flixel.FlxG;
 	 import org.flixel.plugin.photonstorm.FlxMath;
 	 import org.flixel.plugin.photonstorm.FlxVelocity;
 	 
@@ -419,10 +420,19 @@ package maps
 			
 			for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL-1; i++)
 			{
-				var index:int = FlxMath.rand(0, diamondRooms[i].length, excludeCoords);
-				excludeCoords.push(index);
+				try 
+				{
+					var index:int = FlxMath.rand(0, diamondRooms[i].length, excludeCoords);
+					excludeCoords.push(index);
+					
+					diamondCoords.push(diamondRooms[i][index]);
+				}
 				
-				diamondCoords.push(diamondRooms[i][index]);
+				catch (error:Error)
+				{
+					trace((diamondRooms.length - 1) + " at " + i);
+					FlxG.switchState(new DungeonCrawl());
+				}
 			}
 			
 			return diamondCoords;

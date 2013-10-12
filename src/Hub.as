@@ -111,8 +111,8 @@ package
 		
 		override public function bgmInit():void
 		{
-			
-			FlxG.playMusic(AssetsRegistry.BGM_hubMP3);
+			if (GameData.level != GameData.LAST_LEVEL) FlxG.playMusic(AssetsRegistry.BGM_hubMP3);
+			else FlxG.playMusic(AssetsRegistry.BGM_beastMP3);
 			if (!PauseMenu.isMusicOn) FlxG.music.pause();
 			FlxG.music.survive = false;
 

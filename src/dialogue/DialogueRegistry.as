@@ -28,7 +28,7 @@ package dialogue
 		public static var angryResponse2:String = GUY_TITLE + "You just looked like you needed a friendly kick in the arse!";
 			
 		// girl
-		public static var girl_intro1:String = GIRL_TITLE + "Thou seeketh soul power, dost thou not?";
+		public static var girl_intro1:String = GIRL_TITLE + "Come, let me grant thine strength.";
 		public static var girl_outro1:String = GIRL_TITLE + "Farewell for now..";
 		public static var sad:String = GIRL_TITLE + "Thou hast taken away from me my dearest companion, mayhaps my last.";
 		public static var sad2:String = GIRL_TITLE + "I beg of thee, just let me be...";

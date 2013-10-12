@@ -55,15 +55,23 @@ package  hud
 			{
 				for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL; i++)
 				{
-					var treasureIcon:FlxSprite = new FlxSprite();
-					treasureIcon.loadGraphic(AssetsRegistry.treasureMiniMapIconPNG);
-					treasureIcon.alpha = 0;
-			
-					treasureIcon.x = Math.round((_map as DungeonMap).treasures[i].x / Map.TILE_SIZE) * 12;
-					treasureIcon.y = Math.round((_map as DungeonMap).treasures[i].y / Map.TILE_SIZE) * 12;
+					try 
+					{
+						var treasureIcon:FlxSprite = new FlxSprite();
+						treasureIcon.loadGraphic(AssetsRegistry.treasureMiniMapIconPNG);
+						treasureIcon.alpha = 0;
+				
+						treasureIcon.x = Math.round((_map as DungeonMap).treasures[i].x / Map.TILE_SIZE) * 12;
+						treasureIcon.y = Math.round((_map as DungeonMap).treasures[i].y / Map.TILE_SIZE) * 12;
+						
+						treasureIcons.push(treasureIcon);
+						add(treasureIcon);
+					}
 					
-					treasureIcons.push(treasureIcon);
-					add(treasureIcon);
+					catch (error:Error)
+					{
+						FlxG.switchState(new DungeonCrawl());
+					}
 				}
 			}
 			
@@ -110,9 +118,17 @@ package  hud
 			playerIcon.visible = !playerIcon.visible;
 			if (map is DungeonMap)
 			{
-				for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL; i++)
+				try
 				{
-					treasureIcons[i].visible = !treasureIcons[i].visible;
+					for (var i:int = 0; i < GameData.CHESTS_PER_LEVEL; i++)
+					{
+						treasureIcons[i].visible = !treasureIcons[i].visible;
+					}
+				}
+				
+				catch (error:Error)
+				{
+					FlxG.switchState(new DungeonCrawl());
 				}
 			}
 		}

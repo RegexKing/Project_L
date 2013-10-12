@@ -127,6 +127,7 @@ package
 		// UI Sounds
 		[Embed(source = "../assets/sounds/treasureAlert.mp3")] public static var treasureAlertMP3:Class;
 		[Embed(source = "../assets/sounds/upgrade.mp3")] public static var upgradeMP3:Class;
+		[Embed(source = "../assets/sounds/rejected.mp3")] public static var rejectedMP3:Class;
 		
 		// Chimes
 		[Embed(source = "../assets/sounds/win.mp3")] public static var winMP3:Class;

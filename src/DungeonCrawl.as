@@ -90,6 +90,8 @@ package
 			player.alive = false;
 			player.velocity.x = player.velocity.y = 0;
 			
+			enemiesGroup.callAll("kill");
+			
 			FlxControl.clear();
 			
 			hudGroup.add(new TransitionScreen("levelcomplete", goNextState));
