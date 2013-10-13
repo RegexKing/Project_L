@@ -38,7 +38,7 @@ package
 		
 		//Starting FireRates for weapons
 		public static const NORMAL_RATE:Number = 500;
-		public static const BOUNCE_RATE:Number = 400;
+		public static const BOUNCE_RATE:Number = 500;
 		public static const CROSSBOW_RATE:Number = 1100;
 		public static const SPREAD_RATE:Number = 800;
 		public static const SNIPER_RATE:Number = 800;

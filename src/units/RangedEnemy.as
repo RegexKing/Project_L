@@ -93,7 +93,7 @@ package  units
 			
 			else if (weaponID == GameData.BOUNCE_GUN)
 			{
-				weapon = new BounceGun("bounce", spriteAddons, this, true);
+				weapon = new BounceGun("bounce", this, true);
 				weapon.makePixelBullet(25, 12, 12, 0xffffffff, 5, 13)
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 				weapon.setBulletSpeed(600);

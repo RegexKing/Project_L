@@ -88,13 +88,11 @@ package  units
 			normalGun.setPreFireCallback(alertEnemies, AssetsRegistry.shootMP3); 
 			
 			
-			bounceGun = new BounceGun("bounce", spriteAddons, this);
-			bounceGun.makePixelBullet(25, 12, 12, 0xffffffff, 5, 13)
+			bounceGun = new BounceGun("bounce", this);
+			bounceGun.makePixelBullet(25, 18, 18, 0xffffffff, 0, 13)
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
 			bounceGun.setBulletSpeed(600);
 			bounceGun.setFireRate(GameData.BOUNCE_RATE - (GameData.BOUNCE_RATE * GameData.fireRateMultiplier));
-			bounceGun.setBulletElasticity(0.8);
-			bounceGun.setBulletLifeSpan(2000);
 			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.bounceGunMP3);
 			
 
@@ -154,7 +152,7 @@ package  units
 					}
 					else if (GameData.weapon[GameData.weaponID] == GameData.BOUNCE_GUN)
 					{
-						normalGun.fireAtMouse();
+						bounceGun.fireAtMouse();
 					}
 					else if (GameData.weapon[GameData.weaponID] == GameData.CROSSBOW)
 					{
