@@ -96,7 +96,7 @@ package  units
 				weapon = new BounceGun("bounce", this, true);
 				weapon.makePixelBullet(25, 12, 12, 0xffffffff, 5, 13)
 				weapon.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
-				weapon.setBulletSpeed(600);
+				weapon.setBulletSpeed(250);
 				weapon.setFireRate(GameData.BOUNCE_RATE);
 				weapon.setBulletElasticity(0.8);
 				weapon.setBulletLifeSpan(2000);

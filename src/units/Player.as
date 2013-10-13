@@ -91,7 +91,7 @@ package  units
 			bounceGun = new BounceGun("bounce", this);
 			bounceGun.makePixelBullet(25, 18, 18, 0xffffffff, 0, 13)
 			bounceGun.setBulletBounds(new FlxRect(0, 0, map.tileMap.width, map.tileMap.height));
-			bounceGun.setBulletSpeed(600);
+			bounceGun.setBulletSpeed(500);
 			bounceGun.setFireRate(GameData.BOUNCE_RATE - (GameData.BOUNCE_RATE * GameData.fireRateMultiplier));
 			bounceGun.setPreFireCallback(alertEnemies, AssetsRegistry.bounceGunMP3);
 			
