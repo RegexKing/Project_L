@@ -92,6 +92,7 @@ package
 			player.velocity.x = player.velocity.y = 0;
 			
 			enemiesGroup.callAll("kill");
+			Enemy.totalEnemies = 0;
 			
 			FlxControl.clear();
 			

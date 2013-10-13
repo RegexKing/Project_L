@@ -152,16 +152,16 @@ package
 				{
 					API.unlockMedal("Just Getting Started");
 				}
-				else if (GameData.level == 11)
+				else if (GameData.level == 6)
 				{
 					API.unlockMedal("Don't Stop Me Now");
 				}
-				else if (GameData.level == 16)
+				else if (GameData.level == 11)
 				{
 					API.unlockMedal("We Need To Go Deeper");
 				}
 				
-				else if (GameData.level == 21)
+				else if (GameData.level == 16)
 				{
 					API.unlockMedal("Ain't Nobody Got Time For Death!");
 				}

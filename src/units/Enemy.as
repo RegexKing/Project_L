@@ -170,6 +170,8 @@ package  units
 			
 			if(itemEmitter != null)
 			{
+				
+				
 			
 				if (totalEnemies >= GameData.LUCKY_NUMBER)
 				{
@@ -177,7 +179,7 @@ package  units
 					totalEnemies = 0;
 					
 					//unlock medal
-					API.unlockMedal("7 In a Row");
+					API.unlockMedal("7TH ENEMY HAS THE HEART");
 				}
 				
 				else
