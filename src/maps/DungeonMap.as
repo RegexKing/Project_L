@@ -189,12 +189,12 @@ package  maps
 			}
 			
 			//check for bad ass enemy
-			if (GameData.level == 3 || GameData.level == 6 || GameData.level == 9 || GameData.level == 12)
+			if (GameData.level == 3 || GameData.level == 6 || GameData.level == 9 ||  GameData.level == 12)
 			{
 				// so weapon doesnt get sorted
 				var weaponClone:Array = GameUtil.cloneArray(GameData.weapon);
 				
-				var newWeap:uint = FlxMath.rand(0, 4, weaponClone);
+				var newWeap:uint = FlxMath.rand(0, 5, weaponClone);
 				
 				var badAssEnemy:RangedEnemy = new RangedEnemy(player, this, enemyBullets, spriteAddons, gibs, enemyBars, healthEmitter, newWeap, false);
 				

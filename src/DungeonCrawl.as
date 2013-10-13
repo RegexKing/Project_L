@@ -53,6 +53,7 @@ package
 			//test key
 			if (FlxG.keys.justPressed("SPACE"))
 			{
+				//levelComplete();
 				//diamondCounter.changeQuantity(1);
 				//lifeBar.increaseBarRange();
 				//player.active = !player.active;

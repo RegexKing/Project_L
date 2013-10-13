@@ -83,7 +83,7 @@ package units
 			}
 			
 			//play death
-			FlxG.play(AssetsRegistry.abomDieMP3);
+			if (this.onScreen()) FlxG.play(AssetsRegistry.abomDieMP3);
 		}
 	}
 

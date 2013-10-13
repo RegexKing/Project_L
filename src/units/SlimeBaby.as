@@ -84,7 +84,7 @@ package units
 			super.kill();
 			
 			//play sound
-			FlxG.play(AssetsRegistry.slimeDieMP3);
+			if (this.onScreen()) FlxG.play(AssetsRegistry.slimeDieMP3);
 		}
 		
 	}

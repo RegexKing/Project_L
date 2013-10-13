@@ -102,7 +102,7 @@ package units
 			}
 			
 			//play sound
-			FlxG.play(AssetsRegistry.skeletonDieMP3);
+			if (this.onScreen()) FlxG.play(AssetsRegistry.skeletonDieMP3);
 		}
 		
 		protected function ressurect():void

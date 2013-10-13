@@ -168,7 +168,7 @@ package  units
 			}
 			
 			//play sound
-			FlxG.play(AssetsRegistry.rangedDieMP3);
+			if (this.onScreen()) FlxG.play(AssetsRegistry.rangedDieMP3);
 		}
 		
 		override public function destroy():void

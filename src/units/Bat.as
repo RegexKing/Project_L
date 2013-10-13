@@ -49,7 +49,7 @@ package  units
 			super.kill();
 			
 			// play sound
-			FlxG.play(AssetsRegistry.batDieMP3);
+			if (this.onScreen()) FlxG.play(AssetsRegistry.batDieMP3);
 		}
 	}
 

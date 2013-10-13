@@ -154,7 +154,7 @@ package  units
 					}
 					else if (GameData.weapon[GameData.weaponID] == GameData.BOUNCE_GUN)
 					{
-						bounceGun.fireAtMouse();
+						normalGun.fireAtMouse();
 					}
 					else if (GameData.weapon[GameData.weaponID] == GameData.CROSSBOW)
 					{
