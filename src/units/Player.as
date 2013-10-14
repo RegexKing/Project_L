@@ -218,6 +218,8 @@ package  units
 		{
 			if (!alive) return;
 			
+			BeastMan.isAnnoyed = false;
+			
 			gunSprite.kill();
 			
 			solid = false;

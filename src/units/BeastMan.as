@@ -51,6 +51,8 @@ package units
 			
 			gibs.makeParticles(AssetsRegistry.playerGibsPNG, 50, 10, true);
 			_gibsGroup.add(gibs);
+			
+			trace(isAnnoyed);
 		}
 		
 		override public function update():void

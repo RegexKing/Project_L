@@ -345,7 +345,6 @@ package
 			FlxSpecialFX.clear();
 			
 			Enemy.totalEnemies = 0;
-			BeastMan.isAnnoyed = false;
 
 			super.destroy();
 		}
